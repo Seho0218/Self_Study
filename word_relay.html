@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>끝말잇기</title>
+</head>
+
+<body>
+  <div><span id="order">1</span>번째 참가자</div>
+  <div>제시어: <span id="word"></span></div>
+  <input type="text">
+  <button>입력</button>
+  <script>
+    const number = Number(prompt('몇 명이 참가하나요?'));
+        const $button = document.querySelector('button');
+        const $input = document.querySelector('input');// html 태그를 변수에 넣을때 $ 
+        const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
+        let word;//제시어
+        let newWord;//새로 입력한 단어
+
+        const onClickButton = () => {//제시어가 비어 있는가?
+            if(!word) {
+                //비어 있다
+                word = newWord; //입력한 단어가 제시어가 된다
+                $word.textContent = word;//span 태그부분에 word변수 출력
+                $input.value = '';//제시어 입력 후 입력창 클리어
+                const order = Number($order.textContent);//현재 순서 파악 -> 첫 제시어니까
+                if (order === number) {
+                    $order.textContent = 1;//문자열로 자동 형변환
+                } else {
+                    $order.textContent = order + 1;
+                }
+                $input.focus();//입력창을 비우고 커서를 둔다
+            } else {
+                //비어 있지 않다
+                if (word[word.length-1] === newWord[0]) {
+                    //입력제시어가 올바르다
+                    word = newWord; //입력한 단어가 제시어가 된다
+                    $word.textContent = word;//span 태그부분에 word변수 출력
+                    $input.value = '';//제시어 입력 후 입력창 클리어
+                    const order = Number($order.textContent);//현재 순서 파악 -> 첫 제시어니까
+                    if (order === number) {
+                    $order.textContent = 1;//문자열로 자동 형변환
+                    } else {
+                        $order.textContent = order + 1;
+                    }
+                    $input.focus();//입력창을 비우고 커서를 둔다
+                } else {
+                    //입력제시어가 올바르지 않다
+                    alert('틀렸습니다!😝')
+                    $input.value = '';//제시어 입력 후 입력창 클리어
+                    $input.focus();//입력창을 비우고 커서를 둔다
+                }
+            }
+        };
+
+        const onInput = (event) => {
+            newWord = event.target.value; //입력한 단어를 현재 단어로
+        };
+
+        $button.addEventListener('click', onClickButton);//문자열, (함수)
+        $input.addEventListener('input', onInput);//호출될때마다 함수 실행
+  </script>
+</body>
+</html>
