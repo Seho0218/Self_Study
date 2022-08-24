@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+.container{
+    width: 800px;
+    margin:0 auto;
+}
+.blog-content{
+    width:80%;
+    height: 200px;
+    background-color: #eee;
+    float:left;
+}
+.blog-img{
+    width:20%;
+    height: 200px;
+    background-color: yellow;
+    float:left;
+}
+.blog-profile{
+    width:50px;
+    display:block;
+    float: left;
+}
+.blog-name{
+    float:left;
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+    <div class="blog-content">
+        <div>
+            <img src="lion.png" class="blog-profile">
+            <div class="blog-name">
+                <!-- h,p태그 둘다 기본 margin이 있음 -->
+                <h4 style="margin:8px">이름</h4>
+                <p style="margin:8px">날짜</p>
+            </div>
+        </div>
+        <div style="clear:both">
+            <h4>블로그글</h4>
+            <p>가성비 맛집 발견</p>
+        </div>
+    </div>
+    <div class="blog-img">
+        <img src="lion.png" width="100%">
+    </div>
+</div>
+</body>
+</html>
