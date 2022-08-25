@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    .main-background{
+        width:100%;
+        height:500px;
+        background-image: url(../html:css/shoes.jpeg) , url();/*겹치기*/
+        background-size: cover;/* background 조정하기, default 반복됨* cover잘려도 알아서 채워라
+                                contain 배경아 잘리지 마라*/
+        background-repeat: no-repeat;
+        background-position: center; /*배경위치 조정*/
+        /* filter:brightness(80%); */
+        /* 이게 있으면 margin collapse 해제 */
+        padding:1px;
+    }
+    .main-title{
+        color:white;
+        font-size: 40px;
+        margin-top: 100px;
+        text-align: center;
+    }
+    .main-background>p{
+        font-size: 40px;
+        text-align: center;
+        color: aliceblue;
+    }
+    .main-button{
+        padding:15px;
+        font-size:20px;
+        background-color: white;
+        border:none;
+        border-radius: 5px;
+        position: absolute;
+        left:0;
+        right:0;
+        margin-left: auto;
+        margin-right: auto; 
+        width:200px; 
+        /* static:좌표이동x, fixed 화면고정 현재화면을 기준으로 고정되는 요소가 필요할때 사용.
+            absolute position:relative 가진 부모가 기준 */
+    }
+    .explain-box{
+        width:80%;
+        /* content 영역 */
+        max-width: 800px;
+        /* min-width: */
+        height:300px;
+        background-color: #eee;
+        text-align: center;
+        padding:20px;
+        margin: 0 auto;
+        position:relative;
+        margin-top:-100px;
+        box-sizing: border-box;
+        /* padding, border 포함 */
+    }
+    input[type=email]{ 
+        /* input타입이 text인것만 선택 */
+        padding:5px;
+        font-size:20px;
+    }
+
+</style>
+</head>
+<body style="margin:0px">
+    <div class="main-background">
+        <h4 class="main-title">Buy Our Excellent Shoes!</h4>
+        <p class="main-content">우아아 우아앙 우아앙 우아앙 우아앙 우아앙</p>
+        <button class ="main-button">구매하기</button>
+    </div>
+    <div class="explain-box">
+        <p>
+            asdfasdfasdfasdfsdfasdfasdfasdfasdf
+            sdfasdfasdfasdfasdfsdfasdfasdfasdfasdfsdf
+            asdfasdfasdfasdfsdfasdfasdfasdfasdfsdfasdf
+            asdfasdfasdfsdfasdfasdfasdfasdfsdf
+        </p>
+    </div>
+    
+    <form>
+        <input type="text" value="asdf" class="text-input">
+        <!-- placeholder 배경글자 -->
+        <input type="password">
+        <input type="email">
+        <input type="submit">
+
+    </form>
+</body>
+</html>

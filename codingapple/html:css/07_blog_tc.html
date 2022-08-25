@@ -29,10 +29,34 @@
 .blog-name{
     float:left;
 }
+
+.navbar li { 
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    background-color: #eee;
+    padding:10px;
+}
+.navbar a{
+    font-size: 20px;
+    text-decoration: none; /*밑줄 제거 가능*/
+}
+/* 스페이스 = ~안에 있는 모든 자식, > 직계 자식 */
 </style>
 
 </head>
 <body>
+    <nav><!--  nav div 같음 -->
+        <ul class="navbar content"><!-- 두개 적용 가능-->
+            <li><a href="#">영화</a></li>
+            <li><a href="#">맛집</a></li>
+            <li><a href="#">IT</a></li>
+            <li><a href="#">컴퓨터</a></li>
+        </ul>
+    </nav>
+    
+
+
     <div class="container">
     <div class="blog-content">
         <div>
@@ -43,7 +67,8 @@
                 <p style="margin:8px">날짜</p>
             </div>
         </div>
-        <div style="clear:both">
+        <div style="clear:both"></div>
+        <div style="margin-top:10px;">
             <h4>블로그글</h4>
             <p>가성비 맛집 발견</p>
         </div>
