@@ -1,3 +1,12 @@
+div, input, textarea{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+}
+
+
 .profile{/* 클래스는 중복없이*/
     width:100px;
     display:block;
@@ -80,4 +89,50 @@
     height: 200px;
     float:left;
     padding-left: 20px;
+}
+.form-background {
+    background-color: black;
+    padding:30px;
+}
+
+.form-white {
+    background-color: white;
+    padding:30px;
+    width:80%;
+    max-width: 600px;
+    margin:auto;
+}
+
+.form-input {
+    width:100%;
+    padding:10px;
+    font-size: 20px;
+    border:1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.w-50 {
+    width:50%;
+    float:left;
+}
+
+.w-100 {
+    width:100%;
+    padding:10px;
+}
+
+#yellow-button {
+    padding:10px;
+    display: block;
+    margin-left: auto;
+}
+
+td,th {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse; 
+/*    틈 제거*/
 }

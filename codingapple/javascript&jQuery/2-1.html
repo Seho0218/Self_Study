@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="main.css">
+<script>
+    function 알림창열기(구멍){
+        document.getElementById('alert').style.display=구멍;
+    }
+//    문자는 따옴표 안에
+
+</script>
+</head>
+<body>
+    <div class="alert-box" id="alert">알림창임
+    <button onclick="알림창열기('none');" id=Btn>닫기</button>
+    </div> 
+    <button onclick="알림창열기('block');">열기</button>
+</body>
+</html>
