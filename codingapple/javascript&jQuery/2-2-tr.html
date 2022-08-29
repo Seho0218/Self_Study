@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="alert-box" id="alert">
+        <p id="title">알림창임</p>
+        <button onclick="알림창('none')" id=Btn>닫기</button>
+    </div>
+    
+    <button onclick="알림창('아이디입력하셈')">버튼1</button>
+    <button onclick="알림창('비번입력하셈');">버튼2</button>
+</body>
+<script>
+    function 알림창(구멍){
+        document.getElementById('title').innerHTML=구멍;//getElementByClassName('title1)
+        document.getElementById('alert').style.display='block';
+    }
+</script>
+</html>
