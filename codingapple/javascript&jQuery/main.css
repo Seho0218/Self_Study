@@ -21,7 +21,7 @@
 }
 
 .show {
-    display: block;
+    display:block;
 }
 
 .black-bg {
@@ -38,6 +38,7 @@
     border-radius: 5px;
     padding: 30px;
   } 
-.show-modal {
-    display: block;
+
+.show {
+    display:block;
 }
