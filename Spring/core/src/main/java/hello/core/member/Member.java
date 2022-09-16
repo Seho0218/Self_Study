@@ -3,9 +3,9 @@ package hello.core.member;
 public class Member {
     private Long id;
     private String name;
-    private Gradle grade;
+    private Grade grade;
 
-    public Member(Long id, String name, Gradle grade) {
+    public Member(Long id, String name, Grade grade) {
         this.id = id;
         this.name = name;
         this.grade = grade;
@@ -27,11 +27,11 @@ public class Member {
         this.name = name;
     }
 
-    public Gradle getGrade() {
+    public Grade getGrade() {
         return grade;
     }
 
-    public void setGrade(Gradle grade) {
+    public void setGrade(Grade grade) {
         this.grade = grade;
     }
 }
