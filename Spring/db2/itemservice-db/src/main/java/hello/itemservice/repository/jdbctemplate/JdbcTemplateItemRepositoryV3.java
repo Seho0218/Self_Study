@@ -23,54 +23,50 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * NamedParameterJdbcTemplate
- *
+ * SimpleJdbcInsert
  */
 @Slf4j
 public class JdbcTemplateItemRepositoryV3 implements ItemRepository {
 
-    //private final JdbcTemplate template;
     private final NamedParameterJdbcTemplate template;
     private final SimpleJdbcInsert jdbcInsert;
 
     public JdbcTemplateItemRepositoryV3(DataSource dataSource) {
         this.template = new NamedParameterJdbcTemplate(dataSource);
-        this.jdbcInsert= new SimpleJdbcInsert(dataSource)
+        this.jdbcInsert = new SimpleJdbcInsert(dataSource)
                 .withTableName("item")
                 .usingGeneratedKeyColumns("id");
-        //        .usingColumns("item_name","price","quantitiy"); 생략가능
+//                .usingColumns("item_name", "price", "quantity"); //생략 가능
     }
 
     @Override
     public Item save(Item item) {
-        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(item);
+        SqlParameterSource param = new BeanPropertySqlParameterSource(item);
         Number key = jdbcInsert.executeAndReturnKey(param);
         item.setId(key.longValue());
         return item;
-
     }
 
     @Override
     public void update(Long itemId, ItemUpdateDto updateParam) {
         String sql = "update item " +
-                "set item_name=:item_name=, price=:price, quantity=:price " +
+                "set item_name=:itemName, price=:price, quantity=:quantity " +
                 "where id=:id";
 
-        MapSqlParameterSource param = new MapSqlParameterSource()
+        SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("itemName", updateParam.getItemName())
                 .addValue("price", updateParam.getPrice())
                 .addValue("quantity", updateParam.getQuantity())
-                .addValue("id", itemId);
+                .addValue("id", itemId); //이 부분이 별도로 필요하다.
 
         template.update(sql, param);
     }
 
-
     @Override
     public Optional<Item> findById(Long id) {
-        String sql = "select id, item_name, price, quantity from item where id = :id?";
+        String sql = "select id, item_name, price, quantity from item where id = :id";
         try {
-            Map<String, Object> param = Map.of("id", id);//위의 sql과 매핑
+            Map<String, Object> param = Map.of("id", id);
             Item item = template.queryForObject(sql, param, itemRowMapper());
             return Optional.of(item);
         } catch (EmptyResultDataAccessException e) {
@@ -109,6 +105,6 @@ public class JdbcTemplateItemRepositoryV3 implements ItemRepository {
     }
 
     private RowMapper<Item> itemRowMapper() {
-       return BeanPropertyRowMapper.newInstance(Item.class);
+        return BeanPropertyRowMapper.newInstance(Item.class);
     }
 }
