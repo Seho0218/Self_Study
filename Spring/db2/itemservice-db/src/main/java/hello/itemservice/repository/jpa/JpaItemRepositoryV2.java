@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 @RequiredArgsConstructor
-public class JpaItemRepositoryV2 implements ItemRepository {
+public class JpaItemRepositoryV2<I, L extends Number> implements ItemRepository {
 
     private final SpringDataJpaItemRepository repository;
 

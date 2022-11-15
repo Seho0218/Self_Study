@@ -22,7 +22,7 @@ public class SpringDataJpaConfig {
 
     @Bean
     public ItemRepository itemRepository() {
-        return new JpaItemRepositoryV2(springDataJpaItemRepository);
+        return new JpaItemRepositoryV2<I, Number>(springDataJpaItemRepository);
     }
 
 }
