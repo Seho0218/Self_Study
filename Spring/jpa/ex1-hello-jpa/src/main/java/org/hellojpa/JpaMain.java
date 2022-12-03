@@ -23,7 +23,7 @@ public class JpaMain {
 
             //영속상태
             // em.detach(member);
-            // em.persist(member); 1차 캐시 영속성
+            // em.persist(member); 1차 캐시 영속성(임시)
 
             // R: read
             // Member findMember = em.find(Member.class, 1L);// 객체를 대신 저장
