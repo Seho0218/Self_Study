@@ -6,7 +6,8 @@
 <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class="alert-box" id="alert">알림창임
+    <div class="alert-box" id="alert">
+        <p id="title">알림창임</p>
         <button onclick="알림창열기('none','none');" id="Btn">닫기</button>
     </div> 
     
@@ -18,6 +19,6 @@
 <script>
 function 알림창열기(구멍,text){
     document.getElementById('alert').style.display=구멍;
-    document.getElementById('alert').innerHTML=text;
+    document.getElementById('title').innerHTML=text;
 }
 </script>
