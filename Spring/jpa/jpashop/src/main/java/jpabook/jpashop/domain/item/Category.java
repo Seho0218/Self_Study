@@ -35,8 +35,8 @@ public class Category {
 
     //==연관관계 메서드==//
     public void addChildCategory(Category child) {
-        this.child.add(child);
-        child.setParent(this);
+        this.child.add(child);//자식
+        child.setParent(this);//부모
     }
 
 }

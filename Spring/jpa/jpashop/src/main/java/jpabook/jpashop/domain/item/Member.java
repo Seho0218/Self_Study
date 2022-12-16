@@ -22,4 +22,5 @@ public class Member {
     @OneToMany(mappedBy = "member")//하나의 회원 여러개의 상품 주문 매핑됌.
     private List<Order> orders = new ArrayList<>();
 
+
 }
