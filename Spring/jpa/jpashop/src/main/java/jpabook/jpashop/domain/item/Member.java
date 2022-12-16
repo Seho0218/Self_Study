@@ -1,4 +1,4 @@
-package jpabook.jpashop.domain;
+package jpabook.jpashop.domain.item;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,8 +19,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany//하나의 회원 여러개의 상품 주문
-    @JoinColumn(name="member_id")
+    @OneToMany(mappedBy = "member")//하나의 회원 여러개의 상품 주문 매핑됌.
     private List<Order> orders = new ArrayList<>();
 
 }
