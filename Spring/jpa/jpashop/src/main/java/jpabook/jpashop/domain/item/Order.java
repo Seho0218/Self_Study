@@ -31,7 +31,7 @@ public class Order {
 
     private LocalDateTime orderDate;
 
-    private Item.OrderStatus status;// 주문상태
+    private OrderStatus status;// 주문상태
 
     //==연관관계 메서드, 양쪽을 원자적으로 하나로 해결==//
     public void setMember(Member member){
