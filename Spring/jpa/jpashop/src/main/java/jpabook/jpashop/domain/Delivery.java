@@ -24,5 +24,5 @@ public class Delivery {
     private Address address;
 
     @Enumerated(EnumType.STRING)
-    private Movie.DeliveryStatus status;
+    private DeliveryStatus status;
 }
