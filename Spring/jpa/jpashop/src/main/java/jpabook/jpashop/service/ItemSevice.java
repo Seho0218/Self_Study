@@ -18,9 +18,9 @@ public class ItemSevice {
         itemRepository.save(item);
     }
 
-    @Transactional
+    @Transactional// 커밋
     public void updateItem(Long itemId, String name, int price, int stockQuantity){
-        Item item = itemRepository.findOne(itemId);
+        Item item = itemRepository.findOne(itemId);//영속상태
         item.setName(name);
         item.setPrice(price);
         item.setStockQuantity(stockQuantity);

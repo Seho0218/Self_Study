@@ -1,4 +1,4 @@
-package jpabook.jpashop.repository;
+package jpabook.jpashop.service;
 
 
 import jakarta.persistence.EntityManager;
@@ -10,6 +10,8 @@ import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.exception.NotEnoughStockException;
 //import org.junit.Test;
+import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,8 +24,10 @@ import static org.junit.Assert.*;
 class OrderServiceTest {
 
     @Autowired EntityManager em;
-    @Autowired OrderService orderService;
-    @Autowired OrderRepository orderRepository;
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    OrderRepository orderRepository;
 
     @Test
     public void 상품주문() throws Exception {
