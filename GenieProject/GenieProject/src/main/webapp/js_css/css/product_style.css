@@ -1,0 +1,109 @@
+
+/* ------------------뒤쪽 백그라운드 설정----------------- */
+.product {
+	position: relative;
+	width: 100%;
+    margin: 0;
+    padding: 10vh 10vw;
+	background: #fafafa;
+}
+/* ----------------------------버블과 시작문구 설정------------------------------------ */
+.bubbles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 10vw 10vh 10vw;
+}
+.bubbles h1 {
+    position: relative;
+    font-size: 5ch;
+    color: #232324;
+    z-index: 2;
+}
+.individual-bubble {
+    position: absolute;
+    border-radius: 100%;
+    bottom: 10px;
+    background-color: #b5b5b9;
+    z-index: 1;
+}
+/* -------------------------------컨테이너 안 이미지 설정------------------------------------------ */
+/* ------------------------그리드 설정과 이미지 설정------------------- */
+.grid-container{
+    /* grid style */
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2em;
+}
+.product-list{
+    position:relative;
+}
+.item{
+    line-height: 0;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+.item img{
+    filter: blur(0px);
+    transition: filter 0.3s ease-in;
+    transform: scale(1.1);
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+}
+.wrapper{
+    background-color: #fff;
+    box-shadow: 0 0 15px #fbfbfb;
+    border-radius: 15px;
+}
+.wrapper ul {
+    background-color: #fff;
+    border-radius: 0 0 15px 15px;
+    padding: 15px;
+}
+.product-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .5s;
+    background: #e0dfdf66;
+    color: #0f0f0f;
+
+    /* position the text in t’ middle*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+    
+}
+
+.product-list:hover .product-title {
+    opacity: 1;
+}
+.product-list:hover .item img {
+    filter: blur(2px);
+}
+/* --------------------------상품정보설정(글자)------------------------- */
+.wrapper>ul>li:nth-child(1){
+    color: #c8c8c8;
+    padding-top: .6rem;
+}
+.wrapper>ul>li:nth-child(2){
+    color: #6e6e73;
+    font-size: 1.1rem;
+    padding-bottom: .6rem;
+}
+.wrapper>ul>li:nth-child(3){
+    color: #1d1d1f;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
