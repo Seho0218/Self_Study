@@ -1,0 +1,188 @@
+@charset "UTF-8";
+/* --------------------------------------------- */
+.grid-container {
+	height: 100vh;
+	padding: 0;
+	margin: 0;
+}
+/* ---------------------------뒤에 배경 설정---------------------- */
+.genie>section{
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+    padding: 3% 16% 0 16%;
+}
+ .genie_00 {
+	background: url(/image/gift1.png);
+	background-size: cover;
+	background-position: center;
+} 
+.genie_01 {
+	display: none;
+	background: url(/image/gift2.png);
+	background-size: cover;
+	background-position: center;
+}
+.genie_02 {
+	display: none;
+	background: url(/image/gift3.png);
+	background-size: cover;
+	background-position: center;
+}
+.genie_03 {
+	display: none;
+	background: url(/image/gift4.png);
+	background-size: cover;
+	background-position: center;
+}
+.genie_04 {
+	display: none;
+	background: url(/image/gift5.png);
+	background-size: cover;
+	background-position: center;
+}
+.genie_05 {
+	display: none;
+	background: url(/image/gift10.png);
+	background-size: cover;
+	background-position: center;
+}
+/* ---------------------------질문 타이핑 설정(0~5까지)---------------------- */
+.genie_00 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 26ch;
+	animation: typing 2s steps(26), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
+.genie_01 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 29ch;
+	animation: typing 2s steps(29), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
+.genie_02 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 33ch;
+	animation: typing 2s steps(33), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
+.genie_03 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 31ch;
+	animation: typing 2s steps(31), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
+.genie_04 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 36ch;
+	animation: typing 2s steps(36), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
+.genie_05 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 36ch;
+	animation: typing 2s steps(36), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
+@keyframes typing {
+	from {
+		width: 0
+	}
+}
+@keyframes blink {
+	50% {
+		border-color: transparent
+	}
+}
+/* --------------------------------라디오버튼 css------------------------ */
+.grid-container-button {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 1rem;
+	row-gap: 1rem;
+}
+.tag_name {
+	padding: 1rem;
+}
+.tag_name input[type=radio] {
+    display: none;
+}
+.tag_name input[type=radio]+label {
+	display: flex;
+	align-content: stretch;
+	justify-content: center;
+    cursor: pointer;
+	padding: 1.5rem;
+    font-size: 3ch;
+    font-weight: bold;
+	border-radius: 25px;
+	transition: ease .5s;
+	box-shadow: 0 0 100px #dfdfdf;
+}
+.tag_name input[type=radio]+label {
+    background-color: #fff;
+    color: #333;
+}
+.tag_name input[type=radio]:checked+label {
+    background-color: #333;
+    color: #fff;
+}
+/* -------------------------------------------네모난버튼 설정-----------------------------------------------*/
+/* .page_gradient {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: .3rem;
+	top: 5vh;
+}
+.page_gradient input[type=button] {
+	width: 100%;
+	height: 2vh;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color:white;
+} */
+
+/* -------------------------------------------동그란버튼 설정------------------------------------------------- */
+.page_order {
+	position: relative;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 0 35vw;
+	top: 85vh;
+}
+.page_order input[type=button] {
+	width: 2.5ch;
+	height: 2.5ch;
+	border: none;
+	cursor: pointer;
+	background-color: #333;
+	border-radius: 50%;
+}
