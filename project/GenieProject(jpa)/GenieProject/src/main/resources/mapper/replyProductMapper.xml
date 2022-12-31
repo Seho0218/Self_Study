@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.genie.myapp.dao.ReplyProductDAO">
+	<select id="replyProductList" resultType="ReplyProductVO">
+		select genie_id, reply_no, product_id, comment, rating, writedate 
+		from reply_product
+		where product_id=${param1}
+		order by reply_no desc
+	</select>
+	
+	<insert id="replyProductWrite">
+		insert into reply_product(genie_id, product_id, comment, rating) 
+		values(#{genie_id}, #{product_id}, #{comment}, #{rating})
+	</insert>
+	
+	<update id="replyProductEdit">
+		update reply_product set comment = #{comment}, rating = ${rating} 
+		where reply_no=${reply_no} and genie_id=#{genie_id}
+	</update>
+	
+	<delete id="replyProductDelete">
+		delete from reply_product where reply_no=${param1} and genie_id=#{param2}
+	</delete>
+
+	<insert id="likeInsert">
+		insert into product_like (genie_id, product_id, like_num)
+		values(#{genie_id}, #{product_id}, '1')
+	</insert>
+
+	<select id="likeStatus" resultType="int">
+		select count(genie_id) from product_like where genie_id = #{genie_id} and product_id = #{product_id}
+	</select>
+	
+	<delete id="likeDelete">
+		delete from product_like where genie_id= #{genie_id} and product_id=#{product_id}
+	</delete>
+	
+	<update id="likeHitMinus">
+		update product set product_like = product_like-1 where product_id=#{product_id}
+	</update>
+	
+	<update id="likeHitPlus">
+		update product set product_like = product_like+1 where product_id=#{product_id}
+	</update>
+
+	
+</mapper>

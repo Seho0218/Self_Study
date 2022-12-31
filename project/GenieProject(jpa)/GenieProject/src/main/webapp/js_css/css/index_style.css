@@ -1,0 +1,336 @@
+@charset "UTF-8";
+/* ---------------------뒤에 흰색배경 초기설정----------------------- */
+.index  {
+   margin: 0;
+   padding: 0;
+   background-color: #fff;
+   scroll-behavior: smooth;
+}
+h1  {
+   margin: 12vh 0;
+   margin-bottom: 30px;
+   font-size: 2.5rem;
+   color: #080E31;
+   text-align: left;
+   padding-left: 3rem;
+}
+/* --------------첫번째 배너 설정---------------- */
+.index-list a img  {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: auto;
+}
+.index-list{
+   position:relative;
+}
+.index-list .button {
+   position: absolute;
+   top: 83%;
+   left: 10.5%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   background-color: #0093FF;
+   color: white;
+   font-size: 16px;
+   padding: 10px 24px;
+   border: none;
+   cursor: pointer;
+   border-radius: 15px;
+ }
+/* --------------------카테고리 설정--------------------- */
+.category-list  {
+   display: grid;
+   grid-template-columns: 12vw 12vw 12vw 12vw 12vw 12vw;
+   justify-content: space-evenly;
+   row-gap: 3rem;
+   background-color: #fff;
+   box-shadow: 0 0 15px #fbfbfb;
+   width: 95%;
+   border-radius: 15px;
+   margin: 0 auto;
+   padding: 10px;
+}
+.category-list img  {
+   width: 100%;
+   height: auto;
+   border-radius: 50%;
+}
+.category-list span  {
+   font-size: 1.6rem;
+   text-align: center;
+}
+.category-list a  {
+}
+/* ----------------------------------랭킹페이지----------------------------------------- */
+
+.ranking-list img  {
+   width: 30%;
+   margin: 0 .3%;
+}
+/* ---------------------------------MBTI 추천----------------------------- */
+.mbti{
+   margin-bottom: 80px;
+}
+.mbti-list img {
+   display: flex;
+   margin: 0 auto;
+   width: 95%;
+   height: auto;
+   border-radius: 20px;
+}
+
+.mbti-list{
+   position:relative;
+}
+.mbti-list .button {
+   position: absolute;
+   top: 87%;
+   right: 31.5%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   background-color: #FFA800;
+   color: white;
+   font-size: 16px;
+   padding: 10px 24px;
+   border: none;
+   cursor: pointer;
+   border-radius: 15px;
+ }
+/* ---------------------------------모두의 인기태그-------------------------- */
+.tag-button{
+   width: 90%;
+   margin: 40px auto;
+   text-align: center;
+}
+/*
+.best-tag button{
+   font-size: 1.5rem;
+   margin-right: 4vh 4vw;
+   margin-bottom: 4vh 4vw;
+   padding: 4vh 4vw;
+   border: none;
+   border-radius: 50px;
+   cursor: pointer;  
+}
+*/
+.best-tag button{
+   /*background-image: linear-gradient(to bottom right, #2DCEF8, #3B40FE);*/
+   width: 200px;
+   height: 70px;
+   border-radius: 50px;
+   margin-bottom: 20px;
+   margin-right: 20px;
+   padding: 10px 25px;
+   font-weight: 500;
+   font-weight: bold;
+   font-size: 1.4rem;
+   color: #fff;
+   display: inline-block;
+   border: none;
+   box-shadow: 1px 1px 4px 1px lightgray;
+}
+.best-tag button:hover{
+   -ms-transform: scale(1.1); /* IE 9 */
+   -webkit-transform: scale(1.1); /* Safari 3-8 */
+   transform: scale(1.1); 
+   transition-duration: 0.3s;
+}
+/* ------------------ 리스팅 추천 부분(recommand_listing) ------------------- */
+.recommand_listing {
+   /*background-image: url("/image/listing_bg.png");*/
+   /*background-image: linear-gradient(to bottom right, #2DCEF8, #3B40FE);*/
+   width: 95%;
+   height: 50px;
+   border-radius: 15px;
+   margin: 0 auto;
+}
+
+#product_order_list{
+   background-color: transparent;
+	text-align:center;
+	margin:3vh 1vw;
+}
+#product_order_list p{
+	background-color: transparent;
+   height: 50px;
+   line-height: 50px;
+   color: #fff;
+}
+#product_order_list button{
+	border:none;
+	background-color:transparent;
+	font-size:1.6rem;
+   color: #fff;
+}
+#product_order_list button text{
+   color: #fff;
+}
+/* --------------------------------금주의 추천상품----------------------------- */
+.box1 {
+   grid-area: box1;
+}
+.box1 {
+   grid-area: box1;
+}
+.box2 {
+   grid-area: box2;
+   background-image: url(https://img1.kakaocdn.net/thumb/C1260x640.fwebp.q82/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fgift%2Fweekly-brand%2Fimage%2Fpc%2F20220914_ZHIZH.jpg); 
+   background-size: cover;
+   background-position: center;
+}
+.box3 {
+   grid-area: box3;
+   background-image: url(https://img1.kakaocdn.net/thumb/C300x300.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220324103154_bd226b26cc95425c9b2357b21a2dafa1.jpg); 
+   background-size: cover;
+   background-position: center;
+}
+.box4 {
+   grid-area: box4;
+   background-image: url(https://img1.kakaocdn.net/thumb/C300x300.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220512185550_c96d9e78080148239414fbe65fa66195.jpg); 
+   background-size: cover;
+   background-position: center;
+}
+.box5 {
+   grid-area: box5;
+   border-top: 1px solid #ddd;
+}
+.box6 {
+   grid-area: box6;
+   border-bottom: 1px solid #ddd;
+}
+.box7 {
+   grid-area: box7;
+   border-top: 1px solid #ddd;
+}
+.box8 {
+   grid-area: box8;
+   border-bottom: 1px solid #ddd;
+}
+
+.recommend {
+   display: grid;
+   width: 100%;
+   height: auto;
+   gap: 1rem;
+   grid-template-columns: 50% 20% 28%;
+   grid-template-rows: 30vh 18vh 18vh 18vh 18vh;
+   grid-template-areas: 
+   "box1 box1 box1"
+   "box2 box3 box5"
+   "box2 box3 box6"
+   "box2 box4 box7"
+   "box2 box4 box8";
+}
+.recommend div{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+/*----------- 금주의 추천 상품 수정 ------------*/
+.genieContainer h1{
+   margin-bottom: 6vh;
+   font-size: 2.5rem;
+   color: #080E31;
+   text-align: left;
+}
+.genieContainer h4{
+   margin-bottom: 6vh;
+   font-size: 1.3rem;
+   color: gray;
+   text-align: left;
+   line-height: 2rem;
+   padding-left: 3rem;
+}
+.genieRow{
+   width: 95%;
+   height: auto;
+   margin: 0 auto;
+   background-color: #f7f7f7;
+}
+.card-col{
+   width: 25%;
+   border-radius: 20px;
+   padding: 5px;
+   text-align:left;
+   float: left;
+}
+.card-header {
+   width:340px;
+   height:200px;
+}
+#img-caption{
+   width: 100%;
+   height: 200px;
+   background: transparent;
+   border-radius: 20px 20px 0 0;
+   object-fit: cover;
+}
+.card_bottom{
+   background-color: #fff;
+   box-shadow: 0 0 15px #fbfbfb;
+   padding: 25px;
+   border-radius: 0 0 20px 20px;
+}
+.card_bottom h3{
+
+}
+.card_bottom p{
+   /*     말줄임 속성    */
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
+}
+
+/* Blank */
+.blank {
+   display: grid;
+   grid-template-columns: 12vw 12vw 12vw 12vw 12vw 12vw;
+   justify-content: space-evenly;
+   row-gap: 3rem;
+   background-color: transparent;
+   width: 95%;
+   border-radius: 15px;
+   margin: 0 auto;
+   padding: 10px;
+}
+/* Footer */
+.contact{
+	padding: 60px 13%;
+   background-color: #fff;
+   box-shadow: 0 0 15px #fbfbfb;
+   border-top: 2px #000;
+}
+.main-contact{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+	gap: 2rem;
+}
+.contact-content img{
+	height: auto;
+	width: 160px;
+	max-width: 100%;
+	margin-bottom: 30px;
+}
+.contact-content li{
+	margin-bottom: 18px;
+}
+.contact-content li a{
+	display: block;
+	font-weight: 500;
+	font-size: 15px;
+	transition: all .40s ease;
+   color: gray;
+}
+.contact-content li a:hover{
+	transform: translateX(10px);
+}
+
+.last-text p{
+	text-align: center;
+	padding: 18px;
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
