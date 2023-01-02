@@ -20,8 +20,8 @@ public class Myorder {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="genie_id")
-
     private User genie_id;
+
     private int product_id;
 
     private String recipient_name;
@@ -36,10 +36,8 @@ public class Myorder {
 
     private int order_qty;
 
-
     private LocalDateTime orderDate;
 
-
-    //private OrderStatus status;// 주문상태
+    private OrderStatus status;
 
 }

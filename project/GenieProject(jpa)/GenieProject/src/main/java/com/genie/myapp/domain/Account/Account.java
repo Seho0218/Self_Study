@@ -13,19 +13,15 @@ import java.util.List;
 @Entity
 @Table(name = "account")
 @Getter @Setter
+@NotEmpty
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Account {
 
     @Id
     private String genie_id;
 
-    @NotEmpty
     private String genie_pwd;
-
-    @NotEmpty
     private char ROLE;
-
-    @NotEmpty
     private boolean withdrawal;
 
     @OneToMany(mappedBy = "genie_id")
@@ -34,9 +30,8 @@ public class Account {
     @OneToMany(mappedBy = "genie_id")
     private List<Administer> administers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "genid_id")
+    @OneToMany(mappedBy = "genie_id")
     private List<Seller> sellers = new ArrayList<>();
-
 
 
 }
