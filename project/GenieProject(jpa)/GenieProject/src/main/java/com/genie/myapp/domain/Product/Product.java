@@ -1,6 +1,7 @@
 package com.genie.myapp.domain.Product;
 
 import com.genie.myapp.domain.Account.Seller;
+import com.genie.myapp.domain.Account.User;
 import com.genie.myapp.domain.Cart;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,18 +19,18 @@ import static javax.persistence.FetchType.*;
 @NotEmpty
 public class Product {
 
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "product_id")
     private int product_id;
 
-    @OneToMany(mappedBy = "product_id")
-    private List<Cart> cartList = new ArrayList<>();
+    @OneToOne
+    private Product_like product;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
     private Seller genie_id;
 
-    @OneToMany
-    @JoinColumn(name = "genie_id")
+    @OneToMany(mappedBy = "product_id")
     private List<Cart> carts = new ArrayList<>();
 
     private String product_category;

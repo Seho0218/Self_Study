@@ -4,6 +4,7 @@ import com.genie.myapp.domain.Address;
 import com.genie.myapp.domain.Cart;
 import com.genie.myapp.domain.Myorder;
 import com.genie.myapp.domain.OrderStatus;
+import com.genie.myapp.domain.Product.Product_like;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,36 +15,34 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Getter @Setter
+@NotEmpty
 public class User implements Serializable {
 
-    @Id @ManyToOne(fetch = LAZY)
+    @Id @ManyToOne(fetch = EAGER)
     @JoinColumn(name="genie_id")
     private Account genie_id;
 
-    @NotEmpty
     private String name;
 
-    @Embedded
-    private Address address;
+    @OneToMany(mappedBy = "genie_id")
+    private List<Address> address = new ArrayList<>();
 
-    @NotEmpty
+    @OneToMany(mappedBy = "product_id")
+    private List<Product_like> product_like;
+
     private String user_email;
-
-    @NotEmpty
     private char user_gender;
-
-    @NotEmpty
     private LocalDateTime sign_in_date;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-//    @OneToMany(mappedBy = "genie_id")
-//    private List<Myorder> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "genie_id")
+    private List<Myorder> orders = new ArrayList<>();
 
     @OneToMany(mappedBy = "genie_id")
     private List<Cart> carts = new ArrayList<>();

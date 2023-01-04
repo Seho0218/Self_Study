@@ -7,15 +7,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Table(name="myorder")
-@Getter @Setter
+@Entity
+@Getter @Setter @NotEmpty
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Myorder {
+public class Myorder implements Serializable {
 
+    @Id
     private Long order_num;
 
     @ManyToOne(fetch = LAZY)
@@ -23,21 +26,13 @@ public class Myorder {
     private User genie_id;
 
     private int product_id;
-
     private String recipient_name;
-
     private String recipient_phone;
-
     private String recipient_address;
-
     private String recipient_request;
-
     private int order_price;
-
     private int order_qty;
-
     private LocalDateTime orderDate;
-
     private OrderStatus status;
 
 }

@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="cart")
-@Getter @Setter
+@Getter @Setter @NotEmpty
 public class Cart {
 
-    @Id
+    @Id @GeneratedValue
     private int cart_num;
 
     @ManyToOne
