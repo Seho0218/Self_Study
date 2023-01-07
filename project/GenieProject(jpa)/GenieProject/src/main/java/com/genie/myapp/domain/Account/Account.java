@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -21,7 +22,9 @@ public class Account {
     private String genie_id;
 
     private String genie_pwd;
-    private char ROLE;
+    private String ROLE;
+
+    @ColumnDefault("1")
     private boolean withdrawal;
 
     @OneToMany(mappedBy = "genie_id")

@@ -12,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
 @Getter @Setter @NotEmpty
 public class Address {
 
-    @Id
-    private int address_num;
+    @Id @GeneratedValue
+    private Long address_num;
 
     @ManyToOne
     @JoinColumn(name = "genie_id")

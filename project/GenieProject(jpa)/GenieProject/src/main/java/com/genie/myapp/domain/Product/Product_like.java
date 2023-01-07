@@ -16,13 +16,8 @@ import static javax.persistence.FetchType.*;
 public class Product_like implements Serializable {
 
     @Id
-    @JoinColumn(name="product_id")
-    private int product_id;
-
-    @MapsId
-    @OneToOne @JoinColumn(name = "product_id")
-    private Product product;
-
+    @Column(name = "product_id")
+    private Long product_id;
 
     @ManyToOne
     @JoinColumn(name="genie_id")

@@ -21,16 +21,17 @@ public class Product {
 
     @Id @GeneratedValue
     @Column(name = "product_id")
-    private int product_id;
-
-    @OneToOne
-    private Product_like product;
+    private Long product_id;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
     private Seller genie_id;
 
-    @OneToMany(mappedBy = "product_id")
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product_like product;
+
+    @OneToMany
     private List<Cart> carts = new ArrayList<>();
 
     private String product_category;
@@ -38,11 +39,12 @@ public class Product {
     private Long product_name;
     private int product_price;
 
+    private String product_like;
+
     private Long product_info;
     private int product_stock;
     private int product_quantity;
     private int product_hit;
-    private int product_like;
     private LocalDateTime product_writedate;
 
     private Long product_image1;

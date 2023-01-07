@@ -15,25 +15,26 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter @Setter
 @NotEmpty
 public class User implements Serializable {
 
-    @Id @ManyToOne(fetch = EAGER)
+    @Id @ManyToOne(fetch = LAZY)
     @JoinColumn(name="genie_id")
     private Account genie_id;
 
-    private String name;
+    private String user_name;
 
     @OneToMany(mappedBy = "genie_id")
     private List<Address> address = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product_id")
+    @OneToMany(mappedBy = "genie_id")
     private List<Product_like> product_like;
 
+    private String user_tel;
     private String user_email;
     private char user_gender;
     private LocalDateTime sign_in_date;

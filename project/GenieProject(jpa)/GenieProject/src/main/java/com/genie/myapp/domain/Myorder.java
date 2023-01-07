@@ -25,14 +25,14 @@ public class Myorder implements Serializable {
     @JoinColumn(name="genie_id")
     private User genie_id;
 
-    private int product_id;
+    private Long product_id;
     private String recipient_name;
     private String recipient_phone;
     private String recipient_address;
     private String recipient_request;
     private int order_price;
     private int order_qty;
-    private LocalDateTime orderDate;
+    private LocalDateTime order_writedate;
     private OrderStatus status;
 
 }
