@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Item {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)// db에서 값을 증가
     private Long id;
 
     @Column(name = "item_name", length = 10)

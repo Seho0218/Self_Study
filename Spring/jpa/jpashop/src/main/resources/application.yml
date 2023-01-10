@@ -1,9 +1,9 @@
 spring:
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop;
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+  datasource: # jdbc
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/jpaGenieProject?characterEncoding=utf-8
+    username: root
+    password: root1234
 
   jpa:
     hibernate:
@@ -12,6 +12,7 @@ spring:
       hibernate:
         #        show_sql: true
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 logging.level:
   org.hibernate.SQL: debug
