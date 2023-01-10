@@ -2,43 +2,49 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.vo.AdminDTO;
+import com.genie.myapp.vo.UserDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdminDAO;
-import com.genie.myapp.vo.AdminVO;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.PagingVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.SellerVO;
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.vo.AdminDTO;
+import com.genie.myapp.vo.CartDTO;
+import com.genie.myapp.vo.PagingDTO;
+import com.genie.myapp.vo.ProductDTO;
+import com.genie.myapp.vo.SellerDTO;
+import com.genie.myapp.vo.UserDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class AdminServiceImple implements AdminService {
-	@Autowired
-	AdminDAO dao;
+
+	@Autowired AdminDAO dao;
 
 	@Override
-	public List<AdminVO> adminCategoryTag(AdminVO VO) {
+	public List<AdminDTO> adminCategoryTag(AdminDTO VO) {
 		return dao.adminCategoryTag(VO);
 	}
 
 	@Override
-	public List<AdminVO> adminTag(AdminVO VO) {
-		return dao.adminTag(VO);
+	public List<AdminDTO> adminTag(AdminDTO DTO) {
+		return dao.adminTag(DTO);
 	}
 
-	public List<UserVO> userAllSelect(PagingVO pVO) {
+	public List<UserDTO> userAllSelect(PagingDTO pVO) {
 		return dao.userAllSelect(pVO);
 	}
 
 	@Override
-	public UserVO getadmember(String user_id) {
+	public UserDTO getadmember(String user_id) {
 		return dao.getadmember(user_id);
 	}
 
 	@Override
-	public int admemberPopEdit(UserVO vo) {
+	public int admemberPopEdit(UserDTO vo) {
 		return dao.admemberPopEdit(vo);
 	}
 
@@ -48,22 +54,22 @@ public class AdminServiceImple implements AdminService {
 	}
 	
 	@Override
-	public int userTotalRecord(PagingVO pVO) {
+	public int userTotalRecord(PagingDTO pVO) {
 		return dao.userTotalRecord(pVO);
 	}
 
 	@Override
-	public List<AdminVO> tagAllSelect() {
+	public List<AdminDTO> tagAllSelect() {
 		return dao.tagAllSelect();
 	}
 
 	@Override
-	public AdminVO getadminTag(String product_tag_id) {
+	public AdminDTO getadminTag(String product_tag_id) {
 		return dao.getadminTag(product_tag_id);
 	}
 
 	@Override
-	public int adminTagPopEdit(AdminVO vo) {
+	public int adminTagPopEdit(AdminDTO vo) {
 		return dao.adminTagPopEdit(vo);
 	}
 
@@ -74,17 +80,17 @@ public class AdminServiceImple implements AdminService {
 
 	///////////////카테고리//////////////////
 	@Override
-	public List<AdminVO> categoryAllSelect() {
+	public List<AdminDTO> categoryAllSelect() {
 		return dao.categoryAllSelect();
 	}
 
 	@Override
-	public AdminVO getadcategory(String category_id) {
+	public AdminDTO getadcategory(String category_id) {
 		return dao.getadcategory(category_id);
 	}
 
 	@Override
-	public int adcategoryPopEdit(AdminVO vo) {
+	public int adcategoryPopEdit(AdminDTO vo) {
 		return dao.adcategoryPopEdit(vo);
 	}
 
@@ -96,21 +102,21 @@ public class AdminServiceImple implements AdminService {
 
 	@Override
 
-	public int paymentWrite(CartVO vo) {
+	public int paymentWrite(CartDTO vo) {
 		return dao.paymentWrite(vo);
 	}
 
-	public List<SellerVO> sellerAllSelect(PagingVO pVO) {
+	public List<SellerDTO> sellerAllSelect(PagingDTO pVO) {
 		return dao.sellerAllSelect(pVO);
 	}
 
 	@Override
-	public SellerVO getadcompany(String user_id) {
+	public SellerDTO getadcompany(String user_id) {
 		return dao.getadcompany(user_id);
 	}
 
 	@Override
-	public int adcompanyPopEdit(SellerVO vo) {
+	public int adcompanyPopEdit(SellerDTO vo) {
 		return dao.adcompanyPopEdit(vo);
 	}
 
@@ -120,29 +126,29 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public int sellerTotalRecord(PagingVO pVO) {
+	public int sellerTotalRecord(PagingDTO pVO) {
 		return dao.sellerTotalRecord(pVO);
 	}
 
 	@Override
-	public int sellerApproval(PagingVO pVO) {
+	public int sellerApproval(PagingDTO pVO) {
 		return dao.sellerApproval(pVO);
 	}
 
 	@Override
-	public int mainTotalRecord(AdminVO VO) {
+	public int mainTotalRecord(AdminDTO VO) {
 		return dao.mainTotalRecord(VO);
 	}
 
 	//=============제품관리=============//
 
 	// @Override
-	// public AdminVO getadminProduct(String product_id) {
+	// public AdminDTO getadminProduct(String product_id) {
 	// 	return dao.getadminProduct(product_id);
 	// }
 
 	//@Override
-	//public int adminProductPopEdit(ProductVO vo) {
+	//public int adminProductPopEdit(ProductDTO vo) {
 	//	return dao.adminProductPopEdit(vo);
 	//}
 

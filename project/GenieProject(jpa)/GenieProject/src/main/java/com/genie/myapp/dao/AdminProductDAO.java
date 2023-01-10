@@ -5,11 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.genie.myapp.vo.AdminProductVO;
+import com.genie.myapp.vo.AdminProductDTO;
 //추상클래스 
 @Mapper
 @Repository
 public interface AdminProductDAO {
 
-	public List<AdminProductVO> adminProduct(AdminProductVO VO);
+	public List<AdminProductDTO> adminProduct(AdminProductDTO VO);
 }

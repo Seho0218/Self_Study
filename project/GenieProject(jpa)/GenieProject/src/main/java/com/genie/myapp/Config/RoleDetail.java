@@ -6,34 +6,34 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.AccountDTO;
 
 public class RoleDetail implements UserDetails{
 
-    private AccountVO accountVO;
+    private AccountDTO AccountDTO;
 
-    public RoleDetail(AccountVO accountVO){
-        this.accountVO=accountVO;
+    public RoleDetail(AccountDTO AccountDTO){
+        this.AccountDTO=AccountDTO;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         
         Collection<GrantedAuthority> auth = new ArrayList<>();
-        if(accountVO.getROLE().equals("ADMIN")){
+        if(AccountDTO.getROLE().equals("ADMIN")){
             auth.add(new GrantedAuthority() {
 
                 @Override
                 public String getAuthority() {
-                    return "ROLE_"+accountVO.getROLE();
+                    return "ROLE_"+AccountDTO.getROLE();
                 }
             });
-        }else if(accountVO.getROLE().equals("SELLER")){
+        }else if(AccountDTO.getROLE().equals("SELLER")){
             auth.add(new GrantedAuthority() {
 
                 @Override
                 public String getAuthority() {
-                    return "ROLE_"+accountVO.getROLE();
+                    return "ROLE_"+AccountDTO.getROLE();
                 }
             });
         }else{
@@ -41,7 +41,7 @@ public class RoleDetail implements UserDetails{
 
                 @Override
                 public String getAuthority() {
-                    return "ROLE_"+accountVO.getROLE();
+                    return "ROLE_"+AccountDTO.getROLE();
                 }       
             });
         }
@@ -53,12 +53,12 @@ public class RoleDetail implements UserDetails{
 
     @Override
     public String getPassword() {
-        return accountVO.getGenie_pwd();
+        return AccountDTO.getGenie_pwd();
     }
 
     @Override
     public String getUsername() {
-        return accountVO.getGenie_id();
+        return AccountDTO.getGenie_id();
     }
 
     @Override

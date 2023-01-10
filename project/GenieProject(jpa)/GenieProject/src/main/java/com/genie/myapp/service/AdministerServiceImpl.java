@@ -1,25 +1,30 @@
 package com.genie.myapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.genie.myapp.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import com.genie.myapp.dao.AdministerDAO;
-import com.genie.myapp.vo.AdministerVO;
+import com.genie.myapp.vo.AdministerDTO;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class AdministerServiceImpl implements AdministerService{
 
-    @Autowired
-    AdministerDAO dao;
+    //@Autowired AdministerDAO dao;
+    private final MemberRepository memberRepository;
 
     @Override
-    public AdministerVO loginOk(AdministerVO avo) {
-        return dao.loginOk(avo);
+    public Optional<AdministerDTO> loginOk(AdministerDTO avo) {
+        return memberRepository.loginOk(avo);
     }
 
     @Override
-    public AdministerVO getAdminister(String genie_id) {
-        return dao.getAdminister(genie_id);
+    public AdministerDTO getAdminister(String genie_id) {
+        return memberRepository.getAdminister(genie_id);
     }
     
 }

@@ -7,7 +7,7 @@
 <!-- 구매정보 이동 -->
 
 <!-- 장바구니 정보 가져오기 -->
-    <select id="readyToPay" resultType="CartVO">
+    <select id="readyToPay" resultType="CartDTO">
 
         select * 
         from cart c 
@@ -21,7 +21,7 @@
 
     </select>
 
-    <select id="getFromCart" resultType="OrderVO">
+    <select id="getFromCart" resultType="OrderDTO">
 
         select * 
         from cart c 
@@ -85,7 +85,7 @@
 
     <!-- 주문 완료 페이지 -->
 
-    <select id="getOrderList" resultType="OrderVO">
+    <select id="getOrderList" resultType="OrderDTO">
     
 		select 
             m.order_num, 

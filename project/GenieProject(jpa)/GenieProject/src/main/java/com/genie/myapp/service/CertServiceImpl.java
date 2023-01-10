@@ -6,22 +6,24 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.CertDAO;
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.vo.UserDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class CertServiceImpl implements CertService {
     
-    @Autowired
-	private JavaMailSender mailSender;
+    @Autowired private JavaMailSender mailSender;
 	
-	@Inject
-	CertDAO cdao;
+	@Inject CertDAO cdao;
 
 	@Override
 	public List<String> FindId(String user_email) {
@@ -99,7 +101,7 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(UserVO vo) {
+	public int PwdEditOk(UserDTO vo) {
 		return cdao.PwdEditOk(vo);
 	}
 

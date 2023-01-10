@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
-import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.AccountDTO;
 
 @Service
 public class RoleDetailService implements UserDetailsService{
@@ -17,7 +17,7 @@ public class RoleDetailService implements UserDetailsService{
     
     @Override
     public UserDetails loadUserByUsername(String genie_id) throws UsernameNotFoundException {
-        AccountVO account = userdao.findByGenie_id(genie_id).orElseThrow(()->{
+        AccountDTO account = userdao.findByGenie_id(genie_id).orElseThrow(()->{
             return new UsernameNotFoundException("에러");
         });
         return new RoleDetail(account);   

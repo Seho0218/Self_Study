@@ -1,6 +1,11 @@
 package com.genie.myapp.vo;
 
-public class SellerVO {
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class SellerDTO {
 	
 	private String genie_id;
 	private String genie_pwd;
@@ -28,48 +33,7 @@ public class SellerVO {
 	private String approval_date;
 
 
-	
-	@Override
-	public String toString() {
-		return "SellerVO [approval_date=" + approval_date + ", ceo_name=" + ceo_name + ", company_name=" + company_name
-				+ ", genie_id=" + genie_id + ", genie_pwd=" + genie_pwd + ", genie_pwd2=" + genie_pwd2
-				+ ", ROLE=" + ROLE + ", sel_addr=" + sel_addr + ", sel_detailaddr=" + sel_detailaddr
-				+ ", seller_address=" + seller_address + ", seller_email=" + seller_email + ", seller_reg_no="
-				+ seller_reg_no + ", seller_status=" + seller_status + ", seller_tel=" + seller_tel
-				+ ", seller_website=" + seller_website + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3
-				+ ", withdrawal=" + withdrawal + ", writedate=" + writedate + "]";
-	}
-	
-	public String getGenie_id() {
-		return genie_id;
-	}
-	public void setGenie_id(String genie_id) {
-		this.genie_id = genie_id;
-	}
-	public String getGenie_pwd() {
-		return genie_pwd;
-	}
-	public void setGenie_pwd(String genie_pwd) {
-		this.genie_pwd = genie_pwd;
-	}
-	public String getGenie_pwd2() {
-		return genie_pwd2;
-	}
-	public void setGenie_pwd2(String genie_pwd2) {
-		this.genie_pwd2 = genie_pwd2;
-	}
-	public String getROLE() {
-		return ROLE;
-	}
-	public void setROLE(String ROLE) {
-		this.ROLE = ROLE;
-	}
-	public int getWithdrawal() {
-		return withdrawal;
-	}
-	public void setWithdrawal(int withdrawal) {
-		this.withdrawal = withdrawal;
-	}
+
 	public String getSeller_tel() {
 		return tel1+"-"+tel2+"-"+tel3;
 	}
@@ -137,36 +101,5 @@ public class SellerVO {
 		sel_addr = addrSplit[0];
 		sel_detailaddr = addrSplit[1];
 	}
-	public String getSel_addr() {
-		return sel_addr;
-	}
-	public void setSel_addr(String sel_addr) {
-		this.sel_addr = sel_addr;
-	}
-	public String getSel_detailaddr() {
-		return sel_detailaddr;
-	}
-	public void setSel_detailaddr(String sel_detailaddr) {
-		this.sel_detailaddr = sel_detailaddr;
-	}
-	public String getWritedate() {
-		return writedate;
-	}
-	public void setWritedate(String writedate) {
-		this.writedate = writedate;
-	}
-	public String getSeller_status() {
-		return seller_status;
-	}
-	public void setSeller_status(String seller_status) {
-		this.seller_status = seller_status;
-	}
-	public String getApproval_date() {
-		return approval_date;
-	}
-	public void setApproval_date(String approval_date) {
-		this.approval_date = approval_date;
-	}
-	
-	
+
 }

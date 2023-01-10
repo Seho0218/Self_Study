@@ -2,6 +2,7 @@ package com.genie.myapp.controller;
 
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,12 +25,12 @@ import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.AccountVO;
-import com.genie.myapp.vo.AdministerVO;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.SellerVO;
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.vo.AccountDTO;
+import com.genie.myapp.vo.AdministerDTO;
+import com.genie.myapp.vo.CartDTO;
+import com.genie.myapp.vo.ProductDTO;
+import com.genie.myapp.vo.SellerDTO;
+import com.genie.myapp.vo.UserDTO;
 
 @RestController
 @RequestMapping("/")
@@ -95,7 +96,7 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserVO vo, AccountVO avo) {
+	public ResponseEntity<String> UserWrite(UserDTO vo, AccountDTO avo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -137,7 +138,7 @@ public class GenieController{
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(SellerVO svo, AccountVO avo){
+	public ResponseEntity<String> sellerWrite(SellerDTO svo, AccountDTO avo){
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -177,13 +178,13 @@ public class GenieController{
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserVO vo, SellerVO svo, AdministerVO avo, HttpSession session) {
+	public ModelAndView loginOk(UserDTO vo, SellerDTO svo, AdministerDTO avo, HttpSession session) {
 		
 		mav = new ModelAndView();		
 
 		if(vo.getGenie_id() != null) {//일반회원 일때
 
-			UserVO logVO = userService.loginOk(vo);
+			UserDTO logVO = userService.loginOk(vo);
 			if(logVO!=null){
 				//System.out.println(vo);
 				//System.out.println(logVO);
@@ -203,7 +204,7 @@ public class GenieController{
 			
 				}else if(svo.getGenie_id() !=null) {//업체회원일때 
 
-					SellerVO slogVO=sellerService.loginOk(svo);
+					SellerDTO slogVO=sellerService.loginOk(svo);
 					if(slogVO!=null){
 						//System.out.println(svo);
 						//System.out.println(slogVO);
@@ -226,7 +227,7 @@ public class GenieController{
 					
 					}else if(avo.getGenie_id() != null){
 
-						AdministerVO alogVO = administerService.loginOk(avo);
+						Optional<AdministerDTO> alogVO = administerService.loginOk(avo);
 
 						if(alogVO!=null){
 							session.setAttribute("logId", alogVO.getGenie_id());
@@ -270,7 +271,7 @@ public class GenieController{
 	// -----------------------------------//
 
 	@GetMapping("index")
-	public ModelAndView productList(ProductVO PVO) {
+	public ModelAndView productList(ProductDTO PVO) {
 
 		mav = new ModelAndView();
 		mav.addObject("plist", productService.listProduct(PVO));
@@ -297,10 +298,10 @@ public class GenieController{
 	// -----------------------------------------------------------장바구니---------------------------------------------------------------//
 	
 	@GetMapping("cart")
-	public ModelAndView cart(CartVO cvo, HttpSession session) {
+	public ModelAndView cart(CartDTO cvo, HttpSession session) {
 
 		String genie_id = (String) session.getAttribute("logId");
-		List<CartVO> cartList = productService.getCart(genie_id);
+		List<CartDTO> cartList = productService.getCart(genie_id);
 		// System.out.print(cartList);
 
 		mav = new ModelAndView();
@@ -311,7 +312,7 @@ public class GenieController{
 	}
 
 	@PostMapping("addCart")
-	public ResponseEntity<String> addCart(CartVO cvo) {
+	public ResponseEntity<String> addCart(CartDTO cvo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -345,7 +346,7 @@ public class GenieController{
 	}
 
 	@PostMapping("updateCart")
-	public ResponseEntity<String> updateCart(CartVO cvo) {
+	public ResponseEntity<String> updateCart(CartDTO cvo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -378,7 +379,7 @@ public class GenieController{
 
 	// 장바구니에서 여러 제품 삭제
 	@GetMapping("delMultiCart")
-	public ModelAndView delMultiCart(CartVO cvo) {
+	public ModelAndView delMultiCart(CartDTO cvo) {
 
 		mav = new ModelAndView();
 		//System.out.println(" 제품 삭제 cvo 정보 " + cvo.toString());

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.ReplyProductService;
-import com.genie.myapp.vo.LikeVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.ReplyProductVO;
+import com.genie.myapp.vo.LikeDTO;
+import com.genie.myapp.vo.ProductDTO;
+import com.genie.myapp.vo.ReplyProductDTO;
 
 @RestController
 @RequestMapping("/reply/*")
@@ -25,18 +25,18 @@ public class ReplyProductController{
     ReplyProductService service;
 
     @GetMapping("replyProductList")
-    public List<ReplyProductVO> replyProductList(int no){
+    public List<ReplyProductDTO> replyProductList(int no){
         return service.replyProductList(no);
     }
     
     @PostMapping("replyProductWrite")
-	public int replyWrite(ReplyProductVO vo, HttpSession session) {
+	public int replyWrite(ReplyProductDTO vo, HttpSession session) {
 		vo.setGenie_id((String)session.getAttribute("logId")); // 작성자	
 		return service.replyProductWrite(vo);
 	}
 
  	@PostMapping("replyProductEdit")
- 	public int replyEdit (ReplyProductVO vo, HttpSession session) {
+ 	public int replyEdit (ReplyProductDTO vo, HttpSession session) {
  		vo.setGenie_id((String)session.getAttribute("logId"));
  		return service.replyProductEdit(vo);
  	}
@@ -48,7 +48,7 @@ public class ReplyProductController{
  	}
 
 	@PostMapping("likeInsert")
-	public int likeInsert(LikeVO vo, HttpSession session){
+	public int likeInsert(LikeDTO vo, HttpSession session){
 		vo.setGenie_id((String)session.getAttribute("logId"));
         System.out.println(vo.toString());
 
@@ -56,7 +56,7 @@ public class ReplyProductController{
 	}
 
 	@GetMapping("likeStatus")
- 	public int likeStatus(LikeVO vo, HttpSession session) {
+ 	public int likeStatus(LikeDTO vo, HttpSession session) {
  		vo.setGenie_id((String)session.getAttribute("logId"));
  		int cnt = service.likeStatus(vo);
  		int result = 0;
@@ -75,11 +75,11 @@ public class ReplyProductController{
 	@GetMapping("likeDel/{product_id}")
 	public ModelAndView likeDel(@PathVariable("product_id") int pid, HttpSession session) {
 		
-		LikeVO vo = new LikeVO();
+		LikeDTO vo = new LikeDTO();
 		vo.setGenie_id((String)session.getAttribute("logId"));
 		vo.setProduct_id(pid);
 		
-		ProductVO pvo = new ProductVO();
+		ProductDTO pvo = new ProductDTO();
 		pvo.setProduct_id(pid);
 		
 		int result = service.likeDelete(vo);

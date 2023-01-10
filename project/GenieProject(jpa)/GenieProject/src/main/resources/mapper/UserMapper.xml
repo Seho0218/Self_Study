@@ -5,7 +5,7 @@
 <mapper namespace = "com.genie.myapp.dao.UserDAO">
 
 	<!-- 로그인 -->
-	<select id = "loginOk" resultType = "UserVO">
+	<select id = "loginOk" resultType = "UserDTO">
 
 		select a.genie_id, a.genie_pwd, u.user_name, a.ROLE  
 		from user u 
@@ -39,7 +39,7 @@
 
 
 	<!-- 배송지 -->
-	<select id = "getDeliveryList" resultType="DeliveryVO">
+	<select id = "getDeliveryList" resultType="DeliveryDTO">
 
 		select * 
 		from address 
@@ -61,7 +61,7 @@
 
 
 	<!-- 회원정보 -->
-    <select id = "getUser" resultType = "UserVO">
+    <select id = "getUser" resultType = "UserDTO">
 
 		select genie_id, user_name, user_tel, user_email 
 		from user
@@ -86,7 +86,7 @@
 	</update>
 
 	<!-- 주문정보 -->
-	<select id="getOrder" resultType="OrderVO">
+	<select id="getOrder" resultType="OrderDTO">
 		
 		select * 
 		from myorder m
@@ -97,7 +97,7 @@
 	</select>
 
 	<!-- 찜한 상품 리스트-->
-	<select id="getLikeList" resultType="ProductVO">
+	<select id="getLikeList" resultType="ProductDTO">
 
 		select * 
 		from product_like l 

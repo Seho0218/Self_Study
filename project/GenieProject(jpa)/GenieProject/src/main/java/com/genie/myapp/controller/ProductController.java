@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.vo.TagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdminService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.AdminVO;
-import com.genie.myapp.vo.PagingVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.TagVO;
+import com.genie.myapp.vo.AdminDTO;
+import com.genie.myapp.vo.PagingDTO;
+import com.genie.myapp.vo.ProductDTO;
 
 @RestController
 @RequestMapping("/")
@@ -38,7 +38,7 @@ public class ProductController {
 	Map<String, Object> map = null;
 
 	@GetMapping("/")
-	public ModelAndView index(AdminVO vo, ProductVO PVO, PagingVO pVO) {
+	public ModelAndView index(AdminDTO vo, ProductDTO PVO, PagingDTO pVO) {
 
 		mav = new ModelAndView();
 		mav.addObject("tlist", adminService.adminTag(vo));
@@ -53,7 +53,7 @@ public class ProductController {
 
 	// 제품 리스트보기
 	@GetMapping("product")
-	public ModelAndView product(ProductVO PVO) {
+	public ModelAndView product(ProductDTO PVO) {
 
 		mav = new ModelAndView();
 		mav.addObject("plist", productService.listProduct(PVO));
@@ -83,7 +83,7 @@ public class ProductController {
 	// ----------------------------------------------------------//
 	
 	@PostMapping("selectProduct")
-	public ModelAndView selectProduct(ProductVO pvo, TagVO tvo) {
+	public ModelAndView selectProduct(ProductDTO pvo, TagDTO tvo) {
 
 		map = new HashMap<String, Object>();
 		map.put("p", pvo);

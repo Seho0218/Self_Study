@@ -5,7 +5,7 @@
 <mapper namespace="com.genie.myapp.dao.ProductDAO">
  <!-- 메인페이지 태그 , 카테고리별 검색 -->
 
-    <select id="listProduct" resultType="ProductVO">
+    <select id="listProduct" resultType="ProductDTO">
 
         select 
             product_id, 
@@ -45,7 +45,7 @@
 
 <!-- 제품 검색(정보가져오기) -->
 
-    <select id = "getProduct" resultType = "ProductVO" parameterType = "int">
+    <select id = "getProduct" resultType = "ProductDTO" parameterType = "int">
 
         select
 	  		product_id, 
@@ -69,7 +69,7 @@
 
 	</select>
 
-    <select id="getSeller" resultType="SellerVO">
+    <select id="getSeller" resultType="SellerDTO">
 
         select * 
         from seller s
@@ -81,7 +81,7 @@
 
 <!-- 장바구니 -->
 
-    <select id="getCart" resultType="CartVO">
+    <select id="getCart" resultType="CartDTO">
 
         select * 
         from 
@@ -128,7 +128,7 @@
 
 <!-- 메인페이지 지니 추천 -->
 
-    <select id = "selectProduct" resultType="ProductVO">
+    <select id = "selectProduct" resultType="ProductDTO">
 
         select 
             product_id, 
@@ -179,15 +179,15 @@
 	</if>
 	</select>
 
-    <select id="likeStatus" resultType="ProductVO">
+    <select id="likeStatus" resultType="ProductDTO">
     	select product_like from product where product_id = #{product_id}
     </select>
     
-    <select id="likeCheck" resultType="LikeVO">
+    <select id="likeCheck" resultType="LikeDTO">
     	select genie_id from product_like where genie_id='${param2}' and product_id=#{param1}
     </select>
 
-    <select id="companyName" resultType="ProductVO">
+    <select id="companyName" resultType="ProductDTO">
         select p.product_id, s.genie_id, s.company_name, p.product_price, p.product_image1, p.product_name
         from product p join seller s
         on p.genie_id = s.genie_id;

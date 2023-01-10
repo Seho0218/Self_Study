@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.MbtiService;
-import com.genie.myapp.vo.ProductVO;
+import com.genie.myapp.vo.ProductDTO;
 
 @RestController
 @RequestMapping("/")
@@ -68,11 +68,11 @@ public class MbtiController {
 		mav = new ModelAndView();
 		System.out.println(sortType);
 		
-		ProductVO PVO = new ProductVO();
+		ProductDTO PVO = new ProductDTO();
 		PVO.setProduct_category(product_category);
 		
 		if(sortType.equals("pricelist")) {//가격낮은순
-			//List<ProductVO> list= service.productPriceAsc(PVO);
+			//List<ProductDTO> list= service.productPriceAsc(PVO);
 			//System.out.println(list.size());
 			mav.addObject("plist", service.productPriceAsc(PVO));
 		}else if(sortType.equals("pricelistdesc")) {//가격높은순
@@ -95,10 +95,10 @@ public class MbtiController {
 		mav = new ModelAndView();
 		System.out.println(sortType);
 		
-		ProductVO PVO = new ProductVO();
+		ProductDTO PVO = new ProductDTO();
 		
 		if(sortType.equals("pricelist")) {//가격낮은순
-			//List<ProductVO> list= service.productPriceAsc(PVO);
+			//List<ProductDTO> list= service.productPriceAsc(PVO);
 			//System.out.println(list.size());
 			mav.addObject("plist", service.productPriceAsc(PVO));
 		}else if(sortType.equals("pricelistdesc")) {//가격높은순
@@ -121,11 +121,11 @@ public class MbtiController {
 		mav = new ModelAndView();
 		System.out.println(sortType);
 		
-		ProductVO PVO = new ProductVO();
+		ProductDTO PVO = new ProductDTO();
 		PVO.setProduct_tag(product_tag);
 		
 		if(sortType.equals("pricelist")) {//가격낮은순
-			//List<ProductVO> list= service.productPriceAsc(PVO);
+			//List<ProductDTO> list= service.productPriceAsc(PVO);
 			//System.out.println(list.size());
 			mav.addObject("plist", service.productPriceAsc(PVO));
 		}else if(sortType.equals("pricelistdesc")) {//가격높은순
