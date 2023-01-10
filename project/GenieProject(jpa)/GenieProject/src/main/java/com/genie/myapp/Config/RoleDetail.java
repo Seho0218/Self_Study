@@ -6,7 +6,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.genie.myapp.vo.AccountDTO;
+import com.genie.myapp.dto.AccountDTO;
 
 public class RoleDetail implements UserDetails{
 

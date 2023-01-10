@@ -1,6 +1,6 @@
 package com.genie.myapp.service;
 
-import com.genie.myapp.vo.*;
+import com.genie.myapp.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.genie.myapp.dao.ProductDAO;
-import com.genie.myapp.vo.LikeDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

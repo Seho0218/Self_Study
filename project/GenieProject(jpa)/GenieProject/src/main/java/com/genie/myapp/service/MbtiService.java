@@ -2,8 +2,8 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.SellerProductDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.SellerProductDTO;
 
 public interface MbtiService {
 	

@@ -25,12 +25,12 @@ import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.AccountDTO;
-import com.genie.myapp.vo.AdministerDTO;
-import com.genie.myapp.vo.CartDTO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.SellerDTO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
+import com.genie.myapp.dto.AdministerDTO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.SellerDTO;
+import com.genie.myapp.dto.UserDTO;
 
 @RestController
 @RequestMapping("/")

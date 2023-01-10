@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.genie.myapp.vo.TagDTO;
+import com.genie.myapp.dto.TagDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdminService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.AdminDTO;
-import com.genie.myapp.vo.PagingDTO;
-import com.genie.myapp.vo.ProductDTO;
+import com.genie.myapp.dto.AdminDTO;
+import com.genie.myapp.dto.PagingDTO;
+import com.genie.myapp.dto.ProductDTO;
 
 @RestController
 @RequestMapping("/")

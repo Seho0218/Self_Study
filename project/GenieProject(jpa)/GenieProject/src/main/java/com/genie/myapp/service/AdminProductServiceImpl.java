@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdminProductDAO;
-import com.genie.myapp.vo.AdminProductDTO;
+import com.genie.myapp.dto.AdminProductDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

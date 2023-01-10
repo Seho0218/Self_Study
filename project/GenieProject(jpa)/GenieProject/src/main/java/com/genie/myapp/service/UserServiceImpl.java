@@ -8,11 +8,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
-import com.genie.myapp.vo.AccountDTO;
-import com.genie.myapp.vo.DeliveryDTO;
-import com.genie.myapp.vo.OrderDTO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
+import com.genie.myapp.dto.DeliveryDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.UserDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

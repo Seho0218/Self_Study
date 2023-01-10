@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.genie.myapp.vo.CartDTO;
-import com.genie.myapp.vo.OrderDTO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.OrderDTO;
 
 @Mapper
 @Repository

@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.genie.myapp.vo.AccountDTO;
-import com.genie.myapp.vo.DeliveryDTO;
-import com.genie.myapp.vo.OrderDTO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
+import com.genie.myapp.dto.DeliveryDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.UserDTO;
 
 @Mapper
 @Repository

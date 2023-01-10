@@ -1,6 +1,6 @@
 package com.genie.myapp.repository;
 
-import com.genie.myapp.vo.AdministerDTO;
+import com.genie.myapp.dto.AdministerDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.CertService;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.UserDTO;
 
 @RestController
 @SuppressWarnings("unchecked")

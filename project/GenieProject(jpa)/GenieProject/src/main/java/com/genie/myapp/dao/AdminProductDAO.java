@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.genie.myapp.vo.AdminProductDTO;
+import com.genie.myapp.dto.AdminProductDTO;
 //추상클래스 
 @Mapper
 @Repository

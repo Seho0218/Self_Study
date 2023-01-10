@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.ReplyProductDAO;
-import com.genie.myapp.vo.LikeDTO;
-import com.genie.myapp.vo.ReplyProductDTO;
+import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.ReplyProductDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

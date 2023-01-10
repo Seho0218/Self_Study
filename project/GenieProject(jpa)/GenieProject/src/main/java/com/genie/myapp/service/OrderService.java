@@ -2,8 +2,8 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.CartDTO;
-import com.genie.myapp.vo.OrderDTO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.OrderDTO;
 
 public interface OrderService {
 

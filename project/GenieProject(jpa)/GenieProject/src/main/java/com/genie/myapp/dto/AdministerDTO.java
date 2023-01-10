@@ -1,4 +1,4 @@
-package com.genie.myapp.vo;
+package com.genie.myapp.dto;
 
 import lombok.Data;
 

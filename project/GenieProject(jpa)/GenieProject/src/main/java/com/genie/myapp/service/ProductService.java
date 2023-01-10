@@ -3,11 +3,11 @@ package com.genie.myapp.service;
 import java.util.List;
 import java.util.Map;
 
-import com.genie.myapp.vo.CartDTO;
-import com.genie.myapp.vo.LikeDTO;
-import com.genie.myapp.vo.PagingDTO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.SellerDTO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.PagingDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.SellerDTO;
 
 public interface ProductService {
 

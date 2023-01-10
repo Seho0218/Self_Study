@@ -23,10 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.DeliveryDTO;
-import com.genie.myapp.vo.OrderDTO;
-import com.genie.myapp.vo.SellerDTO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.DeliveryDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.SellerDTO;
+import com.genie.myapp.dto.UserDTO;
 
 
 @RestController

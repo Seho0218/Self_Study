@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.CertDAO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.UserDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

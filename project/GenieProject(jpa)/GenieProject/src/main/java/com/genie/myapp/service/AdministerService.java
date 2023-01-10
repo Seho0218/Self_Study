@@ -1,6 +1,6 @@
 package com.genie.myapp.service;
 
-import com.genie.myapp.vo.AdministerDTO;
+import com.genie.myapp.dto.AdministerDTO;
 
 import java.util.Optional;
 

@@ -22,8 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.OrderService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.CartDTO;
-import com.genie.myapp.vo.OrderDTO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.OrderDTO;
 
 @RestController
 @RequestMapping("/order/*")

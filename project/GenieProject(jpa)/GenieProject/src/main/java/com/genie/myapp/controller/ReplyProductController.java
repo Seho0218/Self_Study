@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.ReplyProductService;
-import com.genie.myapp.vo.LikeDTO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.ReplyProductDTO;
+import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.ReplyProductDTO;
 
 @RestController
 @RequestMapping("/reply/*")

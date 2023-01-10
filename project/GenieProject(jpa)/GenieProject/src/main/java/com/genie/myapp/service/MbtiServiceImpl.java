@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.MbtiDAO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.SellerProductDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.SellerProductDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

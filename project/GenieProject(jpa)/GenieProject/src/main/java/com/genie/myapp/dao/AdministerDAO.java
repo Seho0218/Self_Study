@@ -3,7 +3,7 @@ package com.genie.myapp.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.genie.myapp.vo.AdministerDTO;
+import com.genie.myapp.dto.AdministerDTO;
 
 @Mapper
 @Repository

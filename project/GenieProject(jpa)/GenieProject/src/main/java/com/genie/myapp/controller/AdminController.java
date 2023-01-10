@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.AdminService;
-import com.genie.myapp.vo.AdminDTO;
-import com.genie.myapp.vo.CartDTO;
-import com.genie.myapp.vo.PagingDTO;
-import com.genie.myapp.vo.SellerDTO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.AdminDTO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.PagingDTO;
+import com.genie.myapp.dto.SellerDTO;
+import com.genie.myapp.dto.UserDTO;
 
 @Controller
 @RequestMapping("/admin/*")

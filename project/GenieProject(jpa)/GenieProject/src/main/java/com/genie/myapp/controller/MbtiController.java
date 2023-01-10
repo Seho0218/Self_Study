@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.MbtiService;
-import com.genie.myapp.vo.ProductDTO;
+import com.genie.myapp.dto.ProductDTO;
 
 @RestController
 @RequestMapping("/")

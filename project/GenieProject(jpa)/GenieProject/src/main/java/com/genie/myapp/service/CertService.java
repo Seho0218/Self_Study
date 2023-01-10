@@ -2,7 +2,7 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.UserDTO;
 
 public interface CertService {
 

@@ -4,7 +4,7 @@ import com.genie.myapp.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import com.genie.myapp.vo.AdministerDTO;
+import com.genie.myapp.dto.AdministerDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;

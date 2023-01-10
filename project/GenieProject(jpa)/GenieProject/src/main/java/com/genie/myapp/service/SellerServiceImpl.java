@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
 
-import com.genie.myapp.vo.SellerProductDTO;
-import com.genie.myapp.vo.AccountDTO;
-import com.genie.myapp.vo.InquiryDTO;
-import com.genie.myapp.vo.OrderDTO;
-import com.genie.myapp.vo.PagingDTO;
-import com.genie.myapp.vo.SellerDTO;
+import com.genie.myapp.dto.SellerProductDTO;
+import com.genie.myapp.dto.AccountDTO;
+import com.genie.myapp.dto.InquiryDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.PagingDTO;
+import com.genie.myapp.dto.SellerDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service

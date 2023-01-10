@@ -2,11 +2,11 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.AccountDTO;
-import com.genie.myapp.vo.DeliveryDTO;
-import com.genie.myapp.vo.OrderDTO;
-import com.genie.myapp.vo.ProductDTO;
-import com.genie.myapp.vo.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
+import com.genie.myapp.dto.DeliveryDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.UserDTO;
 
 public interface UserService {
 	

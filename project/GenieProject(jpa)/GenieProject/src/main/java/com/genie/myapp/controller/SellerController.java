@@ -27,9 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.SellerService;
 
-import com.genie.myapp.vo.SellerProductDTO;
-import com.genie.myapp.vo.OrderDTO;
-import com.genie.myapp.vo.PagingDTO;
+import com.genie.myapp.dto.SellerProductDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.PagingDTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
