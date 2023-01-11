@@ -10,7 +10,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         #        show_sql: true
@@ -26,9 +26,9 @@ spring:
       max-file-size: 20MB
       enabled: true
 
-mybatis:
-  type-aliases-package: com.genie.myapp.vo
-  mapper-locations: mapper/*Mapper.xml
+#mybatis:
+#  type-aliases-package: com.genie.myapp.dto
+#  mapper-locations: mapper/*Mapper.xml
 
 logging.level:
   org.hibernate.SQL: debug

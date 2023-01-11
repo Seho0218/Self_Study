@@ -38,14 +38,14 @@ public class ProductController {
 	Map<String, Object> map = null;
 
 	@GetMapping("/")
-	public ModelAndView index(AdminDTO vo, ProductDTO PVO, PagingDTO pVO) {
+	public ModelAndView index(AdminDTO dto, ProductDTO Pdto, PagingDTO pdto) {
 
 		mav = new ModelAndView();
-		mav.addObject("tlist", adminService.adminTag(vo));
-		mav.addObject("plist", productService.listProduct(PVO));
-		mav.addObject("pvo", PVO);
-		mav.addObject("comlist", productService.companyName(PVO));
-		// pVO.setTotalRecord(productService.mainAllSelect(PVO));
+		mav.addObject("tlist", adminService.adminTag(dto));
+		mav.addObject("plist", productService.listProduct(Pdto));
+		mav.addObject("pdto", pdto);
+		mav.addObject("comlist", productService.companyName(Pdto));
+		// pdto.setTotalRecord(productService.mainAllSelect(Pdto));
 		mav.setViewName("/index");
 
 		return mav;
@@ -53,11 +53,11 @@ public class ProductController {
 
 	// 제품 리스트보기
 	@GetMapping("product")
-	public ModelAndView product(ProductDTO PVO) {
+	public ModelAndView product(ProductDTO pdto) {
 
 		mav = new ModelAndView();
-		mav.addObject("plist", productService.listProduct(PVO));
-		mav.addObject("pvo", PVO);
+		mav.addObject("plist", productService.listProduct(pdto));
+		mav.addObject("pdto", pdto);
 		mav.setViewName("/product");
 
 		return mav;
@@ -71,7 +71,7 @@ public class ProductController {
 
 		productService.hitCount(product_id);
 		mav.addObject("pvo", productService.getProduct(product_id));
-		mav.addObject("svo", productService.getSeller(product_id));
+		mav.addObject("sdto", productService.getSeller(product_id));
 		mav.addObject("lvo", productService.likeStatus(product_id));
 		mav.addObject("cvo", productService.likeCheck(product_id, genie_id));
 		mav.setViewName("/product_detail");

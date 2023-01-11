@@ -6,5 +6,5 @@ import com.genie.myapp.dto.AdminProductDTO;
 
 public interface AdminProductService {
 
-	public List<AdminProductDTO> adminProduct(AdminProductDTO VO);
+	public List<AdminProductDTO> adminProduct(AdminProductDTO dto);
 }

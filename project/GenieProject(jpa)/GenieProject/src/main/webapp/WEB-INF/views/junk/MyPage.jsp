@@ -171,7 +171,7 @@ input[type=text], input[type=email]{
 <div class="responsive-wrapper">
  	<div class="content">
 		<div class="content-panel">
-			<h3>${vo.user_name} ${svo.ceo_name}님</h3>
+			<h3>${vo.user_name} ${sdto.ceo_name}님</h3>
 				<ul class="fa-ul">
 					<li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
 					<li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
@@ -184,12 +184,12 @@ input[type=text], input[type=email]{
 					<form method="post" action="/user/UserEditOk" id="logFrm">
 						<ul id="idForm">
 							<li>아이디</li>
-							<input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
+							<input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${sdto.genie_id}" readonly>
 							<input type ="hidden" id = "idCheckState" value = "Y"/>
 						</ul>
 						<ul id="name">
 							<li>이름</li>
-							<input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
+							<input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${sdto.ceo_name}" readonly>
 						</ul>
 						<ul id="passwordForm">
 							<li>비밀번호</li>
@@ -210,7 +210,7 @@ input[type=text], input[type=email]{
 						</ul>
 						<ul id="emailForm">
 							<li>이메일</li>
-							<input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
+							<input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${sdto.seller_email}" placeholder="이메일을 입력하세요">
 						</ul>
 						<%-- <input type = "submit" id="formSubmit" value = "회원정보 수정"/>
 					</form>

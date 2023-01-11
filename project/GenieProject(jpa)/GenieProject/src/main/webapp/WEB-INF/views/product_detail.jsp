@@ -212,10 +212,10 @@
                 상품카테고리 : ${pvo.product_category}
             </div>
             <div class="box9">
-                셀러명 : ${svo.ceo_name}
+                셀러명 : ${sdto.ceo_name}
             </div>
             <div class="box10">
-                회사이름 : ${svo.company_name}
+                회사이름 : ${sdto.company_name}
             </div>
             <div class="box11">
                 상품 수량 : <input type="text" id="cart_qty" name="cart_qty" value="1" 
@@ -392,7 +392,7 @@
             <div class="box_026">ㆍ복제가 가능한 상품의 포장 등을 훼손한 경우</div>
             <div class="box_027"><h1>판매자 정보</h1></div>
             <div class="box_028">판매자</div>
-            <div class="box_029">${svo.company_name}</div>
+            <div class="box_029">${sdto.company_name}</div>
         </div>
     </div>
 </section>

@@ -137,16 +137,16 @@
                     <tr>
                       <td height="10" colspan="4"></td>
                     </tr>
-                    <c:forEach var="ovo" items="${olist}">
+                    <c:forEach var="odto" items="${olist}">
                       <tr>
       
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #3B40FE;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
-                          ${ovo.product_name}
+                          ${odto.product_name}
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small></small></td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${ovo.order_price}</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${ovo.order_qty}</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right"><fmt:formatNumber value="${ovo.order_price*ovo.order_qty}" pattern="#,###원"/></td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${odto.order_price}</td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${odto.order_qty}</td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right"><fmt:formatNumber value="${odto.order_price*odto.order_qty}" pattern="#,###원"/></td>
                       
                       </tr>
                     </c:forEach>
@@ -192,8 +192,8 @@
 
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
                         <c:set var="total" value="0"/>
-                          <c:forEach var="ovo" items="${olist}">
-                        <c:set var="total" value="${total+ovo.order_price*ovo.order_qty}"/>
+                          <c:forEach var="odto" items="${olist}">
+                        <c:set var="total" value="${total+odto.order_price*odto.order_qty}"/>
                           </c:forEach><strong><fmt:formatNumber value="${total}" pattern="#,###원"/></strong>
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
@@ -212,8 +212,8 @@
                         <strong>최종가격</strong>
                       </td> 
                     <c:set var="total" value="0"/>
-                      <c:forEach var="ovo" items="${olist}">
-                      <c:set var="total" value="${total+ovo.order_price*ovo.order_qty}"/>
+                      <c:forEach var="odto" items="${olist}">
+                      <c:set var="total" value="${total+odto.order_price*odto.order_qty}"/>
                     </c:forEach>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
                         <strong><fmt:formatNumber value="${total}" pattern="#,###원"/></strong>
@@ -253,7 +253,7 @@
                   <tbody>
                     <tr>
                       <td>
-                      <c:forEach var="ovo" items="${olist}" varStatus="i">
+                      <c:forEach var="odto" items="${olist}" varStatus="i">
                       <c:if test="${i.first}">
                         <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
 
@@ -268,8 +268,8 @@
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                ${ovo.recipient_address}<br>
-                                전화번호:${ovo.recipient_phone}
+                                ${odto.recipient_address}<br>
+                                전화번호:${odto.recipient_phone}
                               </td>
                             </tr>
                           </tbody>
@@ -288,7 +288,7 @@
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; padding-left: 45%; ">
-                                결제방법 : ${ovo.payment_method}  <br> 받는 사람 : ${ovo.recipient_name}
+                                결제방법 : ${odto.payment_method}  <br> 받는 사람 : ${odto.recipient_name}
                               </td>
                             </tr>
                           </tbody>

@@ -1,10 +1,10 @@
-package com.genie.myapp.domain.Account;
+package com.genie.myapp.entity.Account;
 
-import com.genie.myapp.domain.Address;
-import com.genie.myapp.domain.Cart;
-import com.genie.myapp.domain.Myorder;
-import com.genie.myapp.domain.OrderStatus;
-import com.genie.myapp.domain.Product.Product_like;
+import com.genie.myapp.entity.Address;
+import com.genie.myapp.entity.Cart;
+import com.genie.myapp.entity.Myorder;
+import com.genie.myapp.entity.OrderStatus;
+import com.genie.myapp.entity.Product.Product_like;
 import lombok.Getter;
 import lombok.Setter;
 

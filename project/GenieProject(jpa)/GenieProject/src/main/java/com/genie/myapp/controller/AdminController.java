@@ -42,7 +42,7 @@ public class AdminController {
 		public ModelAndView adminMain() {
 			ModelAndView mav = new ModelAndView();
 			//Test 시작
-			//mav.setTotalRecord(service.mainTotalRecord(AdminDTO VO));
+			//mav.setTotalRecord(service.mainTotalRecord(AdminDTO dto));
 			//Test 끝
 			mav.setViewName("admin/adminMain");
 			return mav;
@@ -64,11 +64,11 @@ public class AdminController {
 		
 		//카테고리 
 		@GetMapping("adminCategoryTag")
-		public ModelAndView adminCategoryTag(AdminDTO VO) {
+		public ModelAndView adminCategoryTag(AdminDTO dto) {
 			mav = new ModelAndView();
-			System.out.println(VO.toString());
-			mav.addObject("list", service.adminCategoryTag(VO));
-			mav.addObject("VO", VO);
+			System.out.println(dto.toString());
+			mav.addObject("list", service.adminCategoryTag(dto));
+			mav.addObject("dto", dto);
 			mav.setViewName("admin/adminCategoryTag");
 			return mav;
 		}
@@ -110,22 +110,22 @@ public class AdminController {
 		@GetMapping("adminTagPop")
 		public ModelAndView adminTagPop(@RequestParam("product_tag_id") String product_tag_id) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadminTag(product_tag_id));
+			mav.addObject("dto", service.getadminTag(product_tag_id));
 			mav.setViewName("admin/adminTagPop");
 			return mav;
 		}
 		
 		// 태그 DB 업데이트
 		@PostMapping("adminTagPopEdit")
-		public ResponseEntity<String> adminTagPopEdit(AdminDTO vo){
+		public ResponseEntity<String> adminTagPopEdit(AdminDTO dto){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
-				service.adminTagPopEdit(vo);
+				service.adminTagPopEdit(dto);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adminTagPop?product_tag_id="+vo.getproduct_tag_id()+"';";
+				msg += "location.href='/admin/adminTagPop?product_tag_id="+dto.getProduct_tag_id()+"';";
 						
 			}catch(Exception e){
 				e.printStackTrace();
@@ -164,22 +164,22 @@ public class AdminController {
 		@GetMapping("adminCategoryPop")
 		public ModelAndView adcategoryPop(@RequestParam("category_id") String category_id) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadcategory(category_id));
+			mav.addObject("dto", service.getadcategory(category_id));
 			mav.setViewName("admin/adminCategoryPop");
 			return mav;
 		}
 		
 		// 카테고리 DB 업데이트
 		@PostMapping("adminCategoryPopEdit")
-		public ResponseEntity<String> adcategoryPopEdit(AdminDTO vo){
+		public ResponseEntity<String> adcategoryPopEdit(AdminDTO dto){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
-				service.adcategoryPopEdit(vo);
+				service.adcategoryPopEdit(dto);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adminCategoryPop?category_id="+vo.getcategory_id()+"';";
+				msg += "location.href='/admin/adminCategoryPop?category_id="+dto.getCategory_id()+"';";
 						
 			}catch(Exception e){
 				e.printStackTrace();
@@ -210,7 +210,7 @@ public class AdminController {
 		// @GetMapping("adminProductPop")
 		// public ModelAndView adminProductPop(@RequestParam("product_id") String product_id) {
 		// 	ModelAndView mav = new ModelAndView();
-		// 	mav.addObject("vo", service.getadminProduct(product_id));
+		// 	mav.addObject("dto", service.getadminProduct(product_id));
 		// 	mav.setViewName("admin/adminCategoryPop");
 		// 	return mav;
 		// }
@@ -219,12 +219,12 @@ public class AdminController {
 		
 		// admember 페이지 이동
 		@GetMapping("admember")
-		public ModelAndView admember(PagingDTO pVO) {
+		public ModelAndView admember(PagingDTO pdto) {
 			mav = new ModelAndView();
 			
-			pVO.setTotalRecord(service.userTotalRecord(pVO));
-			mav.addObject("admember", service.userAllSelect(pVO));
-			mav.addObject("pVO", pVO);
+			pdto.setTotalRecord(service.userTotalRecord(pdto));
+			mav.addObject("admember", service.userAllSelect(pdto));
+			mav.addObject("pdto", pdto);
 			
 			mav.setViewName("admin/admember");
 			return mav;
@@ -232,25 +232,25 @@ public class AdminController {
 		
 		// 선택된 유저의 정보 수정 폼
 		@GetMapping("admemberPop")
-		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingDTO pVO) {
+		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingDTO pdto) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadmember(genie_id));
-			mav.addObject("pVO", pVO);
+			mav.addObject("dto", service.getadmember(genie_id));
+			mav.addObject("pdto", pdto);
 			mav.setViewName("admin/admemberPop");
 			return mav;
 		}
 		
 		// 유저 DB 업데이트
 		@PostMapping("admemberPopEdit")
-		public ResponseEntity<String> admemberPopEdit(UserDTO vo){
+		public ResponseEntity<String> admemberPopEdit(UserDTO dto){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
-				service.admemberPopEdit(vo);
+				service.admemberPopEdit(dto);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/admemberPop?genie_id="+vo.getGenie_id()+"';";
+				msg += "location.href='/admin/admemberPop?genie_id="+dto.getGenie_id()+"';";
 						
 			}catch(Exception e){
 				e.printStackTrace();
@@ -285,8 +285,8 @@ public class AdminController {
 
 	//결제 컨트롤러
 	@PostMapping("adminpaymentOk")
-	public ResponseEntity<String> adminpayment(CartDTO vo, HttpServletRequest request){
-		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+	public ResponseEntity<String> adminpayment(CartDTO dto, HttpServletRequest request){
+		dto.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -294,7 +294,7 @@ public class AdminController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//결제 성공
-			int result  = service.paymentWrite(vo);
+			int result  = service.paymentWrite(dto);
 			
 			String msg = "<script>";
 			msg += "alert('결제가 되었습니다. 등록되었습니다.');";
@@ -316,13 +316,13 @@ public class AdminController {
 	}
 		// adcompany 페이지 이동
 		@GetMapping("adcompany")
-		public ModelAndView adcompany(PagingDTO pVO) {
+		public ModelAndView adcompany(PagingDTO pdto) {
 			mav = new ModelAndView();
 			
-			pVO.setTotalRecord(service.sellerTotalRecord(pVO));
-			pVO.setNotApproved(service.sellerApproval(pVO));
-			mav.addObject("adcompany", service.sellerAllSelect(pVO));
-			mav.addObject("pVO", pVO);
+			pdto.setTotalRecord(service.sellerTotalRecord(pdto));
+			pdto.setNotApproved(service.sellerApproval(pdto));
+			mav.addObject("adcompany", service.sellerAllSelect(pdto));
+			mav.addObject("pdto", pdto);
 			
 			mav.setViewName("admin/adcompany");
 			return mav;
@@ -330,25 +330,25 @@ public class AdminController {
 		
 		// 선택된 셀러의 정보 수정 폼
 		@GetMapping("adcompanyPop")
-		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingDTO pVO) {
+		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingDTO pdto) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadcompany(genie_id));
-			mav.addObject("pVO", pVO);
+			mav.addObject("dto", service.getadcompany(genie_id));
+			mav.addObject("pdto", pdto);
 			mav.setViewName("admin/adcompanyPop");
 			return mav;
 		}
 		
 		// 셀러 DB 업데이트
 		@PostMapping("adcompanyPopEdit")
-		public ResponseEntity<String> adcompanyPopEdit(SellerDTO vo){
+		public ResponseEntity<String> adcompanyPopEdit(SellerDTO dto){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
-				service.adcompanyPopEdit(vo);
+				service.adcompanyPopEdit(dto);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adcompanyPop?genie_id="+vo.getGenie_id()+"';";
+				msg += "location.href='/admin/adcompanyPop?genie_id="+dto.getGenie_id()+"';";
 						
 			}catch(Exception e){
 				e.printStackTrace();

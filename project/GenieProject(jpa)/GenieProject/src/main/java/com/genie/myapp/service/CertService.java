@@ -14,7 +14,7 @@ public interface CertService {
     public boolean emailCheck(String genid_id, String user_email);
 
     void sendAuthNum(String user_email, String authNum);
-    public int PwdEditOk(UserDTO vo);
+    public int PwdEditOk(UserDTO dto);
 
 	
     

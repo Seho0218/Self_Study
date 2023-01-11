@@ -191,7 +191,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
           alt="materialize logo" />
 
                   <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
+                    ${vo.user_name} ${sdto.ceo_name}님
                   </span>
       </a>
       </h1>
@@ -291,12 +291,12 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
           <form method="post" action="/user/UserEditOk" id="logFrm">
             <ul id="idForm">
               <li>아이디</li>
-              <input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
+              <input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${sdto.genie_id}" readonly>
               <input type ="hidden" id = "idCheckState" value = "Y"/>
             </ul>
             <ul id="name">
               <li>이름</li>
-              <input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
+              <input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${sdto.ceo_name}" readonly>
             </ul>
             <ul id="passwordForm">
               <li>비밀번호</li>
@@ -317,7 +317,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
             </ul>
             <ul id="emailForm">
               <li>이메일</li>
-              <input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
+              <input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${sdto.seller_email}" placeholder="이메일을 입력하세요">
             </ul>
             <input type = "submit" id="formSubmit" value = "회원정보 수정"/>
           </form>

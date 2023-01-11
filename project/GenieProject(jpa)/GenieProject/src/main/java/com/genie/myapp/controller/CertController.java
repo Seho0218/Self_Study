@@ -214,12 +214,12 @@ public class CertController {
 
 	// 비밀번호 변경
 	@PostMapping("modify_pwd")
-	public ResponseEntity<String> modifyPassword(UserDTO vo, HttpSession session) {
+	public ResponseEntity<String> modifyPassword(UserDTO dto, HttpSession session) {
 
-		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
-		vo.setGenie_pwd(enPw);
+		String enPw=passwordEncoder.encode(dto.getGenie_pwd());
+		dto.setGenie_pwd(enPw);
 
-		int cnt = CertService.PwdEditOk(vo);
+		int cnt = CertService.PwdEditOk(dto);
 		System.out.print(cnt);
 
 		return new ResponseEntity<String>("비밀번호를 변경했습니다",HttpStatus.OK);

@@ -24,8 +24,8 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<OrderDTO> getFromCart(OrderDTO ovo) {
-        return dao.getFromCart(ovo);
+    public List<OrderDTO> getFromCart(OrderDTO odto) {
+        return dao.getFromCart(odto);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public int afterOrderCart(OrderDTO ovo) {
-        return dao.afterOrderCart(ovo);
+    public int afterOrderCart(OrderDTO odto) {
+        return dao.afterOrderCart(odto);
     }
 
     @Override

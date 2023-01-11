@@ -13,23 +13,23 @@ public interface UserService {
 	//아이디 중복검사
 	public int idCheck(String genie_id);
 	//어카운트 등록
-	public int AccountWrite(AccountDTO avo);
+	public int AccountWrite(AccountDTO adto);
 	//회원가입
-	public int UserWrite(UserDTO vo);
+	public int UserWrite(UserDTO dto);
 
 	//로그인
-	public UserDTO loginOk(UserDTO vo);
+	public UserDTO loginOk(UserDTO dto);
 	//회원 선택: 로그인 한 회원
 	public UserDTO getUser(String genie_id);
 	//회원 정보 수정: DB 업데이트
-	public int UserEditOk(UserDTO vo);
+	public int UserEditOk(UserDTO dto);
 	//비밀번호 변경
-	public int PwdEditOk(UserDTO vo);
+	public int PwdEditOk(UserDTO dto);
 
 	//배송지 추가
-	public int Delivery(UserDTO vo);
+	public int Delivery(UserDTO dto);
 	//배송지 등록
-	public int addDelivery(UserDTO vo);
+	public int addDelivery(UserDTO dto);
 	//배송지 리스트 가져오기
 	public List<DeliveryDTO> getDeliveryList(String genie_id);
 	//배송지 삭제

@@ -29,8 +29,8 @@ public class SellerServiceImpl implements SellerService {
   
 // 주문목록
   @Override
-	public List<OrderDTO> sellerOrder(OrderDTO vo, String seller_id) {
-		return dao.sellerOrder(vo, seller_id);
+	public List<OrderDTO> sellerOrder(OrderDTO dto, String seller_id) {
+		return dao.sellerOrder(dto, seller_id);
 	}
 
   @Override
@@ -39,30 +39,30 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int sellerWrite(SellerDTO vo) {
-		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
-        vo.setGenie_pwd(enPw);
-        return dao.sellerWrite(vo);
+	public int sellerWrite(SellerDTO dto) {
+		String enPw=passwordEncoder.encode(dto.getGenie_pwd());
+        dto.setGenie_pwd(enPw);
+        return dao.sellerWrite(dto);
 	}
 
 	@Override
-	public int productWrite(SellerProductDTO vo) {
-		return dao.productWrite(vo);
+	public int productWrite(SellerProductDTO dto) {
+		return dao.productWrite(dto);
 	}
 
 	@Override
-	public int AccountWrite(AccountDTO avo) {
-		return dao.AccountWrite(avo);
+	public int AccountWrite(AccountDTO adto) {
+		return dao.AccountWrite(adto);
 	}
 
 	@Override
-	public SellerDTO loginOk(SellerDTO svo) {
-		return dao.loginOk(svo);
+	public SellerDTO loginOk(SellerDTO sdto) {
+		return dao.loginOk(sdto);
 	}
 
 	@Override
-	public List<SellerProductDTO> productList(PagingDTO pVO) {
-		return dao.productList(pVO);
+	public List<SellerProductDTO> productList(PagingDTO pdto) {
+		return dao.productList(pdto);
 	}
 	
 	@Override
@@ -76,8 +76,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int productEditOk(SellerProductDTO pvo) {
-		return dao.productEditOk(pvo);
+	public int productEditOk(SellerProductDTO pdto) {
+		return dao.productEditOk(pdto);
 	}
 
 	@Override
@@ -91,8 +91,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public List<InquiryDTO> inquiryList(InquiryDTO vo, String Genie_id) {
-		return dao.inquiryList(vo, Genie_id);
+	public List<InquiryDTO> inquiryList(InquiryDTO dto, String Genie_id) {
+		return dao.inquiryList(dto, Genie_id);
 	}
 
 	@Override
@@ -151,8 +151,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int productTotalRecord(PagingDTO pVO) {
-		return dao.productTotalRecord(pVO);
+	public int productTotalRecord(PagingDTO pdto) {
+		return dao.productTotalRecord(pdto);
 	}
 
 	@Override

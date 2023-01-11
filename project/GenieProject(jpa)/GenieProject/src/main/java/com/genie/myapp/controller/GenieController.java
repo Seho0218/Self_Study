@@ -96,7 +96,7 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserDTO vo, AccountDTO avo) {
+	public ResponseEntity<String> UserWrite(UserDTO dto, AccountDTO adto) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -104,13 +104,13 @@ public class GenieController{
 		headers.add("Content-Type","text/html; charset=utf-8");
 		TransactionStatus status= transactionManager.getTransaction(definition);
 		
-		System.out.println("avo : " + avo.toString());
+		System.out.println("adto : " + adto.toString());
 		
 		try {//회원가입 성공
-			String enPw=passwordEncoder.encode(avo.getGenie_pwd());
-			avo.setGenie_pwd(enPw);
-			userService.AccountWrite(avo);
-			userService.UserWrite(vo);
+			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
+			adto.setGenie_pwd(enPw);
+			userService.AccountWrite(adto);
+			userService.UserWrite(dto);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
@@ -138,7 +138,7 @@ public class GenieController{
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(SellerDTO svo, AccountDTO avo){
+	public ResponseEntity<String> sellerWrite(SellerDTO sdto, AccountDTO adto){
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -147,10 +147,10 @@ public class GenieController{
 		TransactionStatus status= transactionManager.getTransaction(definition);
 		
 		try {//회원가입성공
-			String enPw=passwordEncoder.encode(avo.getGenie_pwd());
-			avo.setGenie_pwd(enPw);
-			sellerService.AccountWrite(avo);
-			sellerService.sellerWrite(svo);
+			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
+			adto.setGenie_pwd(enPw);
+			sellerService.AccountWrite(adto);
+			sellerService.sellerWrite(sdto);
 			
 			
 			String msg = "<script>";
@@ -178,21 +178,21 @@ public class GenieController{
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserDTO vo, SellerDTO svo, AdministerDTO avo, HttpSession session) {
+	public ModelAndView loginOk(UserDTO dto, SellerDTO sdto, AdministerDTO adto, HttpSession session) {
 		
 		mav = new ModelAndView();		
 
-		if(vo.getGenie_id() != null) {//일반회원 일때
+		if(dto.getGenie_id() != null) {//일반회원 일때
 
-			UserDTO logVO = userService.loginOk(vo);
-			if(logVO!=null){
-				//System.out.println(vo);
-				//System.out.println(logVO);
-				boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logVO.getGenie_pwd());
+			UserDTO logdto = userService.loginOk(dto);
+			if(logdto!=null){
+				//System.out.println(dto);
+				//System.out.println(logdto);
+				boolean pwdMatch = passwordEncoder.matches(dto.getGenie_pwd(), logdto.getGenie_pwd());
 				//System.out.println(pwdMatch);
 				if(pwdMatch){//로그인 성공
-					session.setAttribute("logId", logVO.getGenie_id());		
-					session.setAttribute("logName", logVO.getUser_name());
+					session.setAttribute("logId", dto.getGenie_id());
+					session.setAttribute("logName", dto.getUser_name());
 					session.setAttribute("logStatus","Y");
 					session.setAttribute("ROLE", "ROLE_USER");
 					
@@ -202,13 +202,13 @@ public class GenieController{
 				}
 					return mav;
 			
-				}else if(svo.getGenie_id() !=null) {//업체회원일때 
+				}else if(sdto.getGenie_id() !=null) {//업체회원일때
 
-					SellerDTO slogVO=sellerService.loginOk(svo);
+					SellerDTO slogVO=sellerService.loginOk(sdto);
 					if(slogVO!=null){
-						//System.out.println(svo);
+						//System.out.println(sdto);
 						//System.out.println(slogVO);
-						boolean pwdMatch = passwordEncoder.matches(svo.getGenie_pwd(), slogVO.getGenie_pwd());
+						boolean pwdMatch = passwordEncoder.matches(sdto.getGenie_pwd(), slogVO.getGenie_pwd());
 						//System.out.println(pwdMatch);
 						if(pwdMatch){//로그인 성공
 
@@ -225,13 +225,13 @@ public class GenieController{
 						}
 							return mav;
 					
-					}else if(avo.getGenie_id() != null){
+					}else if(adto.getGenie_id() != null){
 
-						Optional<AdministerDTO> alogVO = administerService.loginOk(avo);
+						Optional<AdministerDTO> alogVO = administerService.loginOk(adto);
 
 						if(alogVO!=null){
-							session.setAttribute("logId", alogVO.getGenie_id());
-							session.setAttribute("logName", alogVO.getAdminister_name());
+							session.setAttribute("logId", alogVO.get().getGenie_id());
+							session.setAttribute("logName", alogVO.get().getAdminister_name());
 							session.setAttribute("logStatus","Y");
 							session.setAttribute("ROLE", "ROLE_ADMIN");
 

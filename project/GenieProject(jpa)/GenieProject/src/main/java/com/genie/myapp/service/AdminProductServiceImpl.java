@@ -19,7 +19,7 @@ public class AdminProductServiceImpl implements AdminProductService  {
 	AdminProductDAO dao;
 
 	@Override
-	public List<AdminProductDTO> adminProduct(AdminProductDTO VO) {
-		return dao.adminProduct(VO);
+	public List<AdminProductDTO> adminProduct(AdminProductDTO dto) {
+		return dao.adminProduct(dto);
 	}
 }

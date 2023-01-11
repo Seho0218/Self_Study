@@ -1,6 +1,6 @@
-package com.genie.myapp.domain;
+package com.genie.myapp.entity;
 
-import com.genie.myapp.domain.Account.User;
+import com.genie.myapp.entity.Account.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,6 @@
-package com.genie.myapp.domain.Account;
+package com.genie.myapp.entity.Account;
 
-import ch.qos.logback.classic.db.names.ColumnName;
-import com.genie.myapp.domain.Product.Product;
+import com.genie.myapp.entity.Product.Product;
 import lombok.Getter;
 import lombok.Setter;
 

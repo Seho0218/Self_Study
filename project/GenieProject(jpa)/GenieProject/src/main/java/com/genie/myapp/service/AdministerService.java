@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface AdministerService {
 	// 로그인
-    public Optional<AdministerDTO> loginOk(AdministerDTO vo);
+    public Optional<AdministerDTO> loginOk(AdministerDTO dto);
     //회원 선택: 로그인 한 회원
 	public AdministerDTO getAdminister(String genie_id);
     

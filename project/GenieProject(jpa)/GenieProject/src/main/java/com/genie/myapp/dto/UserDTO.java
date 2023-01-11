@@ -42,5 +42,7 @@ public class UserDTO {
 		user_phone_num2 = telSplit[1];
 		user_phone_num3 = telSplit[2];
     }
+
+
 }
 

@@ -7,12 +7,12 @@ import com.genie.myapp.dto.ReplyProductDTO;
 
 public interface ReplyProductService {
     public List<ReplyProductDTO> replyProductList(int no);
-    public int replyProductWrite(ReplyProductDTO vo);
-    public int replyProductEdit (ReplyProductDTO vo);
+    public int replyProductWrite(ReplyProductDTO dto);
+    public int replyProductEdit (ReplyProductDTO dto);
     public int replyProductDelete(int reply_no, String genie_id);
-    public int likeInsert(LikeDTO vo);
-    public int likeStatus(LikeDTO vo);
-    public int likeDelete(LikeDTO vo);
-    public int likeHitMinus(LikeDTO vo);
-    public int likeHitPlus(LikeDTO vo);
+    public int likeInsert(LikeDTO dto);
+    public int likeStatus(LikeDTO dto);
+    public int likeDelete(LikeDTO dto);
+    public int likeHitMinus(LikeDTO dto);
+    public int likeHitPlus(LikeDTO dto);
 }

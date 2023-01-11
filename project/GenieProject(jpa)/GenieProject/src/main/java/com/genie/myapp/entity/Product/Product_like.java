@@ -1,6 +1,6 @@
-package com.genie.myapp.domain.Product;
+package com.genie.myapp.entity.Product;
 
-import com.genie.myapp.domain.Account.User;
+import com.genie.myapp.entity.Account.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
-
-import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter @NotEmpty

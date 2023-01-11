@@ -52,38 +52,38 @@ public class OrderController {
 	// 결제페이지-----------------------------------------------------
 	// 바로 주문
 	@PostMapping("BuyNow")
-	public ModelAndView BuyNow(HttpSession session, CartDTO cvo) {
+	public ModelAndView BuyNow(HttpSession session, CartDTO cdto) {
 		
 		String genie_id=(String)session.getAttribute("logId");
-		//System.out.println("BuyNow로 받아온 cvo : "+cvo.toString());
+		//System.out.println("BuyNow로 받아온 cdto : "+cdto.toString());
 
 		mav=new ModelAndView();
-		mav.addObject("bvo",cvo);
-		mav.addObject("uvo", userService.getUser(genie_id));
+		mav.addObject("bdto",cdto);
+		mav.addObject("udto", userService.getUser(genie_id));
 		mav.setViewName("/order/payment");
 
 		return mav;
 	}
 	// 장바구니에서 주문
 	@PostMapping("payment")
-	public ModelAndView payment(HttpSession session, CartDTO cvo) {
+	public ModelAndView payment(HttpSession session, CartDTO cdto) {
 
 		String genie_id = (String) session.getAttribute("logId");
-		//System.out.println("주문정보 받아온 것 cvo : " + cvo.toString());
+		//System.out.println("주문정보 받아온 것 cdto : " + cdto.toString());
 
-		List<CartDTO> lcvo = orderService.readyToPay(cvo);
-		//System.out.println("카트정보 가져오기 : " + cvo.toString());
+		List<CartDTO> lcdto = orderService.readyToPay(cdto);
+		//System.out.println("카트정보 가져오기 : " + cdto.toString());
 
 		mav = new ModelAndView();
-		mav.addObject("plist", lcvo);
-		mav.addObject("uvo", userService.getUser(genie_id));
+		mav.addObject("plist", lcdto);
+		mav.addObject("udto", userService.getUser(genie_id));
 		mav.setViewName("/order/payment");
 
 		return mav;
 	}
 
 	@GetMapping("orderCompletion")
-	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO ovo) {
+	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO odto) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -93,36 +93,36 @@ public class OrderController {
 
 		String genie_id = (String) session.getAttribute("logId");
 
-		System.out.println("주문 정보 : "+ovo.toString());
+		System.out.println("주문 정보 : "+odto.toString());
 		
-		if(ovo.getCartList() != null){
+		if(odto.getCartList() != null){
 
 			try{
 				//제품 정보 가져오기
-				List<OrderDTO> cList = orderService.getFromCart(ovo);
-				//System.out.println("ovo 제품정보 : "+ovo.toString());
+				List<OrderDTO> cList = orderService.getFromCart(odto);
+				//System.out.println("odto 제품정보 : "+odto.toString());
 				System.out.println("제품정보 : "+cList.size()); /// gfdgfgdg
-				for(OrderDTO vo : cList){
-					vo.setOrder_num(ovo.getOrder_num());
-					vo.setGenie_id(genie_id);
+				for(OrderDTO dto : cList){
+					dto.setOrder_num(odto.getOrder_num());
+					dto.setGenie_id(genie_id);
 
-					vo.setRecipient_name(ovo.getRecipient_name());
-					vo.setRecipient_phone(ovo.getRecipient_phone());
-					vo.setRecipient_address(ovo.getRecipient_address());
-					vo.setRecipient_request(ovo.getRecipient_request());
+					dto.setRecipient_name(odto.getRecipient_name());
+					dto.setRecipient_phone(odto.getRecipient_phone());
+					dto.setRecipient_address(odto.getRecipient_address());
+					dto.setRecipient_request(odto.getRecipient_request());
 
-					vo.setOrder_price(vo.getCart_price());
-					vo.setOrder_qty(vo.getCart_qty());
-					vo.setPayment_method(ovo.getPayment_method());
+					dto.setOrder_price(dto.getCart_price());
+					dto.setOrder_qty(dto.getCart_qty());
+					dto.setPayment_method(odto.getPayment_method());
 
-					System.out.println(vo.toString());
+					System.out.println(dto.toString());
 
-					orderService.afterPayment(vo);
+					orderService.afterPayment(dto);
 
 				}
 				//오더테이블에 저장
 				////장바구니에서 구매한 상품 지우기
-				orderService.afterOrderCart(ovo);// 장바구니 삭제
+				orderService.afterOrderCart(odto);// 장바구니 삭제
 
 				transactionManager.commit(status);
 				entity = new ResponseEntity<String>(HttpStatus.OK);
@@ -136,8 +136,8 @@ public class OrderController {
 			}
 		}else{
 			try{
-				ovo.setGenie_id(genie_id);
-				orderService.afterPayment(ovo);
+				odto.setGenie_id(genie_id);
+				orderService.afterPayment(odto);
 				
 				transactionManager.commit(status);
 				entity = new ResponseEntity<String>(HttpStatus.OK);
@@ -157,10 +157,10 @@ public class OrderController {
 	public ModelAndView completion(HttpSession session) {
 
 		String genie_id = (String) session.getAttribute("logId");
-		List<OrderDTO> ovo = orderService.getOrderList(genie_id);
+		List<OrderDTO> odto = orderService.getOrderList(genie_id);
 
 		mav = new ModelAndView();
-		mav.addObject("olist", ovo);
+		mav.addObject("olist", odto);
 		mav.setViewName("/order/completion");
 
 		return mav;

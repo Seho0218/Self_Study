@@ -58,7 +58,7 @@ public class SellerController {
 
 	// Seller 메인페이지
 	@GetMapping("sellerMain")
-	public ModelAndView sellerMain(OrderDTO vo, HttpServletRequest request) {
+	public ModelAndView sellerMain(OrderDTO dto, HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
 		mav = new ModelAndView();
 
@@ -79,11 +79,11 @@ public class SellerController {
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
 		
 		Iterator<OrderDTO> it = orderlist.iterator(); // 반복자 얻기 
-		while(it.hasNext()) { // 하나하나의 VO 에서 데이터 추출, json 형태로 가공
-			OrderDTO ovo = it.next();
+		while(it.hasNext()) { // 하나하나의 dto 에서 데이터 추출, json 형태로 가공
+			OrderDTO odto = it.next();
 			JsonObject object = new JsonObject();
-			String date = ovo.getMonth_day();
-			int sales = ovo.getTotal_sales();
+			String date = odto.getMonth_day();
+			int sales = odto.getTotal_sales();
 			
 			object.addProperty("date", date);
 			object.addProperty("sales", sales);
@@ -98,10 +98,10 @@ public class SellerController {
 		JsonArray jArray2 = new JsonArray();
 		Iterator<OrderDTO> it2 = categorylist.iterator();
 		while(it2.hasNext()) {
-			OrderDTO ovo2 = it2.next();
+			OrderDTO odto2 = it2.next();
 			JsonObject object2 = new JsonObject();
-			String category = ovo2.getProduct_category();
-			int sold_counts = ovo2.getSold_counts();
+			String category = odto2.getProduct_category();
+			int sold_counts = odto2.getSold_counts();
 
 			object2.addProperty("category", category);
 			object2.addProperty("sold_counts", sold_counts);
@@ -138,7 +138,7 @@ public class SellerController {
 	
 	// Seller 주문관리 
 	@GetMapping("sellerOrder")
-	public ModelAndView sellerOrder(OrderDTO vo, HttpServletRequest request) {
+	public ModelAndView sellerOrder(OrderDTO dto, HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
 		
 		// 배송대기 중 
@@ -149,9 +149,9 @@ public class SellerController {
 		int deo= service.deliveringOrder(seller_id);
 	
 		mav = new ModelAndView();
-		mav.addObject("list", service.sellerOrder(vo, seller_id));
+		mav.addObject("list", service.sellerOrder(dto, seller_id));
 
-		//mav.addObject("dList", service.deliveredOrder(vo, seller_id));
+		//mav.addObject("dList", service.deliveredOrder(dto, seller_id));
 
 		mav.addObject("deliveryPending", devp); // 배송대기 중
 		mav.addObject("todayOrder", torder); // 오늘 들어온 주문
@@ -193,7 +193,7 @@ public class SellerController {
 	
 	// Seller 매출관리 페이지
 	@GetMapping("sellerSales")
-	public ModelAndView sellerSales(OrderDTO vo, HttpServletRequest request) {
+	public ModelAndView sellerSales(OrderDTO dto, HttpServletRequest request) {
 		String seller_id = (String)request.getSession().getAttribute("logId"); // 세션 셀러 아이디
 		
 		mav = new ModelAndView();
@@ -211,11 +211,11 @@ public class SellerController {
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
 		
 		Iterator<OrderDTO> it = orderlist.iterator(); // 반복자 얻기 
-		while(it.hasNext()) { // 하나하나의 VO 에서 데이터 추출, json 형태로 가공
-			OrderDTO ovo = it.next();
+		while(it.hasNext()) { // 하나하나의 dto 에서 데이터 추출, json 형태로 가공
+			OrderDTO odto = it.next();
 			JsonObject object = new JsonObject();
-			String date = ovo.getMonth_day();
-			int sales = ovo.getTotal_sales();
+			String date = odto.getMonth_day();
+			int sales = odto.getTotal_sales();
 			
 			
 			object.addProperty("date", date);
@@ -244,15 +244,15 @@ public class SellerController {
 	
 	//seller 상품관리 페이지
 	@GetMapping("sellerProduct")
-	public ModelAndView sellerProduct(PagingDTO pVO, HttpServletRequest request) {
+	public ModelAndView sellerProduct(PagingDTO pdto, HttpServletRequest request) {
 		
-		pVO.setGenie_id((String)request.getSession().getAttribute("logId"));
-		pVO.setTotalRecord(service.productTotalRecord(pVO));
-		pVO.setOnePageRecord(10);
+		pdto.setGenie_id((String)request.getSession().getAttribute("logId"));
+		pdto.setTotalRecord(service.productTotalRecord(pdto));
+		pdto.setOnePageRecord(10);
 		
 		mav = new ModelAndView();
-		mav.addObject("plist", service.productList(pVO));
-		mav.addObject("pVO", pVO);
+		mav.addObject("plist", service.productList(pdto));
+		mav.addObject("pdto", pdto);
 		
 		mav.setViewName("seller/sellerProduct");
 		return mav;
@@ -260,8 +260,8 @@ public class SellerController {
 	
 	//seller 상품등록
 	@PostMapping("productWrite")
-	public ResponseEntity<String> productWrite(SellerProductDTO vo, HttpServletRequest request){
-		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+	public ResponseEntity<String> productWrite(SellerProductDTO dto, HttpServletRequest request){
+		dto.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -269,7 +269,7 @@ public class SellerController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//상품등록 성공
-			service.productWrite(vo);
+			service.productWrite(dto);
 			
 			String msg = "<script>";
 			msg += "alert('상품이 등록되었습니다.');";
@@ -295,7 +295,7 @@ public class SellerController {
 	public ModelAndView sellerProductEdit(@PathVariable("product_id") int pid) {
 		mav = new ModelAndView();
 		
-		mav.addObject("pvo", service.getProduct(pid));
+		mav.addObject("pdto", service.getProduct(pid));
 		mav.setViewName("seller/sellerProductEdit");
 		
 		return mav;
@@ -303,9 +303,9 @@ public class SellerController {
 	
 	//seller 상품수정 : DB 업데이트
 	@PostMapping("productEditOk")
-	public ResponseEntity<String> productEditOk(SellerProductDTO pvo, HttpSession session){
-		System.out.println(pvo.toString());
-		pvo.setGenie_id((String)session.getAttribute("logId"));
+	public ResponseEntity<String> productEditOk(SellerProductDTO pdto, HttpSession session){
+		System.out.println(pdto.toString());
+		pdto.setGenie_id((String)session.getAttribute("logId"));
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
@@ -313,7 +313,7 @@ public class SellerController {
 		String msg = "<script>";
 		
 		try {//수정성공 - 상품관리로 이동
-			service.productEditOk(pvo);
+			service.productEditOk(pdto);
 			
 			msg += "alert('상품이 수정되었습니다. 상품관리 페이지로 이동합니다. ');";
 			msg += "location.href='/seller/sellerProduct';";

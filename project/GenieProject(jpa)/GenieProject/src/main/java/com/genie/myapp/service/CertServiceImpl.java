@@ -101,8 +101,8 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(UserDTO vo) {
-		return cdao.PwdEditOk(vo);
+	public int PwdEditOk(UserDTO dto) {
+		return cdao.PwdEditOk(dto);
 	}
 
 

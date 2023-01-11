@@ -18,11 +18,11 @@ public class AdminProductController {
 	ModelAndView mav = null;
 	
 	@GetMapping("adminProduct")
-	public ModelAndView adminProduct(AdminProductDTO VO) {
+	public ModelAndView adminProduct(AdminProductDTO dto) {
 		mav = new ModelAndView();
-		System.out.println(VO.toString());
-		mav.addObject("list", service.adminProduct(VO));
-		mav.addObject("VO", VO);
+		System.out.println(dto.toString());
+		mav.addObject("list", service.adminProduct(dto));
+		mav.addObject("dto", dto);
 		mav.setViewName("admin/adminProduct");
 		return mav;
 	}

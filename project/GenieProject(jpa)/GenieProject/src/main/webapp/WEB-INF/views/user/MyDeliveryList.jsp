@@ -182,7 +182,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
           alt="materialize logo" />
 
                         <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
+                    ${vo.user_name} ${sdto.ceo_name}님
                   </span>
       </a>
       </h1>

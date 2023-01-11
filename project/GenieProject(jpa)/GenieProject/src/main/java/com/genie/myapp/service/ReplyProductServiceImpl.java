@@ -24,13 +24,13 @@ public class ReplyProductServiceImpl implements ReplyProductService{
     }
 
 	@Override
-	public int replyProductWrite(ReplyProductDTO vo) {
-		return DAO.replyProductWrite(vo);
+	public int replyProductWrite(ReplyProductDTO dto) {
+		return DAO.replyProductWrite(dto);
 	}
 
 	@Override
-	public int replyProductEdit(ReplyProductDTO vo) {
-		return DAO.replyProductEdit(vo);
+	public int replyProductEdit(ReplyProductDTO dto) {
+		return DAO.replyProductEdit(dto);
 	}
 
 	@Override
@@ -39,28 +39,28 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 	}
 
 	@Override
-	public int likeInsert(LikeDTO vo) {
-		return DAO.likeInsert(vo);
+	public int likeInsert(LikeDTO dto) {
+		return DAO.likeInsert(dto);
 	}
 
 	@Override
-	public int likeStatus(LikeDTO vo) {
-		return DAO.likeStatus(vo);
+	public int likeStatus(LikeDTO dto) {
+		return DAO.likeStatus(dto);
 	}
 
 	@Override
-	public int likeDelete(LikeDTO vo) {
-		return DAO.likeDelete(vo);
+	public int likeDelete(LikeDTO dto) {
+		return DAO.likeDelete(dto);
 	}
 
 	@Override
-	public int likeHitMinus(LikeDTO vo) {
-		return DAO.likeHitMinus(vo);
+	public int likeHitMinus(LikeDTO dto) {
+		return DAO.likeHitMinus(dto);
 	}
 
 	@Override
-	public int likeHitPlus(LikeDTO vo) {
-		return DAO.likeHitPlus(vo);
+	public int likeHitPlus(LikeDTO dto) {
+		return DAO.likeHitPlus(dto);
 	}
 
 	

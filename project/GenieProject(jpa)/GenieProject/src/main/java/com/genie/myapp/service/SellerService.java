@@ -17,20 +17,20 @@ public interface SellerService {
 	//아이디 중복검사
 	public int idCheck(String genie_id);
 	//seller 회원가입
-	public int sellerWrite(SellerDTO vo);
+	public int sellerWrite(SellerDTO dto);
 	//seller 회원가입 (Account)
-	public int AccountWrite(AccountDTO avo);
+	public int AccountWrite(AccountDTO adto);
 	//seller 상품등록
-	public int productWrite(SellerProductDTO vo);
+	public int productWrite(SellerProductDTO dto);
 
 	// 주문목록 
-	public List<OrderDTO> sellerOrder(OrderDTO vo, String seller_id);
+	public List<OrderDTO> sellerOrder(OrderDTO dto, String seller_id);
 	// 주문목록 배송상태 수정 
 	public void updateDeliveryStatus(Map deliveryMap);
   	//판매자 로그인
-	public SellerDTO loginOk(SellerDTO svo);
+	public SellerDTO loginOk(SellerDTO sdto);
 	//상품관리 - 상품목록
-	public List<SellerProductDTO> productList(PagingDTO pVO);
+	public List<SellerProductDTO> productList(PagingDTO pdto);
 	//회원 선택: 로그인 한 회원
 	public SellerDTO getSeller(String genie_id);	
 	//상품선택 : 수정, 상품내용보기
@@ -38,9 +38,9 @@ public interface SellerService {
 	//상품삭제
 	public int productDel(int pid);
 	//상품수정
-	public int productEditOk(SellerProductDTO pvo);
+	public int productEditOk(SellerProductDTO pdto);
 	//문의목록
-	public List<InquiryDTO> inquiryList(InquiryDTO vo, String Genie_id);
+	public List<InquiryDTO> inquiryList(InquiryDTO dto, String Genie_id);
 	// 매출관리 (결제금액)
 	public int orderSum(String seller_id);
 	// 일별 매출관리
@@ -72,7 +72,7 @@ public interface SellerService {
 	public List<OrderDTO> topCategory(String seller_id);
 	
 	//상품 총 레코드 수
-	public int productTotalRecord(PagingDTO pVO);
+	public int productTotalRecord(PagingDTO pdto);
 	
 	// 배송완료된 주문목록
 	public List<OrderDTO> deliveredOrder(String seller_id);

@@ -29,13 +29,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int UserWrite(UserDTO vo) {
-        return dao.UserWrite(vo);
+    public int UserWrite(UserDTO dto) {
+        return dao.UserWrite(dto);
     }
 
     @Override
-    public UserDTO loginOk(UserDTO vo) {
-        return dao.loginOk(vo);
+    public UserDTO loginOk(UserDTO dto) {
+        return dao.loginOk(dto);
     }
 
     @Override
@@ -44,27 +44,27 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int UserEditOk(UserDTO vo) {
-        return dao.UserEditOk(vo);
+    public int UserEditOk(UserDTO dto) {
+        return dao.UserEditOk(dto);
     }
 
     @Override
-    public int PwdEditOk(UserDTO vo) {
-        return dao.PwdEditOk(vo);
+    public int PwdEditOk(UserDTO dto) {
+        return dao.PwdEditOk(dto);
     }
 
     @Override
-    public int addDelivery(UserDTO vo) {
-        return dao.addDelivery(vo);
+    public int addDelivery(UserDTO dto) {
+        return dao.addDelivery(dto);
     }
     
     @Override
-    public int Delivery(UserDTO vo) {
-        return dao.Delivery(vo);
+    public int Delivery(UserDTO dto) {
+        return dao.Delivery(dto);
     } 
     @Override
-    public int AccountWrite(AccountDTO avo) {
-       return dao.AccountWrite(avo);
+    public int AccountWrite(AccountDTO adto) {
+       return dao.AccountWrite(adto);
     }
 
     @Override

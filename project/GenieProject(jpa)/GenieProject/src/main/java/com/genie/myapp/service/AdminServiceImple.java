@@ -22,8 +22,8 @@ public class AdminServiceImple implements AdminService {
 	@Autowired AdminDAO dao;
 
 	@Override
-	public List<AdminDTO> adminCategoryTag(AdminDTO VO) {
-		return dao.adminCategoryTag(VO);
+	public List<AdminDTO> adminCategoryTag(AdminDTO dto) {
+		return dao.adminCategoryTag(dto);
 	}
 
 	@Override
@@ -31,8 +31,8 @@ public class AdminServiceImple implements AdminService {
 		return dao.adminTag(DTO);
 	}
 
-	public List<UserDTO> userAllSelect(PagingDTO pVO) {
-		return dao.userAllSelect(pVO);
+	public List<UserDTO> userAllSelect(PagingDTO pdto) {
+		return dao.userAllSelect(pdto);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public int admemberPopEdit(UserDTO vo) {
-		return dao.admemberPopEdit(vo);
+	public int admemberPopEdit(UserDTO dto) {
+		return dao.admemberPopEdit(dto);
 	}
 
 	@Override
@@ -51,8 +51,8 @@ public class AdminServiceImple implements AdminService {
 	}
 	
 	@Override
-	public int userTotalRecord(PagingDTO pVO) {
-		return dao.userTotalRecord(pVO);
+	public int userTotalRecord(PagingDTO pdto) {
+		return dao.userTotalRecord(pdto);
 	}
 
 	@Override
@@ -66,8 +66,8 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public int adminTagPopEdit(AdminDTO vo) {
-		return dao.adminTagPopEdit(vo);
+	public int adminTagPopEdit(AdminDTO dto) {
+		return dao.adminTagPopEdit(dto);
 	}
 
 	@Override
@@ -87,8 +87,8 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public int adcategoryPopEdit(AdminDTO vo) {
-		return dao.adcategoryPopEdit(vo);
+	public int adcategoryPopEdit(AdminDTO dto) {
+		return dao.adcategoryPopEdit(dto);
 	}
 
 	@Override
@@ -99,12 +99,12 @@ public class AdminServiceImple implements AdminService {
 
 	@Override
 
-	public int paymentWrite(CartDTO vo) {
-		return dao.paymentWrite(vo);
+	public int paymentWrite(CartDTO dto) {
+		return dao.paymentWrite(dto);
 	}
 
-	public List<SellerDTO> sellerAllSelect(PagingDTO pVO) {
-		return dao.sellerAllSelect(pVO);
+	public List<SellerDTO> sellerAllSelect(PagingDTO pdto) {
+		return dao.sellerAllSelect(pdto);
 	}
 
 	@Override
@@ -113,8 +113,8 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public int adcompanyPopEdit(SellerDTO vo) {
-		return dao.adcompanyPopEdit(vo);
+	public int adcompanyPopEdit(SellerDTO dto) {
+		return dao.adcompanyPopEdit(dto);
 	}
 
 	@Override
@@ -123,18 +123,18 @@ public class AdminServiceImple implements AdminService {
 	}
 
 	@Override
-	public int sellerTotalRecord(PagingDTO pVO) {
-		return dao.sellerTotalRecord(pVO);
+	public int sellerTotalRecord(PagingDTO pdto) {
+		return dao.sellerTotalRecord(pdto);
 	}
 
 	@Override
-	public int sellerApproval(PagingDTO pVO) {
-		return dao.sellerApproval(pVO);
+	public int sellerApproval(PagingDTO pdto) {
+		return dao.sellerApproval(pdto);
 	}
 
 	@Override
-	public int mainTotalRecord(AdminDTO VO) {
-		return dao.mainTotalRecord(VO);
+	public int mainTotalRecord(AdminDTO dto) {
+		return dao.mainTotalRecord(dto);
 	}
 
 	//=============제품관리=============//
@@ -145,8 +145,8 @@ public class AdminServiceImple implements AdminService {
 	// }
 
 	//@Override
-	//public int adminProductPopEdit(ProductDTO vo) {
-	//	return dao.adminProductPopEdit(vo);
+	//public int adminProductPopEdit(ProductDTO dto) {
+	//	return dao.adminProductPopEdit(dto);
 	//}
 
 	//@Override
