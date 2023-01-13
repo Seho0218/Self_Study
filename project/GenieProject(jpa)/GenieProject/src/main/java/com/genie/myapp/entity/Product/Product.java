@@ -18,7 +18,7 @@ import static javax.persistence.FetchType.*;
 @NotEmpty
 public class Product {
 
-    @Id
+    @Id @GeneratedValue
     private int product_id;
 
     @OneToMany(mappedBy = "product_id")

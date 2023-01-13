@@ -4,22 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.genie.myapp.dao.AdminDAO">
 	<!-- 카테고리 -->
-	<select id="adminCategoryTag" resultType="AdminVO">
+	<select id="adminCategoryTag" resultType="AdminDTO">
 		select category_id, product_category from category
 	</select>
 	<!-- 태그 -->
-	<select id="adminTag" resultType="AdminVO">
+	<select id="adminTag" resultType="AdminDTO">
 		select product_tag_id, product_tag from tag 
 	</select>
 
 	<!-- 태그 셀렉트 All -->
-	<select resultType="AdminVO" id="tagAllSelect">
+	<select resultType="AdminDTO" id="tagAllSelect">
 		select product_tag_id, product_tag from tag order by product_tag_id asc
 	</select>
-	<select resultType="AdminVO" id="getadminTag" parameterType="String">
+	<select resultType="AdminDTO" id="getadminTag" parameterType="String">
 		select product_tag_id, product_tag from tag where product_tag_id='${param1}'
 	</select>
-	<update id="adminTagPopEdit" parameterType="AdminVO">
+	<update id="adminTagPopEdit" parameterType="AdminDTO">
 		update tag set product_tag_id=#{product_tag_id}, product_tag=#{product_tag}
 		where product_tag_id=#{product_tag_id}
 	</update>
@@ -29,13 +29,13 @@
 	<!-- 태그 셀렉트 All 끝 -->
 
 	<!-- 카테고리 셀렉트 All 시작 -->
-	<select resultType="AdminVO" id="categoryAllSelect">
+	<select resultType="AdminDTO" id="categoryAllSelect">
 		select category_id, product_category from category
 	</select>
-	<select resultType="AdminVO" id="getadcategory" parameterType="String">
+	<select resultType="AdminDTO" id="getadcategory" parameterType="String">
 		select category_id, product_category from category where category_id='${param1}'
 	</select>
-	<update id="adcategoryPopEdit" parameterType="AdminVO">
+	<update id="adcategoryPopEdit" parameterType="AdminDTO">
 		update category set category_id=#{category_id}, product_category=#{product_category}
 		where category_id=#{category_id}
 	</update>
@@ -47,7 +47,7 @@
 	<!-- ============================================ -->
 
 
-	<select resultType="UserVO" id="userAllSelect">
+	<select resultType="UserDTO" id="userAllSelect">
 		select genie_id, user_name, user_tel, user_email, user_gender, 
 		date_format(sign_in_date, '%y-%m-%d') sign_in_date, payment_method from user 
 		<if test="searchWord!=null">
@@ -56,12 +56,12 @@
 		order by sign_in_date desc limit ${onePageRecord} offset ${offsetPoint} 
 	</select>
 
-	<select resultType="UserVO" id="getadmember" parameterType="String">
+	<select resultType="UserDTO" id="getadmember" parameterType="String">
 		select genie_id, user_name, user_tel, user_email,user_gender, date_format(sign_in_date, '%y-%m-%d') sign_in_date, 
 		payment_method from user where genie_id='${param1}'
 	</select>
 	
-	<update id="admemberPopEdit" parameterType="UserVO">
+	<update id="admemberPopEdit" parameterType="UserDTO">
 		update user set genie_id=#{genie_id}, user_name=#{user_name}, user_tel=#{user_tel}, user_email=#{user_email},
 		sign_in_date=#{sign_in_date}, payment_method=#{payment_method} 
 		where genie_id=#{genie_id}
@@ -80,7 +80,7 @@
 	
 	<!-- ============================================== -->
 	
-	<select resultType="SellerVO" id="sellerAllSelect">
+	<select resultType="SellerDTO" id="sellerAllSelect">
 		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_address, seller_website, 
 		date_format(writedate, '%y-%m-%d') writedate, seller_status, approval_date from seller
 		<if test="searchWord!=null">
@@ -89,12 +89,12 @@
 		order by writedate desc limit ${onePageRecord} offset ${offsetPoint} 
 	</select>
 
-	<select resultType="SellerVO" id="getadcompany" parameterType="String">
+	<select resultType="SellerDTO" id="getadcompany" parameterType="String">
 		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_address, seller_website, 
 		date_format(writedate, '%y-%m-%d') writedate, seller_status, approval_date from seller where genie_id='${param1}'
 	</select>
 	
-	<update id="adcompanyPopEdit" parameterType="SellerVO">
+	<update id="adcompanyPopEdit" parameterType="SellerDTO">
 		update seller set genie_id=#{genie_id}, seller_tel=#{seller_tel}, seller_email=#{seller_email}, seller_reg_no=#{seller_reg_no}, company_name=#{company_name}, 
 		ceo_name=#{ceo_name}, seller_address=#{seller_address}, seller_website=#{seller_website}, writedate=#{writedate}, seller_status=#{seller_status}, approval_date=#{approval_date}  
 		where genie_id=#{genie_id}
