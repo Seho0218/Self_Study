@@ -80,7 +80,7 @@ public class ReplyProductController{
 		dto.setProduct_id(pid);
 		
 		ProductDTO pdto = new ProductDTO();
-		pdto.setProduct_id(pid);
+		pdto.setProduct_id((long) pid);
 		
 		int result = service.likeDelete(dto);
 		int result2 = service.likeHitMinus(dto);

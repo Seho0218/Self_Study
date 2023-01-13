@@ -28,27 +28,25 @@ public class Product {
 
     @OneToOne
     @JoinColumn(name = "product_id")
-    private Product_like product;
+    private Product_like product_like;
 
     @OneToMany
     private List<Cart> carts = new ArrayList<>();
 
     private String product_category;
     private String product_tag;
-    private Long product_name;
+    private String product_name;
     private int product_price;
 
-    private String product_like;
-
-    private Long product_info;
+    private String product_info;
     private int product_stock;
     private int product_quantity;
     private int product_hit;
-    private LocalDateTime product_writedate;
+    private String product_writedate;
 
-    private Long product_image1;
-    private Long product_image2;
-    private Long product_image3;
+    private String product_image1;
+    private String product_image2;
+    private String product_image3;
 
     private String product_mbti;
 

@@ -2,13 +2,14 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.entity.Product.Product;
+import com.genie.myapp.repository.MbtiJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.genie.myapp.dao.MbtiDAO;
+
 import com.genie.myapp.dto.ProductDTO;
-import com.genie.myapp.dto.SellerProductDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -16,50 +17,50 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MbtiServiceImpl implements MbtiService {
 	
-	@Autowired MbtiDAO dao;
+	@Autowired MbtiJpaRepository repository;
 
 	@Override
-	public List<SellerProductDTO> getProduct(String mbti) {
-		return dao.getProduct(mbti);
+	public List<Product> getProduct(String mbti) {
+		return repository.getProduct(mbti);
 	}
 
 	@Override
-	public List<SellerProductDTO> pricelist(String mbti) {
-		return dao.pricelist(mbti);
+	public List<Product> pricelist(String mbti) {
+		return repository.pricelist(mbti);
 	}
 
 	@Override
-	public List<SellerProductDTO> pricelistdesc(String mbti) {
-		return dao.pricelistdesc(mbti);
+	public List<Product> pricelistdesc(String mbti) {
+		return repository.pricelistdesc(mbti);
 	}
 
 	@Override
-	public List<SellerProductDTO> recentlist(String mbti) {
-		return dao.recentlist(mbti);
+	public List<Product> recentlist(String mbti) {
+		return repository.recentlist(mbti);
 	}
 
 	@Override
-	public List<SellerProductDTO> likelist(String mbti) {
-		return dao.likelist(mbti);
+	public List<Product> likelist(String mbti) {
+		return repository.likelist(mbti);
 	}
 
 	@Override
-	public List<ProductDTO> productPriceAsc(ProductDTO PVO) {
-		return dao.productPriceAsc(PVO);
+	public List<Product> productPriceAsc(ProductDTO PVO) {
+		return repository.productPriceAsc(PVO);
 	}
 
 	@Override
 	public List<ProductDTO> productPriceDesc(ProductDTO PVO) {
-		return dao.productPriceDesc(PVO);
+		return repository.productPriceDesc(PVO);
 	}
 
 	@Override
-	public List<ProductDTO> productRecent(ProductDTO PVO) {
-		return dao.productRecent(PVO);
+	public List<Product> productRecent(ProductDTO PVO) {
+		return repository.productRecent(PVO);
 	}
 
 	@Override
-	public List<ProductDTO> productLike(ProductDTO PVO) {
-		return dao.productLike(PVO);
+	public List<Product> productLike(ProductDTO PVO) {
+		return repository.productLike(PVO);
 	}
 }

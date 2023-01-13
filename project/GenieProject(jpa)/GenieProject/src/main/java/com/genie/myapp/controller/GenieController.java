@@ -227,11 +227,11 @@ public class GenieController{
 					
 					}else if(adto.getGenie_id() != null){
 
-						Optional<AdministerDTO> alogVO = administerService.loginOk(adto);
+						List<AdministerDTO> alogVO = administerService.loginOk(adto);
 
 						if(alogVO!=null){
-							session.setAttribute("logId", alogVO.get().getGenie_id());
-							session.setAttribute("logName", alogVO.get().getAdminister_name());
+							session.setAttribute("logId", alogVO.get(0).getGenie_id());
+							session.setAttribute("logName", alogVO.get(0).getAdminister_name());
 							session.setAttribute("logStatus","Y");
 							session.setAttribute("ROLE", "ROLE_ADMIN");
 

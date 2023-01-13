@@ -16,10 +16,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private LoginFail loginFail;
 
-	@Autowired
-	private RoleDetailService RoleDetailService;
-
-    
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
@@ -48,9 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(RoleDetailService).passwordEncoder(encodePwd());
-    }
+//	@Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.userDetailsService(RoleDetailService).passwordEncoder(encodePwd());
+//    }
 }
 

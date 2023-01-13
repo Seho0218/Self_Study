@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.genie.myapp.dto.AdministerDTO;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,16 +15,16 @@ import java.util.Optional;
 public class AdministerServiceImpl implements AdministerService{
 
     //@Autowired AdministerDAO dao;
-    private final AdministerJpaRepository ajr;
+    private final AdministerJpaRepository repo;
 
     @Override
-    public Optional<AdministerDTO> loginOk(AdministerDTO adto) {
-        return ajr.loginOk(adto);
+    public List<AdministerDTO> loginOk(AdministerDTO adto) {
+        return repo.loginOk(adto);
     }
 
-    @Override
-    public AdministerDTO getAdminister(String genie_id) {
-        return ajr.getAdminister(genie_id);
-    }
+//    @Override
+//    public AdministerDTO getAdminister(String genie_id) {
+//        return repo.getAdminister(genie_id);
+//    }
     
 }

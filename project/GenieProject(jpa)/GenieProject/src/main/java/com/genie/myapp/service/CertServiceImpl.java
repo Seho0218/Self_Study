@@ -6,13 +6,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import com.genie.myapp.repository.CertJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.genie.myapp.dao.CertDAO;
 import com.genie.myapp.dto.UserDTO;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +23,11 @@ public class CertServiceImpl implements CertService {
     
     @Autowired private JavaMailSender mailSender;
 	
-	@Inject CertDAO cdao;
+	@Inject CertJpaRepository repository;
 
 	@Override
 	public List<String> FindId(String user_email) {
-		return cdao.FindId(user_email);
+		return repository.FindId(user_email);
 	}
 	
 	@Override
@@ -49,12 +49,7 @@ public class CertServiceImpl implements CertService {
 		simpleMailMessage.setText(sb.toString());
 		
 		
-		new Thread(new Runnable() {
-			public void run() {
-				mailSender.send(simpleMailMessage);
-			}
-
-		}).start();
+		new Thread(() -> mailSender.send(simpleMailMessage)).start();
 	}
 
 
@@ -68,24 +63,22 @@ public class CertServiceImpl implements CertService {
 		map.put("value", value);
 		map.put("valueType", valueType);
 		
-		return cdao.overlapCheck(value, valueType);
+		return repository.overlapCheck(value, valueType);
 	}
-
 
 	@Override
     public boolean emailCheck(String genie_id, String user_email) {
+
         Map<String, Object> map = new HashMap<>();
         map.put("genie_id", genie_id);
         map.put("user_email", user_email);
-        String result = cdao.emailCheck(map);
-        if("1".equals(result)) {
-            return true;
-        }
-        return false;
+        String result = repository.emailCheck(map);
+		return "1".equals(result);
 	}
 
 	@Override
 	public void sendAuthNum(String user_email, String authNum) {
+		
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(user_email);
 		simpleMailMessage.setSubject("비밀번호 찾기 인증번호");
@@ -101,8 +94,8 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(UserDTO dto) {
-		return cdao.PwdEditOk(dto);
+	public long PwdEditOk(UserDTO dto) {
+		return repository.PwdEditOk(dto);
 	}
 
 

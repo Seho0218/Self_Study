@@ -2,11 +2,12 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.repository.AdminProductJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.genie.myapp.dao.AdminProductDAO;
 import com.genie.myapp.dto.AdminProductDTO;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class AdminProductServiceImpl implements AdminProductService  {
 
     @Autowired
-	AdminProductDAO dao;
+	AdminProductJpaRepository repository;
 
 	@Override
-	public List<AdminProductDTO> adminProduct(AdminProductDTO dto) {
-		return dao.adminProduct(dto);
+	public List<ProductDTO> adminProduct(AdminProductDTO adto) {
+		return repository.adminProduct(adto);
 	}
 }

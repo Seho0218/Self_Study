@@ -219,7 +219,7 @@ public class CertController {
 		String enPw=passwordEncoder.encode(dto.getGenie_pwd());
 		dto.setGenie_pwd(enPw);
 
-		int cnt = CertService.PwdEditOk(dto);
+		long cnt = CertService.PwdEditOk(dto);
 		System.out.print(cnt);
 
 		return new ResponseEntity<String>("비밀번호를 변경했습니다",HttpStatus.OK);
