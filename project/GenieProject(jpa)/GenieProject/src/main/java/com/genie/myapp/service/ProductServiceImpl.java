@@ -1,5 +1,6 @@
 package com.genie.myapp.service;
 
+import com.genie.myapp.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,11 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.genie.myapp.dao.ProductDAO;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.LikeVO;
-import com.genie.myapp.vo.PagingVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.SellerVO;
+
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -20,33 +17,33 @@ public class ProductServiceImpl implements ProductService{
     ProductDAO dao;
 
 	@Override
-	public List<ProductVO> listProduct(ProductVO pVO) {
-		return dao.listProduct(pVO);
+	public List<ProductDTO> listProduct(ProductDTO pDTO) {
+		return dao.listProduct(pDTO);
 	}
 	
 	@Override
-	public ProductVO getProduct(int no) {
+	public ProductDTO getProduct(int no) {
 		return dao.getProduct(no);
 	}
 
 	@Override
-	public List<ProductVO> selectProduct(Map<String, Object> map) {
+	public List<ProductDTO> selectProduct(Map<String, Object> map) {
 		return dao.selectProduct(map);
 	}
 
 	@Override
-	public List<CartVO> getCart(String genie_id) {
+	public List<CartDTO> getCart(String genie_id) {
 		return dao.getCart(genie_id);
 	}
 	
 	@Override
-	public SellerVO getSeller(int product_id) {
+	public SellerDTO getSeller(int product_id) {
 		return dao.getSeller(product_id);
 	}
 	
 	@Override
-	public int addCart(CartVO cvo) {
-		return dao.addCart(cvo);
+	public int addCart(CartDTO cdto) {
+		return dao.addCart(cdto);
 	}
 	
 	@Override
@@ -55,8 +52,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public int delMultiCart(CartVO cvo) {
-		return dao.delMultiCart(cvo);
+	public int delMultiCart(CartDTO cdto) {
+		return dao.delMultiCart(cdto);
 	}
 
 	@Override
@@ -65,28 +62,28 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> mainAllSelect(PagingVO pVO) {
-		return dao.mainAllSelect(pVO);
+	public List<ProductDTO> mainAllSelect(PagingDTO pDTO) {
+		return dao.mainAllSelect(pDTO);
 	}
 
 	@Override
-	public ProductVO likeStatus(int product_id) {
+	public ProductDTO likeStatus(int product_id) {
 		return dao.likeStatus(product_id);
 	}
 
 	@Override
-	public LikeVO likeCheck(int product_id, String genie_id) {
+	public LikeDTO likeCheck(int product_id, String genie_id) {
 		return dao.likeCheck(product_id, genie_id);
 	}
 
 	@Override
-	public int updateCart(CartVO cvo) {
-		return dao.updateCart(cvo);
+	public int updateCart(CartDTO cdto) {
+		return dao.updateCart(cdto);
 	}
 
 	@Override
-	public List<ProductVO> companyName(ProductVO pVO) {
-		return dao.companyName(pVO);
+	public List<ProductDTO> companyName(ProductDTO pDTO) {
+		return dao.companyName(pDTO);
 	}
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,8 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.OrderService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.OrderVO;
 
 @RestController
 @RequestMapping("/order/*")
@@ -52,7 +52,7 @@ public class OrderController {
 	// 결제페이지-----------------------------------------------------
 	// 바로 주문
 	@PostMapping("BuyNow")
-	public ModelAndView BuyNow(HttpSession session, CartVO cvo) {
+	public ModelAndView BuyNow(HttpSession session, CartDTO cvo) {
 		
 		String genie_id=(String)session.getAttribute("logId");
 		//System.out.println("BuyNow로 받아온 cvo : "+cvo.toString());
@@ -66,12 +66,12 @@ public class OrderController {
 	}
 	// 장바구니에서 주문
 	@PostMapping("payment")
-	public ModelAndView payment(HttpSession session, CartVO cvo) {
+	public ModelAndView payment(HttpSession session, CartDTO cvo) {
 
 		String genie_id = (String) session.getAttribute("logId");
 		//System.out.println("주문정보 받아온 것 cvo : " + cvo.toString());
 
-		List<CartVO> lcvo = orderService.readyToPay(cvo);
+		List<CartDTO> lcvo = orderService.readyToPay(cvo);
 		//System.out.println("카트정보 가져오기 : " + cvo.toString());
 
 		mav = new ModelAndView();
@@ -83,7 +83,7 @@ public class OrderController {
 	}
 
 	@GetMapping("orderCompletion")
-	public ResponseEntity<String> orderCompletion(HttpSession session, OrderVO ovo) {
+	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO ovo) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -99,10 +99,10 @@ public class OrderController {
 
 			try{
 				//제품 정보 가져오기
-				List<OrderVO> cList = orderService.getFromCart(ovo);
+				List<OrderDTO> cList = orderService.getFromCart(ovo);
 				//System.out.println("ovo 제품정보 : "+ovo.toString());
 				System.out.println("제품정보 : "+cList.size()); /// gfdgfgdg
-				for(OrderVO vo : cList){
+				for(OrderDTO vo : cList){
 					vo.setOrder_num(ovo.getOrder_num());
 					vo.setGenie_id(genie_id);
 
@@ -157,7 +157,7 @@ public class OrderController {
 	public ModelAndView completion(HttpSession session) {
 
 		String genie_id = (String) session.getAttribute("logId");
-		List<OrderVO> ovo = orderService.getOrderList(genie_id);
+		List<OrderDTO> ovo = orderService.getOrderList(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("olist", ovo);

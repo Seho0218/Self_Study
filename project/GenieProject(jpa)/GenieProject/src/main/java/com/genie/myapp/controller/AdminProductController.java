@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.AdminProductService;
-import com.genie.myapp.vo.AdminProductVO;
+import com.genie.myapp.dto.AdminProductDTO;
 
 @RestController
 @RequestMapping("/admin/*")
@@ -18,7 +18,7 @@ public class AdminProductController {
 	ModelAndView mav = null;
 	
 	@GetMapping("adminProduct")
-	public ModelAndView adminProduct(AdminProductVO VO) {
+	public ModelAndView adminProduct(AdminProductDTO VO) {
 		mav = new ModelAndView();
 		System.out.println(VO.toString());
 		mav.addObject("list", service.adminProduct(VO));

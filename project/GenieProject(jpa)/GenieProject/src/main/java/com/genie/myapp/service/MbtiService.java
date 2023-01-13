@@ -2,28 +2,28 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.SellerProductVO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.SellerProductDTO;
 
 public interface MbtiService {
 	
 	//상품목록 - MBTI 
-	public List<SellerProductVO> getProduct(String mbti);
+	public List<SellerProductDTO> getProduct(String mbti);
 	//상품목록 - 가격낮은순
-	public List<SellerProductVO> pricelist(String mbti);
+	public List<SellerProductDTO> pricelist(String mbti);
 	//상품목록 - 가격높은순
-	public List<SellerProductVO> pricelistdesc(String mbti);
+	public List<SellerProductDTO> pricelistdesc(String mbti);
 	//상품목록 - 최신순
-	public List<SellerProductVO> recentlist(String mbti);
+	public List<SellerProductDTO> recentlist(String mbti);
 	//상품목록 - 좋아요순
-	public List<SellerProductVO> likelist(String mbti);
+	public List<SellerProductDTO> likelist(String mbti);
 	
 	//상품목록(카테고리) - 가격낮은순
-	public List<ProductVO> productPriceAsc(ProductVO PVO);
+	public List<ProductDTO> productPriceAsc(ProductDTO PDTO);
 	//상품목록(카테고리) - 가격높은순
-	public List<ProductVO> productPriceDesc(ProductVO PVO);
+	public List<ProductDTO> productPriceDesc(ProductDTO PDTO);
 	//상품목록(카테고리) - 최신순
-	public List<ProductVO> productRecent(ProductVO PVO);
+	public List<ProductDTO> productRecent(ProductDTO PDTO);
 	//상품목록(카테고리) - 좋아요순
-	public List<ProductVO> productLike(ProductVO PVO);
+	public List<ProductDTO> productLike(ProductDTO PDTO);
 }

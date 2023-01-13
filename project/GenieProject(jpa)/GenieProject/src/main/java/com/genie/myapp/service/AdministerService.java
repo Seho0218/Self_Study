@@ -1,12 +1,13 @@
 package com.genie.myapp.service;
 
-import com.genie.myapp.vo.AdministerVO;
+
+import com.genie.myapp.dto.AdministerDTO;
 
 public interface AdministerService {
 	// 로그인
-    public AdministerVO loginOk(AdministerVO vo);
+    public AdministerDTO loginOk(AdministerDTO vo);
     //회원 선택: 로그인 한 회원
-	public AdministerVO getAdminister(String genie_id);
+	public AdministerDTO getAdminister(String genie_id);
     
 
     

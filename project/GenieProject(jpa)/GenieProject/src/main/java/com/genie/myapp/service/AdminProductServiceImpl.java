@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdminProductDAO;
-import com.genie.myapp.vo.AdminProductVO;
+import com.genie.myapp.dto.AdminProductDTO;
 
 @Service
 public class AdminProductServiceImpl implements AdminProductService  {
@@ -14,7 +14,7 @@ public class AdminProductServiceImpl implements AdminProductService  {
 	AdminProductDAO dao;
 
 	@Override
-	public List<AdminProductVO> adminProduct(AdminProductVO VO) {
-		return dao.adminProduct(VO);
+	public List<AdminProductDTO> adminProduct(AdminProductDTO adto) {
+		return dao.adminProduct(adto);
 	}
 }

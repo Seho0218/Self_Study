@@ -1,18 +1,17 @@
 package com.genie.myapp.service;
 
 import java.util.List;
-
-import com.genie.myapp.vo.LikeVO;
-import com.genie.myapp.vo.ReplyProductVO;
+import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.ReplyProductDTO;
 
 public interface ReplyProductService {
-    public List<ReplyProductVO> replyProductList(int no);
-    public int replyProductWrite(ReplyProductVO vo);
-    public int replyProductEdit (ReplyProductVO vo);
+    public List<ReplyProductDTO> replyProductList(int no);
+    public int replyProductWrite(ReplyProductDTO dto);
+    public int replyProductEdit (ReplyProductDTO dto);
     public int replyProductDelete(int reply_no, String genie_id);
-    public int likeInsert(LikeVO vo);
-    public int likeStatus(LikeVO vo);
-    public int likeDelete(LikeVO vo);
-    public int likeHitMinus(LikeVO vo);
-    public int likeHitPlus(LikeVO vo);
+    public int likeInsert(LikeDTO dto);
+    public int likeStatus(LikeDTO dto);
+    public int likeDelete(LikeDTO dto);
+    public int likeHitMinus(LikeDTO dto);
+    public int likeHitPlus(LikeDTO dto);
 }

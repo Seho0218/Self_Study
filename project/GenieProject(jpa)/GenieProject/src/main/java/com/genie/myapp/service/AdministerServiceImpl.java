@@ -1,10 +1,10 @@
 package com.genie.myapp.service;
 
+import com.genie.myapp.dto.AdministerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdministerDAO;
-import com.genie.myapp.vo.AdministerVO;
 
 @Service
 public class AdministerServiceImpl implements AdministerService{
@@ -13,12 +13,12 @@ public class AdministerServiceImpl implements AdministerService{
     AdministerDAO dao;
 
     @Override
-    public AdministerVO loginOk(AdministerVO avo) {
-        return dao.loginOk(avo);
+    public AdministerDTO loginOk(AdministerDTO dto) {
+        return dao.loginOk(dto);
     }
 
     @Override
-    public AdministerVO getAdminister(String genie_id) {
+    public AdministerDTO getAdminister(String genie_id) {
         return dao.getAdminister(genie_id);
     }
     

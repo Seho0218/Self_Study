@@ -2,7 +2,7 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.dto.UserDTO;
 
 public interface CertService {
 
@@ -14,7 +14,7 @@ public interface CertService {
     public boolean emailCheck(String genid_id, String user_email);
 
     void sendAuthNum(String user_email, String authNum);
-    public int PwdEditOk(UserVO vo);
+    public int PwdEditOk(UserDTO vo);
 
 	
     

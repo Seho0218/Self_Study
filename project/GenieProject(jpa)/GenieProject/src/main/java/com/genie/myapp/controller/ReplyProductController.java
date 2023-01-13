@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.ReplyProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,9 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.ReplyProductService;
-import com.genie.myapp.vo.LikeVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.ReplyProductVO;
+
 
 @RestController
 @RequestMapping("/reply/*")
@@ -25,20 +26,20 @@ public class ReplyProductController{
     ReplyProductService service;
 
     @GetMapping("replyProductList")
-    public List<ReplyProductVO> replyProductList(int no){
+    public List<ReplyProductDTO> replyProductList(int no){
         return service.replyProductList(no);
     }
     
     @PostMapping("replyProductWrite")
-	public int replyWrite(ReplyProductVO vo, HttpSession session) {
-		vo.setGenie_id((String)session.getAttribute("logId")); // 작성자	
-		return service.replyProductWrite(vo);
+	public int replyWrite(ReplyProductDTO dto, HttpSession session) {
+		dto.setGenie_id((String)session.getAttribute("logId")); // 작성자	
+		return service.replyProductWrite(dto);
 	}
 
  	@PostMapping("replyProductEdit")
- 	public int replyEdit (ReplyProductVO vo, HttpSession session) {
- 		vo.setGenie_id((String)session.getAttribute("logId"));
- 		return service.replyProductEdit(vo);
+ 	public int replyEdit (ReplyProductDTO dto, HttpSession session) {
+ 		dto.setGenie_id((String)session.getAttribute("logId"));
+ 		return service.replyProductEdit(dto);
  	}
  	
  	@GetMapping("replyProductDel")
@@ -48,25 +49,25 @@ public class ReplyProductController{
  	}
 
 	@PostMapping("likeInsert")
-	public int likeInsert(LikeVO vo, HttpSession session){
-		vo.setGenie_id((String)session.getAttribute("logId"));
-        System.out.println(vo.toString());
+	public int likeInsert(LikeDTO dto, HttpSession session){
+		dto.setGenie_id((String)session.getAttribute("logId"));
+        System.out.println(dto.toString());
 
-		return service.likeInsert(vo);
+		return service.likeInsert(dto);
 	}
 
 	@GetMapping("likeStatus")
- 	public int likeStatus(LikeVO vo, HttpSession session) {
- 		vo.setGenie_id((String)session.getAttribute("logId"));
- 		int cnt = service.likeStatus(vo);
+ 	public int likeStatus(LikeDTO dto, HttpSession session) {
+ 		dto.setGenie_id((String)session.getAttribute("logId"));
+ 		int cnt = service.likeStatus(dto);
  		int result = 0;
  		if (cnt>0) {
- 			service.likeDelete(vo);
- 			service.likeHitMinus(vo);
+ 			service.likeDelete(dto);
+ 			service.likeHitMinus(dto);
  			result = 100;
  		} else {
- 			service.likeInsert(vo);
- 			service.likeHitPlus(vo);
+ 			service.likeInsert(dto);
+ 			service.likeHitPlus(dto);
  			result = 200;
  		}
 		return result;
@@ -75,15 +76,15 @@ public class ReplyProductController{
 	@GetMapping("likeDel/{product_id}")
 	public ModelAndView likeDel(@PathVariable("product_id") int pid, HttpSession session) {
 		
-		LikeVO vo = new LikeVO();
-		vo.setGenie_id((String)session.getAttribute("logId"));
-		vo.setProduct_id(pid);
+		LikeDTO dto = new LikeDTO();
+		dto.setGenie_id((String)session.getAttribute("logId"));
+		dto.setProduct_id(pid);
 		
-		ProductVO pvo = new ProductVO();
-		pvo.setProduct_id(pid);
+		ProductDTO pdto = new ProductDTO();
+		pdto.setProduct_id(pid);
 		
-		int result = service.likeDelete(vo);
-		int result2 = service.likeHitMinus(vo);
+		int result = service.likeDelete(dto);
+		int result2 = service.likeHitMinus(dto);
 		
 		ModelAndView mav = new ModelAndView();
 		if(result>0 && result2>0) {

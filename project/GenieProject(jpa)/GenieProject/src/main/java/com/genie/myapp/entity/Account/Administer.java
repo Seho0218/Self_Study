@@ -1,4 +1,4 @@
-package com.genie.myapp.domain.Account;
+package com.genie.myapp.entity.Account;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -4,11 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.ReplyProductDTO;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.ReplyProductDAO;
-import com.genie.myapp.vo.LikeVO;
-import com.genie.myapp.vo.ReplyProductVO;
+
 
 @Service
 public class ReplyProductServiceImpl implements ReplyProductService{
@@ -16,18 +17,18 @@ public class ReplyProductServiceImpl implements ReplyProductService{
     @Inject
     ReplyProductDAO DAO;
     
-    public List<ReplyProductVO> replyProductList(int no){
+    public List<ReplyProductDTO> replyProductList(int no){
         return DAO.replyProductList(no);
     }
 
 	@Override
-	public int replyProductWrite(ReplyProductVO vo) {
-		return DAO.replyProductWrite(vo);
+	public int replyProductWrite(ReplyProductDTO dto) {
+		return DAO.replyProductWrite(dto);
 	}
 
 	@Override
-	public int replyProductEdit(ReplyProductVO vo) {
-		return DAO.replyProductEdit(vo);
+	public int replyProductEdit(ReplyProductDTO dto) {
+		return DAO.replyProductEdit(dto);
 	}
 
 	@Override
@@ -36,28 +37,28 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 	}
 
 	@Override
-	public int likeInsert(LikeVO vo) {
-		return DAO.likeInsert(vo);
+	public int likeInsert(LikeDTO dto) {
+		return DAO.likeInsert(dto);
 	}
 
 	@Override
-	public int likeStatus(LikeVO vo) {
-		return DAO.likeStatus(vo);
+	public int likeStatus(LikeDTO dto) {
+		return DAO.likeStatus(dto);
 	}
 
 	@Override
-	public int likeDelete(LikeVO vo) {
-		return DAO.likeDelete(vo);
+	public int likeDelete(LikeDTO dto) {
+		return DAO.likeDelete(dto);
 	}
 
 	@Override
-	public int likeHitMinus(LikeVO vo) {
-		return DAO.likeHitMinus(vo);
+	public int likeHitMinus(LikeDTO dto) {
+		return DAO.likeHitMinus(dto);
 	}
 
 	@Override
-	public int likeHitPlus(LikeVO vo) {
-		return DAO.likeHitPlus(vo);
+	public int likeHitPlus(LikeDTO dto) {
+		return DAO.likeHitPlus(dto);
 	}
 
 	

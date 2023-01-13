@@ -1,12 +1,11 @@
-package com.genie.myapp.domain;
+package com.genie.myapp.entity;
 
-import com.genie.myapp.domain.Account.User;
-import com.genie.myapp.domain.Product.Product;
+import com.genie.myapp.entity.Account.User;
+import com.genie.myapp.entity.Product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity

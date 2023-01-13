@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.CertService;
-import com.genie.myapp.vo.UserVO;
 
 @RestController
 @SuppressWarnings("unchecked")
@@ -214,7 +214,7 @@ public class CertController {
 
 	// 비밀번호 변경
 	@PostMapping("modify_pwd")
-	public ResponseEntity<String> modifyPassword(UserVO vo, HttpSession session) {
+	public ResponseEntity<String> modifyPassword(UserDTO vo, HttpSession session) {
 
 		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
 		vo.setGenie_pwd(enPw);

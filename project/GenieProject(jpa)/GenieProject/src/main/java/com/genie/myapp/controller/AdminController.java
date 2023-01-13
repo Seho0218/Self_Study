@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.genie.myapp.dto.AdminDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.AdminService;
-import com.genie.myapp.vo.AdminVO;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.PagingVO;
-import com.genie.myapp.vo.SellerVO;
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.dto.CartDTO;
+import com.genie.myapp.dto.PagingDTO;
+import com.genie.myapp.dto.SellerDTO;
+import com.genie.myapp.dto.UserDTO;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -42,7 +42,7 @@ public class AdminController {
 		public ModelAndView adminMain() {
 			ModelAndView mav = new ModelAndView();
 			//Test 시작
-			//mav.setTotalRecord(service.mainTotalRecord(AdminVO VO));
+			//mav.setTotalRecord(service.mainTotalRecord(AdminDTO DTO));
 			//Test 끝
 			mav.setViewName("admin/adminMain");
 			return mav;
@@ -64,11 +64,11 @@ public class AdminController {
 		
 		//카테고리 
 		@GetMapping("adminCategoryTag")
-		public ModelAndView adminCategoryTag(AdminVO VO) {
+		public ModelAndView adminCategoryTag(AdminDTO DTO) {
 			mav = new ModelAndView();
-			System.out.println(VO.toString());
-			mav.addObject("list", service.adminCategoryTag(VO));
-			mav.addObject("VO", VO);
+			System.out.println(DTO.toString());
+			mav.addObject("list", service.adminCategoryTag(DTO));
+			mav.addObject("DTO", DTO);
 			mav.setViewName("admin/adminCategoryTag");
 			return mav;
 		}
@@ -117,7 +117,7 @@ public class AdminController {
 		
 		// 태그 DB 업데이트
 		@PostMapping("adminTagPopEdit")
-		public ResponseEntity<String> adminTagPopEdit(AdminVO vo){
+		public ResponseEntity<String> adminTagPopEdit(AdminDTO vo){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
@@ -125,7 +125,7 @@ public class AdminController {
 			try {
 				service.adminTagPopEdit(vo);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adminTagPop?product_tag_id="+vo.getproduct_tag_id()+"';";
+				msg += "location.href='/admin/adminTagPop?product_tag_id="+vo.getProduct_tag_id()+"';";
 						
 			}catch(Exception e){
 				e.printStackTrace();
@@ -171,7 +171,7 @@ public class AdminController {
 		
 		// 카테고리 DB 업데이트
 		@PostMapping("adminCategoryPopEdit")
-		public ResponseEntity<String> adcategoryPopEdit(AdminVO vo){
+		public ResponseEntity<String> adcategoryPopEdit(AdminDTO vo){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
@@ -179,7 +179,7 @@ public class AdminController {
 			try {
 				service.adcategoryPopEdit(vo);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adminCategoryPop?category_id="+vo.getcategory_id()+"';";
+				msg += "location.href='/admin/adminCategoryPop?category_id="+vo.getCategory_id()+"';";
 						
 			}catch(Exception e){
 				e.printStackTrace();
@@ -219,12 +219,12 @@ public class AdminController {
 		
 		// admember 페이지 이동
 		@GetMapping("admember")
-		public ModelAndView admember(PagingVO pVO) {
+		public ModelAndView admember(PagingDTO pDTO) {
 			mav = new ModelAndView();
 			
-			pVO.setTotalRecord(service.userTotalRecord(pVO));
-			mav.addObject("admember", service.userAllSelect(pVO));
-			mav.addObject("pVO", pVO);
+			pDTO.setTotalRecord(service.userTotalRecord(pDTO));
+			mav.addObject("admember", service.userAllSelect(pDTO));
+			mav.addObject("pDTO", pDTO);
 			
 			mav.setViewName("admin/admember");
 			return mav;
@@ -232,17 +232,17 @@ public class AdminController {
 		
 		// 선택된 유저의 정보 수정 폼
 		@GetMapping("admemberPop")
-		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingVO pVO) {
+		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingDTO pDTO) {
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("vo", service.getadmember(genie_id));
-			mav.addObject("pVO", pVO);
+			mav.addObject("pDTO", pDTO);
 			mav.setViewName("admin/admemberPop");
 			return mav;
 		}
 		
 		// 유저 DB 업데이트
 		@PostMapping("admemberPopEdit")
-		public ResponseEntity<String> admemberPopEdit(UserVO vo){
+		public ResponseEntity<String> admemberPopEdit(UserDTO vo){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
@@ -285,7 +285,7 @@ public class AdminController {
 
 	//결제 컨트롤러
 	@PostMapping("adminpaymentOk")
-	public ResponseEntity<String> adminpayment(CartVO vo, HttpServletRequest request){
+	public ResponseEntity<String> adminpayment(CartDTO vo, HttpServletRequest request){
 		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
 		
 		ResponseEntity<String> entity = null;
@@ -316,13 +316,13 @@ public class AdminController {
 	}
 		// adcompany 페이지 이동
 		@GetMapping("adcompany")
-		public ModelAndView adcompany(PagingVO pVO) {
+		public ModelAndView adcompany(PagingDTO pDTO) {
 			mav = new ModelAndView();
 			
-			pVO.setTotalRecord(service.sellerTotalRecord(pVO));
-			pVO.setNotApproved(service.sellerApproval(pVO));
-			mav.addObject("adcompany", service.sellerAllSelect(pVO));
-			mav.addObject("pVO", pVO);
+			pDTO.setTotalRecord(service.sellerTotalRecord(pDTO));
+			pDTO.setNotApproved(service.sellerApproval(pDTO));
+			mav.addObject("adcompany", service.sellerAllSelect(pDTO));
+			mav.addObject("pDTO", pDTO);
 			
 			mav.setViewName("admin/adcompany");
 			return mav;
@@ -330,17 +330,17 @@ public class AdminController {
 		
 		// 선택된 셀러의 정보 수정 폼
 		@GetMapping("adcompanyPop")
-		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingVO pVO) {
+		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingDTO pDTO) {
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("vo", service.getadcompany(genie_id));
-			mav.addObject("pVO", pVO);
+			mav.addObject("pDTO", pDTO);
 			mav.setViewName("admin/adcompanyPop");
 			return mav;
 		}
 		
 		// 셀러 DB 업데이트
 		@PostMapping("adcompanyPopEdit")
-		public ResponseEntity<String> adcompanyPopEdit(SellerVO vo){
+		public ResponseEntity<String> adcompanyPopEdit(SellerDTO vo){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset-UTF-8");

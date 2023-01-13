@@ -3,10 +3,10 @@ package com.genie.myapp.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.genie.myapp.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.genie.myapp.vo.UserVO;
 
 @Mapper
 @Repository
@@ -27,7 +27,7 @@ public interface CertDAO {
     public String emailCheck(Map<String, Object> map);
 
     //비밀번호 변경
-  	public int PwdEditOk(UserVO vo);
+  	public int PwdEditOk(UserDTO vo);
 
  
     

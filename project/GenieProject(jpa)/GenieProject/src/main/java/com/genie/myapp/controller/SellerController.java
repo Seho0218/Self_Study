@@ -27,9 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.SellerService;
 
-import com.genie.myapp.vo.SellerProductVO;
-import com.genie.myapp.vo.OrderVO;
-import com.genie.myapp.vo.PagingVO;
+import com.genie.myapp.dto.SellerProductDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.PagingDTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -58,7 +58,7 @@ public class SellerController {
 
 	// Seller 메인페이지
 	@GetMapping("sellerMain")
-	public ModelAndView sellerMain(OrderVO vo, HttpServletRequest request) {
+	public ModelAndView sellerMain(OrderDTO vo, HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
 		mav = new ModelAndView();
 
@@ -67,20 +67,20 @@ public class SellerController {
 		String bs = service.bestSeller(seller_id); // 이달의 상품
 		int osum = service.orderSum(seller_id); //총매출(이번달)
 	
-		List<OrderVO> rlist = service.revenueByProduct(seller_id); // 아이템별 매출
+		List<OrderDTO> rlist = service.revenueByProduct(seller_id); // 아이템별 매출
 		String ss = service.sellerStatus(seller_id); // 셀러상태 
 
 		// 일별매출
 		// 쿼리로 받은 '범주(month_day)':'값(total_sales)' 형태의 리스트 데이터 추출
-		List<OrderVO> orderlist = service.orderSumByDay(seller_id);
+		List<OrderDTO> orderlist = service.orderSumByDay(seller_id);
 		// 리스트를 Json 객체로 옮겨담기
 		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
 		Gson gson = new Gson(); // json 으로 가공하기 위해 빈 gson 객체생성
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
 		
-		Iterator<OrderVO> it = orderlist.iterator(); // 반복자 얻기 
-		while(it.hasNext()) { // 하나하나의 VO 에서 데이터 추출, json 형태로 가공
-			OrderVO ovo = it.next();
+		Iterator<OrderDTO> it = orderlist.iterator(); // 반복자 얻기 
+		while(it.hasNext()) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
+			OrderDTO ovo = it.next();
 			JsonObject object = new JsonObject();
 			String date = ovo.getMonth_day();
 			int sales = ovo.getTotal_sales();
@@ -93,12 +93,12 @@ public class SellerController {
 		String json = gson.toJson(jArray); // 사용가능한 json 데이터 형태로 변환
 
 		// 카테고리별 판매건수
-		List<OrderVO> categorylist = service.topCategory(seller_id);
+		List<OrderDTO> categorylist = service.topCategory(seller_id);
 		Gson gson2 = new Gson();
 		JsonArray jArray2 = new JsonArray();
-		Iterator<OrderVO> it2 = categorylist.iterator();
+		Iterator<OrderDTO> it2 = categorylist.iterator();
 		while(it2.hasNext()) {
-			OrderVO ovo2 = it2.next();
+			OrderDTO ovo2 = it2.next();
 			JsonObject object2 = new JsonObject();
 			String category = ovo2.getProduct_category();
 			int sold_counts = ovo2.getSold_counts();
@@ -138,7 +138,7 @@ public class SellerController {
 	
 	// Seller 주문관리 
 	@GetMapping("sellerOrder")
-	public ModelAndView sellerOrder(OrderVO vo, HttpServletRequest request) {
+	public ModelAndView sellerOrder(OrderDTO vo, HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
 		
 		// 배송대기 중 
@@ -167,7 +167,7 @@ public class SellerController {
 	//Seller 배송완료
 	
 	@PostMapping("sellerOrder1")
-	public List<OrderVO> sellerOrder1(HttpServletRequest request) {
+	public List<OrderDTO> sellerOrder1(HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
 		
 
@@ -193,7 +193,7 @@ public class SellerController {
 	
 	// Seller 매출관리 페이지
 	@GetMapping("sellerSales")
-	public ModelAndView sellerSales(OrderVO vo, HttpServletRequest request) {
+	public ModelAndView sellerSales(OrderDTO vo, HttpServletRequest request) {
 		String seller_id = (String)request.getSession().getAttribute("logId"); // 세션 셀러 아이디
 		
 		mav = new ModelAndView();
@@ -203,16 +203,16 @@ public class SellerController {
 		String bs = service.bestSeller(seller_id);
 		
 		// 쿼리로 받은 '범주(month_day)':'값(total_sales)' 형태의 리스트 데이터 추출
-		List<OrderVO> orderlist = service.orderSumByDay(seller_id);
+		List<OrderDTO> orderlist = service.orderSumByDay(seller_id);
 		
 		// 리스트를 Json 객체로 옮겨담기
 		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
 		Gson gson = new Gson(); // json 으로 가공하기 위해 빈 gson 객체생성
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
 		
-		Iterator<OrderVO> it = orderlist.iterator(); // 반복자 얻기 
-		while(it.hasNext()) { // 하나하나의 VO 에서 데이터 추출, json 형태로 가공
-			OrderVO ovo = it.next();
+		Iterator<OrderDTO> it = orderlist.iterator(); // 반복자 얻기 
+		while(it.hasNext()) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
+			OrderDTO ovo = it.next();
 			JsonObject object = new JsonObject();
 			String date = ovo.getMonth_day();
 			int sales = ovo.getTotal_sales();
@@ -244,15 +244,15 @@ public class SellerController {
 	
 	//seller 상품관리 페이지
 	@GetMapping("sellerProduct")
-	public ModelAndView sellerProduct(PagingVO pVO, HttpServletRequest request) {
+	public ModelAndView sellerProduct(PagingDTO pDTO, HttpServletRequest request) {
 		
-		pVO.setGenie_id((String)request.getSession().getAttribute("logId"));
-		pVO.setTotalRecord(service.productTotalRecord(pVO));
-		pVO.setOnePageRecord(10);
+		pDTO.setGenie_id((String)request.getSession().getAttribute("logId"));
+		pDTO.setTotalRecord(service.productTotalRecord(pDTO));
+		pDTO.setOnePageRecord(10);
 		
 		mav = new ModelAndView();
-		mav.addObject("plist", service.productList(pVO));
-		mav.addObject("pVO", pVO);
+		mav.addObject("plist", service.productList(pDTO));
+		mav.addObject("pDTO", pDTO);
 		
 		mav.setViewName("seller/sellerProduct");
 		return mav;
@@ -260,7 +260,7 @@ public class SellerController {
 	
 	//seller 상품등록
 	@PostMapping("productWrite")
-	public ResponseEntity<String> productWrite(SellerProductVO vo, HttpServletRequest request){
+	public ResponseEntity<String> productWrite(SellerProductDTO vo, HttpServletRequest request){
 		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
 		
 		ResponseEntity<String> entity = null;
@@ -303,7 +303,7 @@ public class SellerController {
 	
 	//seller 상품수정 : DB 업데이트
 	@PostMapping("productEditOk")
-	public ResponseEntity<String> productEditOk(SellerProductVO pvo, HttpSession session){
+	public ResponseEntity<String> productEditOk(SellerProductDTO pvo, HttpSession session){
 		System.out.println(pvo.toString());
 		pvo.setGenie_id((String)session.getAttribute("logId"));
 		

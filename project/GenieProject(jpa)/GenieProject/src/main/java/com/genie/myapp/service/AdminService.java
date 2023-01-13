@@ -2,83 +2,80 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.vo.AdminVO;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.PagingVO;
-import com.genie.myapp.vo.SellerVO;
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.dto.*;
+
 
 public interface AdminService {
 	//카테고리리스트
-	public List<AdminVO> adminCategoryTag(AdminVO VO);
+	public List<AdminDTO> adminCategoryTag(AdminDTO DTO);
 	
 	//태그리스트
-	public Object adminTag(AdminVO VO);
+	public Object adminTag(AdminDTO DTO);
 	
 	// admin 내 태그정보 리스트
-	public List<AdminVO> tagAllSelect();
+	public List<AdminDTO> tagAllSelect();
 
 	// adminTagPop 태그정보 뷰
-	public AdminVO getadminTag(String product_tag_id);
+	public AdminDTO getadminTag(String product_tag_id);
 	
 	// adminTagPop 태그정보 수정
-	public int adminTagPopEdit(AdminVO vo);
+	public int adminTagPopEdit(AdminDTO vo);
 	
 	// adminTagPop 태그정보 뷰 삭제
 	public int adminTagDel(String product_tag_id);
 
 	///////////카테고리//////////////
 	// 카테고리 리스트
-	public List<AdminVO> categoryAllSelect();
+	public List<AdminDTO> categoryAllSelect();
 	
 	// 카테고리 정보
-	public AdminVO getadcategory(String category_id);
+	public AdminDTO getadcategory(String category_id);
 	
 	// 카테고리 수정
-	public int adcategoryPopEdit(AdminVO vo);
+	public int adcategoryPopEdit(AdminDTO vo);
 	
 	// 카테고리 삭제
 	public int adcategoryDel(String category_id);
 	///////////카테고리//////////////
 
 	// admember 내 유저정보 리스트
-	public List<UserVO> userAllSelect(PagingVO pVO);
+	public List<UserDTO> userAllSelect(PagingDTO pDTO);
 		
 	// admemberPop 내 유저정보 뷰
-	public UserVO getadmember(String user_id);
+	public UserDTO getadmember(String user_id);
 
 	// admemberPop 내 유저정보 수정
-	public int admemberPopEdit(UserVO vo);
+	public int admemberPopEdit(UserDTO vo);
 	
 	// admember 내 유저정보 삭제
 	public int admemberDel(String genie_id);
 	
 	// adcompany 내 유저정보 리스트
-	public List<SellerVO> sellerAllSelect(PagingVO pVO);
+	public List<SellerDTO> sellerAllSelect(PagingDTO pDTO);
 		
 	// adcompanyPop 내 유저정보 뷰
-	public SellerVO getadcompany(String user_id);
+	public SellerDTO getadcompany(String user_id);
 	
 	// adcompanyPop 내 유저정보 수정
-	public int adcompanyPopEdit(SellerVO vo);
+	public int adcompanyPopEdit(SellerDTO vo);
 	
 	// adcompany 내 유저정보 삭제
 	public int adcompanyDel(String genie_id);
 	
 	// adcompany 내 승인현황
-	public int sellerApproval(PagingVO pVO);
+	public int sellerApproval(PagingDTO pDTO);
 
 	// 결제관련
-    public int paymentWrite(CartVO vo);
+    public int paymentWrite(CartDTO vo);
     
 	// 유저 총 레코드 수
-	public int userTotalRecord(PagingVO pVO);
+	public int userTotalRecord(PagingDTO pDTO);
 		
 	// 셀러 총 레코드 수
-	public int sellerTotalRecord(PagingVO pVO);
+	public int sellerTotalRecord(PagingDTO pDTO);
 
 	// Test: 유저 총 레코드 수
-	public int mainTotalRecord(AdminVO VO);
+	public int mainTotalRecord(AdminDTO DTO);
 	
 	// //제품 관리
     // public Object getadminProduct(String product_id);

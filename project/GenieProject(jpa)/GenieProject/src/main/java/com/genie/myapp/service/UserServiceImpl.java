@@ -7,11 +7,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
-import com.genie.myapp.vo.AccountVO;
-import com.genie.myapp.vo.DeliveryVO;
-import com.genie.myapp.vo.OrderVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.UserVO;
+import com.genie.myapp.dto.AccountDTO;
+import com.genie.myapp.dto.DeliveryDTO;
+import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.UserDTO;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -29,46 +29,46 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int UserWrite(UserVO vo) {
+    public int UserWrite(UserDTO vo) {
         return dao.UserWrite(vo);
     }
 
     @Override
-    public UserVO loginOk(UserVO vo) {
+    public UserDTO loginOk(UserDTO vo) {
         return dao.loginOk(vo);
     }
 
     @Override
-    public UserVO getUser(String genie_id) {
+    public UserDTO getUser(String genie_id) {
         return dao.getUser(genie_id);
     }
 
     @Override
-    public int UserEditOk(UserVO vo) {
+    public int UserEditOk(UserDTO vo) {
         return dao.UserEditOk(vo);
     }
 
     @Override
-    public int PwdEditOk(UserVO vo) {
+    public int PwdEditOk(UserDTO vo) {
         return dao.PwdEditOk(vo);
     }
 
     @Override
-    public int addDelivery(UserVO vo) {
+    public int addDelivery(UserDTO vo) {
         return dao.addDelivery(vo);
     }
     
     @Override
-    public int Delivery(UserVO vo) {
+    public int Delivery(UserDTO vo) {
         return dao.Delivery(vo);
     } 
     @Override
-    public int AccountWrite(AccountVO avo) {
+    public int AccountWrite(AccountDTO avo) {
        return dao.AccountWrite(avo);
     }
 
     @Override
-    public List<DeliveryVO> getDeliveryList(String genie_id) {
+    public List<DeliveryDTO> getDeliveryList(String genie_id) {
         return dao.getDeliveryList(genie_id);
     }
 
@@ -78,12 +78,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<OrderVO> getOrder(String genie_id) {
+    public List<OrderDTO> getOrder(String genie_id) {
         return dao.getOrder(genie_id);
     }
 
     @Override
-    public List<ProductVO> getLikeList(String genie_id) {
+    public List<ProductDTO> getLikeList(String genie_id) {
         return dao.getLikeList(genie_id);
     }
 

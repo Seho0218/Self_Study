@@ -1,4 +1,4 @@
-package com.genie.myapp.domain.Product;
+package com.genie.myapp.entity.Product;
 
 import lombok.Getter;
 import lombok.Setter;

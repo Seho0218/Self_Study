@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,7 @@ import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.AccountVO;
-import com.genie.myapp.vo.AdministerVO;
-import com.genie.myapp.vo.CartVO;
-import com.genie.myapp.vo.ProductVO;
-import com.genie.myapp.vo.SellerVO;
-import com.genie.myapp.vo.UserVO;
+
 
 @RestController
 @RequestMapping("/")
@@ -95,7 +91,7 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserVO vo, AccountVO avo) {
+	public ResponseEntity<String> UserWrite(UserDTO vo, AccountDTO avo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -137,7 +133,7 @@ public class GenieController{
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(SellerVO svo, AccountVO avo){
+	public ResponseEntity<String> sellerWrite(SellerDTO svo, AccountDTO avo){
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -177,21 +173,21 @@ public class GenieController{
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserVO vo, SellerVO svo, AdministerVO avo, HttpSession session) {
+	public ModelAndView loginOk(UserDTO vo, SellerDTO svo, AdministerDTO avo, HttpSession session) {
 		
 		mav = new ModelAndView();		
 
 		if(vo.getGenie_id() != null) {//일반회원 일때
 
-			UserVO logVO = userService.loginOk(vo);
-			if(logVO!=null){
+			UserDTO logDTO = userService.loginOk(vo);
+			if(logDTO!=null){
 				//System.out.println(vo);
-				//System.out.println(logVO);
-				boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logVO.getGenie_pwd());
+				//System.out.println(logDTO);
+				boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logDTO.getGenie_pwd());
 				//System.out.println(pwdMatch);
 				if(pwdMatch){//로그인 성공
-					session.setAttribute("logId", logVO.getGenie_id());		
-					session.setAttribute("logName", logVO.getUser_name());
+					session.setAttribute("logId", logDTO.getGenie_id());		
+					session.setAttribute("logName", logDTO.getUser_name());
 					session.setAttribute("logStatus","Y");
 					session.setAttribute("ROLE", "ROLE_USER");
 					
@@ -203,17 +199,17 @@ public class GenieController{
 			
 				}else if(svo.getGenie_id() !=null) {//업체회원일때 
 
-					SellerVO slogVO=sellerService.loginOk(svo);
-					if(slogVO!=null){
+					SellerDTO slogDTO=sellerService.loginOk(svo);
+					if(slogDTO!=null){
 						//System.out.println(svo);
-						//System.out.println(slogVO);
-						boolean pwdMatch = passwordEncoder.matches(svo.getGenie_pwd(), slogVO.getGenie_pwd());
+						//System.out.println(slogDTO);
+						boolean pwdMatch = passwordEncoder.matches(svo.getGenie_pwd(), slogDTO.getGenie_pwd());
 						//System.out.println(pwdMatch);
 						if(pwdMatch){//로그인 성공
 
 							System.out.println(pwdMatch);
-							session.setAttribute("logId", slogVO.getGenie_id());
-							session.setAttribute("logName", slogVO.getCompany_name());
+							session.setAttribute("logId", slogDTO.getGenie_id());
+							session.setAttribute("logName", slogDTO.getCompany_name());
 							session.setAttribute("logStatus","Y");
 							session.setAttribute("ROLE", "ROLE_SELLER");
 
@@ -226,11 +222,11 @@ public class GenieController{
 					
 					}else if(avo.getGenie_id() != null){
 
-						AdministerVO alogVO = administerService.loginOk(avo);
+						AdministerDTO alogDTO = administerService.loginOk(avo);
 
-						if(alogVO!=null){
-							session.setAttribute("logId", alogVO.getGenie_id());
-							session.setAttribute("logName", alogVO.getAdminister_name());
+						if(alogDTO!=null){
+							session.setAttribute("logId", alogDTO.getGenie_id());
+							session.setAttribute("logName", alogDTO.getAdminister_name());
 							session.setAttribute("logStatus","Y");
 							session.setAttribute("ROLE", "ROLE_ADMIN");
 
@@ -270,11 +266,11 @@ public class GenieController{
 	// -----------------------------------//
 
 	@GetMapping("index")
-	public ModelAndView productList(ProductVO PVO) {
+	public ModelAndView productList(ProductDTO PDTO) {
 
 		mav = new ModelAndView();
-		mav.addObject("plist", productService.listProduct(PVO));
-		mav.addObject("pvo", PVO);
+		mav.addObject("plist", productService.listProduct(PDTO));
+		mav.addObject("pvo", PDTO);
 		mav.setViewName("/");
 
 		return mav;
@@ -297,10 +293,10 @@ public class GenieController{
 	// -----------------------------------------------------------장바구니---------------------------------------------------------------//
 	
 	@GetMapping("cart")
-	public ModelAndView cart(CartVO cvo, HttpSession session) {
+	public ModelAndView cart(CartDTO cvo, HttpSession session) {
 
 		String genie_id = (String) session.getAttribute("logId");
-		List<CartVO> cartList = productService.getCart(genie_id);
+		List<CartDTO> cartList = productService.getCart(genie_id);
 		// System.out.print(cartList);
 
 		mav = new ModelAndView();
@@ -311,7 +307,7 @@ public class GenieController{
 	}
 
 	@PostMapping("addCart")
-	public ResponseEntity<String> addCart(CartVO cvo) {
+	public ResponseEntity<String> addCart(CartDTO cvo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -345,7 +341,7 @@ public class GenieController{
 	}
 
 	@PostMapping("updateCart")
-	public ResponseEntity<String> updateCart(CartVO cvo) {
+	public ResponseEntity<String> updateCart(CartDTO cvo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -378,7 +374,7 @@ public class GenieController{
 
 	// 장바구니에서 여러 제품 삭제
 	@GetMapping("delMultiCart")
-	public ModelAndView delMultiCart(CartVO cvo) {
+	public ModelAndView delMultiCart(CartDTO cvo) {
 
 		mav = new ModelAndView();
 		//System.out.println(" 제품 삭제 cvo 정보 " + cvo.toString());

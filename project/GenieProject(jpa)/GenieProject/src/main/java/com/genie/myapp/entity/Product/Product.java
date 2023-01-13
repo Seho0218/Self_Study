@@ -1,7 +1,7 @@
-package com.genie.myapp.domain.Product;
+package com.genie.myapp.entity.Product;
 
-import com.genie.myapp.domain.Account.Seller;
-import com.genie.myapp.domain.Cart;
+import com.genie.myapp.entity.Account.Seller;
+import com.genie.myapp.entity.Cart;
 import lombok.Getter;
 import lombok.Setter;
 

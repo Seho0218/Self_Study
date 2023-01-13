@@ -6,13 +6,13 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import com.genie.myapp.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.CertDAO;
-import com.genie.myapp.vo.UserVO;
 
 @Service
 public class CertServiceImpl implements CertService {
@@ -99,7 +99,7 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(UserVO vo) {
+	public int PwdEditOk(UserDTO vo) {
 		return cdao.PwdEditOk(vo);
 	}
 
