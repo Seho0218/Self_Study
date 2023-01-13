@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
-import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.dto.AccountVO;
 
 @Service
 public class RoleDetailService implements UserDetailsService{
