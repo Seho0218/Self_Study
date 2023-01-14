@@ -11,23 +11,22 @@ import java.time.LocalDateTime;
 import static javax.persistence.FetchType.*;
 
 @Entity
-@Getter @Setter
+@Getter @Setter @NotEmpty
 public class Administer implements Serializable {
 
     @Id @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
     private Account genie_id;
 
-    @NotEmpty @Column(name= "administer_name")
+   @Column(name= "administer_name")
     private String name;
 
-    @NotEmpty @Column(name = "administer_phone")
+    @Column(name = "administer_phone")
     private String phone;
 
-    @NotEmpty @Column(name= "administer_email")
+    @Column(name= "administer_email")
     private String email;
 
-    @NotEmpty
     private LocalDateTime writedate;
 
 }

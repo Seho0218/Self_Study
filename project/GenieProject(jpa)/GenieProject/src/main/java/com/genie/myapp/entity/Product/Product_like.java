@@ -1,4 +1,4 @@
-package com.genie.myapp.entity;
+package com.genie.myapp.entity.Product;
 
 import com.genie.myapp.entity.Account.User;
 import lombok.Getter;
@@ -6,24 +6,23 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter @NotEmpty
-public class Address implements Serializable {
+public class Product_like implements Serializable {
 
-    @Id @GeneratedValue
-    private long address_num;
+    @Id @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product product_id;
+
+    private long like_num;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
     private User genie_id;
 
-    private String receiver_name;
-    private String receiver_tel;
-    private String receiver_zipcode;
-    private String receiver_addr;
-    private String receiver_detailaddr;
 }

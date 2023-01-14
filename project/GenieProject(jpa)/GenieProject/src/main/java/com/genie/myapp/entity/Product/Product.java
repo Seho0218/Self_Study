@@ -4,6 +4,7 @@ import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.entity.Cart;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.ibatis.annotations.One;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -14,12 +15,11 @@ import java.util.List;
 import static javax.persistence.FetchType.*;
 
 @Entity
-@Getter @Setter
-@NotEmpty
+@Getter @Setter @NotEmpty
 public class Product {
 
     @Id @GeneratedValue
-    private int product_id;
+    private long product_id;
 
     @OneToMany(mappedBy = "product_id")
     private List<Cart> cartList = new ArrayList<>();
@@ -28,20 +28,17 @@ public class Product {
     @JoinColumn(name = "genie_id")
     private Seller genie_id;
 
-    @OneToMany
-    @JoinColumn(name = "genie_id")
-    private List<Cart> carts = new ArrayList<>();
-
     private String product_category;
     private String product_tag;
     private Long product_name;
     private int product_price;
-
+    private long product_like;
     private Long product_info;
+
     private int product_stock;
     private int product_quantity;
     private int product_hit;
-    private int product_like;
+
     private LocalDateTime product_writedate;
 
     private Long product_image1;
