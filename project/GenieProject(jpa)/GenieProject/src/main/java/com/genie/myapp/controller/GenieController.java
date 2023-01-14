@@ -111,7 +111,7 @@ public class GenieController{
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
 
 			transactionManager.commit(status);
 
@@ -121,7 +121,7 @@ public class GenieController{
 			msg += "alert('회원가입이 실패하였습니다.');";
 			msg += "history.back()";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
 			
 			transactionManager.rollback(status);
 			e.printStackTrace();
@@ -152,7 +152,7 @@ public class GenieController{
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
 
 			transactionManager.commit(status);
 			

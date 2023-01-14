@@ -1,5 +1,6 @@
 package hello.itemservice.config;
 
+import hello.itemservice.domain.Item;
 import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.jpa.JpaItemRepositoryV2;
 import hello.itemservice.repository.jpa.SpringDataJpaItemRepository;
@@ -22,7 +23,7 @@ public class SpringDataJpaConfig {
 
     @Bean
     public ItemRepository itemRepository() {
-        return new JpaItemRepositoryV2<I, Number>(springDataJpaItemRepository);
+        return new JpaItemRepositoryV2<Item, Number>(springDataJpaItemRepository);
     }
 
 }

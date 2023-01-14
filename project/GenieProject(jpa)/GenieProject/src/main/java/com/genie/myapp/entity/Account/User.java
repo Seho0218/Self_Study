@@ -2,6 +2,7 @@ package com.genie.myapp.entity.Account;
 
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Cart;
+import com.genie.myapp.entity.Myorder;
 import com.genie.myapp.entity.OrderStatus;
 import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.Product_like;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.EnumType.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -25,7 +27,7 @@ public class User implements Serializable {
     @JoinColumn(name="genie_id")
     private Account genie_id;
 
-    private String name;
+    private String user_name;
 
     @OneToMany(mappedBy = "genie_id")
     private List<Address> address;
@@ -39,17 +41,20 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "genie_id")
     private List<Cart> carts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "genie_id")
+    private List<Myorder> orders = new ArrayList<>();
+
+    private String user_tel;
+
     private String user_email;
 
     private char user_gender;
 
     private LocalDateTime sign_in_date;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private OrderStatus status;
 
-//    @OneToMany(mappedBy = "genie_id")
-//    private List<Myorder> orders = new ArrayList<>();
 
 
 }

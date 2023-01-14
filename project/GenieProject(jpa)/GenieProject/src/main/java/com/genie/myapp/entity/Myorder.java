@@ -40,7 +40,7 @@ public class Myorder implements Serializable {
 
     private int order_qty;
 
-    private LocalDateTime orderDate;
+    private LocalDateTime order_writedate;
 
     private OrderStatus status;
 

@@ -4,6 +4,7 @@ import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.entity.Cart;
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.apache.ibatis.annotations.One;
 
 import javax.persistence.*;
@@ -13,12 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.FetchType.*;
+import static javax.persistence.GenerationType.*;
 
 @Entity
 @Getter @Setter @NotEmpty
 public class Product {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = IDENTITY)
+    @Column(name="product_id")
     private long product_id;
 
     @OneToMany(mappedBy = "product_id")

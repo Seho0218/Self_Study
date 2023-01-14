@@ -9,8 +9,7 @@ import com.genie.myapp.dao.AdministerDAO;
 @Service
 public class AdministerServiceImpl implements AdministerService{
 
-    @Autowired
-    AdministerDAO dao;
+    @Autowired AdministerDAO dao;
 
     @Override
     public AdministerDTO loginOk(AdministerDTO dto) {

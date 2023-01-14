@@ -15,8 +15,8 @@ import static javax.persistence.FetchType.*;
 @Getter @Setter @NotEmpty
 public class Product_like implements Serializable {
 
-    @Id @OneToOne
-    @JoinColumn(name = "product_id")
+    @Id @OneToOne(fetch = EAGER)
+    @MapsId @JoinColumn(name = "product_id")
     private Product product_id;
 
     private long like_num;
