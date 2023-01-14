@@ -2,6 +2,7 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.repository.MbtiServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +10,14 @@ import com.genie.myapp.dao.MbtiDAO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.dto.SellerProductDTO;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class MbtiServiceImpl implements MbtiService {
 	
-	@Autowired
-	MbtiDAO dao;
+	@Autowired MbtiDAO dao;
+	@Autowired MbtiServiceRepository repository;
 
 	@Override
 	public List<SellerProductDTO> getProduct(String mbti) {

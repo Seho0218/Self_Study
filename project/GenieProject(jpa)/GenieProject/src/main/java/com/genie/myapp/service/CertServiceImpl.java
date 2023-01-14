@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.repository.CertServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,13 +17,14 @@ import org.springframework.stereotype.Service;
 import com.genie.myapp.dao.CertDAO;
 
 @Service
+@Transactional
 public class CertServiceImpl implements CertService {
     
     @Autowired
 	private JavaMailSender mailSender;
 	
-	@Inject
-	CertDAO cdao;
+	@Autowired CertDAO cdao;
+	@Autowired CertServiceRepository repository;
 
 	@Override
 	public List<String> FindId(String user_email) {

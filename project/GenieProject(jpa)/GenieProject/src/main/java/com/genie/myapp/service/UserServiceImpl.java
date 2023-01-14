@@ -2,6 +2,7 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.repository.UserServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,16 @@ import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.dto.UserDTO;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    UserDAO dao;
+    @Autowired UserDAO dao;
+    @Autowired UserServiceRepository repository;
     
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    @Autowired PasswordEncoder passwordEncoder;
 
 
     @Override

@@ -3,6 +3,7 @@ package com.genie.myapp.service;
 import java.util.List;
 
 import com.genie.myapp.dto.AdminDTO;
+import com.genie.myapp.repository.AdminServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,14 @@ import com.genie.myapp.dto.PagingDTO;
 import com.genie.myapp.dto.SellerDTO;
 import com.genie.myapp.dto.UserDTO;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService {
-	@Autowired
-	AdminDAO dao;
+
+	@Autowired AdminDAO dao;
+	@Autowired AdminServiceRepository repository;
 
 	@Override
 	public List<AdminDTO> adminCategoryTag(AdminDTO DTO) {
@@ -27,6 +32,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.adminTag(dto);
 	}
 
+	@Override
 	public List<UserDTO> userAllSelect(PagingDTO pDTO) {
 		return dao.userAllSelect(pDTO);
 	}
@@ -99,6 +105,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.paymentWrite(vo);
 	}
 
+	@Override
 	public List<SellerDTO> sellerAllSelect(PagingDTO pDTO) {
 		return dao.sellerAllSelect(pDTO);
 	}

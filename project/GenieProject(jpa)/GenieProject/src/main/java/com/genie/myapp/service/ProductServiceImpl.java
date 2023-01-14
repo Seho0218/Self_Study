@@ -1,6 +1,7 @@
 package com.genie.myapp.service;
 
 import com.genie.myapp.dto.*;
+import com.genie.myapp.repository.ProductServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +10,15 @@ import java.util.Map;
 
 import com.genie.myapp.dao.ProductDAO;
 
+import javax.transaction.Transactional;
+
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService{
 
-    @Autowired
-    ProductDAO dao;
+    @Autowired ProductDAO dao;
+	@Autowired ProductServiceRepository repository;
 
 	@Override
 	public List<ProductDTO> listProduct(ProductDTO pDTO) {

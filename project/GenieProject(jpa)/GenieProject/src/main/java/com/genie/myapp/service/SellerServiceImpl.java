@@ -3,6 +3,7 @@ package com.genie.myapp.service;
 import java.util.List;
 import java.util.Map;
 
+import com.genie.myapp.repository.SellerServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,17 @@ import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.PagingDTO;
 import com.genie.myapp.dto.SellerDTO;
 
+import javax.transaction.Transactional;
+
 
 @Service
+@Transactional
 public class SellerServiceImpl implements SellerService {
 	
-	@Autowired
-	SellerDAO dao;
+	@Autowired SellerDAO dao;
+	@Autowired SellerServiceRepository repository;
 
-	@Autowired
-    PasswordEncoder passwordEncoder;
+	@Autowired PasswordEncoder passwordEncoder;
   
 // 주문목록
   @Override
