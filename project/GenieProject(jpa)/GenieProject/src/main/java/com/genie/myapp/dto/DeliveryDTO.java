@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DeliveryDTO {
 
-    private String address_num;
+    private int address_num;
     private String genie_id;
 	private String receiver_name;
     private String receiver_tel;

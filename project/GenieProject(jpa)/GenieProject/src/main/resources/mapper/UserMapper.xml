@@ -89,7 +89,7 @@
 	<select id="getOrder" resultType="OrderDTO">
 		
 		select * 
-		from myorder m
+		from order m
 		join product d
 		on m.product_id=d.product_id 
 		where m.genie_id=#{param1} order by order_writedate desc

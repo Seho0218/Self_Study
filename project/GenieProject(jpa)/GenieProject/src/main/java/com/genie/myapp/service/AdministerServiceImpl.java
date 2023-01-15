@@ -10,7 +10,7 @@ import com.genie.myapp.dao.AdministerDAO;
 import javax.transaction.Transactional;
 
 @Service
-@Transactional
+@Transactional(rollbackOn = Exception.class)
 public class AdministerServiceImpl implements AdministerService{
 
     @Autowired AdministerDAO dao;

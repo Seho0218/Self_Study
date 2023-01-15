@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.*;
 public class Address implements Serializable {
 
     @Id @GeneratedValue
-    private long address_num;
+    private int address_num;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")

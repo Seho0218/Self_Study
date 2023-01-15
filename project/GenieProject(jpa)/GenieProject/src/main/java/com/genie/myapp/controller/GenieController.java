@@ -78,7 +78,7 @@ public class GenieController{
 	public ModelAndView idCheck(String genie_id) {
 
 		//DB조회  : 아이디가 존재하는지 확인
-		int cnt = userService.idCheck(genie_id);
+		long cnt = userService.idCheck(genie_id);
 
 		mav = new ModelAndView();
 

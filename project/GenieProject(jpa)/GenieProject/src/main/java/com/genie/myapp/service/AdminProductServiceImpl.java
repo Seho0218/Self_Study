@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 public class AdminProductServiceImpl implements AdminProductService  {
 
     @Autowired AdminProductDAO dao;
-	@Autowired AdminProductService repository;
 
 	@Override
 	public List<AdminProductDTO> adminProduct(AdminProductDTO adto) {

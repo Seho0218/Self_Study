@@ -22,7 +22,7 @@ public class Product {
 
     @Id @GeneratedValue(strategy = IDENTITY)
     @Column(name="product_id")
-    private long product_id;
+    private int product_id;
 
     @OneToMany(mappedBy = "product_id")
     private List<Cart> cartList = new ArrayList<>();

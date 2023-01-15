@@ -17,7 +17,7 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name="myorder")
 @Getter @Setter @NotEmpty
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Myorder implements Serializable {
+public class Order implements Serializable {
 
     private Long order_num;
 

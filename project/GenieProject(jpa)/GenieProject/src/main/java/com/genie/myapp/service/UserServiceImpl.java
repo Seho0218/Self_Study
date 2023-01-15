@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public int idCheck(String genie_id) {
-        return dao.idCheck(genie_id);
+    public long idCheck(String genie_id) {
+        return repository.idCheck(genie_id);
     }
 
     @Override
@@ -48,12 +48,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int UserEditOk(UserDTO vo) {
-        return dao.UserEditOk(vo);
+        return repository.UserEditOk(vo);
     }
 
     @Override
     public int PwdEditOk(UserDTO vo) {
-        return dao.PwdEditOk(vo);
+        return repository.PwdEditOk(vo);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int delDelivery(int address_num, String genie_id) {
-        return dao.delDelivery(address_num, genie_id);
+        return repository.delDelivery(address_num, genie_id);
     }
 
     @Override

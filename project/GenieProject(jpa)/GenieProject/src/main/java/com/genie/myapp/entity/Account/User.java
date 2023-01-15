@@ -2,7 +2,7 @@ package com.genie.myapp.entity.Account;
 
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Cart;
-import com.genie.myapp.entity.Myorder;
+import com.genie.myapp.entity.Order;
 import com.genie.myapp.entity.OrderStatus;
 import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.Product_like;
@@ -42,7 +42,7 @@ public class User implements Serializable {
     private List<Cart> carts = new ArrayList<>();
 
     @OneToMany(mappedBy = "genie_id")
-    private List<Myorder> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     private String user_tel;
 

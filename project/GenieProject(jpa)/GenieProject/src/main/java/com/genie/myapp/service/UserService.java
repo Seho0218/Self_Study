@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
 	
 	//아이디 중복검사
-	public int idCheck(String genie_id);
+	public long idCheck(String genie_id);
 	//어카운트 등록
 	public int AccountWrite(AccountDTO avo);
 	//회원가입
