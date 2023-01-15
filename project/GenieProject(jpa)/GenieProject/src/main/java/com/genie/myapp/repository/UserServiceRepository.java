@@ -1,16 +1,10 @@
 package com.genie.myapp.repository;
 
-import com.genie.myapp.condition.LoginRequirement;
-import com.genie.myapp.dto.AddressDTO;
-import com.genie.myapp.dto.OrderDTO;
-import com.genie.myapp.dto.QAddressDTO;
-import com.genie.myapp.dto.UserDTO;
-import com.genie.myapp.entity.Account.QAccount;
-import com.genie.myapp.entity.Account.QUser;
+import com.genie.myapp.dto.*;
+import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
-import com.genie.myapp.entity.Product.QProduct;
-import com.genie.myapp.entity.QOrder;
-import com.querydsl.core.annotations.QueryProjection;
+import com.genie.myapp.entity.Address;
+import com.genie.myapp.entity.Order;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -35,7 +29,6 @@ public class UserServiceRepository {
     private final JPAQueryFactory queryFactory;
 
 
-
 //    public UserDTO getUser(String genie_id) {
 //        return queryFactory
 //                .select(new QUser(
@@ -49,6 +42,30 @@ public class UserServiceRepository {
 //                .fetch();
 //    }
 
+    public void AccountWrite(Account adto) {
+        em.persist(adto);
+    }
+
+    public void UserWrite(User dto) {
+        em.persist(dto);
+    }
+
+    public List<Order> getOrder(String genie_id) {
+
+        return queryFactory
+                .selectFrom(order)
+                .join(order).on(product.product_id.eq(order.product_id))
+                .where(account.genie_id.eq(genie_id))
+                .orderBy(product.product_like.desc())
+                .fetch();
+    }
+
+    public List<Address> getDeliveryList(String genie_id) {
+        return queryFactory
+                .selectFrom(address)
+                .where(account.genie_id.eq(genie_id))
+                .fetch();
+    }
 
     public long idCheck(String genie_id){
         return queryFactory

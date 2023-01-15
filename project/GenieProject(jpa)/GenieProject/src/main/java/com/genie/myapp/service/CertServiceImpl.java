@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.repository.CertServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -20,19 +20,23 @@ import com.genie.myapp.dao.CertDAO;
 @Transactional
 public class CertServiceImpl implements CertService {
     
-    @Autowired
-	private JavaMailSender mailSender;
-	
+    @Autowired private JavaMailSender mailSender;
 	@Autowired CertDAO cdao;
 	@Autowired CertServiceRepository repository;
 
+
 	@Override
-	public List<String> FindId(String user_email) {
-		return cdao.FindId(user_email);
+	public List<Account> FindId(String user_email) {
+		return repository.FindId(user_email);
 	}
-	
+
 	@Override
-	public void sendUserId(String user_email, List<String> genie_id) {
+	public int PwdEditOk(UserDTO dto) {
+		return cdao.PwdEditOk(dto);
+	}
+
+	@Override
+	public void sendUserId(String user_email, List<Account> genie_id) {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(user_email);
 		simpleMailMessage.setSubject("아이디 찾기");
@@ -40,25 +44,12 @@ public class CertServiceImpl implements CertService {
 		StringBuffer sb = new StringBuffer();
 		sb.append("가입하신 아이디는");
 		sb.append(System.lineSeparator());
-		
-		for(int i=0;i<genie_id.size()-1;i++) {
-			sb.append(genie_id.get(i));
-			sb.append(System.lineSeparator());
-		}
-		sb.append(genie_id.get(genie_id.size()-1)).append("입니다");
+		sb.append(genie_id.get(0).getGenie_id()).append("입니다");
 		
 		simpleMailMessage.setText(sb.toString());
-		
-		
-		new Thread(new Runnable() {
-			public void run() {
-				mailSender.send(simpleMailMessage);
-			}
 
-		}).start();
+		new Thread(() -> mailSender.send(simpleMailMessage)).start();
 	}
-
-
 
 //////////////////////////////////////////////////////////////////////
 
@@ -72,17 +63,13 @@ public class CertServiceImpl implements CertService {
 		return cdao.overlapCheck(value, valueType);
 	}
 
-
 	@Override
     public boolean emailCheck(String genie_id, String user_email) {
         Map<String, Object> map = new HashMap<>();
         map.put("genie_id", genie_id);
         map.put("user_email", user_email);
         String result = cdao.emailCheck(map);
-        if("1".equals(result)) {
-            return true;
-        }
-        return false;
+		return "1".equals(result);
 	}
 
 	@Override
@@ -100,13 +87,5 @@ public class CertServiceImpl implements CertService {
 			}
 		}).start();	
 	}
-
-	@Override
-	public int PwdEditOk(UserDTO vo) {
-		return cdao.PwdEditOk(vo);
-	}
-
-
-
 
 }

@@ -6,6 +6,7 @@ import com.genie.myapp.entity.Order;
 import com.genie.myapp.entity.OrderStatus;
 import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.Product_like;
+import com.genie.myapp.entity.Product.Reply_product;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,6 +44,9 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "genie_id")
     private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "genie_id")
+    private List<Reply_product> replyProducts = new ArrayList<>();
 
     private String user_tel;
 

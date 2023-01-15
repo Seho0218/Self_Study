@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
+import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -91,7 +93,7 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserDTO vo, AccountDTO avo) {
+	public ResponseEntity<String> UserWrite(User vo, Account avo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();

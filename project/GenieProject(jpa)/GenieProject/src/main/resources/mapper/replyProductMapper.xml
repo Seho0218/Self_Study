@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.genie.myapp.dao.ReplyProductDAO">
+
 	<select id="replyProductList" resultType="ReplyProductDTO">
 		select genie_id, reply_no, product_id, comment, rating, writedate 
 		from reply_product

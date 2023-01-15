@@ -9,12 +9,13 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 import static javax.persistence.FetchType.*;
+import static javax.persistence.GenerationType.*;
 
 @Entity
 @Getter @Setter @NotEmpty
 public class Address implements Serializable {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = IDENTITY)
     private int address_num;
 
     @ManyToOne(fetch = LAZY)

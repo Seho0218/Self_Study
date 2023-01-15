@@ -4,11 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "com.genie.myapp.dao.CertDAO">
-	<select id="FindId" resultType="String">
-    	select genie_id
-    	from user
-    	where user_email=#{user_email} 
-	</select>
 
 	<select id="overlapCheck" resultType="int">
 
@@ -22,19 +17,11 @@
 		select 1 result 
     	from dual 
     	where exists(
-        select 1 
-        from user u 
-        where u.genie_id=#{genie_id} and u.user_email=#{user_email} 
+			select 1
+			from user u
+			where u.genie_id=#{genie_id} and u.user_email=#{user_email}
     	)
 
 	</select>
-
-	<update id ="PwdEditOk">
-
-		update account  
-		set genie_pwd=#{genie_pwd}  
-		where genie_id=#{genie_id}
-
-	</update>
 
 </mapper>

@@ -27,6 +27,9 @@ public class Product {
     @OneToMany(mappedBy = "product_id")
     private List<Cart> cartList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "product_id")
+    private List<Reply_product> replyProducts = new ArrayList<>();
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
     private Seller genie_id;

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.entity.Address;
+import com.genie.myapp.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -104,7 +106,7 @@ public class UserController {
 
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO vo = userService.getUser(genie_id);
-		List<OrderDTO> orderList =userService.getOrder(genie_id);
+		List<Order> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
@@ -120,7 +122,7 @@ public class UserController {
 		
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO vo = userService.getUser(genie_id);
-		List<DeliveryDTO> dlist = userService.getDeliveryList(genie_id);	
+		List<Address> dlist = userService.getDeliveryList(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("vo", vo);
@@ -188,7 +190,7 @@ public class UserController {
 	public ModelAndView addressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		List<DeliveryDTO> dlist=userService.getDeliveryList(genie_id);
+		List<Address> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
 		mav.addObject("dlist", dlist);
@@ -204,7 +206,7 @@ public class UserController {
 
 		String genie_id=(String)session.getAttribute("logId");
 		UserDTO vo=userService.getUser(genie_id);
-		List<DeliveryDTO> dlist=userService.getDeliveryList(genie_id);
+		List<Address> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
 		mav.addObject("vo", vo);

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.entity.Account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -44,12 +45,12 @@ public class CertController {
 	// 메일로 아이디 보내기
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String user_email){
-		List<String> genie_id =CertService.FindId(user_email);
+		List<Account> genie_id =CertService.FindId(user_email);
 	
 		if(genie_id.size() != 0) {
 			CertService.sendUserId(user_email, genie_id);
 		}
-		return new ResponseEntity<Object>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	///////////////////////////////////////////////////////
@@ -110,7 +111,7 @@ public class CertController {
 
 		return new ResponseEntity<Object>(genie_id, HttpStatus.OK);
 	}
-	
+
 
 	// 인증번호 보내기
 	@PostMapping("authNum")

@@ -32,12 +32,12 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 
 	@Override
 	public int replyProductEdit(ReplyProductDTO dto) {
-		return DAO.replyProductEdit(dto);
+		return repository.replyProductEdit(dto);
 	}
 
 	@Override
 	public int replyProductDelete(int reply_no, String genie_id) {
-		return DAO.replyProductDelete(reply_no, genie_id);
+		return repository.replyProductDelete(reply_no, genie_id);
 	}
 
 	@Override
@@ -56,16 +56,13 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 	}
 
 	@Override
-	public int likeHitMinus(LikeDTO dto) {
-		return DAO.likeHitMinus(dto);
+	public int likeHitPlus(LikeDTO dto) {
+		return repository.likeHitPlus(dto);
 	}
 
 	@Override
-	public int likeHitPlus(LikeDTO dto) {
-		return DAO.likeHitPlus(dto);
+	public int likeHitMinus(LikeDTO dto) {
+		return repository.likeHitMinus(dto);
 	}
-
-	
-
 
 }

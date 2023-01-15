@@ -2,15 +2,16 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.User;
+import com.genie.myapp.entity.Address;
+import com.genie.myapp.entity.Order;
 import com.genie.myapp.repository.UserServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
-import com.genie.myapp.dto.AccountDTO;
-import com.genie.myapp.dto.DeliveryDTO;
-import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.dto.UserDTO;
 
@@ -32,13 +33,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int UserWrite(UserDTO vo) {
-        return dao.UserWrite(vo);
+    public String AccountWrite(Account adto) {
+        repository.AccountWrite(adto);
+        return adto.getGenie_id();
     }
 
     @Override
-    public UserDTO loginOk(UserDTO vo) {
-        return dao.loginOk(vo);
+    public Account UserWrite(User dto) {
+        repository.UserWrite(dto);
+        return dto.getGenie_id();
+    }
+
+    @Override
+    public UserDTO loginOk(UserDTO dto) {
+        return dao.loginOk(dto);
     }
 
     @Override
@@ -47,32 +55,28 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int UserEditOk(UserDTO vo) {
-        return repository.UserEditOk(vo);
+    public int UserEditOk(UserDTO dto) {
+        return repository.UserEditOk(dto);
     }
 
     @Override
-    public int PwdEditOk(UserDTO vo) {
-        return repository.PwdEditOk(vo);
+    public int PwdEditOk(UserDTO dto) {
+        return repository.PwdEditOk(dto);
     }
 
     @Override
-    public int addDelivery(UserDTO vo) {
-        return dao.addDelivery(vo);
-    }
-    
-    @Override
-    public int Delivery(UserDTO vo) {
-        return dao.Delivery(vo);
-    } 
-    @Override
-    public int AccountWrite(AccountDTO avo) {
-       return dao.AccountWrite(avo);
+    public int addDelivery(UserDTO dto) {
+        return dao.addDelivery(dto);
     }
 
     @Override
-    public List<DeliveryDTO> getDeliveryList(String genie_id) {
-        return dao.getDeliveryList(genie_id);
+    public int Delivery(UserDTO dto) {
+        return dao.Delivery(dto);
+    }
+
+    @Override
+    public List<Address> getDeliveryList(String genie_id) {
+        return repository.getDeliveryList(genie_id);
     }
 
     @Override
@@ -81,8 +85,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<OrderDTO> getOrder(String genie_id) {
-        return dao.getOrder(genie_id);
+    public List<Order> getOrder(String genie_id) {
+        return repository.getOrder(genie_id);
     }
 
     @Override
