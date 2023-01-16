@@ -93,7 +93,7 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(User vo, Account avo) {
+	public ResponseEntity<String> UserWrite(UserDTO vo, AccountDTO avo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();

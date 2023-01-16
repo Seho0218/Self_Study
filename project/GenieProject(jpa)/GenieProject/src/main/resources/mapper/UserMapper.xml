@@ -27,7 +27,7 @@
     <insert id = "UserWrite">	
 
 		insert into user(genie_id, user_name, user_tel, user_email, user_gender) 
-		values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email},  #{user_gender})
+		values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email}, #{user_gender})
 
 	</insert>
 
@@ -49,25 +49,8 @@
 		where genie_id=#{genie_id}
 
 	</select>
-	
-    <update id ="UserEditOk">
 
-		update user 
-		set user_tel=#{user_tel}, user_email=#{user_email} 
-		where genie_id=#{genie_id}
 
-	</update>
-
-	<!-- 주문정보 -->
-	<select id="getOrder" resultType="OrderDTO">
-
-		select *
-		from myorder m
-		join product d
-		on m.product_id=d.product_id
-		where m.genie_id=#{param1} order by order_writedate desc
-
-	</select>
 
 	<!-- 찜한 상품 리스트-->
 	<select id="getLikeList" resultType="ProductDTO">

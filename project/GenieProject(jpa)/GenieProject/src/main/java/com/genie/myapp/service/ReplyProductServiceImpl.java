@@ -52,7 +52,7 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 
 	@Override
 	public int likeDelete(LikeDTO dto) {
-		return DAO.likeDelete(dto);
+		return repository.likeDelete(dto);
 	}
 
 	@Override

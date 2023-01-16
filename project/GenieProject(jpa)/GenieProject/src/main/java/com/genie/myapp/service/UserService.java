@@ -1,8 +1,6 @@
 package com.genie.myapp.service;
 
 import com.genie.myapp.dto.*;
-import com.genie.myapp.entity.Account.Account;
-import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Order;
 
@@ -14,9 +12,9 @@ public interface UserService {
 	//아이디 중복검사
 	public long idCheck(String genie_id);
 	//어카운트 등록
-	public String AccountWrite(Account avo);
+	public String AccountWrite(AccountDTO avo);
 	//회원가입
-	public Account UserWrite(User vo);
+	public String UserWrite(UserDTO vo);
 
 	//로그인
 	public UserDTO loginOk(UserDTO vo);

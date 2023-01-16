@@ -1,9 +1,11 @@
 package com.genie.myapp.repository;
 
 import com.genie.myapp.dto.LikeDTO;
+import com.genie.myapp.dto.QReplyProductDTO;
 import com.genie.myapp.dto.ReplyProductDTO;
 import com.genie.myapp.entity.Account.QAccount;
 import com.genie.myapp.entity.Product.QProduct;
+import com.genie.myapp.entity.Product.QProduct_like;
 import com.genie.myapp.entity.Product.QReply_product;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import java.util.List;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Product.QProduct.*;
@@ -60,6 +64,15 @@ public class ReplyProductServiceRepository {
                 .set(product.product_like, product.product_like.add(-1))
                 .where(product.product_id.eq(dto.getProduct_id()))
                 .execute();
+    }
 
+    public int likeDelete(LikeDTO dto) {
+        return (int)queryFactory
+                .delete(QProduct_like.product_like)
+                .where(
+                        account.genie_id.eq(dto.getGenie_id()),
+                        product.product_id.eq(dto.getProduct_id())
+                )
+                .execute();
     }
 }

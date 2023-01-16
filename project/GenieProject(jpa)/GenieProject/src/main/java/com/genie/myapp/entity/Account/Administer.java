@@ -14,9 +14,12 @@ import static javax.persistence.FetchType.*;
 @Getter @Setter @NotEmpty
 public class Administer implements Serializable {
 
-    @Id @ManyToOne(fetch = LAZY)
+    @Id
+    private String genie_id;
+
+    @MapsId @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
-    private Account genie_id;
+    private Account account;
 
    @Column(name= "administer_name")
     private String name;

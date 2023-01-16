@@ -45,7 +45,7 @@ public class CertController {
 	// 메일로 아이디 보내기
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String user_email){
-		List<Account> genie_id =CertService.FindId(user_email);
+		List<String> genie_id =CertService.FindId(user_email);
 	
 		if(genie_id.size() != 0) {
 			CertService.sendUserId(user_email, genie_id);

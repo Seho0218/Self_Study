@@ -7,7 +7,9 @@ import com.genie.myapp.entity.OrderStatus;
 import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.Product_like;
 import com.genie.myapp.entity.Product.Reply_product;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -22,11 +24,15 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter @Setter @NotEmpty
+@NoArgsConstructor
 public class User implements Serializable {
 
-    @Id @ManyToOne(fetch = LAZY)
+    @Id
+    private String genie_id;
+
+    @MapsId @ManyToOne(fetch = LAZY)
     @JoinColumn(name="genie_id")
-    private Account genie_id;
+    private Account account;
 
     private String user_name;
 
@@ -59,6 +65,8 @@ public class User implements Serializable {
     @Enumerated(STRING)
     private OrderStatus status;
 
-
-
+    public void setUser(Account account) {
+        this.account = account;
+        account.getUser().add(this);
+    }
 }

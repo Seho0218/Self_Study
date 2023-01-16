@@ -3,6 +3,7 @@ package com.genie.myapp.entity.Account;
 import com.genie.myapp.entity.Product.Product;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -19,9 +20,12 @@ import static javax.persistence.FetchType.LAZY;
 @NotEmpty
 public class Seller implements Serializable {
 
-    @Id @ManyToOne(fetch = LAZY)
+    @Id
+    private String genie_id;
+
+    @MapsId @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
-    private Account genie_id;
+    private Account acount;
 
     @OneToMany(mappedBy = "genie_id")
     private List<Product> productList = new ArrayList<>();

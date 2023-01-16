@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import com.genie.myapp.dto.UserDTO;
-import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.repository.CertServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -26,7 +25,7 @@ public class CertServiceImpl implements CertService {
 
 
 	@Override
-	public List<Account> FindId(String user_email) {
+	public List<String> FindId(String user_email) {
 		return repository.FindId(user_email);
 	}
 
@@ -36,7 +35,7 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public void sendUserId(String user_email, List<Account> genie_id) {
+	public void sendUserId(String user_email, List<String> genie_id) {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(user_email);
 		simpleMailMessage.setSubject("아이디 찾기");
@@ -44,7 +43,7 @@ public class CertServiceImpl implements CertService {
 		StringBuffer sb = new StringBuffer();
 		sb.append("가입하신 아이디는");
 		sb.append(System.lineSeparator());
-		sb.append(genie_id.get(0).getGenie_id()).append("입니다");
+		sb.append(genie_id).append("입니다");//genie_id.get(0)
 		
 		simpleMailMessage.setText(sb.toString());
 

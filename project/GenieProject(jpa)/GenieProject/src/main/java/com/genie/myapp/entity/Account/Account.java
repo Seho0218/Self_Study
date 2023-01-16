@@ -2,18 +2,17 @@ package com.genie.myapp.entity.Account;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "account")
 @Getter @Setter
-@NotEmpty
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Account {
 
     @Id
@@ -25,13 +24,13 @@ public class Account {
     @ColumnDefault("1")
     private boolean withdrawal;
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genie_id", cascade = ALL)
     private List<User> user = new ArrayList<>();
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genie_id", cascade = ALL)
     private List<Administer> administers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genie_id", cascade = ALL)
     private List<Seller> sellers = new ArrayList<>();
 
 

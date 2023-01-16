@@ -2,8 +2,8 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.entity.Account.Account;
-import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Order;
 import com.genie.myapp.repository.UserServiceRepository;
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
 
     @Autowired UserDAO dao;
     @Autowired UserServiceRepository repository;
-    
+
     @Autowired PasswordEncoder passwordEncoder;
 
 
@@ -33,15 +33,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String AccountWrite(Account adto) {
+    public String AccountWrite(AccountDTO adto) {
+        Account account = new Account();
         repository.AccountWrite(adto);
         return adto.getGenie_id();
     }
 
     @Override
-    public Account UserWrite(User dto) {
+    public String UserWrite(UserDTO dto) {
         repository.UserWrite(dto);
-        return dto.getGenie_id();
+        return dto.getUser_email();
     }
 
     @Override
