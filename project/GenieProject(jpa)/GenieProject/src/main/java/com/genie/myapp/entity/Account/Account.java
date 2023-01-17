@@ -17,7 +17,6 @@ public class Account {
 
     @Id
     private String genie_id;
-
     private String genie_pwd;
     private String ROLE;
 

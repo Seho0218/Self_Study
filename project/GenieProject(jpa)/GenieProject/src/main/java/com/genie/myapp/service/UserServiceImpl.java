@@ -2,8 +2,8 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Order;
 import com.genie.myapp.repository.UserServiceRepository;
@@ -33,16 +33,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String AccountWrite(AccountDTO adto) {
-        Account account = new Account();
+    public String AccountWrite(Account adto) {
         repository.AccountWrite(adto);
         return adto.getGenie_id();
     }
 
     @Override
-    public String UserWrite(UserDTO dto) {
+    public String UserWrite(User dto) {
         repository.UserWrite(dto);
-        return dto.getUser_email();
+        return dto.getGenie_id();
     }
 
     @Override

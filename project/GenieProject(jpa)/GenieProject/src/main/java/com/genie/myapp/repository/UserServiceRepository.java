@@ -1,6 +1,8 @@
 package com.genie.myapp.repository;
 
 import com.genie.myapp.dto.*;
+import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Order;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -40,15 +42,12 @@ public class UserServiceRepository {
 //                .fetch();
 //    }
 
-    public void AccountWrite(AccountDTO adto) {
+    public void AccountWrite(Account adto) {
         em.persist(adto);
-    }
-
-    public void UserWrite(UserDTO dto) {
-
-        em.persist(dto);
         em.flush();
-        em.clear();
+    }
+    public void UserWrite(User dto) {
+        em.persist(dto);
     }
 
     public List<Order> getOrder(String genie_id) {

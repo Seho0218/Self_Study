@@ -7,7 +7,6 @@ import com.genie.myapp.entity.OrderStatus;
 import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.Product_like;
 import com.genie.myapp.entity.Product.Reply_product;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

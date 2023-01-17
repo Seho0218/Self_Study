@@ -93,21 +93,31 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserDTO vo, AccountDTO avo) {
+	public ResponseEntity<String> UserWrite(UserDTO udto, AccountDTO adto) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=utf-8");
 		TransactionStatus status= transactionManager.getTransaction(definition);
-		
-		System.out.println("avo : " + avo.toString());
-		
+
+		Account account = new Account();
+		account.setGenie_id(adto.getGenie_id());
+		account.setGenie_pwd(adto.getGenie_pwd());
+		account.setROLE(adto.getROLE());
+
+		User user = new User();
+		user.setGenie_id(udto.getGenie_id());
+		user.setUser_name(udto.getUser_name());
+		user.setUser_tel(udto.getUser_tel());
+		user.setUser_email(udto.getUser_email());
+		user.setUser_gender(udto.getUser_gender());
+
 		try {//회원가입 성공
-			String enPw=passwordEncoder.encode(avo.getGenie_pwd());
-			avo.setGenie_pwd(enPw);
-			userService.AccountWrite(avo);
-			userService.UserWrite(vo);
+			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
+			adto.setGenie_pwd(enPw);
+			userService.AccountWrite(account);
+			userService.UserWrite(user);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
