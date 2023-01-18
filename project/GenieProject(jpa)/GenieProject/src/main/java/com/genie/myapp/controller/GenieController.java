@@ -93,30 +93,31 @@ public class GenieController{
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserDTO udto, AccountDTO adto) {
+	public ResponseEntity<String> UserWrite(AccountDTO adto, UserDTO udto) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=utf-8");
-		TransactionStatus status= transactionManager.getTransaction(definition);
+//		TransactionStatus status= transactionManager.getTransaction(definition);
 
-		Account account = new Account();
-		account.setGenie_id(adto.getGenie_id());
-		account.setGenie_pwd(adto.getGenie_pwd());
-		account.setROLE(adto.getROLE());
-
-		User user = new User();
-		user.setGenie_id(udto.getGenie_id());
-		user.setUser_name(udto.getUser_name());
-		user.setUser_tel(udto.getUser_tel());
-		user.setUser_email(udto.getUser_email());
-		user.setUser_gender(udto.getUser_gender());
-
+		System.out.println("adto = " + adto + ", udto = " + udto);
 		try {//회원가입 성공
 			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
-			adto.setGenie_pwd(enPw);
-			userService.AccountWrite(account);
+
+
+			User user = new User();
+			user.setGenie_id(udto.getGenie_id());
+			user.setGenie_pwd(enPw);
+			user.setWithdrawal(1);
+			user.setROLE(adto.getROLE());
+
+			user.setUser_name(udto.getUser_name());
+			user.setUser_tel(udto.getUser_tel());
+			user.setUser_email(udto.getUser_email());
+			user.setUser_gender(udto.getUser_gender());
+
+			//userService.AccountWrite(account);
 			userService.UserWrite(user);
 
 			String msg = "<script>";
@@ -125,7 +126,8 @@ public class GenieController{
 			msg += "</script>";
 			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
 
-			transactionManager.commit(status);
+//			transactionManager.commit(status);
+
 
 		}catch(Exception e) {//회원등록 실패
 
@@ -134,8 +136,8 @@ public class GenieController{
 			msg += "history.back()";
 			msg += "</script>";
 			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
-			
-			transactionManager.rollback(status);
+
+//			transactionManager.rollback(status);
 			e.printStackTrace();
 			
 		}

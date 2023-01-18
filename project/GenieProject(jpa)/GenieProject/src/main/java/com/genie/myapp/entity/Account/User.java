@@ -22,16 +22,10 @@ import static javax.persistence.EnumType.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Getter @Setter @NotEmpty
+@Getter @Setter
 @NoArgsConstructor
-public class User implements Serializable {
-
-    @Id
-    private String genie_id;
-
-    @MapsId @ManyToOne(fetch = LAZY)
-    @JoinColumn(name="genie_id")
-    private Account account;
+@DiscriminatorValue("USER")
+public class User extends Account{
 
     private String user_name;
 
@@ -64,8 +58,8 @@ public class User implements Serializable {
     @Enumerated(STRING)
     private OrderStatus status;
 
-    public void setUser(Account account) {
-        this.account = account;
-        account.getUser().add(this);
-    }
+//    public void setUser(Account account) {
+//        this.account = account;
+//        account.getUser().add(this);
+//    }
 }

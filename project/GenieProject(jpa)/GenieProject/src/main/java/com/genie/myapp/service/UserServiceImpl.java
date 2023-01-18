@@ -6,6 +6,8 @@ import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Order;
+import com.genie.myapp.repository.jpa.AccountRepository;
+import com.genie.myapp.repository.jpa.UserRepository;
 import com.genie.myapp.repository.UserServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +24,8 @@ import javax.transaction.Transactional;
 public class UserServiceImpl implements UserService{
 
     @Autowired UserDAO dao;
+    @Autowired AccountRepository accountRepository;
+    @Autowired UserRepository userRepository;
     @Autowired UserServiceRepository repository;
 
     @Autowired PasswordEncoder passwordEncoder;
@@ -33,15 +37,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String AccountWrite(Account adto) {
-        repository.AccountWrite(adto);
-        return adto.getGenie_id();
+    public Account AccountWrite(Account account) {
+        return accountRepository.save(account);
     }
 
     @Override
-    public String UserWrite(User dto) {
-        repository.UserWrite(dto);
-        return dto.getGenie_id();
+    public User UserWrite(User user) {
+        return userRepository.save(user);
     }
 
     @Override

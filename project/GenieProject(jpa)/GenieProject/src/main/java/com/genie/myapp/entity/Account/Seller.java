@@ -17,15 +17,9 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter @Setter
-@NotEmpty
-public class Seller implements Serializable {
+@NotEmpty @DiscriminatorValue("Seller")
+public class Seller extends Account{
 
-    @Id
-    private String genie_id;
-
-    @MapsId @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
-    private Account acount;
 
     @OneToMany(mappedBy = "genie_id")
     private List<Product> productList = new ArrayList<>();

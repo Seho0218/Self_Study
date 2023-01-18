@@ -8,29 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.*;
+import static javax.persistence.InheritanceType.*;
 
 @Entity
-@Table(name = "account")
 @Getter @Setter
 @NoArgsConstructor
-public class Account {
+@DiscriminatorColumn
+@Inheritance(strategy = JOINED)
+public abstract class Account {
 
     @Id
     private String genie_id;
+
     private String genie_pwd;
+    private int withdrawal;
     private String ROLE;
 
-    @ColumnDefault("1")
-    private boolean withdrawal;
-
-    @OneToMany(mappedBy = "genie_id", cascade = ALL)
-    private List<User> user = new ArrayList<>();
-
-    @OneToMany(mappedBy = "genie_id", cascade = ALL)
-    private List<Administer> administers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "genie_id", cascade = ALL)
-    private List<Seller> sellers = new ArrayList<>();
+//    @OneToOne(mappedBy = "genie_id", cascade = ALL)
+//    private User user;
+//
+//    @OneToOne(mappedBy = "genie_id", cascade = ALL)
+//    private Administer administers;
+//
+//    @OneToOne(mappedBy = "genie_id", cascade = ALL)
+//    private Seller sellers;
 
 
 }

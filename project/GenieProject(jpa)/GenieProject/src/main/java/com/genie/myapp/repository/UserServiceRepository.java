@@ -42,12 +42,12 @@ public class UserServiceRepository {
 //                .fetch();
 //    }
 
-    public void AccountWrite(Account adto) {
-        em.persist(adto);
+    public void AccountWrite(Account account) {
+        em.persist(account);
         em.flush();
     }
-    public void UserWrite(User dto) {
-        em.persist(dto);
+    public void UserWrite(User user) {
+        em.persist(user);
     }
 
     public List<Order> getOrder(String genie_id) {

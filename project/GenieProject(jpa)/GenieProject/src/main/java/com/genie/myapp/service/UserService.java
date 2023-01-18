@@ -15,9 +15,9 @@ public interface UserService {
 	public long idCheck(String genie_id);
 
 	//어카운트 등록
-	public String AccountWrite(Account avo);
+	public Account AccountWrite(Account account);
 	//회원가입
-	public String UserWrite(User vo);
+	public User UserWrite(User user);
 
 	//로그인
 	public UserDTO loginOk(UserDTO vo);

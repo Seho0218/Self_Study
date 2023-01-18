@@ -12,16 +12,10 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter @NotEmpty
-public class Administer implements Serializable {
+@DiscriminatorValue("Admin")
+public class Administer extends Account{
 
-    @Id
-    private String genie_id;
-
-    @MapsId @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
-    private Account account;
-
-   @Column(name= "administer_name")
+    @Column(name= "administer_name")
     private String name;
 
     @Column(name = "administer_phone")
