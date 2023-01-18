@@ -2,6 +2,7 @@ package com.genie.myapp.entity.Account;
 
 import com.genie.myapp.entity.Product.Product;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
@@ -17,9 +18,9 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter @Setter
-@NotEmpty @DiscriminatorValue("Seller")
+@NoArgsConstructor
+@DiscriminatorValue("Seller")
 public class Seller extends Account{
-
 
     @OneToMany(mappedBy = "genie_id")
     private List<Product> productList = new ArrayList<>();
@@ -32,9 +33,7 @@ public class Seller extends Account{
     private String seller_address;
     private String seller_website;
     private LocalDateTime writedate;
-    private boolean seller_status;
+    private String seller_status;
     private LocalDateTime approval_date;
-
-
 
 }

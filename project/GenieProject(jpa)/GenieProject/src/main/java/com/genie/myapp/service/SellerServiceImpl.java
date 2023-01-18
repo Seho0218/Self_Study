@@ -3,15 +3,16 @@ package com.genie.myapp.service;
 import java.util.List;
 import java.util.Map;
 
+import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.repository.SellerServiceRepository;
+import com.genie.myapp.repository.jpa.AccountRepository;
+import com.genie.myapp.repository.jpa.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
 
 import com.genie.myapp.dto.SellerProductDTO;
-import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.dto.InquiryDTO;
 import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.PagingDTO;
@@ -19,42 +20,36 @@ import com.genie.myapp.dto.SellerDTO;
 
 import javax.transaction.Transactional;
 
-
 @Service
 @Transactional
 public class SellerServiceImpl implements SellerService {
 	
 	@Autowired SellerDAO dao;
-	@Autowired SellerServiceRepository repository;
 
-	@Autowired PasswordEncoder passwordEncoder;
-  
-// 주문목록
-  @Override
+	@Autowired AccountRepository accountRepository;
+	@Autowired SellerRepository sellerRepository;
+	@Autowired SellerServiceRepository sellerServiceRepository;
+
+
+	// 주문목록
+	@Override
 	public List<OrderDTO> sellerOrder(OrderDTO vo, String seller_id) {
 		return dao.sellerOrder(vo, seller_id);
 	}
 
-  @Override
+  	@Override
 	public int idCheck(String genie_id) {
 		return dao.idCheck(genie_id);
 	}
 
 	@Override
-	public int sellerWrite(SellerDTO vo) {
-		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
-        vo.setGenie_pwd(enPw);
-        return dao.sellerWrite(vo);
+	public Seller sellerWrite(Seller seller) {
+		return sellerRepository.save(seller);
 	}
 
 	@Override
 	public int productWrite(SellerProductDTO vo) {
 		return dao.productWrite(vo);
-	}
-
-	@Override
-	public int AccountWrite(AccountDTO avo) {
-		return dao.AccountWrite(avo);
 	}
 
 	@Override

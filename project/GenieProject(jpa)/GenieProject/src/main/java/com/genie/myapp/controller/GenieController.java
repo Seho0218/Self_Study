@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.entity.Account.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -117,7 +118,6 @@ public class GenieController{
 			user.setUser_email(udto.getUser_email());
 			user.setUser_gender(udto.getUser_gender());
 
-			//userService.AccountWrite(account);
 			userService.UserWrite(user);
 
 			String msg = "<script>";
@@ -147,29 +147,42 @@ public class GenieController{
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(SellerDTO svo, AccountDTO avo){
+	public ResponseEntity<String> sellerWrite(AccountDTO adto, SellerDTO sdto){
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=utf-8");
-		TransactionStatus status= transactionManager.getTransaction(definition);
-		
+
+		System.out.println("adto = " + adto + ", sdto = " + sdto);
 		try {//회원가입성공
-			String enPw=passwordEncoder.encode(avo.getGenie_pwd());
-			avo.setGenie_pwd(enPw);
-			sellerService.AccountWrite(avo);
-			sellerService.sellerWrite(svo);
-			
-			
+			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
+
+			Seller seller = new Seller();
+			seller.setGenie_id(sdto.getGenie_id());
+			seller.setGenie_pwd(enPw);
+			seller.setWithdrawal(1);
+			seller.setROLE(adto.getROLE());
+
+			seller.setCompany_name(sdto.getCompany_name());
+			seller.setCeo_name(sdto.getCeo_name());
+			seller.setSeller_tel(sdto.getSeller_tel());
+			seller.setSeller_email(sdto.getSeller_email());
+			seller.setSeller_website(sdto.getSeller_website());
+			seller.setSeller_reg_no(sdto.getSeller_reg_no());
+			seller.setSeller_address(sdto.getSeller_address());
+			seller.setSeller_status(sdto.getSeller_status());
+
+			sellerService.sellerWrite(seller);
+
+
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
 			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
 
-			transactionManager.commit(status);
-			
+
 		}catch(Exception e) {//회원가입실패
 			
 			String msg = "<script>";
@@ -178,7 +191,6 @@ public class GenieController{
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
 			
-			transactionManager.rollback(status);
 			e.printStackTrace();
 			
 		}

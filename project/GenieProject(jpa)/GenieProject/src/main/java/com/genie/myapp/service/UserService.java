@@ -14,8 +14,6 @@ public interface UserService {
 	//아이디 중복검사
 	public long idCheck(String genie_id);
 
-	//어카운트 등록
-	public Account AccountWrite(Account account);
 	//회원가입
 	public User UserWrite(User user);
 

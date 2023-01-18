@@ -1,6 +1,7 @@
 package com.genie.myapp.entity.Account;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,7 +12,8 @@ import java.time.LocalDateTime;
 import static javax.persistence.FetchType.*;
 
 @Entity
-@Getter @Setter @NotEmpty
+@Getter @Setter
+@NoArgsConstructor
 @DiscriminatorValue("Admin")
 public class Administer extends Account{
 

@@ -1,5 +1,8 @@
 package com.genie.myapp.repository;
 
+import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.Seller;
+import com.genie.myapp.entity.Account.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -15,4 +18,5 @@ public class SellerServiceRepository {
     private final EntityManager em;
 
     private final JPAQueryFactory queryFactory;
+
 }

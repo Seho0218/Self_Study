@@ -1,6 +1,7 @@
 package com.genie.myapp.entity.Account;
 
 import lombok.*;
+import org.apache.ibatis.annotations.TypeDiscriminator;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -23,15 +24,5 @@ public abstract class Account {
     private String genie_pwd;
     private int withdrawal;
     private String ROLE;
-
-//    @OneToOne(mappedBy = "genie_id", cascade = ALL)
-//    private User user;
-//
-//    @OneToOne(mappedBy = "genie_id", cascade = ALL)
-//    private Administer administers;
-//
-//    @OneToOne(mappedBy = "genie_id", cascade = ALL)
-//    private Seller sellers;
-
 
 }

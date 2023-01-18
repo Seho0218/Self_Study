@@ -28,14 +28,7 @@
 		order by m.order_writedate desc
 	</select>
 
-	<select id="idCheck" resultType="int">
-		select count(genie_id) cnt from account where genie_id=#{genie_id}
-	</select>
-	
-	<insert id="AccountWrite">
-		insert into account(ROLE, genie_id, genie_pwd) 
-		values(#{ROLE},#{genie_id}, #{genie_pwd})
-	</insert>
+
 	
 	<insert id="sellerWrite">
 		insert into seller(genie_id, company_name, ceo_name, seller_tel, seller_email, seller_website, seller_reg_no, seller_address, seller_status) 

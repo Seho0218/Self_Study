@@ -36,10 +36,6 @@ public class UserServiceImpl implements UserService{
         return repository.idCheck(genie_id);
     }
 
-    @Override
-    public Account AccountWrite(Account account) {
-        return accountRepository.save(account);
-    }
 
     @Override
     public User UserWrite(User user) {
