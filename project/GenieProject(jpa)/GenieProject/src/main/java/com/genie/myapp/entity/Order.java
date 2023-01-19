@@ -19,9 +19,9 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order implements Serializable {
 
+    @Id @GeneratedValue
     private Long order_num;
 
-    @Id @GeneratedValue
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="genie_id")
     private User genie_id;
@@ -35,6 +35,8 @@ public class Order implements Serializable {
     private String recipient_address;
 
     private String recipient_request;
+
+    private String recipient_delivery_status;
 
     private int order_price;
 

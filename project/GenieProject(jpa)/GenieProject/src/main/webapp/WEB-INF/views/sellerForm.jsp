@@ -227,29 +227,29 @@
 				</div>
 				<div>
 					<p>회사명</p>
-					<input type="text" id="company_name" name="company_name" placeholder="회사명을 입력하세요">
+					<input type="text" id="company_name" name="company_name" value="123" placeholder="회사명을 입력하세요">
 				</div>
 				<div>
 					<p>대표자명</p>
-					<input type="text" id="ceo_name" name="ceo_name" placeholder="대표자명을 입력하세요">
+					<input type="text" id="ceo_name" name="ceo_name" value = "123" placeholder="대표자명을 입력하세요">
 				</div>
 				<div id="telForm">
 					<p>전화번호</p>
-					<input type ="text" name = "tel1" id ="tel1" maxlength = "3"/>
-					<input type ="text" name = "tel2" id ="tel2" maxlength = "4"/>
-					<input type ="text" name = "tel3" id ="tel3" maxlength = "4"/>
+					<input type ="text" name = "tel1" id ="tel1" value = "123" maxlength = "3"/>
+					<input type ="text" name = "tel2" id ="tel2" value = "1234" maxlength = "4"/>
+					<input type ="text" name = "tel3" id ="tel3" value = "1234"maxlength = "4"/>
 				</div>
 				<div>
 					<p>이메일</p>
-					<input type="text" id="seller_email" name="seller_email" placeholder="이메일을 입력하세요">
+					<input type="text" id="seller_email" name="seller_email" value="ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
 				</div>
 				<div>
 					<p>홈페이지</p>
-					<input type="text" id="seller_website" name="seller_website" placeholder="홈페이지를 입력하세요">
+					<input type="text" id="seller_website" name="seller_website" value = "naver.com" placeholder="홈페이지를 입력하세요">
 				</div>
 				<div id="regForm">
 					<p>사업자 등록증</p>
-					<input type="file" name="seller_reg_no" id="seller_reg_no"/>
+					<input type="file" name="seller_reg_no" id="seller_reg_no" value = "1234"/>
 				</div>
 				
 				<div id="addrForm">

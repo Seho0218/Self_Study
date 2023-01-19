@@ -58,8 +58,4 @@ public class User extends Account{
     @Enumerated(STRING)
     private OrderStatus status;
 
-//    public void setUser(Account account) {
-//        this.account = account;
-//        account.getUser().add(this);
-//    }
 }

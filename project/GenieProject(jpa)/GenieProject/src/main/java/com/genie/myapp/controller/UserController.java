@@ -105,12 +105,13 @@ public class UserController {
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO vo = userService.getUser(genie_id);
+		System.out.println("session = " + genie_id);
+		UserDTO udto = userService.getUser(genie_id);
 		List<Order> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
-		mav.addObject("vo",vo);
+		mav.addObject("vo", udto);
 		mav.setViewName("/user/MyOrderList");
 	
 		return mav;

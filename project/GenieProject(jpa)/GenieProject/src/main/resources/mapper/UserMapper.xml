@@ -16,21 +16,6 @@
 	</select>
 
 
-	<!-- 회원가입 -->
-	<insert id="AccountWrite">
-
-		insert into account(ROLE, genie_id, genie_pwd) 
-		values(#{ROLE},#{genie_id}, #{genie_pwd})
-
-	</insert>
-
-    <insert id = "UserWrite">	
-
-		insert into user(genie_id, user_name, user_tel, user_email, user_gender) 
-		values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email}, #{user_gender})
-
-	</insert>
-
 
 	<!-- 배송지 -->
 

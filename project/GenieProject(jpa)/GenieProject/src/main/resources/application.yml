@@ -1,16 +1,20 @@
 server:
   port: 9070
 
+
 spring:
+  sql:
+    init:
+      mode: always
   datasource: # jdbc
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1/jpaGenieProject?characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1/genie?characterEncoding=utf-8
     username: root
     password: root1234
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         #show_sql: true
@@ -32,5 +36,6 @@ mybatis:
 logging.level:
   root: info
   org.hibernate.SQL: debug
+
 
 

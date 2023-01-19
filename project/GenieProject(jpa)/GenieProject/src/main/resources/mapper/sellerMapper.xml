@@ -28,13 +28,6 @@
 		order by m.order_writedate desc
 	</select>
 
-
-	
-	<insert id="sellerWrite">
-		insert into seller(genie_id, company_name, ceo_name, seller_tel, seller_email, seller_website, seller_reg_no, seller_address, seller_status) 
-		values(#{genie_id}, #{company_name}, #{ceo_name}, #{seller_tel}, #{seller_email}, #{seller_website}, #{seller_reg_no}, #{seller_address}, #{seller_status});
-	</insert>
-
 	<insert id="productWrite">
 		insert into product(genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_mbti) 
 		values(#{genie_id}, #{product_category}, #{product_tag}, #{product_name}, ${product_price}, #{product_info}, ${product_quantity}, #{product_image1}, #{product_image2}, #{product_image3}, #{product_mbti})
@@ -163,7 +156,7 @@
 	<!-- 배송대기 중  -->
 	<select id ="deliveryPending" resultType="int">
 		select count(order_num) delivery_hold 
-		from myorder m join 
+		from myorder m join
 			(select product_id, genie_id as seller_id, product_name 
 			from product 
 			where genie_id=#{param3})p
