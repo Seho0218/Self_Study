@@ -98,7 +98,7 @@
             m.recipient_request,
             m.order_price,
             m.order_qty,
-            m.payment_method 
+            m.payment_method
 		from myorder m 
         join product c 
         on m.product_id=c.product_id 

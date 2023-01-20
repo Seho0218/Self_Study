@@ -25,8 +25,5 @@
 	<select id="likeStatus" resultType="int">
 		select count(genie_id) from product_like where genie_id = #{genie_id} and product_id = #{product_id}
 	</select>
-
-
-
 	
 </mapper>

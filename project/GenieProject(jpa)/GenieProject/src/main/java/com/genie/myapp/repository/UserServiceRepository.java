@@ -4,8 +4,8 @@ import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.QmyOrder;
-import com.genie.myapp.entity.myOrder;
+import com.genie.myapp.entity.MyOrder;
+import com.genie.myapp.entity.QMyOrder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -18,6 +18,7 @@ import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Account.QUser.*;
 import static com.genie.myapp.entity.Product.QProduct.*;
 import static com.genie.myapp.entity.QAddress.address;
+import static com.genie.myapp.entity.QMyOrder.*;
 
 @Repository
 @RequiredArgsConstructor
@@ -43,11 +44,11 @@ public class UserServiceRepository {
 //    }
 
 
-    public List<myOrder> getOrder(String genie_id) {
+    public List<MyOrder> getOrder(String genie_id) {
 
         return queryFactory
-                .select(QmyOrder.myOrder)
-                .from(QmyOrder.myOrder, user)
+                .select(myOrder)
+                .from(myOrder, user)
                 .where(user.genie_id.eq(genie_id))
                 //.orderBy(myOrder.order_writedate.desc())
                 .fetch();
@@ -55,8 +56,9 @@ public class UserServiceRepository {
 
     public List<Address> getDeliveryList(String genie_id) {
         return queryFactory
-                .selectFrom(address)
-                .where(account.genie_id.eq(genie_id))
+                .select(address)
+                .from(address, user)
+                .where(user.genie_id.eq(genie_id))
                 .fetch();
     }
 

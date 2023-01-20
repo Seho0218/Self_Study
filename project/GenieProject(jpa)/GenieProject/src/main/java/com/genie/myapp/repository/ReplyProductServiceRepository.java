@@ -4,6 +4,7 @@ import com.genie.myapp.dto.LikeDTO;
 import com.genie.myapp.dto.QReplyProductDTO;
 import com.genie.myapp.dto.ReplyProductDTO;
 import com.genie.myapp.entity.Account.QAccount;
+import com.genie.myapp.entity.Account.QUser;
 import com.genie.myapp.entity.Product.QProduct;
 import com.genie.myapp.entity.Product.QProduct_like;
 import com.genie.myapp.entity.Product.QReply_product;
@@ -17,7 +18,9 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
+import static com.genie.myapp.entity.Account.QUser.*;
 import static com.genie.myapp.entity.Product.QProduct.*;
+import static com.genie.myapp.entity.Product.QProduct_like.*;
 import static com.genie.myapp.entity.Product.QReply_product.*;
 
 @Repository
@@ -45,7 +48,7 @@ public class ReplyProductServiceRepository {
                 .delete(reply_product)
                 .where(
                         reply_product.reply_no.eq(reply_no),
-                        account.genie_id.eq(genie_id)
+                        user.genie_id.eq(genie_id)
                 )
                 .execute();
     }
@@ -67,10 +70,10 @@ public class ReplyProductServiceRepository {
     }
 
     public int likeDelete(LikeDTO dto) {
-        return (int)queryFactory
-                .delete(QProduct_like.product_like)
+        return (int) queryFactory
+                .delete(product_like)
                 .where(
-                        account.genie_id.eq(dto.getGenie_id()),
+                        user.genie_id.eq(dto.getGenie_id()),
                         product.product_id.eq(dto.getProduct_id())
                 )
                 .execute();

@@ -1,11 +1,11 @@
 package com.genie.myapp.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.myOrder;
+import com.genie.myapp.entity.MyOrder;
 import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.UserRepository;
 import com.genie.myapp.repository.UserServiceRepository;
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<myOrder> getOrder(String genie_id) {
+    public List<MyOrder> getOrder(String genie_id) {
         return repository.getOrder(genie_id);
     }
 

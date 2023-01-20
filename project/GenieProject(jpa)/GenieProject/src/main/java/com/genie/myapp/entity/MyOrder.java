@@ -14,13 +14,13 @@ import java.time.LocalDateTime;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name="myOrder")
-@Getter @Setter @NotEmpty
+@Getter @Setter
+@Table(name = "myorder")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class myOrder implements Serializable {
+public class MyOrder implements Serializable {
 
-    @Id @GeneratedValue
-    private Long order_num;
+    @Id
+    private String order_num;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="genie_id")
