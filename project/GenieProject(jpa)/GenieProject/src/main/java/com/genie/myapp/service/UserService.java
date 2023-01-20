@@ -24,8 +24,6 @@ public interface UserService {
 	//비밀번호 변경
 	public int PwdEditOk(UserDTO vo);
 
-	//배송지 추가
-	public int Delivery(UserDTO vo);
 	//배송지 등록
 	public int addDelivery(UserDTO vo);
 	//배송지 리스트 가져오기

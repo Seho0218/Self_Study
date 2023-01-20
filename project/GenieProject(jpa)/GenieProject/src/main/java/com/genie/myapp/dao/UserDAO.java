@@ -16,12 +16,6 @@ import com.genie.myapp.dto.UserDTO;
 @Repository
 public interface UserDAO {
 
- 	//아이디 중복검사
-	public int idCheck(String genie_id);
-	//어카운트 등록
-	public int AccountWrite(AccountDTO avo);
-	//회원가입
-	public int UserWrite(UserDTO vo);
 
 	//로그인
 	public UserDTO loginOk(UserDTO vo);
@@ -32,8 +26,6 @@ public interface UserDAO {
 	//비밀번호 변경
 	public int PwdEditOk(UserDTO vo);
 
-	//배송지 추가
-	public int Delivery(UserDTO vo);
 	//배송지 등록
 	public int addDelivery(UserDTO vo);
 	//배송지 리스트 가져오기

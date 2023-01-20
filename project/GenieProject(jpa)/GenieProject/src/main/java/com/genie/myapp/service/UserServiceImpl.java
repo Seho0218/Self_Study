@@ -24,11 +24,11 @@ import javax.transaction.Transactional;
 public class UserServiceImpl implements UserService{
 
     @Autowired UserDAO dao;
+
     @Autowired AccountRepository accountRepository;
     @Autowired UserRepository userRepository;
     @Autowired UserServiceRepository repository;
 
-    @Autowired PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -64,11 +64,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public int addDelivery(UserDTO dto) {
         return dao.addDelivery(dto);
-    }
-
-    @Override
-    public int Delivery(UserDTO dto) {
-        return dao.Delivery(dto);
     }
 
     @Override

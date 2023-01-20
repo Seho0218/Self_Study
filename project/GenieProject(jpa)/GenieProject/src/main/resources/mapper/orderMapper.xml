@@ -42,11 +42,14 @@
             (order_num, 
             genie_id, 
             product_id,
+            product_name,
 
             recipient_name, 
             recipient_phone,
             recipient_address, 
             recipient_request,
+            payment_method,
+            order_writedate,
 
             order_price,
             order_qty) 
@@ -55,12 +58,15 @@
 
             (#{order_num},
             #{genie_id}, 
-            #{product_id}, 
+            #{product_id},
+            #{product_name},
 
             #{recipient_name},
             #{recipient_phone},
             #{recipient_address}, 
-            #{recipient_request}, 
+            #{recipient_request},
+            #{payment_method},
+            #{order_writedate},
 
             #{order_price},
             #{order_qty})

@@ -28,6 +28,8 @@ public class MyOrder implements Serializable {
 
     private int product_id;
 
+    private String product_name;
+
     private String recipient_name;
 
     private String recipient_phone;
@@ -41,6 +43,8 @@ public class MyOrder implements Serializable {
     private int order_price;
 
     private int order_qty;
+
+    private String payment_method;
 
     private LocalDateTime order_writedate;
 
