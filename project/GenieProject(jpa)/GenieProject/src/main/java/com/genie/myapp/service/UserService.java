@@ -4,7 +4,7 @@ import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.Order;
+import com.genie.myapp.entity.myOrder;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public interface UserService {
 	public int delDelivery(int address_num, String genie_id);
 
 	//주문목록 가져오기
-	public List<Order> getOrder(String genie_id);
+	public List<myOrder> getOrder(String genie_id);
 
 	//찜한 상품 리스트
 	public List<ProductDTO> getLikeList(String genie_id);

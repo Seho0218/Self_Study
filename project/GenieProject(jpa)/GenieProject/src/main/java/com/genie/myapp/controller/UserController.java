@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.Order;
+import com.genie.myapp.entity.myOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -107,7 +107,7 @@ public class UserController {
 		String genie_id = (String)session.getAttribute("logId");
 		System.out.println("session = " + genie_id);
 		UserDTO udto = userService.getUser(genie_id);
-		List<Order> orderList =userService.getOrder(genie_id);
+		List<myOrder> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);

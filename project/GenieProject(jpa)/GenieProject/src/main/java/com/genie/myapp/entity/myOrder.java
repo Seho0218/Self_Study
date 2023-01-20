@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name="myorder")
+@Table(name="myOrder")
 @Getter @Setter @NotEmpty
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Order implements Serializable {
+public class myOrder implements Serializable {
 
     @Id @GeneratedValue
     private Long order_num;

@@ -4,7 +4,8 @@ import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.Order;
+import com.genie.myapp.entity.QmyOrder;
+import com.genie.myapp.entity.myOrder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,6 @@ import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Account.QUser.*;
 import static com.genie.myapp.entity.Product.QProduct.*;
 import static com.genie.myapp.entity.QAddress.address;
-import static com.genie.myapp.entity.QOrder.*;
 
 @Repository
 @RequiredArgsConstructor
@@ -43,13 +43,13 @@ public class UserServiceRepository {
 //    }
 
 
-    public List<Order> getOrder(String genie_id) {
+    public List<myOrder> getOrder(String genie_id) {
 
         return queryFactory
-                .selectFrom(order)
-                .join(order).on(product.product_id.eq(order.product_id))
-                .where(account.genie_id.eq(genie_id))
-                .orderBy(product.product_like.desc())
+                .select(QmyOrder.myOrder)
+                .from(QmyOrder.myOrder, user)
+                .where(user.genie_id.eq(genie_id))
+                //.orderBy(myOrder.order_writedate.desc())
                 .fetch();
     }
 
