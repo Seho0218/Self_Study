@@ -1,7 +1,6 @@
 package com.genie.myapp.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
@@ -10,7 +9,6 @@ import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.UserRepository;
 import com.genie.myapp.repository.UserServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
@@ -42,13 +40,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO loginOk(UserDTO dto) {
-        return dao.loginOk(dto);
+    public User loginOk(User dto) {
+        return repository.loginOk(dto);
     }
 
     @Override
-    public UserDTO getUser(String genie_id) {
-        return dao.getUser(genie_id);
+    public User getUser(String genie_id) {
+        return repository.getUser(genie_id);
     }
 
     @Override
@@ -57,7 +55,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int PwdEditOk(UserDTO dto) {
+    public int PwdEditOk(User dto) {
         return repository.PwdEditOk(dto);
     }
 

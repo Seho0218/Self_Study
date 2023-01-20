@@ -1,6 +1,7 @@
 package com.genie.myapp.service;
 
 import com.genie.myapp.dto.AdministerDTO;
+import com.genie.myapp.entity.Account.Administer;
 import com.genie.myapp.repository.AdministerServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class AdministerServiceImpl implements AdministerService{
     @Autowired AdministerServiceRepository repository;
 
     @Override
-    public AdministerDTO loginOk(AdministerDTO dto) {
-        return dao.loginOk(dto);
+    public Administer loginOk(Administer dto) {
+        return repository.loginOk(dto);
     }
 
     @Override

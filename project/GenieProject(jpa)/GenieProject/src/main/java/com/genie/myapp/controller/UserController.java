@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.dto.DeliveryDTO;
-import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.SellerDTO;
 import com.genie.myapp.dto.UserDTO;
 
@@ -40,9 +38,6 @@ public class UserController {
 
 	@Inject
 	SellerService sellerService;
-
-	@Inject
-	AdministerService service_a;
 
 	ModelAndView mav=null;
 
@@ -61,8 +56,8 @@ public class UserController {
 	@GetMapping("MyPage")
 	public ModelAndView MyPage(HttpSession session) {
 
-		String genie_id = (String)session.getAttribute("logId"); 
-		UserDTO vo = userService.getUser(genie_id);
+		String genie_id = (String)session.getAttribute("logId");
+		User vo = userService.getUser(genie_id);
 
 		String seller_id = (String)session.getAttribute("logId"); 
 		SellerDTO svo = sellerService.getSeller(seller_id);
@@ -95,7 +90,7 @@ public class UserController {
 		}
 		msg+="location.href='/user/MyPage';</script>";
 		
-		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+		entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
@@ -106,7 +101,7 @@ public class UserController {
 
 		String genie_id = (String)session.getAttribute("logId");
 		System.out.println("session = " + genie_id);
-		UserDTO udto = userService.getUser(genie_id);
+		User udto = userService.getUser(genie_id);
 		List<MyOrder> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
@@ -122,7 +117,7 @@ public class UserController {
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO vo = userService.getUser(genie_id);
+		User vo = userService.getUser(genie_id);
 		List<Address> dlist = userService.getDeliveryList(genie_id);
 
 		mav = new ModelAndView();
@@ -152,7 +147,7 @@ public class UserController {
 		}
 		msg+="location.href='/user/MyDeliveryList';</script>";
 
-		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+		entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
@@ -176,7 +171,7 @@ public class UserController {
 		}
 		msg+="location.href='/user/addressbook';</script>";
 		//msg+="location.reload();</script>";
-		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+		entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
@@ -206,7 +201,7 @@ public class UserController {
 	public ModelAndView Addaddressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		UserDTO vo=userService.getUser(genie_id);
+		User vo = userService.getUser(genie_id);
 		List<Address> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
@@ -222,7 +217,7 @@ public class UserController {
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO vo = userService.getUser(genie_id);
+		User vo = userService.getUser(genie_id);
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo",vo);
@@ -235,7 +230,7 @@ public class UserController {
 	@GetMapping("MyLikeList")
 	public ModelAndView MyLikeList(HttpSession session){
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO vo = userService.getUser(genie_id);
+		User vo = userService.getUser(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("list",userService.getLikeList(genie_id));
@@ -251,8 +246,8 @@ public class UserController {
 	@GetMapping("PwdEdit")
 	public ModelAndView PwdChange(HttpSession session) {
 		
-		String genie_id = (String)session.getAttribute("logId"); 
-		UserDTO vo = userService.getUser(genie_id);
+		String genie_id = (String)session.getAttribute("logId");
+		User vo = userService.getUser(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("vo",vo);
@@ -262,14 +257,14 @@ public class UserController {
 	}
 
 	@PostMapping("PwdEditOk")
-	public ResponseEntity<String> PwdEditOk(UserDTO vo) {
+	public ResponseEntity<String> PwdEditOk(User vo) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
-		UserDTO logDTO = userService.loginOk(vo);
+		User logDTO = userService.loginOk(vo);
 		System.out.println(logDTO);
 
 		boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logDTO.getGenie_pwd());
@@ -277,8 +272,8 @@ public class UserController {
 
 		String msg = "<script>";
 		if(pwdMatch){
-			String enPw=passwordEncoder.encode(vo.getGenie_pwd2());
-			vo.setGenie_pwd2(enPw);
+			String enPw=passwordEncoder.encode(vo.getGenie_pwd());
+			vo.setGenie_pwd(enPw);
 			int cnt = userService.PwdEditOk(vo);
 
 				
@@ -288,13 +283,13 @@ public class UserController {
 				msg+="alert('비밀번호 수정이 실패하였습니다.');";	
 			}
 			msg+="window.close();</script>";
-			entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 				
 		}else{
 
 			msg+="alert('비밀번호 수정이 실패하였습니다.');";
 			msg+="window.close();</script>";
-			entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		}
 

@@ -4,18 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.genie.myapp.dao.UserDAO">
 
-	<!-- 로그인 -->
-	<select id = "loginOk" resultType = "UserDTO">
-
-		select a.genie_id, a.genie_pwd, u.user_name, a.ROLE  
-		from user u 
-		join account a 
-		on a.genie_id=u.genie_id 
-		where a.genie_id=#{genie_id} and a.withdrawal=1;
-
-	</select>
-
-
 
 	<!-- 배송지 -->
 
@@ -26,17 +14,6 @@
 
 	</insert>
 
-	<!-- 회원정보 -->
-    <select id = "getUser" resultType = "UserDTO">
-
-		select genie_id, user_name, user_tel, user_email 
-		from user
-		where genie_id=#{genie_id}
-
-	</select>
-
-
-
 	<!-- 찜한 상품 리스트-->
 	<select id="getLikeList" resultType="ProductDTO">
 
@@ -46,9 +23,5 @@
 		on l.product_id=d.product_id 
 		where l.genie_id=#{param1} order by product_like desc
 		
-	</select>
-
-	<select id="findByGenie_id">
-		select * from account where genie_id=#{genie_id}
 	</select>
 </mapper>

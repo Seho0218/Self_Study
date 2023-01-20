@@ -19,12 +19,6 @@ public interface UserDAO {
 
 	//로그인
 	public UserDTO loginOk(UserDTO vo);
-	//회원 선택: 로그인 한 회원
-	public UserDTO getUser(String genie_id);
-	//회원 정보 수정: DB 업데이트
-	public int UserEditOk(UserDTO vo);
-	//비밀번호 변경
-	public int PwdEditOk(UserDTO vo);
 
 	//배송지 등록
 	public int addDelivery(UserDTO vo);
@@ -39,5 +33,4 @@ public interface UserDAO {
 	//찜한 상품 리스트
 	public List<ProductDTO> getLikeList(String genie_id);
 
-	public Optional<AccountDTO> findByGenie_id(String Genie_id);
 }

@@ -16,13 +16,13 @@ public interface UserService {
 	public User UserWrite(User user);
 
 	//로그인
-	public UserDTO loginOk(UserDTO vo);
+	public User loginOk(User vo);
 	//회원 선택: 로그인 한 회원
-	public UserDTO getUser(String genie_id);
+	public User getUser(String genie_id);
 	//회원 정보 수정: DB 업데이트
 	public int UserEditOk(UserDTO vo);
 	//비밀번호 변경
-	public int PwdEditOk(UserDTO vo);
+	public int PwdEditOk(User vo);
 
 	//배송지 등록
 	public int addDelivery(UserDTO vo);

@@ -1,11 +1,10 @@
 package com.genie.myapp.repository;
 
 import com.genie.myapp.dto.*;
-import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
-import com.genie.myapp.entity.QMyOrder;
+import com.genie.myapp.repository.jpa.SellerRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,7 +15,6 @@ import java.util.List;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Account.QUser.*;
-import static com.genie.myapp.entity.Product.QProduct.*;
 import static com.genie.myapp.entity.QAddress.address;
 import static com.genie.myapp.entity.QMyOrder.*;
 
@@ -28,21 +26,33 @@ public class UserServiceRepository {
     private final EntityManager em;
 
     private final JPAQueryFactory queryFactory;
+    private final SellerRepository sellerRepository;
+
+    public User loginOk(User dto) {
+        return queryFactory
+                .select(user)
+                .from(account, user)
+                .where(user.genie_id.eq(dto.getGenie_id()),
+                        account.withdrawal.eq(1)
+                )
+                .fetchOne();
+    }
 
 
-//    public UserDTO getUser(String genie_id) {
-//        return queryFactory
-//                .select(new QUser(
-//                        user.genie_id,
-//                        user.user_name,
-//                        user.user_tel,
-//                        user.user_email
-//                ))
-//                .from(user)
-//                .where(user.genie_id.eq(genie_id))
-//                .fetch();
-//    }
+    public User getUser(String genie_id) {
+        return queryFactory
+                .selectFrom(user)
+                .where(user.genie_id.eq(genie_id))
+                .fetchOne();
+    }
 
+    public long idCheck(String genie_id){
+        return queryFactory
+                .select(account.genie_id.count().as("cnt"))
+                .from(account)
+                .where(account.genie_id.eq(genie_id))
+                .fetchOne();
+    }
 
     public List<MyOrder> getOrder(String genie_id) {
 
@@ -62,18 +72,12 @@ public class UserServiceRepository {
                 .fetch();
     }
 
-    public long idCheck(String genie_id){
-        return queryFactory
-                .select(account.genie_id.count().as("cnt"))
-                .from(account)
-                .where(account.genie_id.eq(genie_id))
-                .fetchOne();
-    }
 
-    public int PwdEditOk(UserDTO dto){
+
+    public int PwdEditOk(User dto){
         return (int) queryFactory
                 .update(account)
-                .set(account.genie_pwd, dto.getGenie_pwd2())
+                .set(account.genie_pwd, dto.getGenie_pwd())
                 .where(account.genie_id.eq(dto.getGenie_id()))
                 .execute();
     }
@@ -92,19 +96,5 @@ public class UserServiceRepository {
                 .where(address.address_num.eq(address_num))
                 .execute();
     }
-
-//    public List<AddressDTO> getDeliveryList(AddressDTO dto) {
-//        return queryFactory
-//                .selectFrom(new QAddressDTO(
-//                        address.address_num,
-//                        account.genie_id,
-//                        address.receiver_name,
-//                        address.receiver_tel,
-//                        address.receiver_zipcode,
-//                        address.receiver_addr,
-//                        address.receiver_detailaddr
-//                ))
-//                .where(account.genie_id.eq(dto.getGenie_id()));
-//    }
 
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Account;
+import com.genie.myapp.entity.Account.Administer;
 import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.entity.Account.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,13 +200,13 @@ public class GenieController{
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserDTO vo, SellerDTO svo, AdministerDTO avo, HttpSession session) {
+	public ModelAndView loginOk(User vo, SellerDTO svo, Administer avo, HttpSession session) {
 		
 		mav = new ModelAndView();		
 
 		if(vo.getGenie_id() != null) {//일반회원 일때
 
-			UserDTO logDTO = userService.loginOk(vo);
+			User logDTO = userService.loginOk(vo);
 			if(logDTO!=null){
 				//System.out.println(vo);
 				//System.out.println(logDTO);
@@ -248,11 +249,11 @@ public class GenieController{
 					
 					}else if(avo.getGenie_id() != null){
 
-						AdministerDTO alogDTO = administerService.loginOk(avo);
+						Administer alogDTO = administerService.loginOk(avo);
 
 						if(alogDTO!=null){
 							session.setAttribute("logId", alogDTO.getGenie_id());
-							session.setAttribute("logName", alogDTO.getAdminister_name());
+							session.setAttribute("logName", alogDTO.getName());
 							session.setAttribute("logStatus","Y");
 							session.setAttribute("ROLE", "ROLE_ADMIN");
 
