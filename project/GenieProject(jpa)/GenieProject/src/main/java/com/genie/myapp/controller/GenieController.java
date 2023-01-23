@@ -1,15 +1,14 @@
 package com.genie.myapp.controller;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
-import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.Administer;
 import com.genie.myapp.entity.Account.Seller;
-import com.genie.myapp.entity.Account.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,9 +95,9 @@ public class GenieController{
 	@PostMapping("UserWrite") 
 	public ResponseEntity<String> UserWrite(AccountDTO adto, UserDTO udto) {
 
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
 //		TransactionStatus status= transactionManager.getTransaction(definition);
 
@@ -107,19 +105,8 @@ public class GenieController{
 		try {//회원가입 성공
 			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
 
-
-			User user = new User();
-			user.setGenie_id(udto.getGenie_id());
-			user.setGenie_pwd(enPw);
-			user.setWithdrawal(1);
-			user.setROLE(adto.getROLE());
-
-			user.setUser_name(udto.getUser_name());
-			user.setUser_tel(udto.getUser_tel());
-			user.setUser_email(udto.getUser_email());
-			user.setUser_gender(udto.getUser_gender());
-
-			userService.UserWrite(user);
+			udto.setGenie_pwd(enPw);
+			userService.UserWrite(udto);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
@@ -150,9 +137,9 @@ public class GenieController{
 	@PostMapping("sellerWrite")
 	public ResponseEntity<String> sellerWrite(AccountDTO adto, SellerDTO sdto){
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		System.out.println("adto = " + adto + ", sdto = " + sdto);
@@ -200,18 +187,21 @@ public class GenieController{
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(User vo, SellerDTO svo, Administer avo, HttpSession session) {
+	public ModelAndView loginOk(UserDTO udto, SellerDTO svo, Administer avo, HttpSession session) {
 		
 		mav = new ModelAndView();		
 
-		if(vo.getGenie_id() != null) {//일반회원 일때
+		if(udto.getGenie_id() != null) {//일반회원 일때
 
-			User logDTO = userService.loginOk(vo);
+			UserDTO logDTO = userService.loginOk(udto);
+
 			if(logDTO!=null){
-				//System.out.println(vo);
-				//System.out.println(logDTO);
-				boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logDTO.getGenie_pwd());
-				//System.out.println(pwdMatch);
+
+				//비밀번호 검증
+				System.out.println(logDTO.getGenie_pwd());
+				boolean pwdMatch = passwordEncoder.matches(udto.getGenie_pwd(), logDTO.getGenie_pwd());
+				System.out.println(udto.getGenie_pwd());
+
 				if(pwdMatch){//로그인 성공
 					session.setAttribute("logId", logDTO.getGenie_id());		
 					session.setAttribute("logName", logDTO.getUser_name());
@@ -336,9 +326,9 @@ public class GenieController{
 	@PostMapping("addCart")
 	public ResponseEntity<String> addCart(CartDTO cvo) {
 
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
@@ -350,7 +340,7 @@ public class GenieController{
 			msg += "alert('장바구니에 추가되었습니다.');";
 			msg += "location.href='/cart';";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg, headers, HttpStatus.OK);
 
 		} catch (Exception e) {
 
@@ -359,7 +349,7 @@ public class GenieController{
 			msg += "history.back()";
 			msg += "</script>";
 
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg, headers, HttpStatus.BAD_REQUEST);
 
 			e.printStackTrace();
 		}
@@ -370,20 +360,20 @@ public class GenieController{
 	@PostMapping("updateCart")
 	public ResponseEntity<String> updateCart(CartDTO cvo) {
 
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
 			//System.out.println(cvo.toString());
 			productService.updateCart(cvo);
 
-			entity = new ResponseEntity<String>(headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(headers, HttpStatus.OK);
 
 		} catch (Exception e) {
 
-			entity = new ResponseEntity<String>(headers, HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(headers, HttpStatus.BAD_REQUEST);
 
 			e.printStackTrace();
 		}

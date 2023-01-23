@@ -58,7 +58,9 @@ public class UserController {
 	public ModelAndView MyPage(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO vo = userService.getMypage(genie_id);
+
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
 
 		String seller_id = (String)session.getAttribute("logId"); 
 		SellerDTO svo = sellerService.getSeller(seller_id);
@@ -66,7 +68,7 @@ public class UserController {
 		mav = new ModelAndView();
 
 		mav.addObject("svo",svo);
-		mav.addObject("vo",vo);
+		mav.addObject("vo",userDTO);
 		mav.setViewName("/user/MyPage");
 	
 		return mav;
@@ -101,13 +103,15 @@ public class UserController {
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-		System.out.println("session = " + genie_id);
-		User udto = userService.getUser(genie_id);
+
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
+
 		List<MyOrder> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
-		mav.addObject("vo", udto);
+		mav.addObject("vo", userDTO);
 		mav.setViewName("/user/MyOrderList");
 	
 		return mav;
@@ -118,11 +122,14 @@ public class UserController {
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		User vo = userService.getUser(genie_id);
+
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
+
 		List<Address> dlist = userService.getDeliveryList(genie_id);
 
 		mav = new ModelAndView();
-		mav.addObject("vo", vo);
+		mav.addObject("vo", userDTO);
 		mav.addObject("dlist", dlist);
 		mav.setViewName("/user/MyDeliveryList");
 	
@@ -202,11 +209,13 @@ public class UserController {
 	public ModelAndView Addaddressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		User vo = userService.getUser(genie_id);
+
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
 		List<Address> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
-		mav.addObject("vo", vo);
+		mav.addObject("vo", userDTO);
 		mav.addObject("dlist", dlist);
 		mav.setViewName("/user/Addaddressbook");
 		return mav;
@@ -218,10 +227,12 @@ public class UserController {
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		User vo = userService.getUser(genie_id);
 
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo",vo);
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
+
+		mav = new ModelAndView();
+		mav.addObject("vo", userDTO);
 		mav.setViewName("/user/MyInquiryList");
 	
 		return mav;
@@ -230,12 +241,15 @@ public class UserController {
 	//찜한 상품 리스트
 	@GetMapping("MyLikeList")
 	public ModelAndView MyLikeList(HttpSession session){
+
 		String genie_id = (String)session.getAttribute("logId");
-		User vo = userService.getUser(genie_id);
+
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
 
 		mav = new ModelAndView();
 		mav.addObject("list",userService.getLikeList(genie_id));
-		mav.addObject("vo",vo);
+		mav.addObject("vo",userDTO);
 		mav.setViewName("/user/MyLikeList");
 	
 		return mav;
@@ -248,34 +262,36 @@ public class UserController {
 	public ModelAndView PwdChange(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		User vo = userService.getUser(genie_id);
+
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		userDTO = userService.getUser(userDTO);
 		
 		mav = new ModelAndView();
-		mav.addObject("vo",vo);
+		mav.addObject("vo",userDTO);
 		mav.setViewName("/user/PwdEdit");
 		
 		return mav;
 	}
 
 	@PostMapping("PwdEditOk")
-	public ResponseEntity<String> PwdEditOk(User vo) {
+	public ResponseEntity<String> PwdEditOk(UserDTO udto) {
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
-		User logDTO = userService.loginOk(vo);
+		UserDTO logDTO = userService.loginOk(udto);
 		System.out.println(logDTO);
 
-		boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logDTO.getGenie_pwd());
+		boolean pwdMatch = passwordEncoder.matches(udto.getGenie_pwd(), logDTO.getGenie_pwd());
 		System.out.println(pwdMatch);
 
 		String msg = "<script>";
 		if(pwdMatch){
-			String enPw=passwordEncoder.encode(vo.getGenie_pwd());
-			vo.setGenie_pwd(enPw);
-			int cnt = userService.PwdEditOk(vo);
+			String enPw=passwordEncoder.encode(udto.getGenie_pwd());
+			udto.setGenie_pwd(enPw);
+			int cnt = userService.PwdEditOk(udto);
 
 				
 			if(cnt>0) {//수정함

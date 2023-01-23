@@ -4,9 +4,6 @@ import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
-import com.genie.myapp.entity.Product.Product;
-import com.genie.myapp.repository.jpa.SellerRepository;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -17,11 +14,8 @@ import java.util.List;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Account.QUser.*;
-import static com.genie.myapp.entity.Product.QProduct.*;
-import static com.genie.myapp.entity.Product.QProduct_like.*;
 import static com.genie.myapp.entity.QAddress.address;
 import static com.genie.myapp.entity.QMyOrder.*;
-import static org.springframework.util.StringUtils.hasText;
 
 @Repository
 @RequiredArgsConstructor
@@ -31,7 +25,6 @@ public class UserServiceRepository {
     private final EntityManager em;
 
     private final JPAQueryFactory queryFactory;
-    private final SellerRepository sellerRepository;
 
     public User loginOk(User dto) {
         return queryFactory
@@ -80,7 +73,7 @@ public class UserServiceRepository {
 
 
 
-    public int PwdEditOk(User dto){
+    public int PwdEditOk(UserDTO dto){
         return (int) queryFactory
                 .update(account)
                 .set(account.genie_pwd, dto.getGenie_pwd())

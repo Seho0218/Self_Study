@@ -41,24 +41,26 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User UserWrite(User user) {
-        return userRepository.save(user);
+    public void UserWrite(UserDTO userDTO) {
+        User user = UserDTO.convertDTOtoEntity(userDTO);
+        userRepository.save(user);
     }
 
     @Override
-    public User loginOk(User dto) {
-        return repository.loginOk(dto);
+    public UserDTO loginOk(UserDTO userDTO) {
+
+        //DTO -> Entity
+        User user = UserDTO.convertDTOtoEntity(userDTO);
+
+        //Entity -> DTO
+        return UserDTO.convertEntityToDTO(repository.loginOk(user));
     }
 
     @Override
-    public User getUser(String genie_id) {
-        return repository.getUser(genie_id);
+    public UserDTO getUser(UserDTO userDTO) {
+        return UserDTO.convertEntityToDTO(repository.getUser(userDTO.getGenie_id()));
     }
 
-    @Override
-    public UserDTO getMypage(String genie_id) {
-        return dao.getMypage(genie_id);
-    }
 
     @Override
     public int UserEditOk(UserDTO dto) {
@@ -66,7 +68,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int PwdEditOk(User dto) {
+    public int PwdEditOk(UserDTO dto) {
         return repository.PwdEditOk(dto);
     }
 

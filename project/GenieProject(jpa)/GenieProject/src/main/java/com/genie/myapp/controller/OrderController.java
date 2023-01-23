@@ -1,12 +1,13 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.CartDTO;
 import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,11 +41,10 @@ public class OrderController {
 
     @Autowired
 	PlatformTransactionManager transactionManager;
-	
+
 	@Autowired
 	TransactionDefinition definition;
-	
-	TransactionStatus status;
+
 	
 	ModelAndView mav = null;
 
@@ -57,9 +57,11 @@ public class OrderController {
 		String genie_id=(String)session.getAttribute("logId");
 		//System.out.println("BuyNow로 받아온 cvo : "+cvo.toString());
 
-		mav=new ModelAndView();
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+
+		mav = new ModelAndView();
 		mav.addObject("bvo",cvo);
-		mav.addObject("uvo", userService.getUser(genie_id));
+		mav.addObject("uvo", userService.getUser(userDTO));
 		mav.setViewName("/order/payment");
 
 		return mav;
@@ -74,9 +76,11 @@ public class OrderController {
 		List<CartDTO> lcvo = orderService.readyToPay(cvo);
 		//System.out.println("카트정보 가져오기 : " + cvo.toString());
 
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+
 		mav = new ModelAndView();
 		mav.addObject("plist", lcvo);
-		mav.addObject("uvo", userService.getUser(genie_id));
+		mav.addObject("uvo", userService.getUser(userDTO));
 		mav.setViewName("/order/payment");
 
 		return mav;
@@ -85,9 +89,9 @@ public class OrderController {
 	@GetMapping("orderCompletion")
 	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO ovo) {
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
 		TransactionStatus status= transactionManager.getTransaction(definition);
 
@@ -115,7 +119,7 @@ public class OrderController {
 					vo.setOrder_qty(vo.getCart_qty());
 					vo.setPayment_method(ovo.getPayment_method());
 
-					System.out.println(vo.toString());
+//					System.out.println(vo.toString());
 
 					orderService.afterPayment(vo);
 
@@ -125,10 +129,10 @@ public class OrderController {
 				orderService.afterOrderCart(ovo);// 장바구니 삭제
 
 				transactionManager.commit(status);
-				entity = new ResponseEntity<String>(HttpStatus.OK);
+				entity = new ResponseEntity<>(HttpStatus.OK);
 
 			}catch(Exception e){
-				entity = new ResponseEntity<String>(headers,HttpStatus.BAD_REQUEST);
+				entity = new ResponseEntity<>(headers,HttpStatus.BAD_REQUEST);
 				
 				transactionManager.rollback(status);
 				e.printStackTrace();
@@ -140,10 +144,10 @@ public class OrderController {
 				orderService.afterPayment(ovo);
 				
 				transactionManager.commit(status);
-				entity = new ResponseEntity<String>(HttpStatus.OK);
+				entity = new ResponseEntity<>(HttpStatus.OK);
 
 			}catch(Exception e){
-				entity = new ResponseEntity<String>(headers,HttpStatus.BAD_REQUEST);
+				entity = new ResponseEntity<>(headers,HttpStatus.BAD_REQUEST);
 				
 				transactionManager.rollback(status);
 				e.printStackTrace();

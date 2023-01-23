@@ -1,14 +1,11 @@
 package com.genie.myapp.entity.Account;
 
 import lombok.*;
-import org.apache.ibatis.annotations.TypeDiscriminator;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-import static javax.persistence.CascadeType.*;
 import static javax.persistence.InheritanceType.*;
 
 @Entity
@@ -20,9 +17,11 @@ public abstract class Account {
 
     @Id
     private String genie_id;
-
     private String genie_pwd;
-    private int withdrawal;
+
+    //회원 가입 여부 1은 회원상태, 0은 탈퇴 혹은 제재상태
+    private int withdrawal=1;
+
     private String ROLE;
 
 }

@@ -52,7 +52,5 @@ public class User extends Account{
 
     private LocalDateTime sign_in_date;
 
-    @Enumerated(STRING)
-    private OrderStatus status;
 
 }

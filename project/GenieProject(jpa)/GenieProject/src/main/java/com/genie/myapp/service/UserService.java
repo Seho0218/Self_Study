@@ -1,31 +1,30 @@
 package com.genie.myapp.service;
 
 import com.genie.myapp.dto.*;
-import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 
 import java.util.List;
 
 public interface UserService {
+
 	
 	//아이디 중복검사
 	public long idCheck(String genie_id);
 
 	//회원가입
-	public User UserWrite(User user);
+	public void UserWrite(UserDTO userDTO);
 
 	//로그인
-	public User loginOk(User vo);
+	public UserDTO loginOk(UserDTO userDTO);
 	//회원 선택: 로그인 한 회원
-	public User getUser(String genie_id);
-
-	public UserDTO getMypage(String genie_id);
+	public UserDTO getUser(UserDTO userDTO);
 
 	//회원 정보 수정: DB 업데이트
 	public int UserEditOk(UserDTO vo);
+
 	//비밀번호 변경
-	public int PwdEditOk(User vo);
+	public int PwdEditOk(UserDTO vo);
 
 	//배송지 등록
 	public int addDelivery(Address vo);
