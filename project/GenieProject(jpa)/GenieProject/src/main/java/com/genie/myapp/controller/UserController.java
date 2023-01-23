@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.AddressDTO;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
@@ -57,7 +58,7 @@ public class UserController {
 	public ModelAndView MyPage(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-		User vo = userService.getUser(genie_id);
+		UserDTO vo = userService.getMypage(genie_id);
 
 		String seller_id = (String)session.getAttribute("logId"); 
 		SellerDTO svo = sellerService.getSeller(seller_id);
@@ -130,19 +131,20 @@ public class UserController {
 
 	//배송지 
 	@PostMapping("addDelivery")
-	public ResponseEntity<String> addDelivery(UserDTO vo) {
+	public ResponseEntity<String> addDelivery(Address adto) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=UTF-8");
-	
+
+		System.out.println();
 		String msg = "<script>";
-		int cnt = userService.addDelivery(vo);
+		int cnt = userService.addDelivery(adto);
 
 		if(cnt>0) {//수정됨
 			msg+="alert('배송지가 등록되었습니다.');";
-		}else {//수정못함
+		} else {//수정못함
 			msg+="alert('배송지 등록에 실패하였습니다.');";
 		}
 		msg+="location.href='/user/MyDeliveryList';</script>";
@@ -154,7 +156,7 @@ public class UserController {
 
 	//주문 결제 페이지의 주소 추가창
 	@PostMapping("addAddressbook")
-	public ResponseEntity<String> addAddressbook(UserDTO vo) {
+	public ResponseEntity<String> addAddressbook(Address adto) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -162,7 +164,7 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 	
 		String msg = "<script>";
-		int cnt = userService.addDelivery(vo);
+		int cnt = userService.addDelivery(adto);
 
 		if(cnt>0) {//수정됨
 			msg+="alert('배송지가 등록되었습니다.');";
@@ -177,9 +179,8 @@ public class UserController {
 	}
 
 	@GetMapping("delDelivery")
-	public int delDelivery(int address_num, HttpSession session){
-		String genie_id = (String)session.getAttribute("logId");
-		return userService.delDelivery(address_num, genie_id);
+	public int delDelivery(int address_num){
+		return userService.delDelivery(address_num);
 	}
 
 	@GetMapping("addressbook")

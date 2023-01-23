@@ -1,5 +1,6 @@
 package com.genie.myapp.entity.Product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.entity.Cart;
 import lombok.Getter;
@@ -24,9 +25,11 @@ public class Product {
     @Column(name="product_id")
     private int product_id;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product_id")
     private List<Cart> cartList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product_id")
     private List<Reply_product> replyProducts = new ArrayList<>();
 

@@ -1,34 +1,19 @@
 package com.genie.myapp.dao;
 
 import java.util.List;
-import java.util.Optional;
 
+import com.genie.myapp.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
-import com.genie.myapp.dto.AccountDTO;
-import com.genie.myapp.dto.DeliveryDTO;
-import com.genie.myapp.dto.OrderDTO;
-import com.genie.myapp.dto.ProductDTO;
-import com.genie.myapp.dto.UserDTO;
 
 @Mapper
 @Repository
 public interface UserDAO {
 
-
-	//로그인
-	public UserDTO loginOk(UserDTO vo);
-
 	//배송지 등록
-	public int addDelivery(UserDTO vo);
-	//배송지 리스트 가져오기
-	public List<DeliveryDTO> getDeliveryList(String genie_id);
-	//배송지 삭제
-	public int delDelivery(int address_num, String genie_id);
+	public int addDelivery(AddressDTO vo);
 
-	//주문목록 가져오기
-	public List<OrderDTO> getOrder(String genie_id);
+	public UserDTO getMypage(String dto);
 	
 	//찜한 상품 리스트
 	public List<ProductDTO> getLikeList(String genie_id);

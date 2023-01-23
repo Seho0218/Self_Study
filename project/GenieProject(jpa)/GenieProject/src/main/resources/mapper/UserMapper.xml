@@ -18,10 +18,19 @@
 	<select id="getLikeList" resultType="ProductDTO">
 
 		select * 
-		from product_like l 
-		join product d 
-		on l.product_id=d.product_id 
-		where l.genie_id=#{param1} order by product_like desc
+		from product_like l
+		join product d
+		on l.product_id=d.product_id
+		where l.genie_id=#{param1}
+		order by product_like desc
 		
+	</select>
+
+	<!-- 주문정보 -->
+
+	<select id = "getMypage" resultType = "UserDTO">
+		select genie_id, user_name, user_tel, user_email
+		from user
+		where genie_id=#{genie_id}
 	</select>
 </mapper>

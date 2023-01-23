@@ -4,7 +4,9 @@ import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
+import com.genie.myapp.entity.Product.Product;
 import com.genie.myapp.repository.jpa.SellerRepository;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -15,8 +17,11 @@ import java.util.List;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Account.QUser.*;
+import static com.genie.myapp.entity.Product.QProduct.*;
+import static com.genie.myapp.entity.Product.QProduct_like.*;
 import static com.genie.myapp.entity.QAddress.address;
 import static com.genie.myapp.entity.QMyOrder.*;
+import static org.springframework.util.StringUtils.hasText;
 
 @Repository
 @RequiredArgsConstructor
@@ -32,8 +37,9 @@ public class UserServiceRepository {
         return queryFactory
                 .select(user)
                 .from(account, user)
-                .where(user.genie_id.eq(dto.getGenie_id()),
-                        account.withdrawal.eq(1)
+                .where(
+                       user.genie_id.eq(dto.getGenie_id()),
+                       account.withdrawal.eq(1)
                 )
                 .fetchOne();
     }
@@ -60,7 +66,7 @@ public class UserServiceRepository {
                 .select(myOrder)
                 .from(myOrder, user)
                 .where(user.genie_id.eq(genie_id))
-                //.orderBy(myOrder.order_writedate.desc())
+                .orderBy(myOrder.order_writedate.desc())
                 .fetch();
     }
 
@@ -90,10 +96,12 @@ public class UserServiceRepository {
                 .execute();
     }
 
-    public int delDelivery(int address_num, String genie_id) {
+
+    public int delDelivery(int address_num) {
         return (int) queryFactory
                 .delete(address)
-                .where(address.address_num.eq(address_num))
+                .where(address.address_num.eq(address_num)
+                )
                 .execute();
     }
 
