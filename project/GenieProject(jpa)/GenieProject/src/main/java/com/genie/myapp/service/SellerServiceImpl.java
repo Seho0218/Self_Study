@@ -3,7 +3,9 @@ package com.genie.myapp.service;
 import java.util.List;
 import java.util.Map;
 
+import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Seller;
+import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.repository.SellerServiceRepository;
 import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.SellerRepository;
@@ -11,12 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
-
-import com.genie.myapp.dto.SellerProductDTO;
-import com.genie.myapp.dto.InquiryDTO;
-import com.genie.myapp.dto.OrderDTO;
-import com.genie.myapp.dto.PagingDTO;
-import com.genie.myapp.dto.SellerDTO;
 
 import javax.transaction.Transactional;
 
@@ -28,14 +24,8 @@ public class SellerServiceImpl implements SellerService {
 
 	@Autowired AccountRepository accountRepository;
 	@Autowired SellerRepository sellerRepository;
-	@Autowired SellerServiceRepository sellerServiceRepository;
+	@Autowired SellerServiceRepository repository;
 
-
-	// 주문목록
-	@Override
-	public List<OrderDTO> sellerOrder(OrderDTO vo, String seller_id) {
-		return dao.sellerOrder(vo, seller_id);
-	}
 
   	@Override
 	public int idCheck(String genie_id) {
@@ -43,8 +33,19 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public Seller sellerWrite(Seller seller) {
-		return sellerRepository.save(seller);
+	public SellerDTO loginOk(SellerDTO sellerDTO) {
+
+		//DTO -> Entity
+		Seller seller = SellerDTO.convertDTOtoEntity(sellerDTO);
+
+		//Entity -> DTO
+		return SellerDTO.convertEntityToDTO(repository.loginOk(seller));
+	}
+
+	@Override
+	public void sellerWrite(SellerDTO sellerDTO) {
+		Seller seller = SellerDTO.convertDTOtoEntity(sellerDTO);
+		sellerRepository.save(seller);
 	}
 
 	@Override
@@ -52,9 +53,10 @@ public class SellerServiceImpl implements SellerService {
 		return dao.productWrite(vo);
 	}
 
+	// 주문목록
 	@Override
-	public SellerDTO loginOk(SellerDTO svo) {
-		return dao.loginOk(svo);
+	public List<OrderDTO> sellerOrder(OrderDTO vo, String seller_id) {
+		return dao.sellerOrder(vo, seller_id);
 	}
 
 	@Override

@@ -146,23 +146,8 @@ public class GenieController{
 		try {//회원가입성공
 			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
 
-			Seller seller = new Seller();
-			seller.setGenie_id(sdto.getGenie_id());
-			seller.setGenie_pwd(enPw);
-			seller.setWithdrawal(1);
-			seller.setROLE(adto.getROLE());
-
-			seller.setCompany_name(sdto.getCompany_name());
-			seller.setCeo_name(sdto.getCeo_name());
-			seller.setSeller_tel(sdto.getSeller_tel());
-			seller.setSeller_email(sdto.getSeller_email());
-			seller.setSeller_website(sdto.getSeller_website());
-			seller.setSeller_reg_no(sdto.getSeller_reg_no());
-			seller.setSeller_address(sdto.getSeller_address());
-			seller.setSeller_status(sdto.getSeller_status());
-
-			sellerService.sellerWrite(seller);
-
+			sdto.setGenie_pwd(enPw);
+			sellerService.sellerWrite(sdto);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
@@ -177,7 +162,7 @@ public class GenieController{
 			msg += "alert('회원가입에 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
 			
 			e.printStackTrace();
 			
@@ -187,20 +172,18 @@ public class GenieController{
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserDTO udto, SellerDTO svo, Administer avo, HttpSession session) {
+	public ModelAndView loginOk(UserDTO userDTO, SellerDTO sellerDTO, Administer administer, HttpSession session) {
 		
-		mav = new ModelAndView();		
+		mav = new ModelAndView();
 
-		if(udto.getGenie_id() != null) {//일반회원 일때
+		if(userDTO.getGenie_id() != null) {//일반회원 일때
 
-			UserDTO logDTO = userService.loginOk(udto);
+			UserDTO logDTO = userService.loginOk(userDTO);
 
 			if(logDTO!=null){
 
 				//비밀번호 검증
-				System.out.println(logDTO.getGenie_pwd());
-				boolean pwdMatch = passwordEncoder.matches(udto.getGenie_pwd(), logDTO.getGenie_pwd());
-				System.out.println(udto.getGenie_pwd());
+				boolean pwdMatch = passwordEncoder.matches(userDTO.getGenie_pwd(), logDTO.getGenie_pwd());
 
 				if(pwdMatch){//로그인 성공
 					session.setAttribute("logId", logDTO.getGenie_id());		
@@ -214,14 +197,14 @@ public class GenieController{
 				}
 					return mav;
 			
-				}else if(svo.getGenie_id() !=null) {//업체회원일때 
+				}else if(sellerDTO.getGenie_id() !=null) {//업체회원일때
 
-					SellerDTO slogDTO=sellerService.loginOk(svo);
-					if(slogDTO!=null){
-						//System.out.println(svo);
-						//System.out.println(slogDTO);
-						boolean pwdMatch = passwordEncoder.matches(svo.getGenie_pwd(), slogDTO.getGenie_pwd());
-						//System.out.println(pwdMatch);
+					SellerDTO slogDTO=sellerService.loginOk(sellerDTO);
+
+				if(slogDTO!=null){
+
+						boolean pwdMatch = passwordEncoder.matches(sellerDTO.getGenie_pwd(), slogDTO.getGenie_pwd());
+						System.out.println(pwdMatch);
 						if(pwdMatch){//로그인 성공
 
 							System.out.println(pwdMatch);
@@ -237,9 +220,9 @@ public class GenieController{
 						}
 							return mav;
 					
-					}else if(avo.getGenie_id() != null){
+					}else if(administer.getGenie_id() != null){
 
-						Administer alogDTO = administerService.loginOk(avo);
+						Administer alogDTO = administerService.loginOk(administer);
 
 						if(alogDTO!=null){
 							session.setAttribute("logId", alogDTO.getGenie_id());

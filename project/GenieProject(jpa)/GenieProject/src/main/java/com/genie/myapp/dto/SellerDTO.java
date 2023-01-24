@@ -1,7 +1,11 @@
 package com.genie.myapp.dto;
 
+import com.genie.myapp.Config.CustomerModelMapper;
+import com.genie.myapp.entity.Account.Seller;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +15,6 @@ public class SellerDTO {
 	private String genie_pwd;
 	private String genie_pwd2;
 	private String ROLE;
-	private int withdrawal;
 	
 	private String seller_tel;
 	private String tel1;
@@ -54,6 +57,31 @@ public class SellerDTO {
 		String addrSplit[] = seller_address.split(",");
 		sel_addr = addrSplit[0];
 		sel_detailaddr = addrSplit[1];
+	}
+
+
+	// Entity -> DTO (정적 팩토리 메서드)
+	public static SellerDTO convertEntityToDTO(Seller seller){
+
+		ModelMapper modelMapper = new CustomerModelMapper();
+		// 매핑 전략 설정
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return modelMapper.map(seller, SellerDTO.class);
+	}
+
+	// DTO -> Entity
+	public static Seller convertDTOtoEntity(SellerDTO sellerDTO) {
+
+		ModelMapper modelMapper = new CustomerModelMapper();
+		// 매핑 전략 설정
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return modelMapper.map(sellerDTO, Seller.class);
+	}
+
+	public static SellerDTO createSellerDTO(String genie_id) {
+		SellerDTO sellerDTO = new SellerDTO();
+		sellerDTO.setGenie_id(genie_id);
+		return sellerDTO;
 	}
 
 	

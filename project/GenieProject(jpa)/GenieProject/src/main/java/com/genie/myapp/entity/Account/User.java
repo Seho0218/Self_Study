@@ -10,6 +10,7 @@ import com.genie.myapp.entity.Product.Reply_product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ import java.util.List;
 import static javax.persistence.EnumType.*;
 
 @Entity
-@Getter @Setter
+@Getter @Setter @DynamicUpdate
 @NoArgsConstructor
 @DiscriminatorValue("USER")
 public class User extends Account{

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.apache.ibatis.annotations.One;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,7 +19,7 @@ import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Getter @Setter @NotEmpty
+@Getter @DynamicUpdate
 public class Product {
 
     @Id @GeneratedValue(strategy = IDENTITY)
@@ -26,7 +27,7 @@ public class Product {
     private int product_id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product_id")
+    @OneToMany(mappedBy = "product_id" )
     private List<Cart> cartList = new ArrayList<>();
 
     @JsonIgnore

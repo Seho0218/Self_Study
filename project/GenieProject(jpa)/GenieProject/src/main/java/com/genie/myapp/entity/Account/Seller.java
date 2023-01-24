@@ -4,6 +4,7 @@ import com.genie.myapp.entity.Product.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import java.util.List;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Getter @Setter
+@Getter @Setter @DynamicUpdate
 @NoArgsConstructor
 @DiscriminatorValue("Seller")
 public class Seller extends Account{

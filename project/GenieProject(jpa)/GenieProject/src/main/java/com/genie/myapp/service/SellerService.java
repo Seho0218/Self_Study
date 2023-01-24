@@ -3,14 +3,11 @@ package com.genie.myapp.service;
 import java.util.List;
 import java.util.Map;
 
-import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.dto.InquiryDTO;
 import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.PagingDTO;
 import com.genie.myapp.dto.SellerProductDTO;
 import com.genie.myapp.dto.SellerDTO;
-import com.genie.myapp.entity.Account.Account;
-import com.genie.myapp.entity.Account.Seller;
 
 
 public interface SellerService {
@@ -19,7 +16,7 @@ public interface SellerService {
 	public int idCheck(String genie_id);
 
 	//seller 회원가입
-	public Seller sellerWrite(Seller seller);
+	public void sellerWrite(SellerDTO seller);
 
 	//seller 상품등록
 	public int productWrite(SellerProductDTO vo);

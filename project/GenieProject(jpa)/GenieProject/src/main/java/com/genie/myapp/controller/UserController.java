@@ -1,13 +1,11 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import com.genie.myapp.dto.AddressDTO;
-import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,17 +56,14 @@ public class UserController {
 	public ModelAndView MyPage(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
-
-		String seller_id = (String)session.getAttribute("logId"); 
+		String seller_id = (String)session.getAttribute("logId");
 		SellerDTO svo = sellerService.getSeller(seller_id);
 
 		mav = new ModelAndView();
 
 		mav.addObject("svo",svo);
-		mav.addObject("vo",userDTO);
+		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyPage");
 	
 		return mav;
@@ -76,15 +71,15 @@ public class UserController {
   
 	//회원정보 수정 DB
 	@PostMapping("UserEditOk")
-	public ResponseEntity<String> UserEditOk(UserDTO vo) {
+	public ResponseEntity<String> UserEditOk(UserDTO userDTO) {
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		
 		String msg = "<script>";
-		int cnt = userService.UserEditOk(vo);
+		long cnt = userService.UserEditOk(userDTO);
 			
 		if(cnt>0) {//수정됨
 			msg+="alert('회원정보가 수정되었습니다.');";
@@ -103,15 +98,12 @@ public class UserController {
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
-
 		List<MyOrder> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
-		mav.addObject("vo", userDTO);
+		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyOrderList");
 	
 		return mav;
@@ -122,14 +114,11 @@ public class UserController {
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
-
 		List<Address> dlist = userService.getDeliveryList(genie_id);
 
 		mav = new ModelAndView();
-		mav.addObject("vo", userDTO);
+		mav.addObject("vo", userService.getUser(userDTO));
 		mav.addObject("dlist", dlist);
 		mav.setViewName("/user/MyDeliveryList");
 	
@@ -140,9 +129,9 @@ public class UserController {
 	@PostMapping("addDelivery")
 	public ResponseEntity<String> addDelivery(Address adto) {
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
 		System.out.println();
@@ -165,9 +154,9 @@ public class UserController {
 	@PostMapping("addAddressbook")
 	public ResponseEntity<String> addAddressbook(Address adto) {
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 	
 		String msg = "<script>";
@@ -202,20 +191,16 @@ public class UserController {
 		return mav;
 	}
 
-
-	
-
 	@GetMapping("Addaddressbook")
 	public ModelAndView Addaddressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
 
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
 		List<Address> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
-		mav.addObject("vo", userDTO);
+		mav.addObject("vo", userService.getUser(userDTO));
 		mav.addObject("dlist", dlist);
 		mav.setViewName("/user/Addaddressbook");
 		return mav;
@@ -227,12 +212,10 @@ public class UserController {
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
 
 		mav = new ModelAndView();
-		mav.addObject("vo", userDTO);
+		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyInquiryList");
 	
 		return mav;
@@ -243,13 +226,11 @@ public class UserController {
 	public ModelAndView MyLikeList(HttpSession session){
 
 		String genie_id = (String)session.getAttribute("logId");
-
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
 
 		mav = new ModelAndView();
 		mav.addObject("list",userService.getLikeList(genie_id));
-		mav.addObject("vo",userDTO);
+		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyLikeList");
 	
 		return mav;
@@ -278,7 +259,7 @@ public class UserController {
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
 		UserDTO logDTO = userService.loginOk(udto);

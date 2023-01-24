@@ -28,9 +28,4 @@
 
 	<!-- 주문정보 -->
 
-	<select id = "getMypage" resultType = "UserDTO">
-		select genie_id, user_name, user_tel, user_email
-		from user
-		where genie_id=#{genie_id}
-	</select>
 </mapper>

@@ -6,6 +6,7 @@ import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -26,30 +27,29 @@ public class UserServiceRepository {
 
     private final JPAQueryFactory queryFactory;
 
-    public User loginOk(User dto) {
-        return queryFactory
-                .select(user)
-                .from(account, user)
-                .where(
-                       user.genie_id.eq(dto.getGenie_id()),
-                       account.withdrawal.eq(1)
-                )
-                .fetchOne();
-    }
-
-
-    public User getUser(String genie_id) {
-        return queryFactory
-                .selectFrom(user)
-                .where(user.genie_id.eq(genie_id))
-                .fetchOne();
-    }
-
     public long idCheck(String genie_id){
         return queryFactory
                 .select(account.genie_id.count().as("cnt"))
                 .from(account)
                 .where(account.genie_id.eq(genie_id))
+                .fetchOne();
+    }
+
+    public User loginOk(User userEntity) {
+        return queryFactory
+                .select(user)
+                .from(account, user)
+                .where(
+                       user.genie_id.eq(userEntity.getGenie_id()),
+                       account.withdrawal.eq(1)
+                )
+                .fetchOne();
+    }
+
+    public User getUser(String genie_id) {
+        return queryFactory
+                .selectFrom(user)
+                .where(user.genie_id.eq(genie_id))
                 .fetchOne();
     }
 
@@ -71,7 +71,13 @@ public class UserServiceRepository {
                 .fetch();
     }
 
-
+    public long UserEditOk(UserDTO userDTO){
+        return queryFactory
+                .update(user)
+                .set(user.user_tel, userDTO.getUser_tel())
+                .where(user.genie_id.eq(userDTO.getGenie_id()))
+                .execute();
+    }
 
     public int PwdEditOk(UserDTO dto){
         return (int) queryFactory
@@ -81,20 +87,11 @@ public class UserServiceRepository {
                 .execute();
     }
 
-    public int UserEditOk(UserDTO dto){
-        return (int) queryFactory
-                .update(user)
-                .set(user.user_tel, dto.getUser_tel())
-                .where(account.genie_id.eq(dto.getGenie_id()))
-                .execute();
-    }
-
 
     public int delDelivery(int address_num) {
         return (int) queryFactory
                 .delete(address)
-                .where(address.address_num.eq(address_num)
-                )
+                .where(address.address_num.eq(address_num))
                 .execute();
     }
 

@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Getter @Setter
+@Getter
 public class Address implements Serializable {
 
     @Id @GeneratedValue(strategy = IDENTITY)

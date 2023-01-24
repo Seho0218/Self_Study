@@ -1,7 +1,9 @@
 package com.genie.myapp.dto;
 
+import com.genie.myapp.Config.CustomerModelMapper;
 import com.genie.myapp.entity.Account.User;
 import lombok.Data;
+import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
@@ -45,7 +47,7 @@ public class UserDTO {
     // Entity -> DTO (정적 팩토리 메서드)
     public static UserDTO convertEntityToDTO(User user){
 
-        ModelMapper modelMapper = new ModelMapper();
+        ModelMapper modelMapper = new CustomerModelMapper();
         // 매핑 전략 설정
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper.map(user,UserDTO.class);
@@ -54,7 +56,7 @@ public class UserDTO {
     // DTO -> Entity
     public static User convertDTOtoEntity(UserDTO userDTO) {
 
-        ModelMapper modelMapper = new ModelMapper();
+        ModelMapper modelMapper = new CustomerModelMapper();
         // 매핑 전략 설정
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper.map(userDTO, User.class);

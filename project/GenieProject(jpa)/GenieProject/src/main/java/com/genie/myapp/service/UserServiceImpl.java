@@ -47,10 +47,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO loginOk(UserDTO userDTO) {
+    public UserDTO loginOk(UserDTO loginDTO) {
 
         //DTO -> Entity
-        User user = UserDTO.convertDTOtoEntity(userDTO);
+        User user = UserDTO.convertDTOtoEntity(loginDTO);
 
         //Entity -> DTO
         return UserDTO.convertEntityToDTO(repository.loginOk(user));
@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public int UserEditOk(UserDTO dto) {
-        return repository.UserEditOk(dto);
+    public long UserEditOk(UserDTO userDTO) {
+        return repository.UserEditOk(userDTO);
     }
 
     @Override

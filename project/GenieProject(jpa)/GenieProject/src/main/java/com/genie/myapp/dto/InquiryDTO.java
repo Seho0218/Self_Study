@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class InquiryDTO {
+
 	public String genie_id;
 	public int product_id;
 	public String inquiry_title;

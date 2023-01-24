@@ -21,10 +21,10 @@ public interface UserService {
 	public UserDTO getUser(UserDTO userDTO);
 
 	//회원 정보 수정: DB 업데이트
-	public int UserEditOk(UserDTO vo);
+	public long UserEditOk(UserDTO userDTO);
 
 	//비밀번호 변경
-	public int PwdEditOk(UserDTO vo);
+	public int PwdEditOk(UserDTO userDTO);
 
 	//배송지 등록
 	public int addDelivery(Address vo);

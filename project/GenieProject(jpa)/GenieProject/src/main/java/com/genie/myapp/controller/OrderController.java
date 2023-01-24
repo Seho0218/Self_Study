@@ -105,7 +105,7 @@ public class OrderController {
 				//제품 정보 가져오기
 				List<OrderDTO> cList = orderService.getFromCart(ovo);
 				//System.out.println("ovo 제품정보 : "+ovo.toString());
-				System.out.println("제품정보 : "+cList.size()); /// gfdgfgdg
+				System.out.println("제품정보 : "+cList.size()); ///
 				for(OrderDTO vo : cList){
 					vo.setOrder_num(ovo.getOrder_num());
 					vo.setGenie_id(genie_id);
