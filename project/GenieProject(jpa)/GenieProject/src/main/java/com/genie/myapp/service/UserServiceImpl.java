@@ -1,6 +1,7 @@
 package com.genie.myapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.genie.myapp.dto.AddressDTO;
 import com.genie.myapp.dto.ProductDTO;
@@ -27,16 +28,13 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
+    @PersistenceContext private final EntityManager em;
+
     @Autowired UserDAO dao;
-
-    @PersistenceContext
-    private final EntityManager em;
-
     @Autowired AccountRepository accountRepository;
     @Autowired UserServiceRepository repository;
-    @Autowired UserRepository userRepository;
-    @Autowired AddressRepository addressRepository;
-
+    @Autowired UserRepository userRepository; //JPA 레포지토리
+    @Autowired AddressRepository addressRepository; //JPA 레포지토리
 
 
     @Override
@@ -51,10 +49,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO loginOk(UserDTO loginDTO) {
+    public UserDTO loginOk(UserDTO userDTO) {
 
         //DTO -> Entity
-        User user = UserDTO.convertDTOtoEntity(loginDTO);
+        User user = UserDTO.convertDTOtoEntity(userDTO);
 
         //Entity -> DTO
         return UserDTO.convertEntityToDTO(repository.loginOk(user));
@@ -65,15 +63,27 @@ public class UserServiceImpl implements UserService{
         return UserDTO.convertEntityToDTO(repository.getUser(userDTO.getGenie_id()));
     }
 
+
     @Override
-    public long UserEditOk(UserDTO userDTO) {
-        return repository.UserEditOk(userDTO);
+    public void UserEditOk(UserDTO userDTO) {
+        
+        User findUser = em.find(User.class, userDTO.getGenie_id());
+        System.out.println("findUser = " + findUser.getGenie_id());
+
+
     }
 
     @Override
-    public int PwdEditOk(UserDTO dto) {
-        return repository.PwdEditOk(dto);
+    public void PwdEditOk(UserDTO userDTO) {
+        
+        //DTO -> Entity
+        User user = UserDTO.convertDTOtoEntity(userDTO);
+
+        User findUser = em.find(User.class, user.getGenie_id());
+        findUser.setGenie_pwd(userDTO.getGenie_pwd());
     }
+    
+
 
     @Override
     public void addDelivery(AddressDTO addressDTO) {

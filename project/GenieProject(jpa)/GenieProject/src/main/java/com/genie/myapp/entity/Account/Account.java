@@ -14,7 +14,7 @@ import static javax.persistence.InheritanceType.*;
 @NoArgsConstructor
 @DiscriminatorColumn
 @Inheritance(strategy = JOINED)
-public abstract class Account {
+public class Account {
 
     @Id
     private String genie_id;

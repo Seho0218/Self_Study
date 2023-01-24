@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class TagDTO{
+
     private String genie_who;
     private String genie_day;
     private String genie_old;

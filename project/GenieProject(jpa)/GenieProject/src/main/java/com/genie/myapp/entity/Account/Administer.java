@@ -5,11 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-
-import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
@@ -26,6 +22,6 @@ public class Administer extends Account{
     @Column(name= "administer_email")
     private String email;
 
-    private LocalDateTime writedate;
+    private LocalDateTime writedate  = LocalDateTime.now();
 
 }

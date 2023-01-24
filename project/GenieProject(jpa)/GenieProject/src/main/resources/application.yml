@@ -14,11 +14,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         #show_sql: true
         #format_sql: true
+    defer-datasource-initialization: true
   mvc:
     view:
       prefix: /WEB-INF/views/

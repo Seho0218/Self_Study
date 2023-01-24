@@ -5,17 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter @Setter @DynamicUpdate
@@ -33,8 +29,8 @@ public class Seller extends Account{
     private String ceo_name;
     private String seller_address;
     private String seller_website;
-    private LocalDateTime writedate;
+    private LocalDateTime writedate = LocalDateTime.now();
     private String seller_status;
-    private LocalDateTime approval_date;
+    private LocalDateTime approval_date = LocalDateTime.now();
 
 }

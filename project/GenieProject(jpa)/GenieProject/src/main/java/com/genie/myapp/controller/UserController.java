@@ -73,23 +73,33 @@ public class UserController {
 	//회원정보 수정 DB
 	@PostMapping("UserEditOk")
 	public ResponseEntity<String> UserEditOk(UserDTO userDTO) {
-		
+
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
-		
+
 		String msg = "<script>";
-		long cnt = userService.UserEditOk(userDTO);
-			
-		if(cnt>0) {//수정됨
+
+		try{//수정됨
+
+			userService.UserEditOk(userDTO);
+
 			msg+="alert('회원정보가 수정되었습니다.');";
-		}else {//수정못함
-			msg+="alert('회원 정보 수정이 실패하였습니다.');";	
+			msg+="location.href='/user/MyPage';</script>";
+			msg += "</script>";
+
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+
+		}catch (Exception e){//수정못함
+
+			msg+="alert('회원 정보 수정이 실패하였습니다.');";
+			msg+="location.href='/user/MyPage';</script>";
+			msg += "</script>";
+
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+
 		}
-		msg+="location.href='/user/MyPage';</script>";
-		
-		entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
@@ -140,13 +150,16 @@ public class UserController {
 		try{
 			userService.addDelivery(addressDTO);
 			msg+="alert('배송지가 등록되었습니다.');";
+			msg+="location.href='/user/MyDeliveryList';</script>";
+			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
+
 		} catch(Exception e) {//등록 실패
 
 			msg+="alert('배송지 등록에 실패하였습니다.');";
+			msg+="location.href='/user/MyDeliveryList';</script>";
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
 		}
-		msg+="location.href='/user/MyDeliveryList';</script>";
-
-		entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
@@ -167,13 +180,16 @@ public class UserController {
 
 			userService.addDelivery(addressDTO);
 			msg+="alert('배송지가 등록되었습니다.');";
+			msg+="location.href='/user/addressbook';</script>";
+			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
+
 		}catch (Exception e){//등록 실패
 
 			msg+="alert('배송지 등록에 실패하였습니다.');";
+			msg+="location.href='/user/addressbook';</script>";
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
 		}
-		msg+="location.href='/user/addressbook';</script>";
-		//msg+="location.reload();</script>";
-		entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
@@ -274,19 +290,26 @@ public class UserController {
 
 		String msg = "<script>";
 		if(pwdMatch){
-			String enPw=passwordEncoder.encode(udto.getGenie_pwd());
-			udto.setGenie_pwd(enPw);
-			int cnt = userService.PwdEditOk(udto);
 
-				
-			if(cnt>0) {//수정함
+
+			try{//수정함
+
+				String enPw=passwordEncoder.encode(udto.getGenie_pwd());
+				udto.setGenie_pwd(enPw);
+				userService.PwdEditOk(udto);
 				msg+="alert('비밀번호가 수정되었습니다.');";
-			}else {//수정못함
-				msg+="alert('비밀번호 수정이 실패하였습니다.');";	
+				msg+="window.close();</script>";
+				entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+
+			}catch (Exception e){//수정못함
+
+				msg+="alert('비밀번호 수정이 실패하였습니다.');";
+				msg+="window.close();</script>";
+				entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+
+				e.printStackTrace();
 			}
-			msg+="window.close();</script>";
-			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
-				
+
 		}else{
 
 			msg+="alert('비밀번호 수정이 실패하였습니다.');";

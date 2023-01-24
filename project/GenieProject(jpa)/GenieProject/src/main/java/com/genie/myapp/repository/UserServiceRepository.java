@@ -6,7 +6,6 @@ import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -70,23 +69,6 @@ public class UserServiceRepository {
                 .where(user.genie_id.eq(genie_id))
                 .fetch();
     }
-
-    public long UserEditOk(UserDTO userDTO){
-        return queryFactory
-                .update(user)
-                .set(user.user_tel, userDTO.getUser_tel())
-                .where(user.genie_id.eq(userDTO.getGenie_id()))
-                .execute();
-    }
-
-    public int PwdEditOk(UserDTO dto){
-        return (int) queryFactory
-                .update(account)
-                .set(account.genie_pwd, dto.getGenie_pwd())
-                .where(account.genie_id.eq(dto.getGenie_id()))
-                .execute();
-    }
-
 
     public int delDelivery(int address_num) {
         return (int) queryFactory

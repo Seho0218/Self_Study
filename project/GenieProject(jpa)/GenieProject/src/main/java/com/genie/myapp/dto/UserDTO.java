@@ -21,6 +21,7 @@ public class UserDTO {
 	private String user_phone_num1;
 	private String user_phone_num2;
 	private String user_phone_num3;
+    private String user_email;
 
     private char user_gender;
 	
