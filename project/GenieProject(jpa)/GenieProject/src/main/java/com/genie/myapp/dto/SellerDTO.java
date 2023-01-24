@@ -42,7 +42,7 @@ public class SellerDTO {
 	}
 	public void setSeller_tel(String seller_tel) {
 		this.seller_tel = seller_tel;
-		String telSplit[] = seller_tel.split("-");
+		String[] telSplit = seller_tel.split("-");
 		tel1 = telSplit[0];
 		tel2 = telSplit[1];
 		tel3 = telSplit[2];
@@ -54,7 +54,7 @@ public class SellerDTO {
 	}
 	public void setSeller_address(String seller_address) {
 		this.seller_address = seller_address;
-		String addrSplit[] = seller_address.split(",");
+		String[] addrSplit = seller_address.split(",");
 		sel_addr = addrSplit[0];
 		sel_detailaddr = addrSplit[1];
 	}

@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Address implements Serializable {
 
     @Id @GeneratedValue(strategy = IDENTITY)
@@ -21,10 +21,11 @@ public class Address implements Serializable {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
     private User genie_id;
+    private String user_name;
 
-    private String receiver_name;
-    private String receiver_tel;
-    private String receiver_zipcode;
-    private String receiver_addr;
-    private String receiver_detailaddr;
+    private String user_tel;
+
+    private String user_zipcode;
+    private String user_addr;
+    private String user_detailaddr;
 }

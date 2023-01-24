@@ -1,29 +1,49 @@
 package com.genie.myapp.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
+import com.genie.myapp.Config.CustomerModelMapper;
+import com.genie.myapp.entity.Address;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 
 @Data
 @NoArgsConstructor
 public class AddressDTO {
 
 	private int address_num;
+	
 	private String genie_id;
-	private String receiver_name;
-	private String receiver_tel;
-	private String receiver_zipcode;
-	private String receiver_addr;
-	private String receiver_detailaddr;
+	private String user_name;
 
-	@QueryProjection
-	public AddressDTO(int address_num, String genie_id, String receiver_name, String receiver_tel, String receiver_zipcode, String receiver_addr, String receiver_detailaddr) {
-		this.address_num = address_num;
-		this.genie_id = genie_id;
-		this.receiver_name = receiver_name;
-		this.receiver_tel = receiver_tel;
-		this.receiver_zipcode = receiver_zipcode;
-		this.receiver_addr = receiver_addr;
-		this.receiver_detailaddr = receiver_detailaddr;
+	private String user_tel;
+	private String user_phone_num1;
+	private String user_phone_num2;
+	private String user_phone_num3;
+
+	private String user_zipcode;
+	private String user_addr;
+	private String user_detailaddr;
+
+	public String getUser_tel() {
+		return user_phone_num1 + "-"+user_phone_num2+"-"+user_phone_num3;
+	}
+
+	public void setUser_tel(String user_tel) {
+		
+		this.user_tel = user_tel;
+		String[] telSplit = user_tel.split("-");
+		user_phone_num1 = telSplit[0];
+		user_phone_num2 = telSplit[1];
+		user_phone_num3 = telSplit[2];
+	}
+
+	// DTO -> Entyty
+	public static Address convertDTOtoEntity(AddressDTO addressDTO) {
+
+		ModelMapper modelMapper = new CustomerModelMapper();
+		// 매핑 전략 설정
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return modelMapper.map(addressDTO, Address.class);
 	}
 }

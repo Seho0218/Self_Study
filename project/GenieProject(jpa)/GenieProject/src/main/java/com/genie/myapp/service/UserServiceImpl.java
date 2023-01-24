@@ -2,11 +2,13 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.dto.AddressDTO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 import com.genie.myapp.repository.jpa.AccountRepository;
+import com.genie.myapp.repository.jpa.AddressRepository;
 import com.genie.myapp.repository.jpa.UserRepository;
 import com.genie.myapp.repository.UserServiceRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +33,10 @@ public class UserServiceImpl implements UserService{
     private final EntityManager em;
 
     @Autowired AccountRepository accountRepository;
-    @Autowired UserRepository userRepository;
     @Autowired UserServiceRepository repository;
+    @Autowired UserRepository userRepository;
+    @Autowired AddressRepository addressRepository;
+
 
 
     @Override
@@ -61,7 +65,6 @@ public class UserServiceImpl implements UserService{
         return UserDTO.convertEntityToDTO(repository.getUser(userDTO.getGenie_id()));
     }
 
-
     @Override
     public long UserEditOk(UserDTO userDTO) {
         return repository.UserEditOk(userDTO);
@@ -73,9 +76,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int addDelivery(Address address) {
-        em.persist(address);
-        return 1;
+    public void addDelivery(AddressDTO addressDTO) {
+        Address address = AddressDTO.convertDTOtoEntity(addressDTO);
+        addressRepository.save(address);
     }
 
     @Override

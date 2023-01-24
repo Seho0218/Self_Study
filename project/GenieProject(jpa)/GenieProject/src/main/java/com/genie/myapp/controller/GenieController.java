@@ -99,7 +99,6 @@ public class GenieController{
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
-//		TransactionStatus status= transactionManager.getTransaction(definition);
 
 		System.out.println("adto = " + adto + ", udto = " + udto);
 		try {//회원가입 성공
@@ -114,9 +113,6 @@ public class GenieController{
 			msg += "</script>";
 			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
 
-//			transactionManager.commit(status);
-
-
 		}catch(Exception e) {//회원등록 실패
 
 			String msg = "<script>";
@@ -125,9 +121,7 @@ public class GenieController{
 			msg += "</script>";
 			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
 
-//			transactionManager.rollback(status);
 			e.printStackTrace();
-			
 		}
 
 		return entity;

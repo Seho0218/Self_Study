@@ -107,7 +107,7 @@ nav .sidenav-trigger i {
             <li>주소</li>
             <li><input type="text" name="user_addr" id ="user_addr" readonly/></li>
             <li>상세주소</li>
-            <li><input type="text" name="user_detailaddr" id ="user_detailaddr" /></li> 
+            <li><input type="text" name="user_detailaddr" id ="user_detailaddr" /></li>
             <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
           </ul>
       </form>   

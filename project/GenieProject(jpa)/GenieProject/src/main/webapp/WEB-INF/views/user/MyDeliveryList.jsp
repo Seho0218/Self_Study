@@ -331,11 +331,11 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 
         <ul id="delivery_1">
         <c:forEach var="dvo" items="${dlist}">
-            <li> <input type="text" value="수령자 이름: ${dvo.receiver_name}" readonly/></li>
-            <li><input type="text" value="전화번호: ${dvo.receiver_tel}" readonly/></li>
-            <li><input type="text" value="우편번호: ${dvo.receiver_zipcode}" readonly/></li>
-            <li><input type="text" value="주소: ${dvo.receiver_addr}" readonly/></li>
-            <li><input type="text" value="상세주소: ${dvo.receiver_detailaddr}" readonly/></li><br>
+            <li> <input type="text" value="수령자 이름: ${dvo.user_name}" readonly/></li>
+            <li><input type="text" value="전화번호: ${dvo.user_tel}" readonly/></li>
+            <li><input type="text" value="우편번호: ${dvo.user_zipcode}" readonly/></li>
+            <li><input type="text" value="주소: ${dvo.user_addr}" readonly/></li>
+            <li><input type="text" value="상세주소: ${dvo.user_detailaddr}" readonly/></li><br>
             <div><input type="hidden" value='${dvo.address_num}' /></div>
             <div><input type="button" value='삭제' address_num="${dvo.address_num}" id="address_kakao"/></div>
           </c:forEach>        

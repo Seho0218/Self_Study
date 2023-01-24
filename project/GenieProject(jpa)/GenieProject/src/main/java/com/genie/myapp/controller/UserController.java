@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.AddressDTO;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,20 +128,20 @@ public class UserController {
 
 	//배송지 
 	@PostMapping("addDelivery")
-	public ResponseEntity<String> addDelivery(Address adto) {
+	public ResponseEntity<String> addDelivery(AddressDTO addressDTO) {
+		System.out.println("addressDTO = " + addressDTO);
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
-		System.out.println();
 		String msg = "<script>";
-		int cnt = userService.addDelivery(adto);
-
-		if(cnt>0) {//수정됨
+		try{
+			userService.addDelivery(addressDTO);
 			msg+="alert('배송지가 등록되었습니다.');";
-		} else {//수정못함
+		} catch(Exception e) {//등록 실패
+
 			msg+="alert('배송지 등록에 실패하였습니다.');";
 		}
 		msg+="location.href='/user/MyDeliveryList';</script>";
@@ -152,19 +153,22 @@ public class UserController {
 
 	//주문 결제 페이지의 주소 추가창
 	@PostMapping("addAddressbook")
-	public ResponseEntity<String> addAddressbook(Address adto) {
+	public ResponseEntity<String> addAddressbook(AddressDTO addressDTO) {
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
-	
-		String msg = "<script>";
-		int cnt = userService.addDelivery(adto);
 
-		if(cnt>0) {//수정됨
+		System.out.println("addressDTO = " + addressDTO);
+		String msg = "<script>";
+
+		try{//등록 성공
+
+			userService.addDelivery(addressDTO);
 			msg+="alert('배송지가 등록되었습니다.');";
-		}else {//수정못함
+		}catch (Exception e){//등록 실패
+
 			msg+="alert('배송지 등록에 실패하였습니다.');";
 		}
 		msg+="location.href='/user/addressbook';</script>";

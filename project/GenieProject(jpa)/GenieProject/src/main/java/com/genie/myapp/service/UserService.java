@@ -27,7 +27,7 @@ public interface UserService {
 	public int PwdEditOk(UserDTO userDTO);
 
 	//배송지 등록
-	public int addDelivery(Address vo);
+	public void addDelivery(AddressDTO addressDTO);
 	//배송지 리스트 가져오기
 	public List<Address> getDeliveryList(String genie_id);
 	//배송지 삭제
