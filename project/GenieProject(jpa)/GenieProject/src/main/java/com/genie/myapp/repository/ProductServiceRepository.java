@@ -15,4 +15,5 @@ public class ProductServiceRepository {
     private final EntityManager em;
 
     private final JPAQueryFactory queryFactory;
+
 }

@@ -2,21 +2,17 @@ package com.genie.myapp.controller;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.AddressDTO;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,24 +27,14 @@ import com.genie.myapp.dto.UserDTO;
 
 @RestController
 @RequestMapping("/user/*")
+@RequiredArgsConstructor
 public class UserController {
 
-	@Inject
-	UserService userService;
-
-	@Inject
-	SellerService sellerService;
+	public final UserService userService;
+	public final SellerService sellerService;
+	public final PasswordEncoder passwordEncoder;
 
 	ModelAndView mav=null;
-
-	@Autowired
-	PlatformTransactionManager transactionManager;
-
-	@Autowired
-	TransactionDefinition definition;
-
-	@Autowired
-    PasswordEncoder passwordEncoder;
 
 //////////////////////////////////////////////////////////
 

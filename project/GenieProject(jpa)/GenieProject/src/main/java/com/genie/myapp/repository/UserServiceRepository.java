@@ -1,6 +1,5 @@
 package com.genie.myapp.repository;
 
-import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.MyOrder;
@@ -69,6 +68,7 @@ public class UserServiceRepository {
                 .where(user.genie_id.eq(genie_id))
                 .fetch();
     }
+
 
     public int delDelivery(int address_num) {
         return (int) queryFactory

@@ -6,14 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,31 +26,16 @@ import com.genie.myapp.service.UserService;
 
 @RestController
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class GenieController {
-
-	@Autowired
-	UserService userService;
-
-	@Autowired
-	SellerService sellerService;
-
-	@Autowired
-	AdministerService administerService;
-
-	@Autowired
-	ProductService productService;
 
 	ModelAndView mav = null;
 
-	@Autowired
-	PlatformTransactionManager transactionManager;
-
-	@Autowired
-	TransactionDefinition definition;
-
-	@Autowired
-	PasswordEncoder passwordEncoder;
-
+	public final UserService userService;
+	public final SellerService sellerService;
+	public final AdministerService administerService;
+	public final ProductService productService;
+	public final PasswordEncoder passwordEncoder;
 
 	//회원가입 폼으로 이동
 	@GetMapping("Registration")

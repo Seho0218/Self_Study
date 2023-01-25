@@ -9,7 +9,7 @@ import com.genie.myapp.dto.AdminDTO;
 import com.genie.myapp.dto.PagingDTO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.dto.TagDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +23,12 @@ import com.genie.myapp.service.UserService;
 
 @RestController
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class ProductController {
 	
-	@Autowired
-	AdminService adminService;
-
-	@Autowired
-	ProductService productService;
-
-	@Autowired
-	UserService userService;
+	public final AdminService adminService;
+	public final ProductService productService;
+	public final UserService userService;
 
 	ModelAndView mav = null;
 	Map<String, Object> map = null;
@@ -85,7 +81,7 @@ public class ProductController {
 	@PostMapping("selectProduct")
 	public ModelAndView selectProduct(ProductDTO pvo, TagDTO tvo) {
 
-		map = new HashMap<String, Object>();
+		map = new HashMap<>();
 		map.put("p", pvo);
 		map.put("t", tvo);
 

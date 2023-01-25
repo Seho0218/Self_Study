@@ -31,6 +31,7 @@ bin/
 ._*
 .Spotlight-V100
 .Trashes
+.obsidian
 ehthumbs.db
 Thumbs.db
 Servers

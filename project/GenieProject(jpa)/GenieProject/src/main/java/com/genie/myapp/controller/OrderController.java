@@ -8,14 +8,11 @@ import javax.servlet.http.HttpSession;
 import com.genie.myapp.dto.CartDTO;
 import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.UserDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,24 +25,13 @@ import com.genie.myapp.service.UserService;
 
 @RestController
 @RequestMapping("/order/*")
+@RequiredArgsConstructor
 public class OrderController {
 
-	@Autowired
-	UserService userService;
+	final UserService userService;
+	final ProductService productService;
+	final OrderService orderService;
 
-	@Autowired
-	ProductService productService;
-
-	@Autowired
-	OrderService orderService;
-
-    @Autowired
-	PlatformTransactionManager transactionManager;
-
-	@Autowired
-	TransactionDefinition definition;
-
-	
 	ModelAndView mav = null;
 
     // --------------------------------------------상품
@@ -93,7 +79,6 @@ public class OrderController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
-		TransactionStatus status= transactionManager.getTransaction(definition);
 
 		String genie_id = (String) session.getAttribute("logId");
 
@@ -128,13 +113,11 @@ public class OrderController {
 				////장바구니에서 구매한 상품 지우기
 				orderService.afterOrderCart(ovo);// 장바구니 삭제
 
-				transactionManager.commit(status);
 				entity = new ResponseEntity<>(HttpStatus.OK);
 
 			}catch(Exception e){
 				entity = new ResponseEntity<>(headers,HttpStatus.BAD_REQUEST);
 				
-				transactionManager.rollback(status);
 				e.printStackTrace();
 
 			}
@@ -143,13 +126,11 @@ public class OrderController {
 				ovo.setGenie_id(genie_id);
 				orderService.afterPayment(ovo);
 				
-				transactionManager.commit(status);
 				entity = new ResponseEntity<>(HttpStatus.OK);
 
 			}catch(Exception e){
 				entity = new ResponseEntity<>(headers,HttpStatus.BAD_REQUEST);
 				
-				transactionManager.rollback(status);
 				e.printStackTrace();
 			}
 		}

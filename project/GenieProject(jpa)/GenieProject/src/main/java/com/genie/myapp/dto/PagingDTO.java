@@ -16,7 +16,6 @@ public class PagingDTO {
 	
 	private int startPage = 1;
 	private int onePageCount = 5;
-	
 
 	private String searchKey;
 	private String searchWord; 
@@ -36,11 +35,6 @@ public class PagingDTO {
 		this.totalRecord = totalRecord;
 		//총페이지수 구하기
 		totalPage = totalRecord/onePageRecord;
-		if(totalRecord%onePageRecord!=0) {
-			totalPage++;
-		}
+		if (totalRecord % onePageRecord != 0) totalPage++;
 	}
-	
-
-	
 }

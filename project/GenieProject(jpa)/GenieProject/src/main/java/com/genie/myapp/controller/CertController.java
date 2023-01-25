@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.UserDTO;
-import com.genie.myapp.entity.Account.Account;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -22,12 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.CertService;
 
 @RestController
-@SuppressWarnings("unchecked")
 @RequestMapping("/cert/*")
+@RequiredArgsConstructor
 public class CertController {
 
-	@Autowired
-	CertService CertService;
+	public final CertService certService;
 
 	@Autowired
     PasswordEncoder passwordEncoder;
@@ -45,10 +44,10 @@ public class CertController {
 	// 메일로 아이디 보내기
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String user_email){
-		List<String> genie_id =CertService.FindId(user_email);
+		List<String> genie_id =certService.FindId(user_email);
 	
 		if(genie_id.size() != 0) {
-			CertService.sendUserId(user_email, genie_id);
+			certService.sendUserId(user_email, genie_id);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -66,10 +65,10 @@ public class CertController {
 	@GetMapping("overlapCheck")
 	public int overlapCheck(String value, String valueType) {
 //		value = 중복체크할 값
-//		valeuType = username, nickname
+//		valueType = username, nickname
 		System.out.println(valueType);
 		System.out.println(value);
-		int count = CertService.overlapCheck(value, valueType);
+		int count = certService.overlapCheck(value, valueType);
 		
 		System.out.println(count);
 		return count;
@@ -77,9 +76,9 @@ public class CertController {
 	
 	@GetMapping("emailCheck")
 	public ResponseEntity<Boolean> emailCheck(String genie_id, String user_email){
-		boolean emailCheck = CertService.emailCheck(genie_id, user_email);
+		boolean emailCheck = certService.emailCheck(genie_id, user_email);
         System.out.println("emailCheck "+ emailCheck );
-		return new ResponseEntity<Boolean>(emailCheck, HttpStatus.OK);
+		return new ResponseEntity<>(emailCheck, HttpStatus.OK);
 	}
 	
 	
@@ -109,7 +108,7 @@ public class CertController {
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authStatus", authStatus);
 
-		return new ResponseEntity<Object>(genie_id, HttpStatus.OK);
+		return new ResponseEntity<>(genie_id, HttpStatus.OK);
 	}
 
 
@@ -126,7 +125,7 @@ public class CertController {
 		
 		if(user_email != null) {
 			//System.out.println("이메일로 인증번호 보내기");
-			CertService.sendAuthNum(user_email, authNum);
+			certService.sendAuthNum(user_email, authNum);
 		}
 		
 		Map<String, Object> authNumMap = new HashMap<>();
@@ -142,7 +141,7 @@ public class CertController {
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authNum", authNumMap);
 		
-		return new ResponseEntity<String>("인증번호가 전송되었습니다", HttpStatus.OK);
+		return new ResponseEntity<>("인증번호가 전송되었습니다", HttpStatus.OK);
 	}
 
 	// 인증번호가 맞는지 확인
@@ -150,11 +149,11 @@ public class CertController {
 	private ResponseEntity<String> authNumCheck(String authNum, HttpSession session){
 
 		Map<String, Object> sessionAuthNumMap = (Map<String, Object>) session.getAttribute("authNum");
-		String msg = "";
+		String msg;
 		
 		if(sessionAuthNumMap == null) {
 			msg = "인증번호를 전송해주세요";
-			return new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 		}
 		
 		// 인증번호 만료시간
@@ -165,19 +164,19 @@ public class CertController {
 			msg = "인증시간이 만료되었습니다";
 			session.setAttribute(authNum, null);
 			session.setMaxInactiveInterval(0);
-			return new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 		}
 		
 		// 인증번호
 		String sessionAuthNum = (String) sessionAuthNumMap.get("authNum");
-		// System.out.println("chekc.authNum-"+authNum);
-		// System.out.println("chekc.sessionAuthNum-"+sessionAuthNum);
+		// System.out.println("check.authNum-"+authNum);
+		// System.out.println("check.sessionAuthNum-"+sessionAuthNum);
 		if(!authNum.equals(sessionAuthNum)) {
 			msg = "인증번호가 일치하지 않습니다";
-			return new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 		} else {
 			// 인증번호가 일치하면
-			return new ResponseEntity<String>(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 	}
 
@@ -187,10 +186,10 @@ public class CertController {
 	public ResponseEntity<String> authCompletion(HttpSession session) {
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
 		if(authStatus == null) {
-			return new ResponseEntity<String>("인증시간이 만료되었습니다", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("인증시간이 만료되었습니다", HttpStatus.BAD_REQUEST);
 		}
 		authStatus.put("status", true);
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	// 비밀번호 변경 페이지
@@ -220,10 +219,10 @@ public class CertController {
 		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
 		vo.setGenie_pwd(enPw);
 
-		int cnt = CertService.PwdEditOk(vo);
+		int cnt = certService.PwdEditOk(vo);
 		System.out.print(cnt);
 
-		return new ResponseEntity<String>("비밀번호를 변경했습니다",HttpStatus.OK);
+		return new ResponseEntity<>("비밀번호를 변경했습니다",HttpStatus.OK);
 	}
 
 

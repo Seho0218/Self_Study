@@ -12,9 +12,10 @@ import com.genie.myapp.dto.AdminProductDTO;
 @RestController
 @RequestMapping("/admin/*")
 public class AdminProductController {
-	
+
 	@Autowired
 	AdminProductService service;
+
 	ModelAndView mav = null;
 	
 	@GetMapping("adminProduct")

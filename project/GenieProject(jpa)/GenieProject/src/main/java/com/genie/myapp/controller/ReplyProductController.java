@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.genie.myapp.dto.LikeDTO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.dto.ReplyProductDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +20,10 @@ import com.genie.myapp.service.ReplyProductService;
 
 @RestController
 @RequestMapping("/reply/*")
+@RequiredArgsConstructor
 public class ReplyProductController{
 
-    @Autowired
-    ReplyProductService service;
+    public final ReplyProductService service;
 
     @GetMapping("replyProductList")
     public List<ReplyProductDTO> replyProductList(int no){
@@ -51,7 +51,7 @@ public class ReplyProductController{
 	@PostMapping("likeInsert")
 	public int likeInsert(LikeDTO dto, HttpSession session){
 		dto.setGenie_id((String)session.getAttribute("logId"));
-        System.out.println(dto.toString());
+        System.out.println(dto);
 
 		return service.likeInsert(dto);
 	}
@@ -60,7 +60,7 @@ public class ReplyProductController{
  	public int likeStatus(LikeDTO dto, HttpSession session) {
  		dto.setGenie_id((String)session.getAttribute("logId"));
  		int cnt = service.likeStatus(dto);
- 		int result = 0;
+ 		int result;
  		if (cnt>0) {
  			service.likeDelete(dto);
  			service.likeHitMinus(dto);

@@ -5,12 +5,9 @@ import com.genie.myapp.entity.Account.Seller;
 import com.genie.myapp.entity.Cart;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-import org.apache.ibatis.annotations.One;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +16,8 @@ import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Getter @DynamicUpdate
+@Getter @Setter
+@DynamicUpdate
 public class Product {
 
     @Id @GeneratedValue(strategy = IDENTITY)
@@ -44,9 +42,9 @@ public class Product {
     private int product_price;
     private String product_info;
 
-    private int product_stock;
-    private int product_quantity;
-    private int product_hit;
+    private int product_stock=0;
+    private int product_quantity=0;
+    private int product_hit=0;
 
     private int product_like;
 
@@ -76,3 +74,4 @@ public class Product {
     }
 
 }
+

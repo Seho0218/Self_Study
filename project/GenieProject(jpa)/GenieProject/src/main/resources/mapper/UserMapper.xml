@@ -4,16 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.genie.myapp.dao.UserDAO">
 
-
-	<!-- 배송지 -->
-
-	<insert id="addDelivery">	
-
-		insert into address(address_num, genie_id, user_name, user_tel, user_zipcode, user_addr, user_detailaddr)
-		values(#{address_num}, #{genie_id},#{user_name}, #{user_tel}, #{user_zipcode}, #{user_addr}, #{user_detailaddr})
-
-	</insert>
-
 	<!-- 찜한 상품 리스트-->
 	<select id="getLikeList" resultType="ProductDTO">
 
@@ -25,7 +15,5 @@
 		order by product_like desc
 		
 	</select>
-
-	<!-- 주문정보 -->
 
 </mapper>

@@ -1,22 +1,17 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.Charset;
-import java.util.Iterator;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,17 +30,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/seller/*")
 public class SellerController {
-	
-	@Inject
-	SellerService service;
-	
-	@Autowired
-	PlatformTransactionManager transactionManager;
 
-	@Autowired
-	TransactionDefinition definition;
+	public final SellerService service;
+
 	ModelAndView mav = null;
 	
 	// Seller(UI 참고용)
@@ -58,7 +48,7 @@ public class SellerController {
 
 	// Seller 메인페이지
 	@GetMapping("sellerMain")
-	public ModelAndView sellerMain(OrderDTO vo, HttpServletRequest request) {
+	public ModelAndView sellerMain(HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
 		mav = new ModelAndView();
 
@@ -77,28 +67,25 @@ public class SellerController {
 		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
 		Gson gson = new Gson(); // json 으로 가공하기 위해 빈 gson 객체생성
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
-		
-		Iterator<OrderDTO> it = orderlist.iterator(); // 반복자 얻기 
-		while(it.hasNext()) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
-			OrderDTO ovo = it.next();
+
+		// 반복자 얻기
+		for (OrderDTO ovo : orderlist) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
 			JsonObject object = new JsonObject();
 			String date = ovo.getMonth_day();
 			int sales = ovo.getTotal_sales();
-			
+
 			object.addProperty("date", date);
 			object.addProperty("sales", sales);
-		
+
 			jArray.add(object); // json 배열 객체 생성
 		}
 		String json = gson.toJson(jArray); // 사용가능한 json 데이터 형태로 변환
 
 		// 카테고리별 판매건수
 		List<OrderDTO> categorylist = service.topCategory(seller_id);
-		Gson gson2 = new Gson();
+
 		JsonArray jArray2 = new JsonArray();
-		Iterator<OrderDTO> it2 = categorylist.iterator();
-		while(it2.hasNext()) {
-			OrderDTO ovo2 = it2.next();
+		for (OrderDTO ovo2 : categorylist) {
 			JsonObject object2 = new JsonObject();
 			String category = ovo2.getProduct_category();
 			int sold_counts = ovo2.getSold_counts();
@@ -179,21 +166,20 @@ public class SellerController {
 
 	// 주문목록 배송상태 수정
 	@PostMapping("updateDeliveryStatus") // @RequestParam 을 이용해 Map에 전송된 매개변수 이름을 key, 값을 value 로 저장
-	public ResponseEntity<String> updateDeliveryStatus(@RequestParam Map<String, String> deliveryMap, // Ajax로 전달받은 배송상태를 Map에 저장
-												HttpServletRequest request,
-												HttpServletResponse response) throws Exception{
+	public ResponseEntity<String> updateDeliveryStatus(@RequestParam Map<String, String> deliveryMap // Ajax로 전달받은 배송상태를 Map에 저장
+												){
 		service.updateDeliveryStatus(deliveryMap); // 배송상태를 변경 
-		String msg = null;
-		ResponseEntity<String> resEntity = null;
+		String msg;
+		ResponseEntity<String> resEntity;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		msg = "mod_success";
-		resEntity = new ResponseEntity<String>(msg, responseHeaders, HttpStatus.OK);
+		resEntity = new ResponseEntity<>(msg, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
 	
 	// Seller 매출관리 페이지
 	@GetMapping("sellerSales")
-	public ModelAndView sellerSales(OrderDTO vo, HttpServletRequest request) {
+	public ModelAndView sellerSales(HttpServletRequest request) {
 		String seller_id = (String)request.getSession().getAttribute("logId"); // 세션 셀러 아이디
 		
 		mav = new ModelAndView();
@@ -209,18 +195,17 @@ public class SellerController {
 		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
 		Gson gson = new Gson(); // json 으로 가공하기 위해 빈 gson 객체생성
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
-		
-		Iterator<OrderDTO> it = orderlist.iterator(); // 반복자 얻기 
-		while(it.hasNext()) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
-			OrderDTO ovo = it.next();
+
+		// 반복자 얻기
+		for (OrderDTO ovo : orderlist) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
 			JsonObject object = new JsonObject();
 			String date = ovo.getMonth_day();
 			int sales = ovo.getTotal_sales();
-			
-			
+
+
 			object.addProperty("date", date);
 			object.addProperty("sales", sales);
-		
+
 			jArray.add(object); // json 배열 객체 생성
 		}
 		
@@ -263,9 +248,9 @@ public class SellerController {
 	public ResponseEntity<String> productWrite(SellerProductDTO vo, HttpServletRequest request){
 		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
 		
-		ResponseEntity<String> entity = null;
+		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//상품등록 성공
@@ -275,7 +260,7 @@ public class SellerController {
 			msg += "alert('상품이 등록되었습니다.');";
 			msg += "location.href='/seller/sellerProduct';";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
 			
 		}catch(Exception e) {//상품등록 실패
 			
@@ -283,7 +268,7 @@ public class SellerController {
 			msg += "alert('상품등록이 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
 			
 			e.printStackTrace();
 		}
@@ -308,7 +293,7 @@ public class SellerController {
 		pvo.setGenie_id((String)session.getAttribute("logId"));
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
+		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 		String msg = "<script>";
 		
@@ -325,10 +310,8 @@ public class SellerController {
 			msg += "history.go(-1);";
 		}
 		msg += "</script>";
-		
-		ResponseEntity<String> entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
-		
-		return entity;
+
+		return new ResponseEntity<>(msg, headers, HttpStatus.OK);
 	}
 	
 	//seller 상품삭제 : DB

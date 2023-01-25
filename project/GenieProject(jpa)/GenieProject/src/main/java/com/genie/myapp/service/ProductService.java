@@ -30,6 +30,8 @@ public interface ProductService {
   // 상세페이지 관리자정보 가져오기
   public SellerDTO getSeller(int product_id);
 
+
+
   // 장바구니 가져오기(상품포함)
   public List<CartDTO> getCart(String genie_id);
 
@@ -44,6 +46,8 @@ public interface ProductService {
 
   // 장바구니 정보 업데이트
   public int updateCart(CartDTO cvo);
+
+
 
   // 상세페이지 logid 좋아요 확인
   public LikeDTO likeCheck(int product_id, String genie_id);
