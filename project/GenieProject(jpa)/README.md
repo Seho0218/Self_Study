@@ -15,6 +15,10 @@
 	implementation group: 'javax.inject', name: 'javax.inject', version: '1'
 	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
 	implementation 'commons-fileupload:commons-fileupload:1.4'
+	// sql문 확인
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
+	// dto <-> entity 매핑 작업 
+	implementation 'org.modelmapper:modelmapper:3.1.1'
 
 
 2.application.yml 파일 생성
@@ -30,7 +34,8 @@
 -controller
 -dao
 -service
--vo
+-dto
+-repository
 -interceptor
 
 5.View 파일 생성 
