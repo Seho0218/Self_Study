@@ -1,90 +1,25 @@
-# GenieProject
-
-기본세팅
-
-1.gradle Update
-
-	//providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//뷰를 jsp로 사용하기 위해서 프레임워크를 추가한다.
-	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.58'
-	// https://mvnrepository.com/artifact/javax.servlet/jstl
-	implementation 'javax.servlet:jstl:1.2'
-	// https://mvnrepository.com/artifact/javax.inject/javax.inject
-	implementation group: 'javax.inject', name: 'javax.inject', version: '1'
-	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
-	implementation 'commons-fileupload:commons-fileupload:1.4'
-	// sql문 확인
-	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
-	// dto <-> entity 매핑 작업 
-	implementation 'org.modelmapper:modelmapper:3.1.1'
+# GenieProject(JPA+QueryDSL)
 
 
-2.application.yml 파일 생성
 
--url 변경 -> genie
--포트번호 
--아이디 
--비밀번호 
+### 1. 프로젝트 목적 
 
-3.mapper 파일 생성
+ -  기존에 배웠던 MyBatis 대신 자바 ORM기술을 활용하여 
+     데이터 베이스에 접근할 수 있도록 하는 프로젝트
 
-4.필요 패키지 생성
--controller
--dao
--service
--dto
--repository
--interceptor
+### 2.  참고한 자료
 
-5.View 파일 생성 
+ - 김영한의 스프링 jpa 로드맵 + 스프링 로드맵
+ - stackoverflow
+ - google
+ 
+### 3. 배운점
 
-6.인클루드 작업
-@Component
-public class ServletInitializer extends SpringBootServletInitializer {
+ - 최대한 TIL로 남기도록 하되, 표현이 애매하면 코드에 그대로 작성함.
+ - commit 내역에서 오류 작업 및 수정작업에 대한 인덱스를 최대한 정확히 작성하여
+   오류 해결에 대한 이정표 작업.
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(GenieProjectApplication.class);
-	}
-	@Bean
-	public ConfigurableServletWebServerFactory configuraServletWebServerFactory() {
-		return new TomcatServletWebServerFactory() {
-			@Override
-			protected void postProcessContext(Context context) {
-				super.postProcessContext(context);
-				JspPropertyGroup jspPropertyGroup = new JspPropertyGroup();
-				jspPropertyGroup.addUrlPattern("*.jsp");
-				jspPropertyGroup.addUrlPattern("*.jspf");
-				jspPropertyGroup.setPageEncoding("UTF-8");
-				jspPropertyGroup.setScriptingInvalid("true");
-				jspPropertyGroup.addIncludePrelude("/WEB-INF/views/inc/top.jspf");
-				jspPropertyGroup.addIncludeCoda("/WEB-INF/views/inc/bottom.jspf");
-				jspPropertyGroup.setTrimWhitespace("true");
-				jspPropertyGroup.setDefaultContentType("text/html");
-				
-				JspPropertyGroupDescriptorImpl jspPropertyGroupDescriptor = new JspPropertyGroupDescriptorImpl(jspPropertyGroup);
-				context.setJspConfigDescriptor(new JspConfigDescriptorImpl(Collections.singletonList(jspPropertyGroupDescriptor), 					Collections.emptyList()));
-						
-				
-			}
-		};
-	}
-
-}
-
-7.genie, home 클라스 생성 
-
-.genie{
-	height: 15vh;
-	width: 100%;
-	background-size: cover;
-	background-position: center; 
-}
-
-8.화면 구성시, home 
-
-<sction class="home">
-	자유롭게 변경가능!
-</sction>
+####  4. 느낀점
+ 상승 곡선이 생각보다 높고 mybatis와 달리 초반에 알아야할 정보가 많음.
+ 그러나 자바로 많은 걸 해결해서 컴파일 과정에서 해결되는 점이 많다는 점을 보아 
+ 현재 나의 수준에선 가늠하긴 힘들지만, 간접적으로 상당한 이점을  가질 수 있음을 알수있음 
