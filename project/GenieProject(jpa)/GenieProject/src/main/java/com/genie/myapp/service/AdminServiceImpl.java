@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.genie.myapp.dto.AdminDTO;
 import com.genie.myapp.repository.AdminServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdminDAO;
@@ -17,10 +17,11 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 
-	@Autowired AdminDAO dao;
-	@Autowired AdminServiceRepository repository;
+	public final AdminDAO dao;
+	public final AdminServiceRepository repository;
 
 	@Override
 	public List<AdminDTO> adminCategoryTag(AdminDTO DTO) {

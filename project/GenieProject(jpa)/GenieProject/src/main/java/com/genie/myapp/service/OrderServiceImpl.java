@@ -3,7 +3,7 @@ package com.genie.myapp.service;
 import java.util.List;
 
 import com.genie.myapp.repository.OrderServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.OrderDAO;
@@ -14,10 +14,11 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
-    @Autowired OrderDAO dao;
-    @Autowired OrderServiceRepository repository;
+    public final OrderDAO dao;
+    public final OrderServiceRepository repository;
 
     @Override
     public List<CartDTO> readyToPay(CartDTO cvo) {

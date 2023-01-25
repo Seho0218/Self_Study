@@ -5,11 +5,10 @@ import java.util.Map;
 
 import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.Seller;
-import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.repository.SellerServiceRepository;
 import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.SellerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
@@ -18,13 +17,14 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class SellerServiceImpl implements SellerService {
 	
-	@Autowired SellerDAO dao;
+	public final SellerDAO dao;
 
-	@Autowired AccountRepository accountRepository;
-	@Autowired SellerRepository sellerRepository;
-	@Autowired SellerServiceRepository repository;
+	public final AccountRepository accountRepository;
+	public final SellerRepository sellerRepository;
+	public final SellerServiceRepository repository;
 
 
   	@Override

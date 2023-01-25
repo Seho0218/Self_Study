@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 
 import com.genie.myapp.dto.UserDTO;
 import com.genie.myapp.repository.CertServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,12 @@ import com.genie.myapp.dao.CertDAO;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class CertServiceImpl implements CertService {
     
-    @Autowired private JavaMailSender mailSender;
-	@Autowired CertDAO cdao;
-	@Autowired CertServiceRepository repository;
+    public final JavaMailSender mailSender;
+	public final CertDAO cdao;
+	public final CertServiceRepository repository;
 
 
 	@Override

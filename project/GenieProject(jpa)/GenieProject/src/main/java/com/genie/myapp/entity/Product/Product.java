@@ -48,17 +48,13 @@ public class Product {
 
     private int product_like;
 
-    private LocalDateTime product_writedate;
+    private LocalDateTime product_writedate = LocalDateTime.now();
 
     private String product_image1;
     private String product_image2;
     private String product_image3;
 
     private String product_mbti;
-
-
-
-
 
 
     public void addStock(int quantity){

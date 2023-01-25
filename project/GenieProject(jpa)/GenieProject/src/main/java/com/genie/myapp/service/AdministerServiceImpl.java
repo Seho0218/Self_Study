@@ -3,7 +3,7 @@ package com.genie.myapp.service;
 import com.genie.myapp.dto.AdministerDTO;
 import com.genie.myapp.entity.Account.Administer;
 import com.genie.myapp.repository.AdministerServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdministerDAO;
@@ -12,10 +12,11 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
+@RequiredArgsConstructor
 public class AdministerServiceImpl implements AdministerService{
 
-    @Autowired AdministerDAO dao;
-    @Autowired AdministerServiceRepository repository;
+    public final AdministerDAO dao;
+    public final AdministerServiceRepository repository;
 
     @Override
     public AdministerDTO loginOk(AdministerDTO administerDTO) {

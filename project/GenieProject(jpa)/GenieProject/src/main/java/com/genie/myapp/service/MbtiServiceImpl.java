@@ -3,7 +3,7 @@ package com.genie.myapp.service;
 import java.util.List;
 
 import com.genie.myapp.repository.MbtiServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.MbtiDAO;
@@ -14,10 +14,11 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class MbtiServiceImpl implements MbtiService {
 	
-	@Autowired MbtiDAO dao;
-	@Autowired MbtiServiceRepository repository;
+	public final MbtiDAO dao;
+	public final MbtiServiceRepository repository;
 
 	@Override
 	public List<SellerProductDTO> getProduct(String mbti) {

@@ -2,13 +2,12 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.genie.myapp.dto.LikeDTO;
 import com.genie.myapp.dto.ReplyProductDTO;
 import com.genie.myapp.repository.ReplyProductServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.ReplyProductDAO;
@@ -16,10 +15,11 @@ import com.genie.myapp.dao.ReplyProductDAO;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class ReplyProductServiceImpl implements ReplyProductService{
 
-    @Autowired ReplyProductDAO DAO;
-	@Autowired ReplyProductServiceRepository repository;
+    public final ReplyProductDAO DAO;
+	public final ReplyProductServiceRepository repository;
     
     public List<ReplyProductDTO> replyProductList(int no){
         return DAO.replyProductList(no);
