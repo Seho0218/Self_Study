@@ -149,13 +149,13 @@ nav .sidenav-trigger i {
             <input type="hidden" value="${dvo.address_num}" readonly/>
             <input type="hidden" id="addressStatus" value="Y" readonly/>
             <li>수령자 이름</li>
-            <input type="text" id="receiver_name" value="${dvo.receiver_name}" readonly/>
+            <input type="text" id="receiver_name" value="${dvo.user_name}" readonly/>
             <li>전화번호</li>
-            <input type="text" id="receiver_tel" value="${dvo.receiver_tel}" readonly/>
+            <input type="text" id="receiver_tel" value="${dvo.user_tel}" readonly/>
             <li>우편번호</li>
-            <input type="text" id="receiver_zipcode" value="${dvo.receiver_zipcode}" readonly/>
+            <input type="text" id="receiver_zipcode" value="${dvo.user_zipcode}" readonly/>
             <li>주소</li>
-            <input type="text" id="receiver_addr" value="${dvo.receiver_addr}, ${dvo.receiver_detailaddr}" readonly/><br>
+            <input type="text" id="receiver_addr" value="${dvo.user_addr}, ${dvo.user_detailaddr}" readonly/><br>
             <div><input type="hidden" value='${dvo.address_num}' /></div>
             <div><input type="button" value='선택' id="select" class="Btn"/>
             <input type="button" value='삭제' address_num="${dvo.address_num}" class="Btn" /></div>

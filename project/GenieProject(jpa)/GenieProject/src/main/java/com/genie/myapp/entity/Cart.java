@@ -9,13 +9,14 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.*;
 
 @Entity
 @Table(name="cart")
 @Getter @Setter
 public class Cart {
 
-    @Id
+    @Id @GeneratedValue(strategy = IDENTITY)
     private int cart_num;
 
     @ManyToOne(fetch = LAZY)
@@ -30,6 +31,6 @@ public class Cart {
 
     private int cart_qty;
 
-    private LocalDateTime cart_writedate;
+    private LocalDateTime cart_writedate = LocalDateTime.now();
 
 }

@@ -105,10 +105,10 @@
                         <td class="tableitem">
                     <input type="button" id="selectAddress" value="배송지 선택" class="itemtext-top"> 
                           <input type="hidden" id="addressStatus" value="N"/>      
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_name" name="receiver_name" placeholder="받는사람 이름" readonly></p>
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_zipcode" name="receiver_zipcode" placeholder="우편번호" readonly></p>
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_addr" name="receiver_addr" placeholder="받는사람 주소" readonly></p>
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_tel" name="receiver_tel" placeholder="받는 사람 전화번호" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_name" name="user_name" placeholder="받는사람 이름" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_zipcode" name="user_zipcode" placeholder="우편번호" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_addr" name="user_addr" placeholder="받는사람 주소" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_tel" name="user_tel" placeholder="받는 사람 전화번호" readonly></p>
                           </td>
                     </tr>
                     <tr class="service">
@@ -169,7 +169,7 @@
 
             buyer_email: '${uvo.user_email}',
             buyer_name: $("#receiver_name").val(),
-            buyer_tel: $("#receiver_tel").val(),      
+            buyer_tel: $("#receiver_tel").val(),
             buyer_postcode: $("#receiver_zipcode").val(),
             buyer_addr: $("#receiver_addr").val()
 
@@ -189,7 +189,7 @@
                       order_qty: $("input[name=cart_qty]").val(),
 
                       recipient_name: $("#receiver_name").val(),
-                      recipient_phone: $("#receiver_tel").val(),      
+                      recipient_phone: $("#receiver_tel").val(),
                       recipient_address: $("#receiver_addr").val(),
                       recipient_request: $("#recipient_request").val(),
 

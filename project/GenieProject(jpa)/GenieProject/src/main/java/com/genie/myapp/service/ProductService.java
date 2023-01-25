@@ -34,7 +34,7 @@ public interface ProductService {
   public List<CartDTO> getCart(String genie_id);
 
   // 장바구니 상품 넣기
-  public int addCart(CartDTO cvo);
+  public void addCart(CartDTO cartDTO);
 
   // 장바구니 제품 삭제
   public int delCart(int cart_num, String genie_id);

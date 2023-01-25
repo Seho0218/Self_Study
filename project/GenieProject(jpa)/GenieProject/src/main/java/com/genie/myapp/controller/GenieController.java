@@ -1,14 +1,11 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
-import com.genie.myapp.entity.Account.Administer;
-import com.genie.myapp.entity.Account.Seller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -31,11 +28,11 @@ import com.genie.myapp.service.UserService;
 
 @RestController
 @RequestMapping("/")
-public class GenieController{
+public class GenieController {
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	SellerService sellerService;
 
@@ -44,9 +41,9 @@ public class GenieController{
 
 	@Autowired
 	ProductService productService;
-	
-	ModelAndView mav=null;
-	
+
+	ModelAndView mav = null;
+
 	@Autowired
 	PlatformTransactionManager transactionManager;
 
@@ -54,9 +51,9 @@ public class GenieController{
 	TransactionDefinition definition;
 
 	@Autowired
-    PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;
 
-	
+
 	//회원가입 폼으로 이동
 	@GetMapping("Registration")
 	public ModelAndView RegistragionForm() {
@@ -66,7 +63,7 @@ public class GenieController{
 
 		return mav;
 	}
-	
+
 	//업체 회원가입 폼 보기
 	@GetMapping("sellerForm")
 	public ModelAndView sellerForm() {
@@ -74,7 +71,7 @@ public class GenieController{
 		mav.setViewName("/sellerForm");
 		return mav;
 	}
-	
+
 	//아이디 중복검사
 	@GetMapping("idCheck")
 	public ModelAndView idCheck(String genie_id) {
@@ -84,42 +81,42 @@ public class GenieController{
 
 		mav = new ModelAndView();
 
-		mav.addObject("idCnt",cnt);
-		mav.addObject("genie_id",genie_id);
+		mav.addObject("idCnt", cnt);
+		mav.addObject("genie_id", genie_id);
 		mav.setViewName("/idCheck");
 
 		return mav;
 	}
 
 	//회원 가입하기
-	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(AccountDTO adto, UserDTO udto) {
+	@PostMapping("UserWrite")
+	public ResponseEntity<String> UserWrite(AccountDTO adto, UserDTO userDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
-		headers.add("Content-Type","text/html; charset=utf-8");
+		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
+		headers.add("Content-Type", "text/html; charset=utf-8");
 
-		System.out.println("adto = " + adto + ", udto = " + udto);
+		System.out.println("adto = " + adto + ", userDTO = " + userDTO);
 		try {//회원가입 성공
-			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
+			String enPw = passwordEncoder.encode(adto.getGenie_pwd());
 
-			udto.setGenie_pwd(enPw);
-			userService.UserWrite(udto);
+			userDTO.setGenie_pwd(enPw);
+			userService.UserWrite(userDTO);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg, headers, HttpStatus.OK);
 
-		}catch(Exception e) {//회원등록 실패
+		} catch (Exception e) {//회원등록 실패
 
 			String msg = "<script>";
 			msg += "alert('회원가입이 실패하였습니다.');";
 			msg += "history.back()";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg, headers, HttpStatus.BAD_REQUEST);
 
 			e.printStackTrace();
 		}
@@ -129,16 +126,16 @@ public class GenieController{
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(AccountDTO adto, SellerDTO sdto){
-		
+	public ResponseEntity<String> sellerWrite(AccountDTO adto, SellerDTO sdto) {
+
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		System.out.println("adto = " + adto + ", sdto = " + sdto);
 		try {//회원가입성공
-			String enPw=passwordEncoder.encode(adto.getGenie_pwd());
+			String enPw = passwordEncoder.encode(adto.getGenie_pwd());
 
 			sdto.setGenie_pwd(enPw);
 			sellerService.sellerWrite(sdto);
@@ -147,105 +144,94 @@ public class GenieController{
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg, headers, HttpStatus.OK);
 
 
-		}catch(Exception e) {//회원가입실패
-			
+		} catch (Exception e) {//회원가입실패
+
 			String msg = "<script>";
 			msg += "alert('회원가입에 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
-			
+			entity = new ResponseEntity<>(msg, headers, HttpStatus.BAD_REQUEST);
+
 			e.printStackTrace();
-			
+
 		}
 		return entity;
 	}
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserDTO userDTO, SellerDTO sellerDTO, Administer administer, HttpSession session) {
-		
+	public ModelAndView loginOk(UserDTO userDTO, SellerDTO sellerDTO, AdministerDTO administerDTO, HttpSession session) {
+
 		mav = new ModelAndView();
 
-		if(userDTO.getGenie_id() != null) {//일반회원 일때
-
-			UserDTO logDTO = userService.loginOk(userDTO);
-
-			if(logDTO!=null){
-
-				//비밀번호 검증
-				boolean pwdMatch = passwordEncoder.matches(userDTO.getGenie_pwd(), logDTO.getGenie_pwd());
-
-				if(pwdMatch){//로그인 성공
-					session.setAttribute("logId", logDTO.getGenie_id());		
-					session.setAttribute("logName", logDTO.getUser_name());
-					session.setAttribute("logStatus","Y");
-					session.setAttribute("ROLE", "ROLE_USER");
-					
-					mav.setViewName("redirect:/");
-				}else{//로그인 실패
-					mav.setViewName("redirect:/login");
-				}
-					return mav;
+		UserDTO logDTO = userService.loginOk(userDTO);
+		SellerDTO slogDTO = sellerService.loginOk(sellerDTO);
+		AdministerDTO alogDTO = administerService.loginOk(administerDTO);
+		
+		if (logDTO.getGenie_id() != null) {//일반회원 일때
 			
-				}else if(sellerDTO.getGenie_id() !=null) {//업체회원일때
+			//비밀번호 검증
+			boolean pwdMatch = passwordEncoder.matches(userDTO.getGenie_pwd(), logDTO.getGenie_pwd());
+				if (pwdMatch) {//로그인 성공
+				session.setAttribute("logId", logDTO.getGenie_id());
+				session.setAttribute("logName", logDTO.getUser_name());
+				session.setAttribute("logStatus", "Y");
+				session.setAttribute("ROLE", "ROLE_USER");
 
-					SellerDTO slogDTO=sellerService.loginOk(sellerDTO);
-
-				if(slogDTO!=null){
-
-						boolean pwdMatch = passwordEncoder.matches(sellerDTO.getGenie_pwd(), slogDTO.getGenie_pwd());
-						System.out.println(pwdMatch);
-						if(pwdMatch){//로그인 성공
-
-							System.out.println(pwdMatch);
-							session.setAttribute("logId", slogDTO.getGenie_id());
-							session.setAttribute("logName", slogDTO.getCompany_name());
-							session.setAttribute("logStatus","Y");
-							session.setAttribute("ROLE", "ROLE_SELLER");
-
-							mav.setViewName("redirect:/seller/sellerMain");
-
-						}else{//로그인 실패
-							mav.setViewName("redirect:/login");
-						}
-							return mav;
-					
-					}else if(administer.getGenie_id() != null){
-
-						Administer alogDTO = administerService.loginOk(administer);
-
-						if(alogDTO!=null){
-							session.setAttribute("logId", alogDTO.getGenie_id());
-							session.setAttribute("logName", alogDTO.getName());
-							session.setAttribute("logStatus","Y");
-							session.setAttribute("ROLE", "ROLE_ADMIN");
-
-							mav.setViewName("redirect:/admin/adminMain");
-
-						}else{//로그인 실패
-							
-							mav.setViewName("redirect:/login");
-						}
-
-						mav.setViewName("redirect:/login");
-
-						return mav;
-
-					}else{//로그인 실패
-
-						mav.setViewName("redirect:/login");
-							
-					}	
-				}		
+				mav.setViewName("redirect:/");
+			} else {//로그인 실패
+				mav.setViewName("redirect:/login");
 			}
 			return mav;
-		}
-					
+		}//일반 회원일때 끝
+		
+		if (slogDTO.getGenie_id() != null) {//업체회원일때
+
+			boolean pwdMatch = passwordEncoder.matches(sellerDTO.getGenie_pwd(), slogDTO.getGenie_pwd());
+
+			if (pwdMatch) {//로그인 성공
+				session.setAttribute("logId", slogDTO.getGenie_id());
+				session.setAttribute("logName", slogDTO.getCompany_name());
+				session.setAttribute("logStatus", "Y");
+				session.setAttribute("ROLE", "ROLE_SELLER");
+				mav.setViewName("redirect:/seller/sellerMain");
+
+			} else {//로그인 실패
+				mav.setViewName("redirect:/login");
+			}
+				return mav;
+		}// 업체회원일때 끝
+
+		if (alogDTO.getGenie_id() != null) {
+
+			boolean equals = administerDTO.getGenie_pwd().equals(alogDTO.getGenie_pwd());
 			
+			if (equals) {
+				session.setAttribute("logId", alogDTO.getGenie_id());
+				session.setAttribute("logName", alogDTO.getAdminister_name());
+				session.setAttribute("logStatus", "Y");
+				session.setAttribute("ROLE", "ROLE_ADMIN");
+
+				mav.setViewName("redirect:/admin/adminMain");
+
+			} else {//로그인 실패
+
+				mav.setViewName("redirect:/login");
+			}
+
+			mav.setViewName("redirect:/login");
+
+			return mav;
+
+		} else {//로그인 실패
+
+			mav.setViewName("redirect:/login");
+		}
+		return mav;
+	}
 
 	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session) {
@@ -260,11 +246,11 @@ public class GenieController{
 	// -----------------------------------//
 
 	@GetMapping("index")
-	public ModelAndView productList(ProductDTO PDTO) {
+	public ModelAndView productList(ProductDTO pDTO) {
 
 		mav = new ModelAndView();
-		mav.addObject("plist", productService.listProduct(PDTO));
-		mav.addObject("pvo", PDTO);
+		mav.addObject("plist", productService.listProduct(pDTO));
+		mav.addObject("pvo", pDTO);
 		mav.setViewName("/");
 
 		return mav;
@@ -287,7 +273,7 @@ public class GenieController{
 	// -----------------------------------------------------------장바구니---------------------------------------------------------------//
 	
 	@GetMapping("cart")
-	public ModelAndView cart(CartDTO cvo, HttpSession session) {
+	public ModelAndView cart(HttpSession session) {
 
 		String genie_id = (String) session.getAttribute("logId");
 		List<CartDTO> cartList = productService.getCart(genie_id);

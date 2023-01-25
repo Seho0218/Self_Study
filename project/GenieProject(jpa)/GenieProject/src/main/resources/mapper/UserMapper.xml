@@ -9,7 +9,7 @@
 
 	<insert id="addDelivery">	
 
-		insert into address(address_num, genie_id, receiver_name, receiver_tel, receiver_zipcode, receiver_addr, receiver_detailaddr) 
+		insert into address(address_num, genie_id, user_name, user_tel, user_zipcode, user_addr, user_detailaddr)
 		values(#{address_num}, #{genie_id},#{user_name}, #{user_tel}, #{user_zipcode}, #{user_addr}, #{user_detailaddr})
 
 	</insert>

@@ -69,8 +69,6 @@ public class UserServiceImpl implements UserService{
         
         User findUser = em.find(User.class, userDTO.getGenie_id());
         System.out.println("findUser = " + findUser.getGenie_id());
-
-
     }
 
     @Override
@@ -82,11 +80,11 @@ public class UserServiceImpl implements UserService{
         User findUser = em.find(User.class, user.getGenie_id());
         findUser.setGenie_pwd(userDTO.getGenie_pwd());
     }
-    
-
 
     @Override
     public void addDelivery(AddressDTO addressDTO) {
+
+        //DTO --> Entity
         Address address = AddressDTO.convertDTOtoEntity(addressDTO);
         addressRepository.save(address);
     }

@@ -46,9 +46,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public int addCart(CartDTO cdto) {
-		return dao.addCart(cdto);
-	}
+	public void addCart(CartDTO cdto) {
+        dao.addCart(cdto);
+    }
 	
 	@Override
 	public int delCart(int cart_num, String genie_id) {

@@ -103,7 +103,7 @@
         <input type="hidden" value="${vo.genie_id}" name="genie_id"/>
           <ul id="addrForm">
             <li>이름</li>
-            <li><input type="text" name="receiver_name" id ="user_name"/></li>
+            <li><input type="text" name="user_name" id ="user_name"/></li>
 
             <ul id="phoneForm">
               <li>휴대폰 번호</li>
@@ -122,13 +122,13 @@
 
             <li>우편번호</li>
             <li>
-              <input type="text" name="receiver_zipcode" id ="user_zipcode" readonly/>
+              <input type="text" name="user_zipcode" id ="user_zipcode" readonly/>
               <input type= "button" value = "우편번호찾기" id = "address_kakao"/>
             </li>
             <li>주소</li>
-            <li><input type="text" name="receiver_addr" id ="user_addr" readonly/></li>
+            <li><input type="text" name="user_addr" id ="user_addr" readonly/></li>
             <li>상세주소</li>
-            <li><input type="text" name="receiver_detailaddr" id ="user_detailaddr" /></li>	
+            <li><input type="text" name="user_detailaddr" id ="user_detailaddr" /></li>
             <li><input type="submit" value = "배송지 등록"/></li>
           </ul>
         </form>   
