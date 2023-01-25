@@ -49,7 +49,7 @@ public class SellerProductDTO {
 
 	public void setProduct_category(String product_category) {
 		this.product_category = product_category;
-		String categorySplit[] = product_category.split(",");
+		String[] categorySplit = product_category.split(",");
 		categoryList = Arrays.asList(categorySplit);
 	}
 
@@ -63,14 +63,10 @@ public class SellerProductDTO {
 		String tagSplit[] = product_tag.split(",");
 		tagList = Arrays.asList(tagSplit);
 	}
-
-
 	
 	public String[] getCategoryArray() {
 		return product_category.split(",");
 	}
-
-
 
 	public String[] getTagArray() {
 		return product_tag.split(",");

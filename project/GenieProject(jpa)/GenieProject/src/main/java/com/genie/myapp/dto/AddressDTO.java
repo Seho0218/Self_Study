@@ -5,7 +5,11 @@ import com.genie.myapp.entity.Address;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.modelmapper.convention.MatchingStrategies.*;
 
 @Data
 @NoArgsConstructor
@@ -38,12 +42,29 @@ public class AddressDTO {
 		user_phone_num3 = telSplit[2];
 	}
 
+
+	// Entity -> DTO (정적 팩토리 메서드)
+	public static AddressDTO convertEntityToDTO(Address address){
+
+		ModelMapper modelMapper = new CustomerModelMapper();
+		// 매핑 전략 설정
+		modelMapper.getConfiguration().setMatchingStrategy(STRICT);
+		return modelMapper.map(address,AddressDTO.class);
+	}
+
 	// DTO -> Entyty
 	public static Address convertDTOtoEntity(AddressDTO addressDTO) {
 
 		ModelMapper modelMapper = new CustomerModelMapper();
 		// 매핑 전략 설정
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		modelMapper.getConfiguration().setMatchingStrategy(STRICT);
 		return modelMapper.map(addressDTO, Address.class);
 	}
+
+	// Entity -> DTO (List의 경우)
+	public static List<AddressDTO> convertEntityToDTO(List<Address> addressList) {
+		return addressList.stream().map(AddressDTO::convertEntityToDTO).collect(Collectors.toList());
+	}
+
+
 }

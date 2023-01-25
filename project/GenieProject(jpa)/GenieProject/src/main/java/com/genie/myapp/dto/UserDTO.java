@@ -3,7 +3,6 @@ package com.genie.myapp.dto;
 import com.genie.myapp.Config.CustomerModelMapper;
 import com.genie.myapp.entity.Account.User;
 import lombok.Data;
-import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
@@ -59,10 +58,13 @@ public class UserDTO {
         return modelMapper.map(userDTO, User.class);
     }
 
+    //객체를 지속적으로 생성해야할 때, 팩토리 메소드로 해결한 경우
     public static UserDTO createUserDTO(String genie_id) {
         UserDTO userDTO = new UserDTO();
         userDTO.setGenie_id(genie_id);
         return userDTO;
     }
+
+
 }
 

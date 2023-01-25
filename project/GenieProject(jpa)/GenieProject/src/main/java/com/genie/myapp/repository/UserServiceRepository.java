@@ -7,8 +7,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
@@ -19,9 +17,6 @@ import static com.genie.myapp.entity.QMyOrder.*;
 @Repository
 @RequiredArgsConstructor
 public class UserServiceRepository {
-
-    @PersistenceContext
-    private final EntityManager em;
 
     private final JPAQueryFactory queryFactory;
 
@@ -70,8 +65,8 @@ public class UserServiceRepository {
     }
 
 
-    public int delDelivery(int address_num) {
-        return (int) queryFactory
+    public long delDelivery(int address_num) {
+        return queryFactory
                 .delete(address)
                 .where(address.address_num.eq(address_num))
                 .execute();

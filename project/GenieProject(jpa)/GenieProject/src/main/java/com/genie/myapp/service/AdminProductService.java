@@ -1,10 +1,10 @@
 package com.genie.myapp.service;
 
-import java.util.List;
+import com.genie.myapp.dto.ProductDTO;
 
-import com.genie.myapp.dto.AdminProductDTO;
+import java.util.List;
 
 public interface AdminProductService {
 
-	public List<AdminProductDTO> adminProduct(AdminProductDTO VO);
+	public List<ProductDTO> adminProduct(ProductDTO productDTO);
 }

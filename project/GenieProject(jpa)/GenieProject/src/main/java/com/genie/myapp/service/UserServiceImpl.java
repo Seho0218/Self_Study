@@ -1,13 +1,12 @@
 package com.genie.myapp.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.genie.myapp.dto.AddressDTO;
+import com.genie.myapp.dto.OrderDTO;
 import com.genie.myapp.dto.ProductDTO;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.MyOrder;
 import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.AddressRepository;
 import com.genie.myapp.repository.jpa.UserRepository;
@@ -64,14 +63,13 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    @Override
+    @Override //TODO 개인정보 변경이 안됌.
     public void UserEditOk(UserDTO userDTO) {
         
         User findUser = em.find(User.class, userDTO.getGenie_id());
-        System.out.println("findUser = " + findUser.getGenie_id());
     }
 
-    @Override
+    @Override //TODO 비밀번호 변경이 안됌.
     public void PwdEditOk(UserDTO userDTO) {
         
         //DTO -> Entity
@@ -81,7 +79,7 @@ public class UserServiceImpl implements UserService{
         findUser.setGenie_pwd(userDTO.getGenie_pwd());
     }
 
-    @Override
+    @Override//TODO 아이디가 입력이 안되는 버그
     public void addDelivery(AddressDTO addressDTO) {
 
         //DTO --> Entity
@@ -90,18 +88,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<Address> getDeliveryList(String genie_id) {
-        return repository.getDeliveryList(genie_id);
-    }
-
-    @Override
-    public int delDelivery(int address_num) {
+    public long delDelivery(int address_num) {
         return repository.delDelivery(address_num);
     }
 
     @Override
-    public List<MyOrder> getOrder(String genie_id) {
-        return repository.getOrder(genie_id);
+    public List<AddressDTO> getDeliveryList(String genie_id) {
+        return AddressDTO.convertEntityToDTO(repository.getDeliveryList(genie_id));
+    }
+
+    @Override
+    public List<OrderDTO> getOrder(String genie_id) {
+
+        return OrderDTO.convertEntityToDTO(repository.getOrder(genie_id));
     }
 
     @Override

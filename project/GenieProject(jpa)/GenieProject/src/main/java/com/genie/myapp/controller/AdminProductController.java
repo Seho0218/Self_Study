@@ -1,29 +1,28 @@
 package com.genie.myapp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.genie.myapp.dto.ProductDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.AdminProductService;
-import com.genie.myapp.dto.AdminProductDTO;
 
 @RestController
 @RequestMapping("/admin/*")
+@RequiredArgsConstructor
 public class AdminProductController {
 
-	@Autowired
-	AdminProductService service;
+	public final AdminProductService service;
 
 	ModelAndView mav = null;
 	
 	@GetMapping("adminProduct")
-	public ModelAndView adminProduct(AdminProductDTO VO) {
+	public ModelAndView adminProduct(ProductDTO productDTO) {
 		mav = new ModelAndView();
-		System.out.println(VO.toString());
-		mav.addObject("list", service.adminProduct(VO));
-		mav.addObject("VO", VO);
+		mav.addObject("list", service.adminProduct(productDTO));
+		mav.addObject("VO", productDTO);
 		mav.setViewName("admin/adminProduct");
 		return mav;
 	}

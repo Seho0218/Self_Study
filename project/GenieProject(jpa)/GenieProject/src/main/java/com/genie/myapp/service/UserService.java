@@ -1,8 +1,6 @@
 package com.genie.myapp.service;
 
 import com.genie.myapp.dto.*;
-import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.MyOrder;
 
 import java.util.List;
 
@@ -29,12 +27,12 @@ public interface UserService {
 	//배송지 등록
 	public void addDelivery(AddressDTO addressDTO);
 	//배송지 리스트 가져오기
-	public List<Address> getDeliveryList(String genie_id);
+	public List<AddressDTO> getDeliveryList(String genie_id);
 	//배송지 삭제
-	public int delDelivery(int address_num);
+	public long delDelivery(int address_num);
 
 	//주문목록 가져오기
-	public List<MyOrder> getOrder(String genie_id);
+	public List<OrderDTO> getOrder(String genie_id);
 
 	//찜한 상품 리스트
 	public List<ProductDTO> getLikeList(String genie_id);

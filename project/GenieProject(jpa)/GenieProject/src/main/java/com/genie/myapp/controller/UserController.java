@@ -5,8 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.AddressDTO;
-import com.genie.myapp.entity.Address;
-import com.genie.myapp.entity.MyOrder;
+import com.genie.myapp.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -96,7 +95,7 @@ public class UserController {
 
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		List<MyOrder> orderList =userService.getOrder(genie_id);
+		List<OrderDTO> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
@@ -112,7 +111,7 @@ public class UserController {
 		
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		List<Address> dlist = userService.getDeliveryList(genie_id);
+		List<AddressDTO> dlist = userService.getDeliveryList(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("vo", userService.getUser(userDTO));
@@ -181,7 +180,7 @@ public class UserController {
 	}
 
 	@GetMapping("delDelivery")
-	public int delDelivery(int address_num){
+	public long delDelivery(int address_num){
 		return userService.delDelivery(address_num);
 	}
 
@@ -189,7 +188,7 @@ public class UserController {
 	public ModelAndView addressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		List<Address> dlist=userService.getDeliveryList(genie_id);
+		List<AddressDTO> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
 		mav.addObject("dlist", dlist);
@@ -203,7 +202,7 @@ public class UserController {
 		String genie_id=(String)session.getAttribute("logId");
 
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		List<Address> dlist=userService.getDeliveryList(genie_id);
+		List<AddressDTO> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
 		mav.addObject("vo", userService.getUser(userDTO));

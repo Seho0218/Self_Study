@@ -2,23 +2,23 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.repository.AdminProductServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import com.genie.myapp.dao.AdminProductDAO;
-import com.genie.myapp.dto.AdminProductDTO;
 
 import javax.transaction.Transactional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AdminProductServiceImpl implements AdminProductService  {
+public class AdminProductServiceImpl implements AdminProductService {
 
-    public final AdminProductDAO dao;
+    public final AdminProductServiceRepository repository;
 
 	@Override
-	public List<AdminProductDTO> adminProduct(AdminProductDTO adto) {
-		return dao.adminProduct(adto);
+	public List<ProductDTO> adminProduct(ProductDTO productDTO) {
+
+		return ProductDTO.convertEntityToDTO(repository.adminProduct());
 	}
 }

@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.*;
 public class Category {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private long product_category_id;
+    private long category_id;
 
     @OneToMany(mappedBy = "category_connect_id", cascade = ALL)
     private List<Category_connect> connectList = new ArrayList<>();

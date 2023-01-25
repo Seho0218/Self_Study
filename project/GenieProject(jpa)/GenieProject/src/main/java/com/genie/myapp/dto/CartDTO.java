@@ -1,6 +1,7 @@
 package com.genie.myapp.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.genie.myapp.Config.CustomerModelMapper;
 import com.genie.myapp.entity.Cart;
@@ -41,5 +42,10 @@ public class CartDTO {
         // 매핑 전략 설정
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper.map(cartDTO, Cart.class);
+    }
+
+    // Entity -> DTO (List의 경우)
+    public static List<CartDTO> convertEntityToDTO(List<Cart> cartList) {
+        return cartList.stream().map(CartDTO::convertEntityToDTO).collect(Collectors.toList());
     }
 }

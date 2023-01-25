@@ -31,8 +31,8 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(UserDTO dto) {
-		return cdao.PwdEditOk(dto);
+	public int PwdEditOk(UserDTO userDTO) {
+		return repository.PwdEditOk(userDTO);
 	}
 
 	@Override
@@ -40,12 +40,12 @@ public class CertServiceImpl implements CertService {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(user_email);
 		simpleMailMessage.setSubject("아이디 찾기");
-		
+
 		StringBuffer sb = new StringBuffer();
 		sb.append("가입하신 아이디는");
 		sb.append(System.lineSeparator());
 		sb.append(genie_id).append("입니다");//genie_id.get(0)
-		
+
 		simpleMailMessage.setText(sb.toString());
 
 		new Thread(() -> mailSender.send(simpleMailMessage)).start();
@@ -81,11 +81,7 @@ public class CertServiceImpl implements CertService {
 		String text = "인증번호는 " + authNum + "입니다";
 		
 		simpleMailMessage.setText(text);
-		new Thread(new Runnable() {
-			public void run() {
-				mailSender.send(simpleMailMessage);
-			}
-		}).start();	
+		new Thread(() -> mailSender.send(simpleMailMessage)).start();
 	}
 
 }

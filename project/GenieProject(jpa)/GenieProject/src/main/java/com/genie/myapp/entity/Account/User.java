@@ -3,14 +3,12 @@ package com.genie.myapp.entity.Account;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Cart;
 import com.genie.myapp.entity.MyOrder;
-import com.genie.myapp.entity.OrderStatus;
 import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.Product_like;
 import com.genie.myapp.entity.Product.Reply_product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -18,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.EnumType.*;
 
 @Entity
 @Getter @Setter
@@ -52,6 +49,8 @@ public class User extends Account{
     private String user_email;
 
     private char user_gender;
+
+    private String payment_method;
 
     private LocalDateTime sign_in_date = LocalDateTime.now();
 

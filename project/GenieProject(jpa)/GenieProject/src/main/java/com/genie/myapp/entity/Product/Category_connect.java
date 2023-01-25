@@ -19,7 +19,7 @@ public class Category_connect {
     private long category_connect_id;
 
     @MapsId @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "product_category_id")
+    @JoinColumn(name = "category_id")
     private Category category_id;
 
     private long product_id;

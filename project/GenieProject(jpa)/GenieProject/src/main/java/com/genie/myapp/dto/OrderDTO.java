@@ -1,10 +1,15 @@
 package com.genie.myapp.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
+import com.genie.myapp.Config.CustomerModelMapper;
+import com.genie.myapp.entity.MyOrder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.modelmapper.convention.MatchingStrategies.*;
 
 @Data
 @NoArgsConstructor
@@ -43,33 +48,27 @@ public class OrderDTO {
     private String product_category;
 
 
-    @QueryProjection
-    public OrderDTO(String order_num, String genie_id, String recipient_name, String recipient_phone, String recipient_address, String recipient_request, String recipient_delivery_status, int cart_num, List<Integer> cartList, int product_id, List<Integer> product_id_List, String product_name, List<String> product_name_List, int cart_qty, List<Integer> cart_qty_List, int order_price, int cart_price, List<Integer> order_price_List, int order_qty, String order_writedate, String payment_method, String month_day, int total_sales, int sold_counts, String product_image1, String product_category) {
-        this.order_num = order_num;
-        this.genie_id = genie_id;
-        this.recipient_name = recipient_name;
-        this.recipient_phone = recipient_phone;
-        this.recipient_address = recipient_address;
-        this.recipient_request = recipient_request;
-        this.recipient_delivery_status = recipient_delivery_status;
-        this.cart_num = cart_num;
-        this.cartList = cartList;
-        this.product_id = product_id;
-        this.product_id_List = product_id_List;
-        this.product_name = product_name;
-        this.product_name_List = product_name_List;
-        this.cart_qty = cart_qty;
-        this.cart_qty_List = cart_qty_List;
-        this.order_price = order_price;
-        this.cart_price = cart_price;
-        this.order_price_List = order_price_List;
-        this.order_qty = order_qty;
-        this.order_writedate = order_writedate;
-        this.payment_method = payment_method;
-        this.month_day = month_day;
-        this.total_sales = total_sales;
-        this.sold_counts = sold_counts;
-        this.product_image1 = product_image1;
-        this.product_category = product_category;
+    // Entity -> DTO (정적 팩토리 메서드)
+    public static OrderDTO convertEntityToDTO(MyOrder myOrder){
+
+        ModelMapper modelMapper = new CustomerModelMapper();
+        // 매핑 전략 설정
+        modelMapper.getConfiguration().setMatchingStrategy(STRICT);
+        return modelMapper.map(myOrder, OrderDTO.class);
     }
+
+    // DTO -> Entity
+    public static MyOrder convertDTOtoEntity(OrderDTO orderDTO) {
+
+        ModelMapper modelMapper = new CustomerModelMapper();
+        // 매핑 전략 설정
+        modelMapper.getConfiguration().setMatchingStrategy(STRICT);
+        return modelMapper.map(orderDTO, MyOrder.class);
+    }
+
+    // Entity -> DTO (List의 경우)
+    public static List<OrderDTO> convertEntityToDTO(List<MyOrder> orderList) {
+        return orderList.stream().map(OrderDTO::convertEntityToDTO).collect(Collectors.toList());
+    }
+
 }

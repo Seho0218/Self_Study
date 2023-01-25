@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.genie.myapp.dao.AdminProductDAO">
-	<select id="adminProduct" resultType="AdminProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_writedate, product_image1, product_image2, product_image3 from product
-	</select>
-</mapper>
