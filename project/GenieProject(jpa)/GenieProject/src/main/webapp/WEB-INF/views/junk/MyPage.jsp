@@ -95,7 +95,7 @@ input[type=text], input[type=email]{
 }
 /* ------------------------------------------------- */
 /* 휴대폰번호 회색부분 설정 */
-#user_phone_num1{
+#userPhoneNum1{
 	width: 25%;
 	background-color: #f5f5f7;
 	color: #1d1d1f;
@@ -104,7 +104,7 @@ input[type=text], input[type=email]{
 	border: none;
 	border-radius: 10px;
 }
-#user_phone_num2, #user_phone_num3{
+#userPhoneNum2, #userPhoneNum3{
 	width: 33%;
 	margin-left: .5em;
 }
@@ -136,25 +136,25 @@ input[type=text], input[type=email]{
        	$("#logFrm").submit(function(){
 
 			// 전화번호
-			if($("#user_phone_num1").val()=="" || $("#user_phone_num2").val()=="" || $("#user_phone_num3").val()==""){
+			if($("#userPhoneNum1").val()=="" || $("#userPhoneNum2").val()=="" || $("#userPhoneNum3").val()==""){
 				alert("연락처를 입력하세요");
 				return false;
 			}
 			return true;
 			// 우편번호
-			if($("#user_zipcode").val()==""){
+			if($("#zipCode").val()==""){
 				alert("우편번호를 선택하세요");
-				$("#user_zipcode").focus();
+				$("#zipCode").focus();
 				return false;
 			}
-			if($("#user_addr").val()==""){
+			if($("#addr").val()==""){
 				alert("주소를 입력하세요");
-				$("#user_addr").focus();
+				$("#addr").focus();
 				return false;
 			}
-			if($("#user_detailaddr").val()==""){
+			if($("#detailAddr").val()==""){
 				alert("상세 주소를 입력하세요");
-				$("#user_detailaddr").focus();
+				$("#detailAddr").focus();
 				return false;
 			}
 			// 이메일
@@ -171,7 +171,7 @@ input[type=text], input[type=email]{
 <div class="responsive-wrapper">
  	<div class="content">
 		<div class="content-panel">
-			<h3>${vo.user_name} ${svo.ceo_name}님</h3>
+			<h3>${vo.userName} ${svo.ceoName}님</h3>
 				<ul class="fa-ul">
 					<li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
 					<li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
@@ -184,12 +184,12 @@ input[type=text], input[type=email]{
 					<form method="post" action="/user/UserEditOk" id="logFrm">
 						<ul id="idForm">
 							<li>아이디</li>
-							<input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
+							<input type="text" id="genieId" name="genieId" value= "${vo.genieId} ${svo.genieId}" readonly>
 							<input type ="hidden" id = "idCheckState" value = "Y"/>
 						</ul>
 						<ul id="name">
 							<li>이름</li>
-							<input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
+							<input type="text" id="userName" name="userName" value= "${vo.userName} ${svo.ceoName}" readonly>
 						</ul>
 						<ul id="passwordForm">
 							<li>비밀번호</li>
@@ -197,7 +197,7 @@ input[type=text], input[type=email]{
 						</ul>
 						<ul id="phoneForm">
 							<li>휴대폰 번호</li>
-							<select id = "user_phone_num1" name = "user_phone_num1" size = "1" value = "${vo.user_phone_num1}">
+							<select id = "userPhoneNum1" name = "userPhoneNum1" size = "1" value = "${vo.userPhoneNum1}">
 								<option value="010">010</option>
 								<option value="011">011</option>
 								<option value="016">016</option>
@@ -205,12 +205,12 @@ input[type=text], input[type=email]{
 								<option value="018">018</option>
 								<option value="019">019</option>
 							</select>
-							<input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4" value ="${vo.user_phone_num2}"/>
-							<input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4" value ="${vo.user_phone_num3}"/>
+							<input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" maxlength = "4" value ="${vo.userPhoneNum2}"/>
+							<input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" maxlength = "4" value ="${vo.userPhoneNum3}"/>
 						</ul>
 						<ul id="emailForm">
 							<li>이메일</li>
-							<input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
+							<input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.sellerEmail}" placeholder="이메일을 입력하세요">
 						</ul>
 						<%-- <input type = "submit" id="formSubmit" value = "회원정보 수정"/>
 					</form>

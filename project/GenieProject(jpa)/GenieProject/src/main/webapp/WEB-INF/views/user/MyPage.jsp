@@ -47,19 +47,19 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   float: left;
 
 }
-#user_name{
+#userName{
   width: 90%;
 }
-#user_phone_num2 {
+#userPhoneNum2 {
   width: 30%;
   margin-left: 20px;
   margin-left: 10px;
 }
-#user_phone_num3 {
+#userPhoneNum3 {
   width: 30%;
   margin-left: 10px;
 }
-#user_zipcode {
+#zipCode {
   width: 75%;
 }
 
@@ -191,7 +191,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
           alt="materialize logo" />
 
                   <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
+                    ${vo.userName} ${svo.ceoName}님
                   </span>
       </a>
       </h1>
@@ -291,12 +291,12 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
           <form method="post" action="/user/UserEditOk" id="logFrm">
             <ul id="idForm">
               <li>아이디</li>
-              <input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
+              <input type="text" id="genieId" name="genieId" value= "${vo.genieId} ${svo.genieId}" readonly>
               <input type ="hidden" id = "idCheckState" value = "Y"/>
             </ul>
             <ul id="name">
               <li>이름</li>
-              <input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
+              <input type="text" id="userName" name="userName" value= "${vo.userName} ${svo.ceoName}" readonly>
             </ul>
             <ul id="passwordForm">
               <li>비밀번호</li>
@@ -304,7 +304,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
             </ul>
             <ul id="phoneForm">
               <li>휴대폰 번호</li>
-              <select id = "user_phone_num1" name = "user_phone_num1" size = "1" value = "${vo.user_phone_num1}">
+              <select id = "userPhoneNum1" name = "userPhoneNum1" size = "1" value = "${vo.userPhoneNum1}">
                 <option value="010">010</option>
                 <option value="011">011</option>
                 <option value="016">016</option>
@@ -312,12 +312,12 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
                 <option value="018">018</option>
                 <option value="019">019</option>
               </select>
-              <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4" value ="${vo.user_phone_num2}"/>
-              <input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4" value ="${vo.user_phone_num3}"/>
+              <input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" maxlength = "4" value ="${vo.userPhoneNum2}"/>
+              <input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" maxlength = "4" value ="${vo.userPhoneNum3}"/>
             </ul>
             <ul id="emailForm">
               <li>이메일</li>
-              <input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
+              <input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.sellerEmail}" placeholder="이메일을 입력하세요">
             </ul>
             <input type = "submit" id="formSubmit" value = "회원정보 수정"/>
           </form>

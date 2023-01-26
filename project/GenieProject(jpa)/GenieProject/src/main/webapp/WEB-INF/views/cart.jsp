@@ -22,8 +22,8 @@
                     <input type="checkbox" id="cartList" name="cartList" value="${cvo.cart_num}" onclick="javascript:cart.checkItem();"/>
                     <input type="hidden" name="cart_num" value="${cvo.cart_num}"/>
                     <div><a href="/product_detail?product_id=${cvo.product_id}"><img src='${cvo.product_image1}'></a></div>
-                    <div><a href="/product_detail?product_id=${cvo.product_id}">${cvo.product_name}</a></div>
-                        <input type="hidden" name="product_name_List" value="${cvo.product_name}"/>
+                    <div><a href="/product_detail?product_id=${cvo.product_id}">${cvo.productName}</a></div>
+                        <input type="hidden" name="productName_List" value="${cvo.productName}"/>
                     <div><fmt:formatNumber value="${cvo.product_price}" pattern="#,###원"/></div>
 
                     <input type="hidden" name="product_price_List" value="${cvo.product_price}">

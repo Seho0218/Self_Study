@@ -179,10 +179,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <tr>
 						            <td><img src="${vo.product_image1}" class="thumb"></td>
 						            <td>${vo.product_id}</td>
-						            <td>${vo.product_name}</td>
+						            <td>${vo.productName}</td>
                         <td>${vo.product_info}</td>
                         <td>${vo.product_price}</td>
-                        <td><a href="/admin/adminTagPop?product_tag_id=${vo.product_tag_id}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/adminTagPop?productTagId=${vo.productTagId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach>
                     <!-- 태그 반복 끝 --> 

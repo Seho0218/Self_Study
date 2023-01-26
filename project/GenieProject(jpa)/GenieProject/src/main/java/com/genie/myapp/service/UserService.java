@@ -29,7 +29,7 @@ public interface UserService {
 	//배송지 리스트 가져오기
 	public List<AddressDTO> getDeliveryList(UserDTO userDTO);
 	//배송지 삭제
-	public long delDelivery(int address_num);
+	public long delDelivery(int addressNum);
 
 	//주문목록 가져오기
 	public List<OrderDTO> getOrder(UserDTO userDTO);

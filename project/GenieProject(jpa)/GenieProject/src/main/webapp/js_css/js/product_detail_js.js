@@ -29,15 +29,15 @@
 //         /*                 
 //         merchant_uid에 경우                            
 //         */            
-//         name: '${pvo.product_name}',            
+//         name: '${pvo.productName}',            
 //         //결제창에서 보여질 이름            
 //         amount: '${pvo.product_price}',            
 //         //가격             
-//         buyer_email: '${uvo.user_email}',            
-//         buyer_name: '${uvo.user_name}',           
+//         buyer_email: '${uvo.userEmail}',            
+//         buyer_name: '${uvo.userName}',           
 //         buyer_tel: '${uvo.user_tel}',            
-//         buyer_addr: '${uvo.user_addr}',            
-//         buyer_postcode: '${uvo.user_zipcode}',          
+//         buyer_addr: '${uvo.addr}',            
+//         buyer_postcode: '${uvo.zipCode}',          
 //         m_redirect_url: 'https://www.yourdomain.com/payments/complete'           
 //         /*                  
 //         모바일 결제시,                
@@ -94,14 +94,14 @@ $(function(){
     $("#Cart").submit(function(){
         
         // 아이디, 비밀번호
-        if($("#cart_qty").val().trim()==""){
+        if($("#cartQty").val().trim()===""){
             alert("최소 수량은 1개 이상입니다.");
-            $("#cart_qty").focus();
+            $("#cartQty").focus();
             return false;
         }
-        if($("#cart_qty").val().trim()=="0"){
+        if($("#cartQty").val().trim()==="0"){
             alert("최소 수량은 1개 이상입니다.");
-            $("#cart_qty").focus();
+            $("#cartQty").focus();
             return false;
         };
     });

@@ -41,14 +41,14 @@ public class UserController {
 	@GetMapping("MyPage")
 	public ModelAndView MyPage(HttpSession session) {
 
-		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 		String seller_id = (String)session.getAttribute("logId");
-		SellerDTO svo = sellerService.getSeller(seller_id);
+		SellerDTO sellerDTO = sellerService.getSeller(seller_id);
 
 		mav = new ModelAndView();
 
-		mav.addObject("svo",svo);
+		mav.addObject("svo",sellerDTO);
 		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyPage");
 	
@@ -93,8 +93,10 @@ public class UserController {
 	@GetMapping("MyOrderList")
 	public ModelAndView MyOrderList(HttpSession session) {
 
-		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId = (String)session.getAttribute("logId");
+
+		System.out.println(genieId);
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 
 		List<OrderDTO> orderList =userService.getOrder(userDTO);
 		
@@ -110,8 +112,8 @@ public class UserController {
 	@GetMapping("MyDeliveryList") 
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
-		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 		List<AddressDTO> dlist = userService.getDeliveryList(userDTO);
 
 		mav = new ModelAndView();
@@ -182,8 +184,8 @@ public class UserController {
 	@GetMapping("addressbook")
 	public ModelAndView addressbook(HttpSession session){
 
-		String genie_id=(String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId=(String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
@@ -195,9 +197,9 @@ public class UserController {
 	@GetMapping("Addaddressbook")
 	public ModelAndView Addaddressbook(HttpSession session){
 
-		String genie_id=(String)session.getAttribute("logId");
+		String genieId=(String)session.getAttribute("logId");
 
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
@@ -208,16 +210,16 @@ public class UserController {
 	}
 
 	@GetMapping("delDelivery")
-	public long delDelivery(int address_num){
-		return userService.delDelivery(address_num);
+	public long delDelivery(int addressNum){
+		return userService.delDelivery(addressNum);
 	}
 
 	//나의 문의사항 
 	@GetMapping("MyInquiryList") 
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
-		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 
 		mav = new ModelAndView();
 		mav.addObject("vo", userService.getUser(userDTO));
@@ -230,11 +232,11 @@ public class UserController {
 	@GetMapping("MyLikeList")
 	public ModelAndView MyLikeList(HttpSession session){
 
-		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 
 		mav = new ModelAndView();
-		mav.addObject("list",userService.getLikeList(genie_id));
+		mav.addObject("list",userService.getLikeList(genieId));
 		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyLikeList");
 	
@@ -247,9 +249,9 @@ public class UserController {
 	@GetMapping("PwdEdit")
 	public ModelAndView PwdChange(HttpSession session) {
 		
-		String genie_id = (String)session.getAttribute("logId");
+		String genieId = (String)session.getAttribute("logId");
 
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 		userDTO = userService.getUser(userDTO);
 		
 		mav = new ModelAndView();

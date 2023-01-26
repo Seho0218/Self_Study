@@ -230,7 +230,7 @@ thead{
           alt="materialize logo" />
 
                   <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
+                    ${vo.userName} ${svo.ceoName}님
                   </span>
       </a>
     </h1>
@@ -351,7 +351,7 @@ thead{
                           <tr>
                              <!--  <td><input type="checkbox" name="noList" value="${likelist.product_id}" checked="checked"></td>-->
                              <td><img src='${likelist.product_image1}'/></td>
-                             <td id="pro-name"><a href="/product_detail?product_id=${likelist.product_id}">${likelist.product_name}</a>
+                             <td id="pro-name"><a href="/product_detail?product_id=${likelist.product_id}">${likelist.productName}</a>
                                 <div><span id="pro-price"><fmt:formatNumber value="${likelist.product_price}" pattern="#,###원" /></span></div>
                              </td>
                              <td>

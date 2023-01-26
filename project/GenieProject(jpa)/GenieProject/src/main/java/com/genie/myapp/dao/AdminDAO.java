@@ -23,13 +23,13 @@ public interface AdminDAO {
 	public List<AdminDTO> tagAllSelect();
 
 	// adminTagPop 태그정보 뷰
-	public AdminDTO getadminTag(String product_tag_id);
+	public AdminDTO getadminTag(String productTagId);
 
 	// adminTagPop 태그정보 수정
 	public int adminTagPopEdit(AdminDTO vo);
 
 	// adminTagPop 태그정보 뷰 삭제
-	public int adminTagDel(String product_tag_id);
+	public int adminTagDel(String productTagId);
 
 	///////////카테고리//////////////
 	// 카테고리 리스트

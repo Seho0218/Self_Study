@@ -27,7 +27,7 @@ public class Reply_product implements Serializable {
 
     private int replyNo;
     private String comment;
-    private LocalDateTime writedate;
+    private LocalDateTime writeDate;
 
 
 }

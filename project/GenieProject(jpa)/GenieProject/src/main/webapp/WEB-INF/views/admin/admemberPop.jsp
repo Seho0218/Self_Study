@@ -139,8 +139,8 @@ input[type=text] {
 
 <script>
 function admemberDel(){
-	if(confirm("${vo.genie_id} 회원을 삭제하시겠습니까?")){
-		location.href="/admin/admemberDel?genie_id=${vo.genie_id}";
+	if(confirm("${vo.genieId} 회원을 삭제하시겠습니까?")){
+		location.href="/admin/admemberDel?genieId=${vo.genieId}";
 	}
 }
 </script>
@@ -153,9 +153,9 @@ function admemberDel(){
     <!-- 로그인폼-->
     <form method="post" action="/admin/admemberPopEdit" id="admemberPopFrm">
     <p>아이디</p>
-     	<input type="text" id="genie_id" class="second" name="genie_id" value=${vo.genie_id}>
+     	<input type="text" id="genieId" class="second" name="genieId" value=${vo.genieId}>
    	<p>이름</p>
-   		<input type="text" id="user_name" class="second" name="user_name" value=${vo.user_name}>
+   		<input type="text" id="userName" class="second" name="userName" value=${vo.userName}>
    	<p>연락처</p>
    		<input type="text" id="user_tel" class="second" name="user_tel" value=${vo.user_tel}>
    	<p>이메일</p>

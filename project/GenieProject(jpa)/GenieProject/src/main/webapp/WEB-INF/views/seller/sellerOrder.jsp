@@ -131,11 +131,11 @@
               $.each(data, function(i, value){
                 deliveryStatus += '<tr>'
                   +'<td>' + value.order_num + '</td>'
-                  +'<td>' + value.order_writedate + '</td>'
-                  +'<td>' + value.product_name + '</td>'
+                  +'<td>' + value.order_writeDate + '</td>'
+                  +'<td>' + value.productName + '</td>'
                   +'<td>' + value.order_qty + '</td>'
                   +'<td>'+value.order_price+'</td>'
-                  +'<td>' + value.genie_id +'</td>'
+                  +'<td>' + value.genieId +'</td>'
                   +'<td>' 
                       +'<select class="deliveryinfo" name="s_delivery_status" id="s_delivery_status'+i+'">'
                       + '<option value="delivered" selected>배송완료</option>'                                              
@@ -254,11 +254,11 @@
                         <c:forEach var="vo" items="${list}" varStatus="i"> 
                           <tr>
                             <td>${vo.order_num}</td>
-                            <td>${vo.order_writedate}</td>
-                            <td>${vo.product_name}</td>
+                            <td>${vo.order_writeDate}</td>
+                            <td>${vo.productName}</td>
                             <td>${vo.order_qty}</td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.order_price}" /> 원</td>
-                            <td>${vo.genie_id}</td>
+                            <td>${vo.genieId}</td>
                             <td >
                                 <select class="deliveryinfo" name="s_delivery_status${i.index }" id="s_delivery_status${i.index }">
                                   <option value="delivery_prepared" <c:if test="${vo.recipient_delivery_status=='delivery_prepared' }">selected</c:if>>배송준비중</option>

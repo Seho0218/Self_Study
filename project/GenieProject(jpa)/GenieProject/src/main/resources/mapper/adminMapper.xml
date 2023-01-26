@@ -9,7 +9,7 @@
 	</select>
 	<!-- 태그 -->
 	<select id="adminTag" resultType="AdminDTO">
-		select product_tag_id, product_tag from tag 
+		select product_tag_id, product_tag from tag
 	</select>
 
 	<!-- 태그 셀렉트 All -->
@@ -20,8 +20,8 @@
 		select product_tag_id, product_tag from tag where product_tag_id='${param1}'
 	</select>
 	<update id="adminTagPopEdit" parameterType="AdminDTO">
-		update tag set product_tag_id=#{product_tag_id}, product_tag=#{product_tag}
-		where product_tag_id=#{product_tag_id}
+		update tag set product_tag_id=#{productTagId}, product_tag=#{productTag}
+		where product_tag_id=#{productTagId}
 	</update>
 	<delete id="adminTagDel">
 		delete from tag where product_tag_id='${param1}'
@@ -36,8 +36,8 @@
 		select category_id, product_category from category where category_id='${param1}'
 	</select>
 	<update id="adcategoryPopEdit" parameterType="AdminDTO">
-		update category set category_id=#{category_id}, product_category=#{product_category}
-		where category_id=#{category_id}
+		update category set category_id=#{categoryId}, product_category=#{productCategory}
+		where category_id=#{categoryId}
 	</update>
 	<delete id="adcategoryDel">
 		delete from category where category_id='${param1}'
@@ -62,9 +62,9 @@
 	</select>
 	
 	<update id="admemberPopEdit" parameterType="UserDTO">
-		update user set genie_id=#{genie_id}, user_name=#{user_name}, user_tel=#{user_tel}, user_email=#{user_email},
-		sign_in_date=#{sign_in_date}, payment_method=#{payment_method} 
-		where genie_id=#{genie_id}
+		update user set genie_id=#{genieId}, user_name=#{userName}, user_tel=#{userTel}, user_email=#{userEmail},
+		sign_in_date=#{signInDate}, payment_method=#{paymentMethod}
+		where genie_id=#{genieId}
 	</update>
 	
 	<delete id="admemberDel">
@@ -82,22 +82,22 @@
 	
 	<select resultType="SellerDTO" id="sellerAllSelect">
 		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_address, seller_website, 
-		date_format(writedate, '%y-%m-%d') writedate, seller_status, approval_date from seller
+		date_format(write_date, '%y-%m-%d') write_date, seller_status, approval_date from seller
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%' 
 		</if> 
-		order by writedate desc limit ${onePageRecord} offset ${offsetPoint} 
+		order by write_date desc limit ${onePageRecord} offset ${offsetPoint} 
 	</select>
 
 	<select resultType="SellerDTO" id="getadcompany" parameterType="String">
 		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_address, seller_website, 
-		date_format(writedate, '%y-%m-%d') writedate, seller_status, approval_date from seller where genie_id='${param1}'
+		date_format(write_date, '%y-%m-%d') write_date, seller_status, approval_date from seller where genie_id='${param1}'
 	</select>
 	
 	<update id="adcompanyPopEdit" parameterType="SellerDTO">
-		update seller set genie_id=#{genie_id}, seller_tel=#{seller_tel}, seller_email=#{seller_email}, seller_reg_no=#{seller_reg_no}, company_name=#{company_name}, 
-		ceo_name=#{ceo_name}, seller_address=#{seller_address}, seller_website=#{seller_website}, writedate=#{writedate}, seller_status=#{seller_status}, approval_date=#{approval_date}  
-		where genie_id=#{genie_id}
+		update seller set genie_id=#{genieId}, seller_tel=#{sellerTel}, seller_email=#{sellerEmail}, seller_reg_no=#{sellerRegNo}, company_name=#{companyName},
+		ceo_name=#{ceoName}, seller_address=#{sellerAddress}, seller_website=#{sellerWebsite}, write_date=#{writeDate}, seller_status=#{sellerStatus}, approval_date=#{approvalDate}
+		where genie_id=#{genieId}
 	</update>
 	
 	<delete id="adcompanyDel">
@@ -116,8 +116,8 @@
 	</select>
 	
 	<insert id="paymentWrite">
-		insert into cart(cart_num, genie_id, product_id, cart_price, cart_qty, cart_writedate) 
-		values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, ${cart_qty}, #{cart_writedate})
+		insert into cart(cart_num, genie_id, product_id, cart_price, cart_qty, cart_write_date) 
+		values(#{cartNum}, #{genieId}, #{productId}, #{cartPrice}, ${cartQty}, #{cartWriteDate})
 	</insert>
 
 	<!-- Test 페이지 -->

@@ -26,8 +26,8 @@ public class CertServiceImpl implements CertService {
 
 
 	@Override
-	public List<String> FindId(String user_email) {
-		return repository.FindId(user_email);
+	public List<String> FindId(String userEmail) {
+		return repository.FindId(userEmail);
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public void sendUserId(String user_email, List<String> genieId) {
+	public void sendUserId(String userEmail, List<String> genieId) {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
-		simpleMailMessage.setTo(user_email);
+		simpleMailMessage.setTo(userEmail);
 		simpleMailMessage.setSubject("아이디 찾기");
 
 		StringBuffer sb = new StringBuffer();
@@ -64,18 +64,18 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-    public boolean emailCheck(String genieId, String user_email) {
+    public boolean emailCheck(String genieId, String userEmail) {
         Map<String, Object> map = new HashMap<>();
         map.put("genieId", genieId);
-        map.put("user_email", user_email);
+        map.put("userEmail", userEmail);
         String result = cdao.emailCheck(map);
 		return "1".equals(result);
 	}
 
 	@Override
-	public void sendAuthNum(String user_email, String authNum) {
+	public void sendAuthNum(String userEmail, String authNum) {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
-		simpleMailMessage.setTo(user_email);
+		simpleMailMessage.setTo(userEmail);
 		simpleMailMessage.setSubject("비밀번호 찾기 인증번호");
 		
 		String text = "인증번호는 " + authNum + "입니다";

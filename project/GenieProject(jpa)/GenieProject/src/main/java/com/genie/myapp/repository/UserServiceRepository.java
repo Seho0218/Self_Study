@@ -63,11 +63,11 @@ public class UserServiceRepository {
                 .fetch();
     }
 
-    public long delDelivery(int address_num) {
+    public long delDelivery(int addressNum) {
 
         return queryFactory
                 .delete(address)
-                .where(address.address_num.eq(address_num))
+                .where(address.addressNum.eq(addressNum))
                 .execute();
     }
 

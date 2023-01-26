@@ -63,8 +63,8 @@
                 </div>
             </div>
             <ul>
-                <li>${pvo.genie_id}</li>
-                <li>${pvo.product_name}</li>
+                <li>${pvo.genieId}</li>
+                <li>${pvo.productName}</li>
                 <li><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></li>
             </ul>
         </div>

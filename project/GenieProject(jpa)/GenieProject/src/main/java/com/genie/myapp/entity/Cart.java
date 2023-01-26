@@ -20,17 +20,17 @@ public class Cart {
     private int cartNum;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name="genie_id")
+    @JoinColumn(name="genieId")
     private User genieId;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name="product_id")
+    @JoinColumn(name="productId")
     private Product productId;
 
     private int cartPrice;
 
     private int cartQty;
 
-    private LocalDateTime cartWritedate = LocalDateTime.now();
+    private LocalDateTime cartWriteDate = LocalDateTime.now();
 
 }

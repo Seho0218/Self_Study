@@ -24,7 +24,7 @@ public class SellerProductDTO {
 	private String productImage1;
 	private String productImage2;
 	private String productImage3;
-	private String productMbti;
+	private String productMBTI;
 	private String companyName;
 
 	//여러개의 카테고리를 저장할 컬렉션
@@ -43,8 +43,7 @@ public class SellerProductDTO {
 
 
 	public String getProductCategory() {
-		String strCategory = String.join(",", categoryList);
-		return strCategory;
+		return String.join(",", categoryList);
 	}
 
 	public void setProductCategory(String productCategory) {
@@ -54,13 +53,12 @@ public class SellerProductDTO {
 	}
 
 	public String getProductTag() {
-		String strTag = String.join(",", tagList);
-		return strTag;
+		return String.join(",", tagList);
 	}
 
 	public void setProductTag(String productTag) {
 		this.productTag = productTag;
-		String tagSplit[] = productTag.split(",");
+		String[] tagSplit = productTag.split(",");
 		tagList = Arrays.asList(tagSplit);
 	}
 
@@ -76,14 +74,13 @@ public class SellerProductDTO {
 		this.tagArray = tagArray;
 	}
 
-	public String getProductMbti() {
-		String strMbti = String.join(",", mbtiList);
-		return strMbti;
+	public String getproductMBTI() {
+		return String.join(",", mbtiList);
 	}
 
-	public void setProductMbti(String productMbti) {
-		this.productMbti = productMbti;
-		String mbtiSplit[] = productMbti.split(",");
+	public void setproductMBTI(String productMBTI) {
+		this.productMBTI = productMBTI;
+		String[] mbtiSplit = productMBTI.split(",");
 		mbtiList = Arrays.asList(mbtiSplit);
 	}
 

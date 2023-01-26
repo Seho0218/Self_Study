@@ -5,7 +5,7 @@
 <mapper namespace="com.genie.myapp.dao.MbtiDAO">
 	
 	<select id="getProduct" resultType="SellerProductDTO">
-		select p.product_id, p.genie_id, p.product_category, p.product_tag, p.product_name, p.product_price, p.product_info, p.product_stock, p.product_quantity, p.product_hit, p.product_like, 
+		select p.product_id, p.genie_id, p.product_category, p.product_tag, p.product_name, p.product_price, p.product_info, p.product_stock, p.product_quantity, p.product_hit, p.product_like,
 		p.product_writedate, p.product_image1, p.product_image2, p.product_image3, p.product_mbti, s.company_name company_name 
 		from product p join seller s 
 		on p.genie_id=s.genie_id 
@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="pricelist" resultType="SellerProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like, 
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
 		product_writedate, product_image1, product_image2, product_image3, product_mbti 
 		from product 
 		where product_mbti like '%${param1}%' 
@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="pricelistdesc" resultType="SellerProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like, 
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
 		product_writedate, product_image1, product_image2, product_image3, product_mbti 
 		from product 
 		where product_mbti like '%${param1}%' 
@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="recentlist" resultType="SellerProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like, 
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
 		product_writedate, product_image1, product_image2, product_image3, product_mbti 
 		from product 
 		where product_mbti like '%${param1}%' 
@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="likelist" resultType="SellerProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like, 
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
 		product_writedate, product_image1, product_image2, product_image3, product_mbti 
 		from product 
 		where product_mbti like '%${param1}%' 
@@ -50,7 +50,7 @@
 	
 	<select id="productPriceAsc" resultType="ProductDTO">
 		select 
-            product_id, 
+            product_id,
             genie_id,
             product_category,
             product_tag,
@@ -69,14 +69,14 @@
         from product 
 
         <where>
-        <if test="product_category != null">
+        <if test="productCategory != null">
 
-            product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
+            product_category like '%${productCategory}%'  <!--where procuct_category like '%생일%'-->
 
         </if>
-        <if test="product_tag != null">
+        <if test="productTag != null">
 
-             product_tag like '%${product_tag}%'
+             product_tag like '%${productTag}%'
 
         </if>
         </where>
@@ -105,14 +105,14 @@
         from product 
 
         <where>
-        <if test="product_category != null">
+        <if test="productCategory != null">
 
-            product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
+            product_category like '%${productCategory}%'  <!--where procuct_category like '%생일%'-->
 
         </if>
-        <if test="product_tag != null">
+        <if test="productTag != null">
 
-             product_tag like '%${product_tag}%'
+             product_tag like '%${productTag}%'
 
         </if>
         </where>
@@ -141,14 +141,14 @@
         from product 
 
         <where>
-        <if test="product_category != null">
+        <if test="productCategory != null">
 
-            product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
+            product_category like '%${productCategory}%'  <!--where procuct_category like '%생일%'-->
 
         </if>
-        <if test="product_tag != null">
+        <if test="productTag != null">
 
-             product_tag like '%${product_tag}%'
+             product_tag like '%${productTag}%'
 
         </if>
         </where>
@@ -177,14 +177,14 @@
         from product 
 
         <where>
-        <if test="product_category != null">
+        <if test="productCategory != null">
 
-            product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
+            product_category like '%${productCategory}%'  <!--where procuct_category like '%생일%'-->
 
         </if>
-        <if test="product_tag != null">
+        <if test="productTag != null">
 
-             product_tag like '%${product_tag}%'
+             product_tag like '%${productTag}%'
 
         </if>
         </where>

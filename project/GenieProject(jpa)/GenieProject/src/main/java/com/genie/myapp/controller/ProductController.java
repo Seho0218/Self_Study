@@ -34,13 +34,13 @@ public class ProductController {
 	Map<String, Object> map = null;
 
 	@GetMapping("/")
-	public ModelAndView index(AdminDTO vo, ProductDTO PDTO, PagingDTO pDTO) {
+	public ModelAndView index(AdminDTO adminDTO, ProductDTO productDTO, PagingDTO pDTO) {
 
 		mav = new ModelAndView();
-		mav.addObject("tlist", adminService.adminTag(vo));
-		mav.addObject("plist", productService.listProduct(PDTO));
-		mav.addObject("pvo", PDTO);
-		mav.addObject("comlist", productService.companyName(PDTO));
+		mav.addObject("tlist", adminService.adminTag(adminDTO));
+		mav.addObject("plist", productService.listProduct(productDTO));
+		mav.addObject("pvo", productDTO);
+		mav.addObject("comlist", productService.companyName(productDTO));
 		// pDTO.setTotalRecord(productService.mainAllSelect(PDTO));
 		mav.setViewName("/index");
 
@@ -49,11 +49,11 @@ public class ProductController {
 
 	// 제품 리스트보기
 	@GetMapping("product")
-	public ModelAndView product(ProductDTO PDTO) {
+	public ModelAndView product(ProductDTO productDTO) {
 
 		mav = new ModelAndView();
-		mav.addObject("plist", productService.listProduct(PDTO));
-		mav.addObject("pvo", PDTO);
+		mav.addObject("plist", productService.listProduct(productDTO));
+		mav.addObject("pvo", productDTO);
 		mav.setViewName("/product");
 
 		return mav;
@@ -61,15 +61,15 @@ public class ProductController {
 
 	// 제폼 상세페이지
 	@GetMapping("product_detail")
-	public ModelAndView product_detail(@RequestParam("product_id") int product_id, HttpSession session) {
+	public ModelAndView product_detail(@RequestParam("productId") int productId, HttpSession session) {
 		mav = new ModelAndView();
-		String genie_id = (String) session.getAttribute("logId");
+		String genieId = (String) session.getAttribute("logId");
 
-		productService.hitCount(product_id);
-		mav.addObject("pvo", productService.getProduct(product_id));
-		mav.addObject("svo", productService.getSeller(product_id));
-		mav.addObject("lvo", productService.likeStatus(product_id));
-		mav.addObject("cvo", productService.likeCheck(product_id, genie_id));
+		productService.hitCount(productId);
+		mav.addObject("pvo", productService.getProduct(productId));
+		mav.addObject("svo", productService.getSeller(productId));
+		mav.addObject("lvo", productService.likeStatus(productId));
+		mav.addObject("cvo", productService.likeCheck(productId, genieId));
 		mav.setViewName("/product_detail");
 
 		return mav;
@@ -79,11 +79,11 @@ public class ProductController {
 	// ----------------------------------------------------------//
 	
 	@PostMapping("selectProduct")
-	public ModelAndView selectProduct(ProductDTO pvo, TagDTO tvo) {
+	public ModelAndView selectProduct(ProductDTO productDTO, TagDTO tagDTO) {
 
 		map = new HashMap<>();
-		map.put("p", pvo);
-		map.put("t", tvo);
+		map.put("p", productDTO);
+		map.put("t", tagDTO);
 
 		mav = new ModelAndView();
 		mav.addObject("plist", productService.selectProduct(map));

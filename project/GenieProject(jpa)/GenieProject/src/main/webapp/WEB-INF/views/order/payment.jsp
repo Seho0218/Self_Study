@@ -35,8 +35,8 @@
             <div class="info">
               <h2>구매자 정보</h2>
               <div> 
-                <h3>${uvo.user_name}</h3>
-                <li><input type="hidden" name="genie_id" value="${uvo.genie_id}"></li>
+                <h3>${uvo.userName}</h3>
+                <li><input type="hidden" name="genieId" value="${uvo.genieId}"></li>
                 <p>${uvo.user_email}<br/>
                   ${uvo.user_tel}<br/></p>
               </div>
@@ -60,7 +60,7 @@
                     <script>cartList.push(${pvo.cart_num});</script> 
                     <tr>
                         <%-- <th><input type="hidden" id="cart_num${pvo.cart_num}" name="cartList" value="${pvo.cart_num}">${pvo.cart_num}</th> --%>
-                        <th><input type="hidden" id="product_name${pvo.cart_num}" name="product_name" value="${pvo.product_name}"/> ${pvo.product_name}</th>
+                        <th><input type="hidden" id="productName${pvo.cart_num}" name="productName" value="${pvo.productName}"/> ${pvo.productName}</th>
                         <th><input type="hidden" id="cart_price${pvo.cart_num}" name="cart_price" value="${pvo.cart_price}"/>${pvo.cart_price}원</th>
                         <th><input type="hidden" id="cart_qty${pvo.cart_num}" name="cart_qty" value="${pvo.cart_qty}"/>${pvo.cart_qty}개</th>
                         <th><fmt:formatNumber value="${sum_of_each}" pattern="#,###원"/></th>
@@ -82,7 +82,7 @@
 
                   <%-- <th><input type="hidden" id="cart_num${pvo.cart_num}" name="cartList" value="${bvo.cart_num}">${bvo.cart_num}</th> --%>
                   <input type="hidden" name="product_id" value="${bvo.product_id}"/>
-                  <th><input type="hidden" id="product_name${bvo.cart_num}" name="product_name" value="${bvo.product_name}"/>${bvo.product_name}</th>
+                  <th><input type="hidden" id="productName${bvo.cart_num}" name="productName" value="${bvo.productName}"/>${bvo.productName}</th>
                   <th><input type="hidden" id="cart_price${bvo.cart_num}" name="cart_price" value="${bvo.cart_price}"/>${bvo.cart_price}원</th>
                   <th><input type="hidden" id="cart_qty${bvo.cart_num}" name="cart_qty" value="${bvo.cart_qty}"/>${bvo.cart_qty}개</th>
                   <th><fmt:formatNumber value="${bvo.cart_price*bvo.cart_qty}" pattern="#,###원"/></th>
@@ -105,9 +105,9 @@
                         <td class="tableitem">
                     <input type="button" id="selectAddress" value="배송지 선택" class="itemtext-top"> 
                           <input type="hidden" id="addressStatus" value="N"/>      
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_name" name="user_name" placeholder="받는사람 이름" readonly></p>
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_zipcode" name="user_zipcode" placeholder="우편번호" readonly></p>
-                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_addr" name="user_addr" placeholder="받는사람 주소" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_name" name="userName" placeholder="받는사람 이름" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_zipcode" name="zipCode" placeholder="우편번호" readonly></p>
+                          <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_addr" name="addr" placeholder="받는사람 주소" readonly></p>
                           <p class="itemtext"><input type="text" class="itemtext-inner" id="receiver_tel" name="user_tel" placeholder="받는 사람 전화번호" readonly></p>
                           </td>
                     </tr>
@@ -163,7 +163,7 @@
             pg: 'html5_inicis',                  
             pay_method: 'card',         
             merchant_uid: 'merchant_' + new Date().getTime(), 
-            name:'<c:forEach var="pvo" items="${plist}">[${pvo.product_name}]</c:forEach>${bvo.product_name}',     
+            name:'<c:forEach var="pvo" items="${plist}">[${pvo.productName}]</c:forEach>${bvo.productName}',
 
             amount: $("input[name=total]").val(),//가격          
 
@@ -182,7 +182,7 @@
                       order_num: rsp.imp_uid,
                       merchant_uid: rsp.merchant_uid,
 
-                      genie_id:$("input[name=genie_id]").val(),
+                      genieId:$("input[genieId]").val(),
                       cartList: cartList,
                       product_id:$("input[name=product_id").val(),
                       order_price: $("input[name=cart_price]").val(),

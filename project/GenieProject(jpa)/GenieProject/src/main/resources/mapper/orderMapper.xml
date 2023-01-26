@@ -56,20 +56,20 @@
 
         values  
 
-            (#{order_num},
-            #{genie_id}, 
-            #{product_id},
-            #{product_name},
+            (#{orderNum},
+            #{genieId},
+            #{productId},
+            #{productName},
 
-            #{recipient_name},
-            #{recipient_phone},
-            #{recipient_address}, 
-            #{recipient_request},
-            #{payment_method},
-            #{order_writedate},
+            #{recipientName},
+            #{recipientPhone},
+            #{recipientAddress},
+            #{recipientRequest},
+            #{paymentMethod},
+            #{orderWriteDate},
 
-            #{order_price},
-            #{order_qty})
+            #{orderPrice},
+            #{orderQty})
            
     </insert>
 
@@ -78,7 +78,7 @@
         delete from cart 
             <if test="cartList!=null">
                 <where>
-                    <foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
+                    <foreach collection="cartList" index="index" item ="item" open="cartNum in (" separator ="," close=")">
                         #{item}  			
                     </foreach>	 
                 </where>
@@ -94,7 +94,7 @@
     <select id="getOrderList" resultType="OrderDTO">
     
 		select 
-            m.order_num, 
+            m.order_num,
             m.genie_id, 
             m.product_id,
             c.product_name,
@@ -109,7 +109,7 @@
         join product c 
         on m.product_id=c.product_id 
         where order_writedate = 
-        (select max(order_writedate) from myorder where genie_id=#{genie_id})
+        (select max(order_writedate) from myorder where genie_id=#{genieId})
 
     </select>
 

@@ -22,12 +22,12 @@ public class Inquiry implements Serializable {
 
     @Id @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genieId")
-    private User genie_id;
+    private User genieId;
 
     private long productId;
-    private String inqueryTitle;
-    private String inqueryContent;
-    private String inqueryStatus;
-    private LocalDateTime inquiryWritedate;
+    private String inquiryTitle;
+    private String inquiryContent;
+    private String inquiryStatus;
+    private LocalDateTime inquiryWriteDate;
 
 }

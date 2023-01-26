@@ -29,8 +29,8 @@
 	</select>
 
 	<insert id="productWrite">
-		insert into product(genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_mbti) 
-		values(#{genie_id}, #{product_category}, #{product_tag}, #{product_name}, ${product_price}, #{product_info}, ${product_quantity}, #{product_image1}, #{product_image2}, #{product_image3}, #{product_mbti})
+		insert into product(genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_mbti)
+		values(#{genieId}, #{productCategory}, #{productTag}, #{productName}, ${productPrice}, #{productInfo}, ${productQuantity}, #{productImage1}, #{productImage2}, #{productImage3}, #{productMBTI})
 	</insert>
 
 	
@@ -40,18 +40,18 @@
 		from account a 
 		join seller s 
 		on a.genie_id=s.genie_id 
-		where a.genie_id=#{genie_id} and a.withdrawal=1;
+		where a.genie_id=#{genieId} and a.withdrawal=1;
 
 	</select>
 	
 	<select id="productList" resultType="SellerProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity, product_mbti 
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity, product_mbti
 		from product 
 		<if test="searchWord==null">
-			where genie_id=#{genie_id} 
+			where genie_id=#{genieId}
 		</if> 
 		<if test="searchWord!=null">
-			where ${searchKey} like '%${searchWord}%' and genie_id=#{genie_id} 
+			where ${searchKey} like '%${searchWord}%' and genie_id=#{genieId}
 		</if>
 		order by product_id desc limit ${onePageRecord} offset ${offsetPoint} 
 	</select>
@@ -60,12 +60,12 @@
 
 		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_website
 		from seller 
-		where genie_id=#{genie_id}
+		where genie_id=#{genieId}
 
 	</select>
 	
 	<select id="getProduct" resultType="SellerProductDTO">
-		select product_id, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_category, product_tag, product_mbti 
+		select product_id, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_category, product_tag, product_mbti
 		from product
 		where product_id=${param1}
 	</select>
@@ -75,24 +75,24 @@
 	</delete>
 	
 	<update id="productEditOk">
-		update product set product_name=#{product_name}, product_price=${product_price}, product_info=#{product_info}, product_quantity=${product_quantity}, 
-		product_image1=#{product_image1}, product_image2=#{product_image2}, product_image3=#{product_image3}, product_category=#{product_category}, product_tag=#{product_tag}, product_mbti=#{product_mbti} 
-		where product_id=${product_id}
+		update product set product_name=#{productName}, product_price=${productPrice}, product_info=#{productInfo}, product_quantity=${productQuantity}, 
+		product_image1=#{productImage1}, product_image2=#{productImage2}, product_image3=#{productImage3}, product_category=#{productCategory}, product_tag=#{productTag}, product_mbti=#{productMBTI}
+		where product_id=${productId}
 	</update>
 
 	<!--   주문 상태 수정-->
 	 <update id="updateDeliveryStatus">
 	 	update myorder
 	 	<set>
-	 		<if test = "recipient_delivery_status != '' and recipient_delivery_status != null">
-	 			recipient_delivery_status = #{recipient_delivery_status}
+	 		<if test = "recipientDeliveryStatus != '' and recipientDeliveryStatus != null">
+	 			recipient_delivery_status = #{recipientDeliveryStatus}
 	 		</if>
 	 	</set> 
-	 	where order_num = #{order_num}
+	 	where order_num = #{orderNum}
 	</update>
 	
 	<select id="inquiryList" resultType="InquiryDTO">
-		select i.genie_id, i.product_id, p.product_name, i.inquiry_title, i.inquiry_content, i.inquiry_status, i.inquiry_writedate 
+		select i.genie_id, i.product_id, p.product_name, i.inquiry_title, i.inquiry_content, i.inquiry_status, i.inquiry_write_date 
 		from inquiry i join product p 
 		on i.product_id=p.product_id 
 		where i.product_id in(select product_id from product where genie_id=#{param2}) 

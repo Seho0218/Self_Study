@@ -64,8 +64,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AdminDTO getadminTag(String product_tag_id) {
-		return dao.getadminTag(product_tag_id);
+	public AdminDTO getadminTag(String productTagId) {
+		return dao.getadminTag(productTagId);
 	}
 
 	@Override
@@ -74,8 +74,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adminTagDel(String product_tag_id) {
-		return dao.admemberDel(product_tag_id);
+	public int adminTagDel(String productTagId) {
+		return dao.admemberDel(productTagId);
 	}
 
 	///////////////카테고리//////////////////

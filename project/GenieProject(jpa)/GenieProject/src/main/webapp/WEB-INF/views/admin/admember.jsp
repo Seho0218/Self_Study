@@ -184,8 +184,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div>
 					<form method="get" action="/admin/admember" id="searchFrm">
 						<select name="searchKey">
-							<option value="genie_id">아이디</option>
-							<option value="user_name">이름</option>
+							<option value="genieId">아이디</option>
+							<option value="userName">이름</option>
 							<option value="user_tel">연락처</option>
 							<option value="user_email">이메일</option>
 						</select>
@@ -210,12 +210,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${admember }">
                       <tr>
-					             	<td>${vo.genie_id}</td>
-					            	<td>${vo.user_name}</td>
+					             	<td>${vo.genieId}</td>
+					            	<td>${vo.userName}</td>
 					             	<td>${vo.user_tel}</td>
                         <td>${vo.user_email}</td>
                         <td>${vo.sign_in_date}</td>
-                        <td><a href="/admin/admemberPop?genie_id=${vo.genie_id}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/admemberPop?genieId=${vo.genieId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 
                     </tbody>

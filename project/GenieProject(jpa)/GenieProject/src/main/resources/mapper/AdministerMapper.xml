@@ -10,7 +10,7 @@
 		from account ac 
 		join administer ad 
 		on ac.genie_id=ad.genie_id 
-		where ac.genie_id=#{genie_id} and ac.genie_pwd=#{genie_pwd}
+		where ac.genie_id=#{genieId} and ac.genie_pwd=#{geniePwd}
 
 	</select>
 </mapper>

@@ -40,7 +40,7 @@ input {
 <section class="home">
     <div class="find_info">
 		<h3>가입하신 아이디를 입력해주세요</h3>
-		<input type="text" name="genie_id" class="genie_id">
+		<input type="text" name="genieId" class="genieId">
 		<input type="button" class="find_btn" value="찾기"></button>
 	</div>
 <section>
@@ -50,8 +50,8 @@ input {
 	
 			function usernameCheck() {
 				let submit = false;
-				const genie_id = $("input[name=genie_id]").val().replaceAll(" ", "");
-				if(!genie_id) {
+				const genieId = $("input[genieId]").val().replaceAll(" ", "");
+				if(!genieId) {
 					return false;
 				}
 			
@@ -60,8 +60,8 @@ input {
 				type: "GET",
 				async: false,
 				data: {
-					value : genie_id,
-					valueType : "genie_id"
+					value : genieId,
+					valueType : "genieId"
 				}
 			})
 			.done(function(result){
@@ -81,7 +81,7 @@ input {
 				return;
 			}
 			const data = {
-				genie_id : $(".genie_id").val(),
+				genieId : $(".genieId").val(),
 			}
 			
 			$.ajax({
@@ -90,7 +90,7 @@ input {
 				data: data,
 			})
 			.then(function(result){
-				location.href= "/cert/FindPwd_auth?genie_id="+result;
+				location.href= "/cert/FindPwd_auth?genieId="+result;
 			})
 			.fail(function(){
 				alert('에러');

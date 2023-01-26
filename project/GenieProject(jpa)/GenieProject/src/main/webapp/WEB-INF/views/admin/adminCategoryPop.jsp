@@ -155,7 +155,7 @@ function adcategoryDel(){
     <p>카테고리아이디</p>
      	<input type="text" id="category_id" class="second" name="category_id" value=${vo.category_id}>
    	<p>카테고리</p>
-   		<input type="text" id="category_id" class="second" name="product_category" value=${vo.product_category}>  	
+   		<input type="text" id="category_id" class="second" name="productCategory" value=${vo.productCategory}>
       <input type="submit" class="fourth" value="수정">
       <a href="javascript:adminTagDel()"><input type="button" id="delete" value="삭제"></a>
       <a href="javascript:window.history.back()"><input type="button" id="fourth" value="뒤로가기"></a>

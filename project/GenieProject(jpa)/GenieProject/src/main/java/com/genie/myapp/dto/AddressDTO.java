@@ -26,9 +26,9 @@ public class AddressDTO {
 	private String userPhoneNum2;
 	private String userPhoneNum3;
 
-	private String userZipcode;
-	private String userAddr;
-	private String userDetailaddr;
+	private String zipCode;
+	private String addr;
+	private String detailAddr;
 
 	public String getUserTel() {
 		return userPhoneNum1 + "-"+userPhoneNum2+"-"+userPhoneNum3;

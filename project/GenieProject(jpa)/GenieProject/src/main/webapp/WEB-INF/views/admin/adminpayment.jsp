@@ -30,7 +30,7 @@
 	margin: .5em;
 }
 /* 아이디를 입력하세요 */
-#genie_id {
+#genieId {
 	width: 63%;
 }
 /* 아이디중복검사 */
@@ -57,7 +57,7 @@ input[type=text], input[type=password], input[type=email] {
 	border-radius: 10px;
 }
 /* 폰입력 설정 */
-#user_phone_num1 {
+#userPhoneNum1 {
 	width: 25%;
 	height: 5vh;
 	margin-left: 1em;
@@ -67,11 +67,11 @@ input[type=text], input[type=password], input[type=email] {
 	border: none;
 	border-radius: 10px;
 }
-#user_phone_num2, #user_phone_num3 {
+#userPhoneNum2, #userPhoneNum3 {
 	width:30%;
 }
 /* 우편번호 설정*/
-#user_zipcode {
+#zipCode {
 	width: 63%;
 }
 
@@ -110,10 +110,10 @@ label {
 <script>
 $(function(){
 	$("#idCheck").click(function(){
-		window.open("/user/idCheck?genie_id="+$("#genie_id").val(),"idCheck","width=400,height=300");
+		window.open("/user/idCheck?genieId="+$("#genieId").val(),"idCheck","width=400,height=300");
 	});
 
-	$("#genie_id").change(function(){
+	$("#genieId").change(function(){
 		$("#idCheckState").val("N");
 	});
 });
@@ -129,7 +129,7 @@ $(function(){
 			</ul>
 			<ul id="idForm">
 				<li>지니아이디</li>
-				<input type="text" name="genie_id" id="genie_id" value="1234" placeholder="지니아이디">
+				<input type="text" name="genieId" id="genieId" value="1234" placeholder="지니아이디">
 			</ul>
 			<ul id="idForm">
 				<li>제품아이디</li>
@@ -145,7 +145,7 @@ $(function(){
 			</ul>
 			<ul id="idForm">
 				<li>날짜</li>
-				<input type="text" name="cart_writedate" id="cart_writedate" value="2022.09.30" placeholder="날짜">
+				<input type="text" name="cart_writeDate" id="cart_writeDate" value="2022.09.30" placeholder="날짜">
 			</ul>
 				<input type = "submit" id="formSubmit" value = "결제하기"/>
 		</form>

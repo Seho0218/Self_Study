@@ -180,7 +180,7 @@
                         <c:forEach var="vo" items="${revenueByProduct}" varStatus="i">
                           <tr>
                             <td><img src="${vo.product_image1}" class="thumb"></td>
-                            <td>${vo.product_name}</td>
+                            <td>${vo.productName}</td>
                             <td>${vo.sold_counts}</td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.total_sales}"/> 원</td>
 

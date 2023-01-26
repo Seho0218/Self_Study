@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.*;
 public class Address implements Serializable {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private int address_num;
+    private int addressNum;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
@@ -25,9 +25,9 @@ public class Address implements Serializable {
 
     private String userTel;
 
-    private String userZipcode;
-    private String userAddr;
-    private String userDetailaddr;
+    private String zipcode;
+    private String addr;
+    private String detailAddr;
 
 
 //    public void setUser(User genie_id) {

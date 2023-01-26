@@ -8,7 +8,7 @@
     <select id="listProduct" resultType="ProductDTO">
 
         select 
-            product_id, 
+            product_id,
             genie_id,
             product_category,
             product_tag,
@@ -27,14 +27,14 @@
         from product 
 
         <where>
-        <if test="product_category != null">
+        <if test="productCategory != null">
 
-            product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
+            product_category like '%${productCategory}%'  <!--where procuct_category like '%생일%'-->
 
         </if>
-        <if test="product_tag != null">
+        <if test="productTag != null">
 
-             product_tag like '%${product_tag}%'
+             product_tag like '%${productTag}%'
 
         </if>
         </where>
@@ -65,7 +65,7 @@
             product_image3,
             product_mbti 
         from product 
-        where product_id=#{product_id} 
+        where product_id=#{productId}
 
 	</select>
 
@@ -75,7 +75,7 @@
         from seller s
         join product p
         on s.genie_id=p.genie_id
-        where p.product_id=#{product_id}
+        where p.product_id=#{productId}
 
     </select>
 
@@ -94,26 +94,14 @@
 
     </select>
 
-    <insert id="addCart">
-
-        insert into Cart(cart_num, genie_id, product_id, cart_price, cart_qty) 
-        values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, #{cart_qty})
-
-    </insert>
-
-    <delete id="delCart">
-
-          delete from cart where cart_num=#{param1} and genie_id=#{param2}
-        
-    </delete>
 
     <delete id = "delMultiCart">
 	  	delete from cart 
 	  	<where>
-	  		<foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
+	  		<foreach collection="cartList" index="index" item ="item" open="cartNum in (" separator ="," close=")">
 	  			#{item}  			
 	  		</foreach>
-           	  <!-- and genie_id=#{genie_id} -->
+           	  <!-- and genie_id=#{genieId} -->
 	  	</where>
            
 	</delete>
@@ -149,19 +137,19 @@
             product_mbti 
         from product 
         <where>
-        <if test = "p.product_category != null">
-            product_category like '%${p.product_category}%'
+        <if test = "p.productCategory != null">
+            product_category like '%${p.productCategory}%'
         </if>
-        <if test = "p.product_category != null and t.genie_who != null">
+        <if test = "p.productCategory != null and t.genieWho != null">
             and
         </if>
-        <if test = "t.genie_who != null">
-            product_tag like '%${t.genie_who}%' and  
-            product_tag like '%${t.genie_day}%' and  
-            product_tag like '%${t.genie_old}%' and  
-            product_tag like '%${t.gender}%' 
+        <if test = "t.genieWho != null">
+            product_tag like '%${t.genieWho}%' and
+            product_tag like '%${t.genieDay}%' and
+            product_tag like '%${t.genieOld}%' and
+            product_tag like '%${t.gender}%'
         </if>
-        and product_price between #{t.money_low} and #{t.money_max} 
+        and product_price between #{t.moneyLow} and #{t.moneyMax}
         </where>
         order by rand()
 
@@ -180,7 +168,7 @@
 	</select>
 
     <select id="likeStatus" resultType="ProductDTO">
-    	select product_like from product where product_id = #{product_id}
+    	select product_like from product where product_id = #{productId}
     </select>
     
     <select id="likeCheck" resultType="LikeDTO">

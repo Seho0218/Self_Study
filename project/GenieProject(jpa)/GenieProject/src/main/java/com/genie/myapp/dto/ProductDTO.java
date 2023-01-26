@@ -19,7 +19,7 @@ public class ProductDTO {
 	private String productCategory;
 	private String productTag;
 	private String productName;
-	private int product_price;
+	private int productPrice;
 	private String productInfo;
 	private int productStock;
 	private int productQuantity;

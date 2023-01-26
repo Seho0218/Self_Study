@@ -19,7 +19,7 @@ import java.util.List;
 @DiscriminatorValue("Seller")
 public class Seller extends Account{
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genieId")
     private List<Product> productList = new ArrayList<>();
 
     private String sellerTel;
@@ -29,7 +29,7 @@ public class Seller extends Account{
     private String ceoName;
     private String sellerAddress;
     private String sellerWebsite;
-    private LocalDateTime writedate = LocalDateTime.now();
+    private LocalDateTime writeDate = LocalDateTime.now();
     private String sellerStatus;
     private LocalDateTime approvalDate = LocalDateTime.now();
 

@@ -173,7 +173,7 @@ color:white;
                       <c:forEach var="vo" items="${adcategory }">
                       <tr>
                         <td>${vo.category_id}</td>
-                        <td>${vo.product_category}</td>
+                        <td>${vo.productCategory}</td>
                         <td><a href="/admin/adminCategoryPop?category_id=${vo.category_id}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 

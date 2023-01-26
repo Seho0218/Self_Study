@@ -298,12 +298,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${admember }">
                       <tr>
-						            <td>${vo.genie_id}</td>
-						            <td>${vo.user_name}</td>
+						            <td>${vo.genieId}</td>
+						            <td>${vo.userName}</td>
 						            <td>${vo.user_tel}</td>
                         <td>${vo.user_email}</td>
                         <td>${vo.sign_in_date}</td>
-                        <td><a href="/admin/admemberPop?genie_id=${vo.genie_id}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/admemberPop?genieId=${vo.genieId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 
                     </tbody>

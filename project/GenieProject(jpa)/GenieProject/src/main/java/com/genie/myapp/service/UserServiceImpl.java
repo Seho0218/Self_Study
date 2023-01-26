@@ -87,8 +87,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public long delDelivery(int address_num) {
-        return repository.delDelivery(address_num);
+    public long delDelivery(int addressNum) {
+        return repository.delDelivery(addressNum);
     }
 
     @Override//TODO 주소내역이 전부 가져와짐
@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService{
         User user = UserDTO.convertDTOtoEntity(userDTO);
 
         //Entity -> DTO
-        return OrderDTO.convertEntityToDTO(repository.getOrder(user));
+        return null;
     }
 
     @Override

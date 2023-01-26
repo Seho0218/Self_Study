@@ -29,19 +29,19 @@ public class User extends Account {
     @OneToMany(mappedBy = "user")
     private List<Address> address = new ArrayList<>();
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genieId")
     private List<Inquiry> inquiries;
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genieId")
     private List<ProductLike> product_like;
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genieId")
     private List<Cart> carts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genieId")
     private List<MyOrder> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "genie_id")
+    @OneToMany(mappedBy = "genieId")
     private List<Reply_product> replyProducts = new ArrayList<>();
 
     private String userTel;
