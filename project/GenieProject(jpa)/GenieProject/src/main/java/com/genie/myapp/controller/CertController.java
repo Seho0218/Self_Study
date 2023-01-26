@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -30,8 +29,8 @@ public class CertController {
 	public final PasswordEncoder passwordEncoder;
 
 	ModelAndView mav;
-    
-    @GetMapping("FindId")
+
+	@GetMapping("FindId")
 	public ModelAndView FindId() {
 		mav = new ModelAndView();
 		mav.setViewName("/cert/FindId");
@@ -43,7 +42,7 @@ public class CertController {
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String userEmail){
 		List<String> genieId =certService.FindId(userEmail);
-	
+
 		if(genieId.size() != 0) {
 			certService.sendUserId(userEmail, genieId);
 		}
@@ -56,10 +55,10 @@ public class CertController {
 	public ModelAndView FindPwd() {
 		mav = new ModelAndView();
 		mav.setViewName("/cert/FindPwd");
-		
+
 		return mav;
 	}
-	
+
 	@GetMapping("overlapCheck")
 	public int overlapCheck(String value, String valueType) {
 //		value = 중복체크할 값
@@ -67,19 +66,19 @@ public class CertController {
 		System.out.println(valueType);
 		System.out.println(value);
 		int count = certService.overlapCheck(value, valueType);
-		
+
 		System.out.println(count);
 		return count;
 	}
-	
+
 	@GetMapping("emailCheck")
 	public ResponseEntity<Boolean> emailCheck(String genieId, String userEmail){
 		boolean emailCheck = certService.emailCheck(genieId, userEmail);
-        System.out.println("emailCheck "+ emailCheck );
+		System.out.println("emailCheck "+ emailCheck );
 		return new ResponseEntity<>(emailCheck, HttpStatus.OK);
 	}
-	
-	
+
+
 	// 인증번호 보내기 페이지
 	@GetMapping("FindPwd_auth")
 	public ModelAndView auth(String genieId, HttpSession session) {
@@ -87,22 +86,22 @@ public class CertController {
 		mav = new ModelAndView();
 
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
-    	if(authStatus == null || !genieId.equals(authStatus.get("genieId"))) {
+		if(authStatus == null || !genieId.equals(authStatus.get("genieId"))) {
 
 			mav.setViewName("/cert/FindPwd");
 			return mav;
-   		}
-		    mav.setViewName("/cert/FindPwd_auth");
-		    return mav;
+		}
+		mav.setViewName("/cert/FindPwd_auth");
+		return mav;
 	}
-	
+
 	@PostMapping("FindPwd_auth")
 	public ResponseEntity<Object> authenticateUser(String genieId, HttpSession session) {
 
 		Map<String, Object> authStatus = new HashMap<>();
 		authStatus.put("genieId", genieId);
 		authStatus.put("status", false);
-		
+
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authStatus", authStatus);
 
@@ -117,28 +116,28 @@ public class CertController {
 		for(int i=0;i<6;i++) {
 			authNum += (int)(Math.random() * 10);
 		}
-		
+
 		System.out.println("인증번호는 : " + authNum);
 		System.out.println("이메일은 : " + userEmail);
-		
+
 		if(userEmail != null) {
 			//System.out.println("이메일로 인증번호 보내기");
 			certService.sendAuthNum(userEmail, authNum);
 		}
-		
+
 		Map<String, Object> authNumMap = new HashMap<>();
-    
+
 		long createTime = System.currentTimeMillis();
 		long endTime = createTime + (300 *1000);
 
-		
+
 		authNumMap.put("createTime", createTime);
 		authNumMap.put("endTime", endTime);
 		authNumMap.put("authNum", authNum);
-		
+
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authNum", authNumMap);
-		
+
 		return new ResponseEntity<>("인증번호가 전송되었습니다", HttpStatus.OK);
 	}
 
@@ -148,15 +147,15 @@ public class CertController {
 
 		Map<String, Object> sessionAuthNumMap = (Map<String, Object>) session.getAttribute("authNum");
 		String msg;
-		
+
 		if(sessionAuthNumMap == null) {
 			msg = "인증번호를 전송해주세요";
 			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		// 인증번호 만료시간
 		long endTime = (long) sessionAuthNumMap.get("endTime");
-		
+
 		// 현재시간이 만료시간이 지났다면
 		if(System.currentTimeMillis() > endTime) {
 			msg = "인증시간이 만료되었습니다";
@@ -164,7 +163,7 @@ public class CertController {
 			session.setMaxInactiveInterval(0);
 			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		// 인증번호
 		String sessionAuthNum = (String) sessionAuthNumMap.get("authNum");
 		// System.out.println("check.authNum-"+authNum);
@@ -202,11 +201,11 @@ public class CertController {
 			mav.setViewName("/cert/FindPwd");
 			return mav;
 		}
-		
-			mav.setViewName("/cert/modify_pwd");
-			mav.addObject("genieId",genieId);
-			
-			return mav;
+
+		mav.setViewName("/cert/modify_pwd");
+		mav.addObject("genieId",genieId);
+
+		return mav;
 	}
 
 
@@ -224,5 +223,5 @@ public class CertController {
 	}
 
 
-	
+
 }

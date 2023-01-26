@@ -281,7 +281,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
       <form method="post" action="/user/addDelivery">
         <input type="hidden" value="${vo.genieId}" name="genieId"/>
           <ul id="addrForm">
-            <li>이름: <input type="text" name="userName" id ="userName"/></li>
+            <li>이름: <input type="text" name="userName" id ="userName" value="김유저"/></li>
 
             <ul id="phoneForm">
               <li>휴대폰 번호</li>
@@ -294,19 +294,19 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
                 <option value="018">018</option>
                 <option value="019">019</option>
               </select>
-              <input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" maxlength = "4"/>
-              -<input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" maxlength = "4"/>
+              <input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" maxlength = "4" value="1234"/>
+              -<input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" maxlength = "4" value="1234"/>
             </ul>
 
             <li>우편번호</li>
             <li>
-              <input type="text" name="zipCode" id ="zipCode" readonly/>
+              <input type="text" name="zipCode" id ="zipCode" value="123456" readonly/>
               <input type= "button" value = "우편번호찾기" id = "address_kakao"/>
             </li>
             <li>주소</li>
-            <li><input type="text" name="addr" id ="addr" readonly/></li>
+            <li><input type="text" name="addr" id ="addr" value="서울 관악구 난우길 2" readonly/></li>
             <li>상세주소</li>
-            <li><input type="text" name="detailAddr" id ="detailAddr" /></li>
+            <li><input type="text" name="detailAddr" id ="detailAddr" value="12345" /></li>
             <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
           </ul>
       </form>   
@@ -332,7 +332,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
         <ul id="delivery_1">
         <c:forEach var="dvo" items="${dlist}">
             <li> <input type="text" value="수령자 이름: ${dvo.userName}" readonly/></li>
-            <li><input type="text" value="전화번호: ${dvo.user_tel}" readonly/></li>
+            <li><input type="text" value="전화번호: ${dvo.userTel}" readonly/></li>
             <li><input type="text" value="우편번호: ${dvo.zipCode}" readonly/></li>
             <li><input type="text" value="주소: ${dvo.addr}" readonly/></li>
             <li><input type="text" value="상세주소: ${dvo.detailAddr}" readonly/></li><br>

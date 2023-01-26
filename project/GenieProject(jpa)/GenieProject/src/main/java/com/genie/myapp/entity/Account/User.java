@@ -24,10 +24,10 @@ import java.util.List;
 @DiscriminatorValue("USER")
 public class User extends Account {
 
-    private String user_name;
+    private String userName;
 
-    @OneToMany(mappedBy = "user")
-    private List<Address> address = new ArrayList<>();
+    @OneToMany(mappedBy = "genieId")
+    private List<Address> address = new ArrayList<>(); // mappedBy를 맞춰줘야 외래키 입력 가능
 
     @OneToMany(mappedBy = "genieId")
     private List<Inquiry> inquiries;
@@ -56,8 +56,8 @@ public class User extends Account {
 
 //    public void setAddress(Address address) {
 //        this.address.add(address);
-//        if (address.getGenie_id() != this) {
-//            address.setGenie_id(this);
+//        if (address.getGenieId() != this) {
+//            address.setGenieId(this);
 //        }
 //    }
 }

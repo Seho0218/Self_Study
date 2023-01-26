@@ -29,7 +29,7 @@
 	</select>
 
 	<insert id="productWrite">
-		insert into product(genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_mbti)
+		insert into product(genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, productmbti)
 		values(#{genieId}, #{productCategory}, #{productTag}, #{productName}, ${productPrice}, #{productInfo}, ${productQuantity}, #{productImage1}, #{productImage2}, #{productImage3}, #{productMBTI})
 	</insert>
 
@@ -45,7 +45,7 @@
 	</select>
 	
 	<select id="productList" resultType="SellerProductDTO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity, product_mbti
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity, productmbti
 		from product 
 		<if test="searchWord==null">
 			where genie_id=#{genieId}
@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="getProduct" resultType="SellerProductDTO">
-		select product_id, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_category, product_tag, product_mbti
+		select product_id, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3, product_category, product_tag, productmbti
 		from product
 		where product_id=${param1}
 	</select>
@@ -76,7 +76,7 @@
 	
 	<update id="productEditOk">
 		update product set product_name=#{productName}, product_price=${productPrice}, product_info=#{productInfo}, product_quantity=${productQuantity}, 
-		product_image1=#{productImage1}, product_image2=#{productImage2}, product_image3=#{productImage3}, product_category=#{productCategory}, product_tag=#{productTag}, product_mbti=#{productMBTI}
+		product_image1=#{productImage1}, product_image2=#{productImage2}, product_image3=#{productImage3}, product_category=#{productCategory}, product_tag=#{productTag}, productmbti=#{productMBTI}
 		where product_id=${productId}
 	</update>
 

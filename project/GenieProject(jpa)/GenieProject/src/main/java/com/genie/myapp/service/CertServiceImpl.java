@@ -19,8 +19,8 @@ import com.genie.myapp.dao.CertDAO;
 @Transactional
 @RequiredArgsConstructor
 public class CertServiceImpl implements CertService {
-    
-    public final JavaMailSender mailSender;
+
+	public final JavaMailSender mailSender;
 	public final CertDAO cdao;
 	public final CertServiceRepository repository;
 
@@ -59,16 +59,16 @@ public class CertServiceImpl implements CertService {
 		Map<String, String> map = new HashMap<>();
 		map.put("value", value);
 		map.put("valueType", valueType);
-		
+
 		return cdao.overlapCheck(value, valueType);
 	}
 
 	@Override
-    public boolean emailCheck(String genieId, String userEmail) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("genieId", genieId);
-        map.put("userEmail", userEmail);
-        String result = cdao.emailCheck(map);
+	public boolean emailCheck(String genieId, String userEmail) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("genieId", genieId);
+		map.put("userEmail", userEmail);
+		String result = cdao.emailCheck(map);
 		return "1".equals(result);
 	}
 
@@ -77,9 +77,9 @@ public class CertServiceImpl implements CertService {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(userEmail);
 		simpleMailMessage.setSubject("비밀번호 찾기 인증번호");
-		
+
 		String text = "인증번호는 " + authNum + "입니다";
-		
+
 		simpleMailMessage.setText(text);
 		new Thread(() -> mailSender.send(simpleMailMessage)).start();
 	}

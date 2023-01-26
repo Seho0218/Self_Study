@@ -317,7 +317,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
             </ul>
             <ul id="emailForm">
               <li>이메일</li>
-              <input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.sellerEmail}" placeholder="이메일을 입력하세요">
+              <input type="email" id="user_email" name="user_email" value ="${vo.userEmail} ${svo.sellerEmail}" placeholder="이메일을 입력하세요">
             </ul>
             <input type = "submit" id="formSubmit" value = "회원정보 수정"/>
           </form>
@@ -371,6 +371,6 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 <script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/custom/custom-script.js"></script>
 <script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/scripts/customizer.js"></script>
 <!-- END THEME  JS-->
-
+</div>
 </body>
 <script src="../js_css/js/MyPage.js"></script>

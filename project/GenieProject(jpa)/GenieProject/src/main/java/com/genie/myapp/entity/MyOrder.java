@@ -46,7 +46,7 @@ public class MyOrder implements Serializable {
 
     private String paymentMethod;
 
-    private LocalDateTime orderWritedate = LocalDateTime.now();
+    private LocalDateTime orderWriteDate = LocalDateTime.now();
 
     private OrderStatus status;
 

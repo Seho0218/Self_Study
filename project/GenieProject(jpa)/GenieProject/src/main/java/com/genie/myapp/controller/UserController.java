@@ -128,6 +128,8 @@ public class UserController {
 	@PostMapping("addDelivery")
 	public ResponseEntity<String> addDelivery(AddressDTO addressDTO) {
 
+		System.out.println("addressDTO = " + addressDTO);
+
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));

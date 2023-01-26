@@ -18,23 +18,23 @@ public class Address implements Serializable {
     private int addressNum;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
-    private User user;
+    @JoinColumn(name = "genieId")
+    private User genieId; // User의 외래키와 맞춰줘야함
 
     private String userName;
 
     private String userTel;
 
-    private String zipcode;
+    private String zipCode;
     private String addr;
     private String detailAddr;
 
 
-//    public void setUser(User genie_id) {
-//        if (this.genie_id != null) {
-//            this.genie_id.getAddress().remove(this);
+//    public void setUser(User genieId) {
+//        if (this.genieId != null) {
+//            this.genieId.getAddress().remove(this);
 //        }
-//        this.genie_id = genie_id;
-//        genie_id.getAddress().add(this);
+//        this.genieId = genieId;
+//        genieId.getAddress().add(this);
 //    }
 }

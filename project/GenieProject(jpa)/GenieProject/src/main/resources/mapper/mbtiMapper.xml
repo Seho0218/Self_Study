@@ -6,42 +6,42 @@
 	
 	<select id="getProduct" resultType="SellerProductDTO">
 		select p.product_id, p.genie_id, p.product_category, p.product_tag, p.product_name, p.product_price, p.product_info, p.product_stock, p.product_quantity, p.product_hit, p.product_like,
-		p.product_writedate, p.product_image1, p.product_image2, p.product_image3, p.product_mbti, s.company_name company_name 
+		p.product_write_date, p.product_image1, p.product_image2, p.product_image3, p.productmbti, s.company_name company_name
 		from product p join seller s 
 		on p.genie_id=s.genie_id 
-		where product_mbti like '%${param1}%' 
+		where productmbti like '%${param1}%' 
 		order by product_id desc
 	</select>
 	
 	<select id="pricelist" resultType="SellerProductDTO">
 		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
-		product_writedate, product_image1, product_image2, product_image3, product_mbti 
+		product_write_date, product_image1, product_image2, product_image3, productmbti 
 		from product 
-		where product_mbti like '%${param1}%' 
+		where productmbti like '%${param1}%' 
 		order by product_price asc
 	</select>
 	
 	<select id="pricelistdesc" resultType="SellerProductDTO">
 		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
-		product_writedate, product_image1, product_image2, product_image3, product_mbti 
+		product_write_date, product_image1, product_image2, product_image3, productmbti 
 		from product 
-		where product_mbti like '%${param1}%' 
+		where productmbti like '%${param1}%' 
 		order by product_price desc
 	</select>
 	
 	<select id="recentlist" resultType="SellerProductDTO">
 		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
-		product_writedate, product_image1, product_image2, product_image3, product_mbti 
+		product_write_date, product_image1, product_image2, product_image3, productmbti 
 		from product 
-		where product_mbti like '%${param1}%' 
-		order by product_writedate desc
+		where productmbti like '%${param1}%' 
+		order by product_write_date desc
 	</select>
 	
 	<select id="likelist" resultType="SellerProductDTO">
 		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_like,
-		product_writedate, product_image1, product_image2, product_image3, product_mbti 
+		product_write_date, product_image1, product_image2, product_image3, productmbti 
 		from product 
-		where product_mbti like '%${param1}%' 
+		where productmbti like '%${param1}%' 
 		order by product_like desc, product_hit desc
 	</select>
 	
@@ -61,11 +61,11 @@
             product_quantity,
             product_hit,
             product_like,
-            product_writedate,
+            product_write_date,
             product_image1,
             product_image2,
             product_image3,
-            product_mbti 
+            productmbti 
         from product 
 
         <where>
@@ -97,11 +97,11 @@
             product_quantity,
             product_hit,
             product_like,
-            product_writedate,
+            product_write_date,
             product_image1,
             product_image2,
             product_image3,
-            product_mbti 
+            productmbti 
         from product 
 
         <where>
@@ -133,11 +133,11 @@
             product_quantity,
             product_hit,
             product_like,
-            product_writedate,
+            product_write_date,
             product_image1,
             product_image2,
             product_image3,
-            product_mbti 
+            productmbti 
         from product 
 
         <where>
@@ -153,7 +153,7 @@
         </if>
         </where>
 
-            order by product_writedate desc
+            order by product_write_date desc
 	</select>
 	
 	<select id="productLike" resultType="ProductDTO">
@@ -169,11 +169,11 @@
             product_quantity,
             product_hit,
             product_like,
-            product_writedate,
+            product_write_date,
             product_image1,
             product_image2,
             product_image3,
-            product_mbti 
+            productmbti 
         from product 
 
         <where>

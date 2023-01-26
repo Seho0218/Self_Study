@@ -43,12 +43,12 @@
 			</ul>
 			<ul id="emailForm">
 				<li>이메일</li>
-				<input type="email" id="user_email" name="user_email" value="asdf@gmail.com"placeholder="이메일을 입력하세요">
+				<input type="email" id="userEmail" name="userEmail" value="ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
 			</ul>
 			<ul id="user_gender">
 				<li>성별</li>
-				<input type="radio" name="user_gender" value="1"><label for="radio_male">남성</label>
-				<input type="radio" name="user_gender" value="0"><label for="radio_female">여성</label>
+				<input type="radio" name="userGender" value="1"><label for="radio_male">남성</label>
+				<input type="radio" name="userGender" value="0"><label for="radio_female">여성</label>
 			</ul>
 				<input type = "submit" id="formSubmit" value = "회원가입하기"/>
 		</form>
