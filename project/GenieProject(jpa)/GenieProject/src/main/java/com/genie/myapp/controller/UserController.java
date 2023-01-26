@@ -124,8 +124,7 @@ public class UserController {
 	//배송지 
 	@PostMapping("addDelivery")
 	public ResponseEntity<String> addDelivery(AddressDTO addressDTO) {
-		System.out.println("addressDTO = " + addressDTO);
-		
+
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
@@ -179,11 +178,6 @@ public class UserController {
 		return entity;
 	}
 
-	@GetMapping("delDelivery")
-	public long delDelivery(int address_num){
-		return userService.delDelivery(address_num);
-	}
-
 	@GetMapping("addressbook")
 	public ModelAndView addressbook(HttpSession session){
 
@@ -210,8 +204,12 @@ public class UserController {
 		mav.setViewName("/user/Addaddressbook");
 		return mav;
 	}
-	
-  
+
+	@GetMapping("delDelivery")
+	public long delDelivery(int address_num){
+		return userService.delDelivery(address_num);
+	}
+
 	//나의 문의사항 
 	@GetMapping("MyInquiryList") 
 	public ModelAndView MyInquiryList(HttpSession session) {

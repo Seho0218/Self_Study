@@ -22,7 +22,8 @@ import java.util.List;
 @DynamicUpdate
 @NoArgsConstructor
 @DiscriminatorValue("USER")
-public class User extends Account{
+public class User extends Account {
+
 
     private String user_name;
 
@@ -54,5 +55,10 @@ public class User extends Account{
 
     private LocalDateTime sign_in_date = LocalDateTime.now();
 
-
+//    public void setAddress(Address address) {
+//        this.address.add(address);
+//        if (address.getGenie_id() != this) {
+//            address.setGenie_id(this);
+//        }
+//    }
 }

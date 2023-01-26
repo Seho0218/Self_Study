@@ -79,11 +79,12 @@ public class UserServiceImpl implements UserService{
         findUser.setGenie_pwd(userDTO.getGenie_pwd());
     }
 
-    @Override//TODO 아이디가 입력이 안되는 버그
+    @Override
     public void addDelivery(AddressDTO addressDTO) {
 
         //DTO --> Entity
         Address address = AddressDTO.convertDTOtoEntity(addressDTO);
+
         addressRepository.save(address);
     }
 

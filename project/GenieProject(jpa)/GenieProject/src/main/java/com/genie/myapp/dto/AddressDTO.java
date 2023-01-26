@@ -1,6 +1,7 @@
 package com.genie.myapp.dto;
 
 import com.genie.myapp.Config.CustomerModelMapper;
+import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class AddressDTO {
 
 	private int address_num;
 	
-	private String genie_id;
+	private User genie_id; // 이부분이 중요
 	private String user_name;
 
 	private String user_tel;

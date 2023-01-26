@@ -51,7 +51,9 @@ public class UserServiceRepository {
         return queryFactory
                 .select(myOrder)
                 .from(myOrder, user)
-                .where(user.genie_id.eq(genie_id))
+                .where(
+                        user.genie_id.eq(genie_id)
+                )
                 .orderBy(myOrder.order_writedate.desc())
                 .fetch();
     }

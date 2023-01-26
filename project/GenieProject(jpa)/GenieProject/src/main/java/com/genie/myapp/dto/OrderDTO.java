@@ -69,6 +69,7 @@ public class OrderDTO {
     // Entity -> DTO (List의 경우)
     public static List<OrderDTO> convertEntityToDTO(List<MyOrder> orderList) {
         return orderList.stream().map(OrderDTO::convertEntityToDTO).collect(Collectors.toList());
+           //목록을 스트림으로 // 스트림에 담긴 OrderDTO 클래스의 E->D로 변환된 D스트림 반환 //스트림을 다시 DTO로 변환
     }
 
 }
