@@ -95,7 +95,8 @@ public class UserController {
 
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		List<OrderDTO> orderList =userService.getOrder(genie_id);
+
+		List<OrderDTO> orderList =userService.getOrder(userDTO);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
@@ -111,7 +112,7 @@ public class UserController {
 		
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		List<AddressDTO> dlist = userService.getDeliveryList(genie_id);
+		List<AddressDTO> dlist = userService.getDeliveryList(userDTO);
 
 		mav = new ModelAndView();
 		mav.addObject("vo", userService.getUser(userDTO));
@@ -182,7 +183,8 @@ public class UserController {
 	public ModelAndView addressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		List<AddressDTO> dlist=userService.getDeliveryList(genie_id);
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
 		mav.addObject("dlist", dlist);
@@ -196,7 +198,7 @@ public class UserController {
 		String genie_id=(String)session.getAttribute("logId");
 
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		List<AddressDTO> dlist=userService.getDeliveryList(genie_id);
+		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
 		mav.addObject("vo", userService.getUser(userDTO));

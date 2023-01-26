@@ -39,7 +39,7 @@ public class GenieController {
 
 	//회원가입 폼으로 이동
 	@GetMapping("Registration")
-	public ModelAndView RegistragionForm() {
+	public ModelAndView RegistrationForm() {
 
 		mav = new ModelAndView();
 		mav.setViewName("/Registration");
@@ -59,12 +59,9 @@ public class GenieController {
 	@GetMapping("idCheck")
 	public ModelAndView idCheck(String genie_id) {
 
-		//DB조회  : 아이디가 존재하는지 확인
-		long cnt = userService.idCheck(genie_id);
-
 		mav = new ModelAndView();
 
-		mav.addObject("idCnt", cnt);
+		mav.addObject("idCnt", userService.idCheck(genie_id));
 		mav.addObject("genie_id", genie_id);
 		mav.setViewName("/idCheck");
 
@@ -73,16 +70,16 @@ public class GenieController {
 
 	//회원 가입하기
 	@PostMapping("UserWrite")
-	public ResponseEntity<String> UserWrite(AccountDTO adto, UserDTO userDTO) {
+	public ResponseEntity<String> UserWrite(AccountDTO accountDTO, UserDTO userDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
-		System.out.println("adto = " + adto + ", userDTO = " + userDTO);
+		System.out.println("accountDTO = " + accountDTO + ", userDTO = " + userDTO);
 		try {//회원가입 성공
-			String enPw = passwordEncoder.encode(adto.getGenie_pwd());
+			String enPw = passwordEncoder.encode(accountDTO.getGenie_pwd());
 
 			userDTO.setGenie_pwd(enPw);
 			userService.UserWrite(userDTO);
@@ -109,19 +106,19 @@ public class GenieController {
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(AccountDTO adto, SellerDTO sdto) {
+	public ResponseEntity<String> sellerWrite(AccountDTO accountDTO, SellerDTO sellerDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
-		System.out.println("adto = " + adto + ", sdto = " + sdto);
+		System.out.println("accountDTO = " + accountDTO + ", sellerDTO = " + sellerDTO);
 		try {//회원가입성공
-			String enPw = passwordEncoder.encode(adto.getGenie_pwd());
+			String enPw = passwordEncoder.encode(accountDTO.getGenie_pwd());
 
-			sdto.setGenie_pwd(enPw);
-			sellerService.sellerWrite(sdto);
+			sellerDTO.setGenie_pwd(enPw);
+			sellerService.sellerWrite(sellerDTO);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";

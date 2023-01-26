@@ -12,7 +12,6 @@ import com.genie.myapp.repository.jpa.AddressRepository;
 import com.genie.myapp.repository.jpa.UserRepository;
 import com.genie.myapp.repository.UserServiceRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
@@ -29,11 +28,11 @@ public class UserServiceImpl implements UserService{
 
     @PersistenceContext private final EntityManager em;
 
-    @Autowired UserDAO dao;
-    @Autowired AccountRepository accountRepository;
-    @Autowired UserServiceRepository repository;
-    @Autowired UserRepository userRepository; //JPA 레포지토리
-    @Autowired AddressRepository addressRepository; //JPA 레포지토리
+    public final UserDAO dao;
+    public final AccountRepository accountRepository;
+    public final UserServiceRepository repository;
+    public final UserRepository userRepository; //JPA 레포지토리
+    public final AddressRepository addressRepository; //JPA 레포지토리
 
 
     @Override
@@ -94,14 +93,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<AddressDTO> getDeliveryList(String genie_id) {
-        return AddressDTO.convertEntityToDTO(repository.getDeliveryList(genie_id));
+    public List<AddressDTO> getDeliveryList(UserDTO userDTO) {
+        return AddressDTO.convertEntityToDTO(repository.getDeliveryList(userDTO));
     }
 
     @Override
-    public List<OrderDTO> getOrder(String genie_id) {
+    public List<OrderDTO> getOrder(UserDTO userDTO) {
 
-        return OrderDTO.convertEntityToDTO(repository.getOrder(genie_id));
+        return OrderDTO.convertEntityToDTO(repository.getOrder(userDTO));
     }
 
     @Override
