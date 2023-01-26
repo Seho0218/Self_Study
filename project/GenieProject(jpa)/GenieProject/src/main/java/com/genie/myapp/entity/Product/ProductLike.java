@@ -13,16 +13,16 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter @NotEmpty
-public class Product_like implements Serializable {
+public class ProductLike implements Serializable {
 
     @Id @OneToOne(fetch = EAGER)
-    @MapsId @JoinColumn(name = "product_id")
-    private Product product_id;
+    @MapsId @JoinColumn(name = "productId")
+    private Product productId;
 
-    private long like_num;
+    private long likeNum;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
-    private User genie_id;
+    @JoinColumn(name = "genieId")
+    private User genieId;
 
 }

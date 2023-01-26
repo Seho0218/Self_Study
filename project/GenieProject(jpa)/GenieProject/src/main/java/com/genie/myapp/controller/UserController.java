@@ -260,17 +260,17 @@ public class UserController {
 	}
 
 	@PostMapping("PwdEditOk")
-	public ResponseEntity<String> PwdEditOk(UserDTO udto) {
+	public ResponseEntity<String> PwdEditOk(UserDTO userDTO) {
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
-		UserDTO logDTO = userService.loginOk(udto);
+		UserDTO logDTO = userService.loginOk(userDTO);
 		System.out.println(logDTO);
 
-		boolean pwdMatch = passwordEncoder.matches(udto.getGenie_pwd(), logDTO.getGenie_pwd());
+		boolean pwdMatch = passwordEncoder.matches(userDTO.getGeniePwd(), logDTO.getGeniePwd());
 		System.out.println(pwdMatch);
 
 		String msg = "<script>";
@@ -279,9 +279,9 @@ public class UserController {
 
 			try{//수정함
 
-				String enPw=passwordEncoder.encode(udto.getGenie_pwd());
-				udto.setGenie_pwd(enPw);
-				userService.PwdEditOk(udto);
+				String enPw=passwordEncoder.encode(userDTO.getGeniePwd());
+				userDTO.setGeniePwd(enPw);
+				userService.PwdEditOk(userDTO);
 				msg+="alert('비밀번호가 수정되었습니다.');";
 				msg+="window.close();</script>";
 				entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);

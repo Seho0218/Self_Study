@@ -15,37 +15,37 @@ import static org.modelmapper.convention.MatchingStrategies.*;
 @NoArgsConstructor
 public class OrderDTO {
 
-    private String order_num;
-    private String genie_id;
-    private String product_name;
+    private String orderNum;
+    private String genieId;
+    private String productName;
 
-    private String recipient_name;
-    private String recipient_phone;
-    private String recipient_address;
-    private String recipient_request;
-    private String recipient_delivery_status;
-    private String payment_method;
-    private String order_writedate;
+    private String recipientName;
+    private String recipientPhone;
+    private String recipientAddress;
+    private String recipientRequest;
+    private String recipientDeliveryStatus;
+    private String paymentMethod;
+    private String orderWriteDate;
 
-    private int cart_num;
+    private int cartNum;
     private List<Integer> cartList;
-    private int product_id;
-    private List<Integer> product_id_List;
-    private List<String> product_name_List;
-    private int cart_qty;
-    private List<Integer> cart_qty_List;
-    private int order_price;
-    private int cart_price;
-    private List<Integer> order_price_List;
-    private int order_qty;
+    private int productId;
+    private List<Integer> productIdList;
+    private List<String> productNameList;
+    private int cartQty;
+    private List<Integer> cartQtyList;
+    private int orderPrice;
+    private int cartPrice;
+    private List<Integer> orderPriceList;
+    private int orderQty;
 
 
-    private String month_day;
-    private int total_sales;
+    private String monthDay;
+    private int totalSales;
 
-    private int sold_counts;
-    private String product_image1;
-    private String product_category;
+    private int soldCounts;
+    private String productImage1;
+    private String productCategory;
 
 
     // Entity -> DTO (정적 팩토리 메서드)

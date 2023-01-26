@@ -46,22 +46,22 @@ public class MbtiServiceImpl implements MbtiService {
 	}
 
 	@Override
-	public List<ProductDTO> productPriceAsc(ProductDTO PDTO) {
-		return dao.productPriceAsc(PDTO);
+	public List<ProductDTO> productPriceAsc(ProductDTO productDTO) {
+		return dao.productPriceAsc(productDTO);
 	}
 
 	@Override
-	public List<ProductDTO> productPriceDesc(ProductDTO PDTO) {
-		return dao.productPriceDesc(PDTO);
+	public List<ProductDTO> productPriceDesc(ProductDTO productDTO) {
+		return dao.productPriceDesc(productDTO);
 	}
 
 	@Override
-	public List<ProductDTO> productRecent(ProductDTO PDTO) {
-		return dao.productRecent(PDTO);
+	public List<ProductDTO> productRecent(ProductDTO productDTO) {
+		return dao.productRecent(productDTO);
 	}
 
 	@Override
-	public List<ProductDTO> productLike(ProductDTO PDTO) {
-		return dao.productLike(PDTO);
+	public List<ProductDTO> productLike(ProductDTO productDTO) {
+		return dao.productLike(productDTO);
 	}
 }

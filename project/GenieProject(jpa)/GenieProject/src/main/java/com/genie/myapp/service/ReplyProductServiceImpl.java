@@ -26,13 +26,13 @@ public class ReplyProductServiceImpl implements ReplyProductService{
     }
 
 	@Override
-	public int replyProductWrite(ReplyProductDTO dto) {
-		return DAO.replyProductWrite(dto);
+	public int replyProductWrite(ReplyProductDTO replyProductDTO) {
+		return DAO.replyProductWrite(replyProductDTO);
 	}
 
 	@Override
-	public int replyProductEdit(ReplyProductDTO dto) {
-		return repository.replyProductEdit(dto);
+	public int replyProductEdit(ReplyProductDTO replyProductDTO) {
+		return repository.replyProductEdit(replyProductDTO);
 	}
 
 	@Override
@@ -41,28 +41,28 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 	}
 
 	@Override
-	public int likeInsert(LikeDTO dto) {
-		return DAO.likeInsert(dto);
+	public int likeInsert(LikeDTO likeDTO) {
+		return DAO.likeInsert(likeDTO);
 	}
 
 	@Override
-	public int likeStatus(LikeDTO dto) {
-		return DAO.likeStatus(dto);
+	public int likeStatus(LikeDTO likeDTO) {
+		return DAO.likeStatus(likeDTO);
 	}
 
 	@Override
-	public int likeDelete(LikeDTO dto) {
-		return repository.likeDelete(dto);
+	public int likeDelete(LikeDTO likeDTO) {
+		return repository.likeDelete(likeDTO);
 	}
 
 	@Override
-	public int likeHitPlus(LikeDTO dto) {
-		return repository.likeHitPlus(dto);
+	public int likeHitPlus(LikeDTO likeDTO) {
+		return repository.likeHitPlus(likeDTO);
 	}
 
 	@Override
-	public int likeHitMinus(LikeDTO dto) {
-		return repository.likeHitMinus(dto);
+	public int likeHitMinus(LikeDTO likeDTO) {
+		return repository.likeHitMinus(likeDTO);
 	}
 
 }

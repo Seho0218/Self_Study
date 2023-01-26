@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class AdminDTO {
-	private String category_id;
-	private String product_category;
-	private String product_tag_id;
-	private String product_tag;
+
+	private String categoryId;
+	private String productCategory;
+	private String productTagId;
+	private String productTag;
 
 }

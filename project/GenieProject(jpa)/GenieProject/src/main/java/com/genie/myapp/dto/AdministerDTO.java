@@ -12,12 +12,12 @@ import static org.modelmapper.convention.MatchingStrategies.*;
 @NoArgsConstructor
 public class AdministerDTO {
 
-    private String genie_id;
-    private String administer_name;
-    private String administer_phone;
-    private String genie_pwd;
-    private String genie_pwd2;
-    private String administer_email;
+    private String genieId;
+    private String administerName;
+    private String administerPhone;
+    private String geniePwd;
+    private String geniePwd2;
+    private String administerEmail;
     private String ROLE;
     private String DATETIME;
 

@@ -21,52 +21,52 @@ import static javax.persistence.GenerationType.*;
 public class Product {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    @Column(name="product_id")
-    private int product_id;
+    @Column(name="productId")
+    private int productId;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product_id" )
+    @OneToMany(mappedBy = "productId" )
     private List<Cart> cartList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product_id")
+    @OneToMany(mappedBy = "productId")
     private List<Reply_product> replyProducts = new ArrayList<>();
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
-    private Seller genie_id;
+    @JoinColumn(name = "genieId")
+    private Seller genieId;
 
-    private String product_category;
-    private String product_tag;
-    private String product_name;
+    private String productCategory;
+    private String productTag;
+    private String productName;
     private int product_price;
-    private String product_info;
+    private String productInfo;
 
-    private int product_stock=0;
-    private int product_quantity=0;
-    private int product_hit=0;
+    private int productStock=0;
+    private int productQuantity=0;
+    private int productHit=0;
 
-    private int product_like;
+    private int productLike;
 
-    private LocalDateTime product_writedate = LocalDateTime.now();
+    private LocalDateTime productWritedate = LocalDateTime.now();
 
-    private String product_image1;
-    private String product_image2;
-    private String product_image3;
+    private String productImage1;
+    private String productImage2;
+    private String productImage3;
 
     private String product_mbti;
 
 
     public void addStock(int quantity){
-        this.product_stock += quantity;
+        this.productStock += quantity;
     }
 
     public void removeStock(int quantity) {
-        int restStock = this.product_stock - quantity;
+        int restStock = this.productStock - quantity;
         if(restStock<0){
             //throw new NotEnoughStockException("need more stock");
         }
-        this.product_stock=restStock;
+        this.productStock=restStock;
     }
 
 }

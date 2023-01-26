@@ -19,11 +19,11 @@ public interface MbtiService {
 	public List<SellerProductDTO> likelist(String mbti);
 	
 	//상품목록(카테고리) - 가격낮은순
-	public List<ProductDTO> productPriceAsc(ProductDTO PDTO);
+	public List<ProductDTO> productPriceAsc(ProductDTO productDTO);
 	//상품목록(카테고리) - 가격높은순
-	public List<ProductDTO> productPriceDesc(ProductDTO PDTO);
+	public List<ProductDTO> productPriceDesc(ProductDTO productDTO);
 	//상품목록(카테고리) - 최신순
-	public List<ProductDTO> productRecent(ProductDTO PDTO);
+	public List<ProductDTO> productRecent(ProductDTO productDTO);
 	//상품목록(카테고리) - 좋아요순
-	public List<ProductDTO> productLike(ProductDTO PDTO);
+	public List<ProductDTO> productLike(ProductDTO productDTO);
 }

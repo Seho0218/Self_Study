@@ -69,10 +69,10 @@ public class SellerController {
 		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
 
 		// 반복자 얻기
-		for (OrderDTO ovo : orderlist) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
+		for (OrderDTO orderDTO : orderlist) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
 			JsonObject object = new JsonObject();
-			String date = ovo.getMonth_day();
-			int sales = ovo.getTotal_sales();
+			String date = orderDTO.getMonthDay();
+			int sales = orderDTO.getTotalSales();
 
 			object.addProperty("date", date);
 			object.addProperty("sales", sales);
@@ -87,8 +87,8 @@ public class SellerController {
 		JsonArray jArray2 = new JsonArray();
 		for (OrderDTO ovo2 : categorylist) {
 			JsonObject object2 = new JsonObject();
-			String category = ovo2.getProduct_category();
-			int sold_counts = ovo2.getSold_counts();
+			String category = ovo2.getProductCategory();
+			int sold_counts = ovo2.getSoldCounts();
 
 			object2.addProperty("category", category);
 			object2.addProperty("sold_counts", sold_counts);
@@ -199,8 +199,8 @@ public class SellerController {
 		// 반복자 얻기
 		for (OrderDTO ovo : orderlist) { // 하나하나의 DTO 에서 데이터 추출, json 형태로 가공
 			JsonObject object = new JsonObject();
-			String date = ovo.getMonth_day();
-			int sales = ovo.getTotal_sales();
+			String date = ovo.getMonthDay();
+			int sales = ovo.getTotalSales();
 
 
 			object.addProperty("date", date);
@@ -245,16 +245,16 @@ public class SellerController {
 	
 	//seller 상품등록
 	@PostMapping("productWrite")
-	public ResponseEntity<String> productWrite(SellerProductDTO vo, HttpServletRequest request){
-		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
-		
+	public ResponseEntity<String> productWrite(SellerProductDTO sellerProductDTO, HttpServletRequest request){
+		sellerProductDTO.setGenieId((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+		 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//상품등록 성공
-			service.productWrite(vo);
+			service.productWrite(sellerProductDTO);
 			
 			String msg = "<script>";
 			msg += "alert('상품이 등록되었습니다.');";
@@ -276,8 +276,8 @@ public class SellerController {
 	}
 	
 	//seller 상품수정 페이지로 이동
-	@GetMapping("sellerProductEdit/{product_id}")
-	public ModelAndView sellerProductEdit(@PathVariable("product_id") int pid) {
+	@GetMapping("sellerProductEdit/{productId}")
+	public ModelAndView sellerProductEdit(@PathVariable("productId") int pid) {
 		mav = new ModelAndView();
 		
 		mav.addObject("pvo", service.getProduct(pid));
@@ -288,9 +288,9 @@ public class SellerController {
 	
 	//seller 상품수정 : DB 업데이트
 	@PostMapping("productEditOk")
-	public ResponseEntity<String> productEditOk(SellerProductDTO pvo, HttpSession session){
-		System.out.println(pvo.toString());
-		pvo.setGenie_id((String)session.getAttribute("logId"));
+	public ResponseEntity<String> productEditOk(SellerProductDTO sellerProductDTO, HttpSession session){
+		System.out.println(sellerProductDTO.toString());
+		sellerProductDTO.setGenieId((String)session.getAttribute("logId"));
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
@@ -298,7 +298,7 @@ public class SellerController {
 		String msg = "<script>";
 		
 		try {//수정성공 - 상품관리로 이동
-			service.productEditOk(pvo);
+			service.productEditOk(sellerProductDTO);
 			
 			msg += "alert('상품이 수정되었습니다. 상품관리 페이지로 이동합니다. ');";
 			msg += "location.href='/seller/sellerProduct';";
@@ -315,8 +315,8 @@ public class SellerController {
 	}
 	
 	//seller 상품삭제 : DB
-	@GetMapping("productDel/{product_id}")
-	public ModelAndView productDel(@PathVariable("product_id") int pid) {
+	@GetMapping("productDel/{productId}")
+	public ModelAndView productDel(@PathVariable("productId") int pid) {
 		//System.out.println(pid);
 		int result = service.productDel(pid);
 		

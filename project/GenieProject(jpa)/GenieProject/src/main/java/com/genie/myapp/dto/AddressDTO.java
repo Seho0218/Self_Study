@@ -16,31 +16,31 @@ import static org.modelmapper.convention.MatchingStrategies.*;
 @NoArgsConstructor
 public class AddressDTO {
 
-	private int address_num;
+	private int addressNum;
 	
-	private User genie_id; // 이부분이 중요
-	private String user_name;
+	private User genieId; // 이부분이 중요
+	private String userName;
 
-	private String user_tel;
-	private String user_phone_num1;
-	private String user_phone_num2;
-	private String user_phone_num3;
+	private String userTel;
+	private String userPhoneNum1;
+	private String userPhoneNum2;
+	private String userPhoneNum3;
 
-	private String user_zipcode;
-	private String user_addr;
-	private String user_detailaddr;
+	private String userZipcode;
+	private String userAddr;
+	private String userDetailaddr;
 
-	public String getUser_tel() {
-		return user_phone_num1 + "-"+user_phone_num2+"-"+user_phone_num3;
+	public String getUserTel() {
+		return userPhoneNum1 + "-"+userPhoneNum2+"-"+userPhoneNum3;
 	}
 
-	public void setUser_tel(String user_tel) {
+	public void setUserTel(String userTel) {
 		
-		this.user_tel = user_tel;
-		String[] telSplit = user_tel.split("-");
-		user_phone_num1 = telSplit[0];
-		user_phone_num2 = telSplit[1];
-		user_phone_num3 = telSplit[2];
+		this.userTel = userTel;
+		String[] telSplit = userTel.split("-");
+		userPhoneNum1 = telSplit[0];
+		userPhoneNum2 = telSplit[1];
+		userPhoneNum3 = telSplit[2];
 	}
 
 

@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InquiryDTO {
 
-	public String genie_id;
-	public int product_id;
-	public String inquiry_title;
-	public String inquiry_content;
-	public String inquiry_status;
-	public String inquiry_writedate;
-	public String product_name;
+	public String genieId;
+	public int productId;
+	public String inquiryTitle;
+	public String inquiryContent;
+	public String inquiryStatus;
+	public String inquiryWriteDate;
+	public String productName;
 
 }

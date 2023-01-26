@@ -28,8 +28,8 @@ public class AdministerServiceImpl implements AdministerService{
     }
 
     @Override
-    public AdministerDTO getAdminister(String genie_id) {
-        return dao.getAdminister(genie_id);
+    public AdministerDTO getAdminister(String genieId) {
+        return dao.getAdminister(genieId);
     }
     
 }

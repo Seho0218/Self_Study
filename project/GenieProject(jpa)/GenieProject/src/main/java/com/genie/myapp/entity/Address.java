@@ -14,21 +14,20 @@ import static javax.persistence.GenerationType.*;
 @Getter @Setter
 public class Address implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @Id @GeneratedValue(strategy = IDENTITY)
     private int address_num;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genie_id")
-    private User genie_id;
+    private User user;
 
-    private String user_name;
+    private String userName;
 
-    private String user_tel;
+    private String userTel;
 
-    private String user_zipcode;
-    private String user_addr;
-    private String user_detailaddr;
+    private String userZipcode;
+    private String userAddr;
+    private String userDetailaddr;
 
 
 //    public void setUser(User genie_id) {

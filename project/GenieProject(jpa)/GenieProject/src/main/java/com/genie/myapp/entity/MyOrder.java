@@ -20,33 +20,33 @@ import static javax.persistence.FetchType.LAZY;
 public class MyOrder implements Serializable {
 
     @Id
-    private String order_num;
+    private String orderNum;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name="genie_id")
-    private User genie_id;
+    @JoinColumn(name="genieId")
+    private User genieId;
 
-    private int product_id;
+    private int productId;
 
-    private String product_name;
+    private String productName;
 
-    private String recipient_name;
+    private String recipientName;
 
-    private String recipient_phone;
+    private String recipientPhone;
 
-    private String recipient_address;
+    private String recipientAddress;
 
-    private String recipient_request;
+    private String recipientRequest;
 
-    private String recipient_delivery_status;
+    private String recipientDeliveryStatus;
 
-    private int order_price;
+    private int orderPrice;
 
-    private int order_qty;
+    private int orderQty;
 
-    private String payment_method;
+    private String paymentMethod;
 
-    private LocalDateTime order_writedate = LocalDateTime.now();
+    private LocalDateTime orderWritedate = LocalDateTime.now();
 
     private OrderStatus status;
 

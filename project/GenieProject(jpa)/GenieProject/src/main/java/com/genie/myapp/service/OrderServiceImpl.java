@@ -21,28 +21,28 @@ public class OrderServiceImpl implements OrderService{
     public final OrderServiceRepository repository;
 
     @Override
-    public List<CartDTO> readyToPay(CartDTO cvo) {
-        return dao.readyToPay(cvo);
+    public List<CartDTO> readyToPay(CartDTO cartDTO) {
+        return dao.readyToPay(cartDTO);
     }
 
     @Override
-    public List<OrderDTO> getFromCart(OrderDTO ovo) {
-        return dao.getFromCart(ovo);
+    public List<OrderDTO> getFromCart(OrderDTO orderDTO) {
+        return dao.getFromCart(orderDTO);
     }
 
     @Override
-    public int afterPayment(OrderDTO lvo) {
-        return dao.afterPayment(lvo);
+    public void afterPayment(OrderDTO orderDTO) {
+        dao.afterPayment(orderDTO);
     }
 
     @Override
-    public int afterOrderCart(OrderDTO ovo) {
-        return dao.afterOrderCart(ovo);
+    public void afterOrderCart(OrderDTO orderDTO) {
+        dao.afterOrderCart(orderDTO);
     }
 
     @Override
-    public List<OrderDTO> getOrderList(String genie_id) {
-        return dao.getOrderList(genie_id);
+    public List<OrderDTO> getOrderList(String genieId) {
+        return dao.getOrderList(genieId);
     }
     
 

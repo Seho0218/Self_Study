@@ -16,12 +16,12 @@ import static javax.persistence.GenerationType.*;
 public class Category {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private long category_id;
+    private long categoryId;
 
-    @OneToMany(mappedBy = "category_connect_id", cascade = ALL)
-    private List<Category_connect> connectList = new ArrayList<>();
+    @OneToMany(mappedBy = "categoryConnectId", cascade = ALL)
+    private List<CategoryConnect> connectList = new ArrayList<>();
 
-    private String product_category;
-    private String product_category_eng;
+    private String productCategory;
+    private String productCategoryEng;
 
 }

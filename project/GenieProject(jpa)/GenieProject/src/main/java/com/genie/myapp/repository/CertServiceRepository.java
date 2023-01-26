@@ -22,19 +22,19 @@ public class CertServiceRepository {
     private final JPAQueryFactory queryFactory;
 
 
-    public List<String> FindId(String user_email){
+    public List<String> FindId(String userEmail){
         return queryFactory
-                .select(user.genie_id)
+                .select(user.genieId)
                 .from(user)
-                .where(user.user_email.eq(user_email))
+                .where(user.userEmail.eq(userEmail))
                 .fetch();
     }
 
     public int PwdEditOk(UserDTO dto){
         return (int) queryFactory
                 .update(account)
-                .set(account.genie_pwd, dto.getGenie_pwd2())
-                .where(account.genie_id.eq(dto.getGenie_id()))
+                .set(account.geniePwd, dto.getGeniePwd2())
+                .where(account.genieId.eq(dto.getGenieId()))
                 .execute();
     }
 }

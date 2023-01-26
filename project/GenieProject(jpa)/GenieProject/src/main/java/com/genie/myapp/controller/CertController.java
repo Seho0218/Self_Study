@@ -27,9 +27,7 @@ import com.genie.myapp.service.CertService;
 public class CertController {
 
 	public final CertService certService;
-
-	@Autowired
-    PasswordEncoder passwordEncoder;
+	public final PasswordEncoder passwordEncoder;
 
 	ModelAndView mav;
     
@@ -43,11 +41,11 @@ public class CertController {
 
 	// 메일로 아이디 보내기
 	@PostMapping("sendUserId")
-	public ResponseEntity<Object> sendEmail(String user_email){
-		List<String> genie_id =certService.FindId(user_email);
+	public ResponseEntity<Object> sendEmail(String userEmail){
+		List<String> genieId =certService.FindId(userEmail);
 	
-		if(genie_id.size() != 0) {
-			certService.sendUserId(user_email, genie_id);
+		if(genieId.size() != 0) {
+			certService.sendUserId(userEmail, genieId);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -75,8 +73,8 @@ public class CertController {
 	}
 	
 	@GetMapping("emailCheck")
-	public ResponseEntity<Boolean> emailCheck(String genie_id, String user_email){
-		boolean emailCheck = certService.emailCheck(genie_id, user_email);
+	public ResponseEntity<Boolean> emailCheck(String genieId, String user_email){
+		boolean emailCheck = certService.emailCheck(genieId, user_email);
         System.out.println("emailCheck "+ emailCheck );
 		return new ResponseEntity<>(emailCheck, HttpStatus.OK);
 	}
@@ -84,12 +82,12 @@ public class CertController {
 	
 	// 인증번호 보내기 페이지
 	@GetMapping("FindPwd_auth")
-	public ModelAndView auth(String genie_id, HttpSession session) {
+	public ModelAndView auth(String genieId, HttpSession session) {
 
 		mav = new ModelAndView();
 
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
-    	if(authStatus == null || !genie_id.equals(authStatus.get("genie_id"))) {
+    	if(authStatus == null || !genieId.equals(authStatus.get("genieId"))) {
 
 			mav.setViewName("/cert/FindPwd");
 			return mav;
@@ -99,16 +97,16 @@ public class CertController {
 	}
 	
 	@PostMapping("FindPwd_auth")
-	public ResponseEntity<Object> authenticateUser(String genie_id, HttpSession session) {
+	public ResponseEntity<Object> authenticateUser(String genieId, HttpSession session) {
 
 		Map<String, Object> authStatus = new HashMap<>();
-		authStatus.put("genie_id", genie_id);
+		authStatus.put("genieId", genieId);
 		authStatus.put("status", false);
 		
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authStatus", authStatus);
 
-		return new ResponseEntity<>(genie_id, HttpStatus.OK);
+		return new ResponseEntity<>(genieId, HttpStatus.OK);
 	}
 
 
@@ -194,19 +192,19 @@ public class CertController {
 
 	// 비밀번호 변경 페이지
 	@GetMapping("modify_pwd")
-	public ModelAndView modifyPassword(String genie_id, HttpSession session) {
+	public ModelAndView modifyPassword(String genieId, HttpSession session) {
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
 
 		mav = new ModelAndView();
 
-		if(authStatus == null || !genie_id.equals(authStatus.get("genie_id"))) {
+		if(authStatus == null || !genieId.equals(authStatus.get("genieId"))) {
 
 			mav.setViewName("/cert/FindPwd");
 			return mav;
 		}
 		
 			mav.setViewName("/cert/modify_pwd");
-			mav.addObject("genie_id",genie_id);
+			mav.addObject("genieId",genieId);
 			
 			return mav;
 	}
@@ -214,12 +212,12 @@ public class CertController {
 
 	// 비밀번호 변경
 	@PostMapping("modify_pwd")
-	public ResponseEntity<String> modifyPassword(UserDTO vo, HttpSession session) {
+	public ResponseEntity<String> modifyPassword(UserDTO userDTO) {
 
-		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
-		vo.setGenie_pwd(enPw);
+		String enPw=passwordEncoder.encode(userDTO.getGeniePwd());
+		userDTO.setGeniePwd(enPw);
 
-		int cnt = certService.PwdEditOk(vo);
+		int cnt = certService.PwdEditOk(userDTO);
 		System.out.print(cnt);
 
 		return new ResponseEntity<>("비밀번호를 변경했습니다",HttpStatus.OK);

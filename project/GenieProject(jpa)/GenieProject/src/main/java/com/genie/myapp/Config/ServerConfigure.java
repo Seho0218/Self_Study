@@ -1,30 +1,20 @@
 package com.genie.myapp.Config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@RequiredArgsConstructor
 public class ServerConfigure implements WebMvcConfigurer {
 
-	@Autowired
-	@Qualifier("AdminInterceptor")
-	HandlerInterceptor AdminInterceptor;
 
-	@Autowired
-	@Qualifier("SellerInterceptor")
-	HandlerInterceptor SellerInterceptor;
-
-	@Autowired
-	@Qualifier("UserInterceptor")
-	HandlerInterceptor UserInterceptor;
-
-	@Autowired
-	@Qualifier("LogoutInterceptor")
-	HandlerInterceptor LogoutInterceptor;
+	public final HandlerInterceptor AdminInterceptor;
+	public final HandlerInterceptor SellerInterceptor;
+	public final HandlerInterceptor UserInterceptor;
+	public final HandlerInterceptor LogoutInterceptor;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {

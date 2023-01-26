@@ -10,17 +10,15 @@ import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Getter
-@Setter
-@NotEmpty
-public class Category_connect {
+@Getter @Setter
+public class CategoryConnect {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private long category_connect_id;
+    private long categoryConnectId;
 
-    @MapsId @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category_id;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "categoryId")
+    private Category categoryId;
 
-    private long product_id;
+    private long productId;
 }

@@ -38,15 +38,15 @@ public class OrderController {
 	// 결제페이지-----------------------------------------------------
 	// 바로 주문
 	@PostMapping("BuyNow")
-	public ModelAndView BuyNow(HttpSession session, CartDTO cvo) {
+	public ModelAndView BuyNow(HttpSession session, CartDTO cartDTO) {
 		
-		String genie_id=(String)session.getAttribute("logId");
+		String genieId=(String)session.getAttribute("logId");
 		//System.out.println("BuyNow로 받아온 cvo : "+cvo.toString());
 
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 
 		mav = new ModelAndView();
-		mav.addObject("bvo",cvo);
+		mav.addObject("bvo",cartDTO);
 		mav.addObject("uvo", userService.getUser(userDTO));
 		mav.setViewName("/order/payment");
 
@@ -54,15 +54,15 @@ public class OrderController {
 	}
 	// 장바구니에서 주문
 	@PostMapping("payment")
-	public ModelAndView payment(HttpSession session, CartDTO cvo) {
+	public ModelAndView payment(HttpSession session, CartDTO cartDTO) {
 
-		String genie_id = (String) session.getAttribute("logId");
-		//System.out.println("주문정보 받아온 것 cvo : " + cvo.toString());
+		String genieId = (String) session.getAttribute("logId");
+		//System.out.println("주문정보 받아온 것 cartDTO : " + cartDTO.toString());
 
-		List<CartDTO> lcvo = orderService.readyToPay(cvo);
-		//System.out.println("카트정보 가져오기 : " + cvo.toString());
+		List<CartDTO> lcvo = orderService.readyToPay(cartDTO);
+		//System.out.println("카트정보 가져오기 : " + cartDTO.toString());
 
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 
 		mav = new ModelAndView();
 		mav.addObject("plist", lcvo);
@@ -73,45 +73,45 @@ public class OrderController {
 	}
 
 	@GetMapping("orderCompletion")
-	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO ovo) {
+	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO orderDTO) {
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
 
-		String genie_id = (String) session.getAttribute("logId");
+		String genieId = (String) session.getAttribute("logId");
 
-		System.out.println("주문 정보 : "+ovo.toString());
+		System.out.println("주문 정보 : "+orderDTO.toString());
 		
-		if(ovo.getCartList() != null){
+		if(orderDTO.getCartList() != null){
 
 			try{
 				//제품 정보 가져오기
-				List<OrderDTO> cList = orderService.getFromCart(ovo);
-				//System.out.println("ovo 제품정보 : "+ovo.toString());
+				List<OrderDTO> cList = orderService.getFromCart(orderDTO);
+				//System.out.println("orderDTO 제품정보 : "+orderDTO.toString());
 				System.out.println("제품정보 : "+cList.size()); ///
-				for(OrderDTO vo : cList){
-					vo.setOrder_num(ovo.getOrder_num());
-					vo.setGenie_id(genie_id);
+				for(OrderDTO orderDTOs : cList){
+					orderDTOs.setOrderNum(orderDTO.getOrderNum());
+					orderDTOs.setGenieId(genieId);
 
-					vo.setRecipient_name(ovo.getRecipient_name());
-					vo.setRecipient_phone(ovo.getRecipient_phone());
-					vo.setRecipient_address(ovo.getRecipient_address());
-					vo.setRecipient_request(ovo.getRecipient_request());
+					orderDTOs.setRecipientName(orderDTO.getRecipientName());
+					orderDTOs.setRecipientPhone(orderDTO.getRecipientPhone());
+					orderDTOs.setRecipientAddress(orderDTO.getRecipientAddress());
+					orderDTOs.setRecipientRequest(orderDTO.getRecipientRequest());
 
-					vo.setOrder_price(vo.getCart_price());
-					vo.setOrder_qty(vo.getCart_qty());
-					vo.setPayment_method(ovo.getPayment_method());
+					orderDTOs.setOrderPrice(orderDTOs.getCartPrice());
+					orderDTOs.setOrderQty(orderDTOs.getCartQty());
+					orderDTOs.setPaymentMethod(orderDTO.getPaymentMethod());
 
-//					System.out.println(vo.toString());
+//					System.out.println(orderDTOs.toString());
 
-					orderService.afterPayment(vo);
+					orderService.afterPayment(orderDTOs);
 
 				}
 				//오더테이블에 저장
 				////장바구니에서 구매한 상품 지우기
-				orderService.afterOrderCart(ovo);// 장바구니 삭제
+				orderService.afterOrderCart(orderDTO);// 장바구니 삭제
 
 				entity = new ResponseEntity<>(HttpStatus.OK);
 
@@ -123,8 +123,8 @@ public class OrderController {
 			}
 		}else{
 			try{
-				ovo.setGenie_id(genie_id);
-				orderService.afterPayment(ovo);
+				orderDTO.setGenieId(genieId);
+				orderService.afterPayment(orderDTO);
 				
 				entity = new ResponseEntity<>(HttpStatus.OK);
 
@@ -141,11 +141,11 @@ public class OrderController {
 	@GetMapping("completion")
 	public ModelAndView completion(HttpSession session) {
 
-		String genie_id = (String) session.getAttribute("logId");
-		List<OrderDTO> ovo = orderService.getOrderList(genie_id);
+		String genieId = (String) session.getAttribute("logId");
+		List<OrderDTO> orderDTO = orderService.getOrderList(genieId);
 
 		mav = new ModelAndView();
-		mav.addObject("olist", ovo);
+		mav.addObject("olist", orderDTO);
 		mav.setViewName("/order/completion");
 
 		return mav;

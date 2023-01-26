@@ -28,8 +28,8 @@ public class SellerServiceImpl implements SellerService {
 
 
   	@Override
-	public int idCheck(String genie_id) {
-		return dao.idCheck(genie_id);
+	public int idCheck(String genieId) {
+		return dao.idCheck(genieId);
 	}
 
 	@Override
@@ -49,14 +49,14 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int productWrite(SellerProductDTO vo) {
-		return dao.productWrite(vo);
+	public int productWrite(SellerProductDTO sellerProductDTO) {
+		return dao.productWrite(sellerProductDTO);
 	}
 
 	// 주문목록
 	@Override
-	public List<OrderDTO> sellerOrder(OrderDTO vo, String seller_id) {
-		return dao.sellerOrder(vo, seller_id);
+	public List<OrderDTO> sellerOrder(OrderDTO orderDTO, String sellerId) {
+		return dao.sellerOrder(orderDTO, sellerId);
 	}
 
 	@Override
@@ -65,8 +65,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 	
 	@Override
-	public SellerDTO getSeller(String genie_id) {
-		return dao.getSeller(genie_id);
+	public SellerDTO getSeller(String genieId) {
+		return dao.getSeller(genieId);
 	}
 
 	@Override
@@ -95,58 +95,58 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int orderSum(String seller_id) {
-		return dao.orderSum(seller_id);
+	public int orderSum(String sellerId) {
+		return dao.orderSum(sellerId);
 	}
 
 	@Override
-	public List<OrderDTO> orderSumByDay(String seller_id) {
-		return dao.orderSumByDay(seller_id);
+	public List<OrderDTO> orderSumByDay(String sellerId) {
+		return dao.orderSumByDay(sellerId);
 	}
 
 	@Override
-	public int orderCount(String seller_id) {
-		return dao.orderCount(seller_id);
+	public int orderCount(String sellerId) {
+		return dao.orderCount(sellerId);
 	}
 
 	@Override
-	public String bestSeller(String seller_id) {
-		return dao.bestSeller(seller_id);
+	public String bestSeller(String sellerId) {
+		return dao.bestSeller(sellerId);
 	}
 
 	@Override
-	public int deliveryPending(String seller_id) {
-		return dao.deliveryPending(seller_id);
+	public int deliveryPending(String sellerId) {
+		return dao.deliveryPending(sellerId);
 	}
 
 	@Override
-	public int todayOrder(String seller_id) {
-		return dao.todayOrder(seller_id);
+	public int todayOrder(String sellerId) {
+		return dao.todayOrder(sellerId);
 	}
 
 	@Override
-	public int deliveringOrder(String seller_id) {
-		return dao.deliveringOrder(seller_id);
+	public int deliveringOrder(String sellerId) {
+		return dao.deliveringOrder(sellerId);
 	}
 
 	@Override
-	public List<OrderDTO> revenueByProduct(String seller_id) {
-		return dao.revenueByProduct(seller_id);
+	public List<OrderDTO> revenueByProduct(String sellerId) {
+		return dao.revenueByProduct(sellerId);
 	}
 
 	@Override
-	public String sellerStatus(String seller_id) {
-		return dao.sellerStatus(seller_id);
+	public String sellerStatus(String sellerId) {
+		return dao.sellerStatus(sellerId);
 	}
 
 	@Override
-	public int thisMonthRevenue(String seller_id) {
-		return dao.thisMonthRevenue(seller_id);
+	public int thisMonthRevenue(String sellerId) {
+		return dao.thisMonthRevenue(sellerId);
 	}
 
 	@Override
-	public List<OrderDTO> topCategory(String seller_id) {
-		return dao.topCategory(seller_id);
+	public List<OrderDTO> topCategory(String sellerId) {
+		return dao.topCategory(sellerId);
 	}
 
 	@Override
@@ -155,8 +155,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public List<OrderDTO> deliveredOrder(String seller_id) {
-		return dao.deliveredOrder(seller_id);
+	public List<OrderDTO> deliveredOrder(String sellerId) {
+		return dao.deliveredOrder(sellerId);
 	}
 
 	

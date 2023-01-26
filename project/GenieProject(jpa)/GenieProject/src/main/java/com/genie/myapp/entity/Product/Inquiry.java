@@ -21,13 +21,13 @@ import static javax.persistence.FetchType.LAZY;
 public class Inquiry implements Serializable {
 
     @Id @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
+    @JoinColumn(name = "genieId")
     private User genie_id;
 
-    private long product_id;
-    private String inquery_title;
-    private String inquery_content;
-    private String inquery_status;
-    private LocalDateTime inquiry_writedate;
+    private long productId;
+    private String inqueryTitle;
+    private String inqueryContent;
+    private String inqueryStatus;
+    private LocalDateTime inquiryWritedate;
 
 }

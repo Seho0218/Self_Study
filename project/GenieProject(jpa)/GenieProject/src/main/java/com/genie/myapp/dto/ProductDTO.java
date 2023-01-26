@@ -14,24 +14,24 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class ProductDTO {
 
-	private int product_id;
-	private String genie_id;
-	private String product_category;
-	private String product_tag;
-	private String product_name;
+	private int productId;
+	private String genieId;
+	private String productCategory;
+	private String productTag;
+	private String productName;
 	private int product_price;
-	private String product_info;
-	private int product_stock;
-	private int product_quantity;
-	private int product_hit;
-	private int product_like;
-	private String product_writedate;
-	private String product_image1;
-	private String product_image2;
-	private String product_image3;
-	private String product_mbti;
+	private String productInfo;
+	private int productStock;
+	private int productQuantity;
+	private int productHit;
+	private int productLike;
+	private String productWriteDate;
+	private String productImage1;
+	private String productImage2;
+	private String productImage3;
+	private String productMBTI;
 
-	private String company_name;
+	private String companyName;
 
 
 	// Entity -> DTO (정적 팩토리 메서드)

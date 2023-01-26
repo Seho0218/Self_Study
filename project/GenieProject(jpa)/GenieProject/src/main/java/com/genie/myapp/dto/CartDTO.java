@@ -14,17 +14,17 @@ import org.modelmapper.convention.MatchingStrategies;
 public class CartDTO {
 
     private List<Integer> cartList;
-    private int cart_num;
-    private String genie_id;
-    private int product_id;
-    private String product_name;
-    private List<String> product_name_List;
-    private int cart_price;
-    private int product_price;
-    private int cart_qty;
-    private String cart_writedate;
-    private String product_image1;
-    private int product_quantity;
+    private int cartNum;
+    private String genieId;
+    private int productId;
+    private String productName;
+    private List<String> productNameList;
+    private int cartPrice;
+    private int productPrice;
+    private int cartQty;
+    private String cartWriteDate;
+    private String productImage1;
+    private int productQuantity;
 
     // Entity -> DTO (정적 팩토리 메서드)
     public static CartDTO convertEntityToDTO(Cart cart) {

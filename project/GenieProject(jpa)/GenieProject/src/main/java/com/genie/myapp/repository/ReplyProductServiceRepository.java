@@ -1,13 +1,7 @@
 package com.genie.myapp.repository;
 
 import com.genie.myapp.dto.LikeDTO;
-import com.genie.myapp.dto.QReplyProductDTO;
 import com.genie.myapp.dto.ReplyProductDTO;
-import com.genie.myapp.entity.Account.QAccount;
-import com.genie.myapp.entity.Account.QUser;
-import com.genie.myapp.entity.Product.QProduct;
-import com.genie.myapp.entity.Product.QProduct_like;
-import com.genie.myapp.entity.Product.QReply_product;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,7 +14,7 @@ import java.util.List;
 import static com.genie.myapp.entity.Account.QAccount.*;
 import static com.genie.myapp.entity.Account.QUser.*;
 import static com.genie.myapp.entity.Product.QProduct.*;
-import static com.genie.myapp.entity.Product.QProduct_like.*;
+import static com.genie.myapp.entity.Product.QProductLike.productLike;
 import static com.genie.myapp.entity.Product.QReply_product.*;
 
 @Repository
@@ -38,17 +32,17 @@ public class ReplyProductServiceRepository {
                 .update(reply_product)
                 .set(reply_product.comment, dto.getComment())
                 .set(reply_product.rating, dto.getRating())
-                .where(reply_product.reply_no.eq(dto.getReply_no()),
-                        account.genie_id.eq(dto.getGenie_id()))
+                .where(reply_product.replyNo.eq(dto.getReplyNo()),
+                        account.genieId.eq(dto.getGenieId()))
                 .execute();
     }
 
-    public int replyProductDelete(int reply_no, String genie_id) {
+    public int replyProductDelete(int replyNo, String genieId) {
         return (int) queryFactory
                 .delete(reply_product)
                 .where(
-                        reply_product.reply_no.eq(reply_no),
-                        user.genie_id.eq(genie_id)
+                        reply_product.replyNo.eq(replyNo),
+                        user.genieId.eq(genieId)
                 )
                 .execute();
     }
@@ -56,25 +50,25 @@ public class ReplyProductServiceRepository {
     public int likeHitPlus(LikeDTO dto) {
         return (int) queryFactory
                 .update(product)
-                .set(product.product_like, product.product_like.add(1))
-                .where(product.product_id.eq(dto.getProduct_id()))
+                .set(product.productLike, product.productLike.add(1))
+                .where(product.productId.eq(dto.getProductId()))
                 .execute();
     }
 
     public int likeHitMinus(LikeDTO dto) {
         return (int) queryFactory
                 .update(product)
-                .set(product.product_like, product.product_like.add(-1))
-                .where(product.product_id.eq(dto.getProduct_id()))
+                .set(product.productLike, product.productLike.add(-1))
+                .where(product.productId.eq(dto.getProductId()))
                 .execute();
     }
 
     public int likeDelete(LikeDTO dto) {
         return (int) queryFactory
-                .delete(product_like)
+                .delete(productLike)
                 .where(
-                        user.genie_id.eq(dto.getGenie_id()),
-                        product.product_id.eq(dto.getProduct_id())
+                        user.genieId.eq(dto.getGenieId()),
+                        product.productId.eq(dto.getProductId())
                 )
                 .execute();
     }

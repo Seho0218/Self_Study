@@ -22,15 +22,15 @@ public class Seller extends Account{
     @OneToMany(mappedBy = "genie_id")
     private List<Product> productList = new ArrayList<>();
 
-    private String seller_tel;
-    private String seller_email;
-    private String seller_reg_no;
-    private String company_name;
-    private String ceo_name;
-    private String seller_address;
-    private String seller_website;
+    private String sellerTel;
+    private String sellerEmail;
+    private String sellerRegNo;
+    private String companyName;
+    private String ceoName;
+    private String sellerAddress;
+    private String sellerWebsite;
     private LocalDateTime writedate = LocalDateTime.now();
-    private String seller_status;
-    private LocalDateTime approval_date = LocalDateTime.now();
+    private String sellerStatus;
+    private LocalDateTime approvalDate = LocalDateTime.now();
 
 }

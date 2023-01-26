@@ -31,60 +31,60 @@ public class ReplyProductController{
     }
     
     @PostMapping("replyProductWrite")
-	public int replyWrite(ReplyProductDTO dto, HttpSession session) {
-		dto.setGenie_id((String)session.getAttribute("logId")); // 작성자	
-		return service.replyProductWrite(dto);
+	public int replyWrite(ReplyProductDTO replyProductDTO, HttpSession session) {
+		replyProductDTO.setGenieId((String)session.getAttribute("logId")); // 작성자
+		return service.replyProductWrite(replyProductDTO);
 	}
 
  	@PostMapping("replyProductEdit")
- 	public int replyEdit (ReplyProductDTO dto, HttpSession session) {
- 		dto.setGenie_id((String)session.getAttribute("logId"));
- 		return service.replyProductEdit(dto);
+ 	public int replyEdit (ReplyProductDTO replyProductDTO, HttpSession session) {
+		replyProductDTO.setGenieId((String)session.getAttribute("logId"));
+ 		return service.replyProductEdit(replyProductDTO);
  	}
  	
  	@GetMapping("replyProductDel")
  	public int replyDel(int reply_no, HttpSession session) {
- 		String genie_id = (String)session.getAttribute("logId");
- 		return service.replyProductDelete(reply_no, genie_id);
+ 		String genieId = (String)session.getAttribute("logId");
+ 		return service.replyProductDelete(reply_no, genieId);
  	}
 
 	@PostMapping("likeInsert")
-	public int likeInsert(LikeDTO dto, HttpSession session){
-		dto.setGenie_id((String)session.getAttribute("logId"));
-        System.out.println(dto);
+	public int likeInsert(LikeDTO likeDTO, HttpSession session){
+		likeDTO.setGenieId((String)session.getAttribute("logId"));
+        System.out.println(likeDTO);
 
-		return service.likeInsert(dto);
+		return service.likeInsert(likeDTO);
 	}
 
 	@GetMapping("likeStatus")
- 	public int likeStatus(LikeDTO dto, HttpSession session) {
- 		dto.setGenie_id((String)session.getAttribute("logId"));
- 		int cnt = service.likeStatus(dto);
+ 	public int likeStatus(LikeDTO likeDTO, HttpSession session) {
+		likeDTO.setGenieId((String)session.getAttribute("logId"));
+ 		int cnt = service.likeStatus(likeDTO);
  		int result;
  		if (cnt>0) {
- 			service.likeDelete(dto);
- 			service.likeHitMinus(dto);
+ 			service.likeDelete(likeDTO);
+ 			service.likeHitMinus(likeDTO);
  			result = 100;
  		} else {
- 			service.likeInsert(dto);
- 			service.likeHitPlus(dto);
+ 			service.likeInsert(likeDTO);
+ 			service.likeHitPlus(likeDTO);
  			result = 200;
  		}
 		return result;
  	}
 	
-	@GetMapping("likeDel/{product_id}")
-	public ModelAndView likeDel(@PathVariable("product_id") int pid, HttpSession session) {
+	@GetMapping("likeDel/{productId}")
+	public ModelAndView likeDel(@PathVariable("productId") int pid, HttpSession session) {
 		
-		LikeDTO dto = new LikeDTO();
-		dto.setGenie_id((String)session.getAttribute("logId"));
-		dto.setProduct_id(pid);
+		LikeDTO likeDTO = new LikeDTO();
+		likeDTO.setGenieId((String)session.getAttribute("logId"));
+		likeDTO.setProductId(pid);
 		
 		ProductDTO pdto = new ProductDTO();
-		pdto.setProduct_id(pid);
+		pdto.setProductId(pid);
 		
-		int result = service.likeDelete(dto);
-		int result2 = service.likeHitMinus(dto);
+		int result = service.likeDelete(likeDTO);
+		int result2 = service.likeHitMinus(likeDTO);
 		
 		ModelAndView mav = new ModelAndView();
 		if(result>0 && result2>0) {

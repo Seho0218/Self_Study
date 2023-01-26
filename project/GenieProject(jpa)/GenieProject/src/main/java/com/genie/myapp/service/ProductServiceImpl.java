@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService{
 	public final ProductServiceRepository repository;
 
 	@Override
-	public List<ProductDTO> listProduct(ProductDTO pDTO) {
-		return dao.listProduct(pDTO);
+	public List<ProductDTO> listProduct(ProductDTO productDTO) {
+		return dao.listProduct(productDTO);
 	}
 	
 	@Override
@@ -37,58 +37,58 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<CartDTO> getCart(String genie_id) {
-		return dao.getCart(genie_id);
+	public List<CartDTO> getCart(String genieId) {
+		return dao.getCart(genieId);
 	}
 	
 	@Override
-	public SellerDTO getSeller(int product_id) {
-		return dao.getSeller(product_id);
+	public SellerDTO getSeller(int productId) {
+		return dao.getSeller(productId);
 	}
 	
 	@Override
-	public void addCart(CartDTO cdto) {
-        dao.addCart(cdto);
+	public void addCart(CartDTO cartDTO) {
+        dao.addCart(cartDTO);
     }
 	
 	@Override
-	public int delCart(int cart_num, String genie_id) {
-		return dao.delCart(cart_num, genie_id);
+	public int delCart(int cart_num, String genieId) {
+		return dao.delCart(cart_num, genieId);
 	}
 	
 	@Override
-	public int delMultiCart(CartDTO cdto) {
-		return dao.delMultiCart(cdto);
+	public int delMultiCart(CartDTO cartDTO) {
+		return dao.delMultiCart(cartDTO);
 	}
 
 	@Override
-	public void hitCount(int product_id) {
-		dao.hitCount(product_id);
+	public void hitCount(int productId) {
+		dao.hitCount(productId);
 	}
 
 	@Override
-	public List<ProductDTO> mainAllSelect(PagingDTO pDTO) {
-		return dao.mainAllSelect(pDTO);
+	public List<ProductDTO> mainAllSelect(PagingDTO pagingDTO) {
+		return dao.mainAllSelect(pagingDTO);
 	}
 
 	@Override
-	public ProductDTO likeStatus(int product_id) {
-		return dao.likeStatus(product_id);
+	public ProductDTO likeStatus(int productId) {
+		return dao.likeStatus(productId);
 	}
 
 	@Override
-	public LikeDTO likeCheck(int product_id, String genie_id) {
-		return dao.likeCheck(product_id, genie_id);
+	public LikeDTO likeCheck(int productId, String genieId) {
+		return dao.likeCheck(productId, genieId);
 	}
 
 	@Override
-	public int updateCart(CartDTO cdto) {
-		return dao.updateCart(cdto);
+	public int updateCart(CartDTO cartDTO) {
+		return dao.updateCart(cartDTO);
 	}
 
 	@Override
-	public List<ProductDTO> companyName(ProductDTO pDTO) {
-		return dao.companyName(pDTO);
+	public List<ProductDTO> companyName(ProductDTO productDTO) {
+		return dao.companyName(productDTO);
 	}
 
 }

@@ -8,7 +8,7 @@ public interface UserService {
 
 	
 	//아이디 중복검사
-	public long idCheck(String genie_id);
+	public long idCheck(String genieId);
 
 	//회원가입
 	public void UserWrite(UserDTO userDTO);
@@ -35,5 +35,5 @@ public interface UserService {
 	public List<OrderDTO> getOrder(UserDTO userDTO);
 
 	//찜한 상품 리스트
-	public List<ProductDTO> getLikeList(String genie_id);
+	public List<ProductDTO> getLikeList(String genieId);
 }

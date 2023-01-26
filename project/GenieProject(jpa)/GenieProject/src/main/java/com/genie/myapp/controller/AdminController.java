@@ -111,9 +111,9 @@ public class AdminController {
 
 		// 선택된 태그 수정 폼
 		@GetMapping("adminTagPop")
-		public ModelAndView adminTagPop(@RequestParam("product_tag_id") String product_tag_id) {
+		public ModelAndView adminTagPop(@RequestParam("productTagId") String productTagId) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadminTag(product_tag_id));
+			mav.addObject("vo", service.getadminTag(productTagId));
 			mav.setViewName("admin/adminTagPop");
 			return mav;
 		}
@@ -128,7 +128,7 @@ public class AdminController {
 			try {
 				service.adminTagPopEdit(vo);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adminTagPop?product_tag_id="+vo.getProduct_tag_id()+"';";
+				msg += "location.href='/admin/adminTagPop?productTagId="+vo.getProductTagId()+"';";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -142,8 +142,8 @@ public class AdminController {
 
 		// 태그 정보 삭제
 		@GetMapping("adminTagDel")
-		public ModelAndView adminTagDel(String product_tag_id) {
-			int cnt = service.adminTagDel(product_tag_id);
+		public ModelAndView adminTagDel(String productTagId) {
+			int cnt = service.adminTagDel(productTagId);
 			mav = new ModelAndView();
 			if(cnt>0) {
 				mav.setViewName("redirect:adminTag");
@@ -165,9 +165,9 @@ public class AdminController {
 
 		// 선택된 카테고리 정보 수정 폼
 		@GetMapping("adminCategoryPop")
-		public ModelAndView adcategoryPop(@RequestParam("category_id") String category_id) {
+		public ModelAndView adcategoryPop(@RequestParam("categoryId") String categoryId) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadcategory(category_id));
+			mav.addObject("vo", service.getadcategory(categoryId));
 			mav.setViewName("admin/adminCategoryPop");
 			return mav;
 		}
@@ -182,7 +182,7 @@ public class AdminController {
 			try {
 				service.adcategoryPopEdit(vo);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adminCategoryPop?category_id="+vo.getCategory_id()+"';";
+				msg += "location.href='/admin/adminCategoryPop?categoryId="+vo.getCategoryId()+"';";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -196,8 +196,8 @@ public class AdminController {
 
 		// 카테고리 정보 삭제
 		@GetMapping("adminCategoryDel")
-		public ModelAndView adcategoryDel(String category_id) {
-			int cnt = service.admemberDel(category_id);
+		public ModelAndView adcategoryDel(String categoryId) {
+			int cnt = service.admemberDel(categoryId);
 			mav = new ModelAndView();
 			if(cnt>0) {
 				mav.setViewName("redirect:adminCategory");
@@ -235,9 +235,9 @@ public class AdminController {
 
 		// 선택된 유저의 정보 수정 폼
 		@GetMapping("admemberPop")
-		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingDTO pDTO) {
+		public ModelAndView admemberPop(@RequestParam("genieId") String genieId, PagingDTO pDTO) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadmember(genie_id));
+			mav.addObject("vo", service.getadmember(genieId));
 			mav.addObject("pDTO", pDTO);
 			mav.setViewName("admin/admemberPop");
 			return mav;
@@ -245,15 +245,15 @@ public class AdminController {
 
 		// 유저 DB 업데이트
 		@PostMapping("admemberPopEdit")
-		public ResponseEntity<String> admemberPopEdit(UserDTO vo){
+		public ResponseEntity<String> admemberPopEdit(UserDTO userDTO){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
-				service.admemberPopEdit(vo);
+				service.admemberPopEdit(userDTO);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/admemberPop?genie_id="+vo.getGenie_id()+"';";
+				msg += "location.href='/admin/admemberPop?genieId="+userDTO.getGenieId()+"';";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -267,8 +267,8 @@ public class AdminController {
 
 		// 유저 정보 삭제
 		@GetMapping("admemberDel")
-		public ModelAndView admemberDel(String genie_id) {
-			int cnt = service.admemberDel(genie_id);
+		public ModelAndView admemberDel(String genieId) {
+			int cnt = service.admemberDel(genieId);
 			mav = new ModelAndView();
 			if(cnt>0) {
 				mav.setViewName("redirect:admember");
@@ -288,8 +288,8 @@ public class AdminController {
 
 	//결제 컨트롤러
 	@PostMapping("adminpaymentOk")
-	public ResponseEntity<String> adminpayment(CartDTO vo, HttpServletRequest request){
-		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+	public ResponseEntity<String> adminpayment(CartDTO cartDTO, HttpServletRequest request){
+		cartDTO.setGenieId((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
@@ -297,7 +297,7 @@ public class AdminController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {//결제 성공
-			service.paymentWrite(vo);
+			service.paymentWrite(cartDTO);
 
 			String msg = "<script>";
 			msg += "alert('결제가 되었습니다. 등록되었습니다.');";
@@ -333,9 +333,9 @@ public class AdminController {
 
 		// 선택된 셀러의 정보 수정 폼
 		@GetMapping("adcompanyPop")
-		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingDTO pDTO) {
+		public ModelAndView adcompanyPop(@RequestParam("genieId") String genieId, PagingDTO pDTO) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadcompany(genie_id));
+			mav.addObject("vo", service.getadcompany(genieId));
 			mav.addObject("pDTO", pDTO);
 			mav.setViewName("admin/adcompanyPop");
 			return mav;
@@ -343,15 +343,15 @@ public class AdminController {
 
 		// 셀러 DB 업데이트
 		@PostMapping("adcompanyPopEdit")
-		public ResponseEntity<String> adcompanyPopEdit(SellerDTO vo){
+		public ResponseEntity<String> adcompanyPopEdit(SellerDTO sellerDTO){
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
-				service.adcompanyPopEdit(vo);
+				service.adcompanyPopEdit(sellerDTO);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adcompanyPop?genie_id="+vo.getGenie_id()+"';";
+				msg += "location.href='/admin/adcompanyPop?genieId="+sellerDTO.getGenieId()+"';";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -365,8 +365,8 @@ public class AdminController {
 
 		// 셀러 정보 삭제
 		@GetMapping("adcompanyDel")
-		public ModelAndView adcompanyDel(String genie_id) {
-			int cnt = service.adcompanyDel(genie_id);
+		public ModelAndView adcompanyDel(String genieId) {
+			int cnt = service.adcompanyDel(genieId);
 			mav = new ModelAndView();
 			if(cnt>0) {
 				mav.setViewName("redirect:adcompany");

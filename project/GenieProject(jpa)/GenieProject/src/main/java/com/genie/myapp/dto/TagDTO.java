@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TagDTO{
 
-    private String genie_who;
-    private String genie_day;
-    private String genie_old;
+    private String genieWho;
+    private String genieDay;
+    private String genieOld;
     private String gender;
-    private int product_price;
-    private int money_low;
-    private int money_max;
+    private int productPrice;
+    private int moneyMax;
+    private int moneyLow;
 
 }

@@ -36,7 +36,7 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public void sendUserId(String user_email, List<String> genie_id) {
+	public void sendUserId(String user_email, List<String> genieId) {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(user_email);
 		simpleMailMessage.setSubject("아이디 찾기");
@@ -44,7 +44,7 @@ public class CertServiceImpl implements CertService {
 		StringBuffer sb = new StringBuffer();
 		sb.append("가입하신 아이디는");
 		sb.append(System.lineSeparator());
-		sb.append(genie_id).append("입니다");//genie_id.get(0)
+		sb.append(genieId).append("입니다");//genieId.get(0)
 
 		simpleMailMessage.setText(sb.toString());
 
@@ -64,9 +64,9 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-    public boolean emailCheck(String genie_id, String user_email) {
+    public boolean emailCheck(String genieId, String user_email) {
         Map<String, Object> map = new HashMap<>();
-        map.put("genie_id", genie_id);
+        map.put("genieId", genieId);
         map.put("user_email", user_email);
         String result = cdao.emailCheck(map);
 		return "1".equals(result);

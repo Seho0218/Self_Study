@@ -4,7 +4,7 @@ import com.genie.myapp.entity.Address;
 import com.genie.myapp.entity.Cart;
 import com.genie.myapp.entity.MyOrder;
 import com.genie.myapp.entity.Product.Inquiry;
-import com.genie.myapp.entity.Product.Product_like;
+import com.genie.myapp.entity.Product.ProductLike;
 import com.genie.myapp.entity.Product.Reply_product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,17 +24,16 @@ import java.util.List;
 @DiscriminatorValue("USER")
 public class User extends Account {
 
-
     private String user_name;
 
-    @OneToMany(mappedBy = "genie_id")
-    private List<Address> address;
+    @OneToMany(mappedBy = "user")
+    private List<Address> address = new ArrayList<>();
 
     @OneToMany(mappedBy = "genie_id")
     private List<Inquiry> inquiries;
 
     @OneToMany(mappedBy = "genie_id")
-    private List<Product_like> product_like;
+    private List<ProductLike> product_like;
 
     @OneToMany(mappedBy = "genie_id")
     private List<Cart> carts = new ArrayList<>();
@@ -45,15 +44,15 @@ public class User extends Account {
     @OneToMany(mappedBy = "genie_id")
     private List<Reply_product> replyProducts = new ArrayList<>();
 
-    private String user_tel;
+    private String userTel;
 
-    private String user_email;
+    private String userEmail;
 
-    private char user_gender;
+    private char userGender;
 
-    private String payment_method;
+    private String paymentMethod;
 
-    private LocalDateTime sign_in_date = LocalDateTime.now();
+    private LocalDateTime signInDate = LocalDateTime.now();
 
 //    public void setAddress(Address address) {
 //        this.address.add(address);

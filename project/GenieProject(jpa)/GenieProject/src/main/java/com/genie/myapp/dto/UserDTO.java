@@ -9,35 +9,35 @@ import org.modelmapper.convention.MatchingStrategies;
 @Data
 public class UserDTO {
 
-    private String genie_id;
-	private String genie_pwd;
-    private String genie_pwd2;
+    private String genieId;
+    private String geniePwd;
+    private String geniePwd2;
     private String ROLE;
-
-    private String user_name;
     
-	private String user_tel;
-	private String user_phone_num1;
-	private String user_phone_num2;
-	private String user_phone_num3;
-    private String user_email;
+    private String userName;
+    
+	private String userTel;
+	private String userPhoneNum1;
+	private String userPhoneNum2;
+	private String userPhoneNum3;
+    private String userEmail;
 
-    private char user_gender;
+    private char userGender;
 	
-    private String sign_in_date;
-    private String payment_method;
+    private String signInDate;
+    private String paymentMethod;
 
 
-    public String getUser_tel() {
-        return user_phone_num1 + "-"+user_phone_num2+"-"+user_phone_num3;
+    public String getUserTel() {
+        return userPhoneNum1 + "-"+userPhoneNum2+"-"+userPhoneNum3;
     }
 
-    public void setUser_tel(String user_tel) {
-        this.user_tel = user_tel;
-        String[] telSplit = user_tel.split("-");
-		user_phone_num1 = telSplit[0];
-		user_phone_num2 = telSplit[1];
-		user_phone_num3 = telSplit[2];
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+        String[] telSplit = userTel.split("-");
+		userPhoneNum1 = telSplit[0];
+		userPhoneNum2 = telSplit[1];
+		userPhoneNum3 = telSplit[2];
     }
 
     // Entity -> DTO (정적 팩토리 메서드)
@@ -61,7 +61,7 @@ public class UserDTO {
     //객체를 지속적으로 생성해야할 때, 팩토리 메소드로 해결한 경우
     public static UserDTO createUserDTO(String genie_id) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setGenie_id(genie_id);
+        userDTO.setGenieId(genie_id);
         return userDTO;
     }
 

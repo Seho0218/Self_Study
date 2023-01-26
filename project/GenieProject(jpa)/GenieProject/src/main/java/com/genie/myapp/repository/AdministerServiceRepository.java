@@ -25,8 +25,8 @@ public class AdministerServiceRepository {
                 .select(administer)
                 .from(account, administer)
                 .where(
-                        administer.genie_id.eq(administerEntity.getGenie_id()),
-                        administer.genie_pwd.eq(administerEntity.getGenie_pwd())
+                        administer.genieId.eq(administerEntity.getGenieId()),
+                        administer.geniePwd.eq(administerEntity.getGeniePwd())
                 )
                 .fetchOne();
     }

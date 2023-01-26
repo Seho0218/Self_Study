@@ -6,15 +6,15 @@ import com.genie.myapp.dto.UserDTO;
 
 public interface CertService {
 
-    public List<String> FindId(String user_email);
-    void sendUserId(String user_email, List<String> genie_id);
+    public List<String> FindId(String userEmail);
+    void sendUserId(String userEmail, List<String> genieId);
 
     public int overlapCheck(String value, String valueType);
-    public boolean emailCheck(String genid_id, String user_email);
+    public boolean emailCheck(String genieId, String userEmail);
 
-    void sendAuthNum(String user_email, String authNum);
+    void sendAuthNum(String userEmail, String authNum);
 
-    public int PwdEditOk(UserDTO dto);
+    public int PwdEditOk(UserDTO userDTO);
 
 	
     

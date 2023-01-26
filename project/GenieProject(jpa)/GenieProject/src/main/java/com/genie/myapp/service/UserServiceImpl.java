@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public long idCheck(String genie_id) {
-        return repository.idCheck(genie_id);
+    public long idCheck(String genieId) {
+        return repository.idCheck(genieId);
     }
 
     @Override
@@ -58,14 +58,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO getUser(UserDTO userDTO) {
-        return UserDTO.convertEntityToDTO(repository.getUser(userDTO.getGenie_id()));
+        return UserDTO.convertEntityToDTO(repository.getUser(userDTO.getGenieId()));
     }
-
 
     @Override //TODO 개인정보 변경이 안됌.
     public void UserEditOk(UserDTO userDTO) {
         
-        User findUser = em.find(User.class, userDTO.getGenie_id());
+        User findUser = em.find(User.class, userDTO.getGenieId());
     }
 
     @Override //TODO 비밀번호 변경이 안됌.
@@ -74,8 +73,8 @@ public class UserServiceImpl implements UserService{
         //DTO -> Entity
         User user = UserDTO.convertDTOtoEntity(userDTO);
 
-        User findUser = em.find(User.class, user.getGenie_id());
-        findUser.setGenie_pwd(userDTO.getGenie_pwd());
+        User findUser = em.find(User.class, user.getGenieId());
+        findUser.setGeniePwd(userDTO.getGeniePwd());
     }
 
     @Override
@@ -92,22 +91,30 @@ public class UserServiceImpl implements UserService{
         return repository.delDelivery(address_num);
     }
 
-    @Override
+    @Override//TODO 주소내역이 전부 가져와짐
     public List<AddressDTO> getDeliveryList(UserDTO userDTO) {
-        return AddressDTO.convertEntityToDTO(repository.getDeliveryList(userDTO));
+
+        //DTO -> Entity
+        User user = UserDTO.convertDTOtoEntity(userDTO);
+
+        //Entity -> DTO
+        return null;
     }
 
-    @Override
+    @Override//TODO 주문내역이 전부 가져와짐
     public List<OrderDTO> getOrder(UserDTO userDTO) {
 
-        return OrderDTO.convertEntityToDTO(repository.getOrder(userDTO));
+        //DTO -> Entity
+        User user = UserDTO.convertDTOtoEntity(userDTO);
+
+        //Entity -> DTO
+        return OrderDTO.convertEntityToDTO(repository.getOrder(user));
     }
 
     @Override
-    public List<ProductDTO> getLikeList(String genie_id) {
-        return dao.getLikeList(genie_id);
+    public List<ProductDTO> getLikeList(String genieId) {
+        return dao.getLikeList(genieId);
     }
 
-       
 }
  

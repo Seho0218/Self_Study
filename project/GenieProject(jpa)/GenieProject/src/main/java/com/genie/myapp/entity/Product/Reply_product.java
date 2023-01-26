@@ -16,16 +16,16 @@ import static javax.persistence.FetchType.LAZY;
 public class Reply_product implements Serializable {
 
     @Id @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "genie_id")
-    private User genie_id;
+    @JoinColumn(name = "genieId")
+    private User genieId;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product_id;
+    @JoinColumn(name = "productId")
+    private Product productId;
 
     private int rating;
 
-    private int reply_no;
+    private int replyNo;
     private String comment;
     private LocalDateTime writedate;
 

@@ -17,20 +17,20 @@ import static javax.persistence.GenerationType.*;
 public class Cart {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private int cart_num;
+    private int cartNum;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="genie_id")
-    private User genie_id;
+    private User genieId;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="product_id")
-    private Product product_id;
+    private Product productId;
 
-    private int cart_price;
+    private int cartPrice;
 
-    private int cart_qty;
+    private int cartQty;
 
-    private LocalDateTime cart_writedate = LocalDateTime.now();
+    private LocalDateTime cartWritedate = LocalDateTime.now();
 
 }

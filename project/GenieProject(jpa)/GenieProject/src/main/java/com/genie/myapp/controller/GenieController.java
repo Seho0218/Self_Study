@@ -57,12 +57,12 @@ public class GenieController {
 
 	//아이디 중복검사
 	@GetMapping("idCheck")
-	public ModelAndView idCheck(String genie_id) {
+	public ModelAndView idCheck(String genieId) {
 
 		mav = new ModelAndView();
 
-		mav.addObject("idCnt", userService.idCheck(genie_id));
-		mav.addObject("genie_id", genie_id);
+		mav.addObject("idCnt", userService.idCheck(genieId));
+		mav.addObject("genieId", genieId);
 		mav.setViewName("/idCheck");
 
 		return mav;
@@ -70,18 +70,17 @@ public class GenieController {
 
 	//회원 가입하기
 	@PostMapping("UserWrite")
-	public ResponseEntity<String> UserWrite(AccountDTO accountDTO, UserDTO userDTO) {
+	public ResponseEntity<String> UserWrite(UserDTO userDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
-		System.out.println("accountDTO = " + accountDTO + ", userDTO = " + userDTO);
 		try {//회원가입 성공
-			String enPw = passwordEncoder.encode(accountDTO.getGenie_pwd());
+			String enPw = passwordEncoder.encode(userDTO.getGeniePwd());
 
-			userDTO.setGenie_pwd(enPw);
+			userDTO.setGeniePwd(enPw);
 			userService.UserWrite(userDTO);
 
 			String msg = "<script>";
@@ -106,18 +105,17 @@ public class GenieController {
 
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(AccountDTO accountDTO, SellerDTO sellerDTO) {
+	public ResponseEntity<String> sellerWrite(SellerDTO sellerDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
-		System.out.println("accountDTO = " + accountDTO + ", sellerDTO = " + sellerDTO);
 		try {//회원가입성공
-			String enPw = passwordEncoder.encode(accountDTO.getGenie_pwd());
+			String enPw = passwordEncoder.encode(sellerDTO.getGeniePwd());
 
-			sellerDTO.setGenie_pwd(enPw);
+			sellerDTO.setGeniePwd(enPw);
 			sellerService.sellerWrite(sellerDTO);
 
 			String msg = "<script>";
@@ -151,13 +149,13 @@ public class GenieController {
 		SellerDTO slogDTO = sellerService.loginOk(sellerDTO);
 		AdministerDTO alogDTO = administerService.loginOk(administerDTO);
 		
-		if (logDTO.getGenie_id() != null) {//일반회원 일때
+		if (logDTO.getGenieId() != null) {//일반회원 일때
 			
 			//비밀번호 검증
-			boolean pwdMatch = passwordEncoder.matches(userDTO.getGenie_pwd(), logDTO.getGenie_pwd());
+			boolean pwdMatch = passwordEncoder.matches(userDTO.getGeniePwd(), logDTO.getGeniePwd());
 				if (pwdMatch) {//로그인 성공
-				session.setAttribute("logId", logDTO.getGenie_id());
-				session.setAttribute("logName", logDTO.getUser_name());
+				session.setAttribute("logId", logDTO.getGenieId());
+				session.setAttribute("logName", logDTO.getUserName());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("ROLE", "ROLE_USER");
 
@@ -168,13 +166,13 @@ public class GenieController {
 			return mav;
 		}//일반 회원일때 끝
 		
-		if (slogDTO.getGenie_id() != null) {//업체회원일때
+		if (slogDTO.getGenieId() != null) {//업체회원일때
 
-			boolean pwdMatch = passwordEncoder.matches(sellerDTO.getGenie_pwd(), slogDTO.getGenie_pwd());
+			boolean pwdMatch = passwordEncoder.matches(sellerDTO.getGeniePwd(), slogDTO.getGeniePwd());
 
 			if (pwdMatch) {//로그인 성공
-				session.setAttribute("logId", slogDTO.getGenie_id());
-				session.setAttribute("logName", slogDTO.getCompany_name());
+				session.setAttribute("logId", slogDTO.getGenieId());
+				session.setAttribute("logName", slogDTO.getCompanyName());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("ROLE", "ROLE_SELLER");
 				mav.setViewName("redirect:/seller/sellerMain");
@@ -185,13 +183,13 @@ public class GenieController {
 				return mav;
 		}// 업체회원일때 끝
 
-		if (alogDTO.getGenie_id() != null) {
+		if (alogDTO.getGenieId() != null) {
 
-			boolean equals = administerDTO.getGenie_pwd().equals(alogDTO.getGenie_pwd());
+			boolean equals = administerDTO.getGeniePwd().equals(alogDTO.getGeniePwd());
 			
 			if (equals) {
-				session.setAttribute("logId", alogDTO.getGenie_id());
-				session.setAttribute("logName", alogDTO.getAdminister_name());
+				session.setAttribute("logId", alogDTO.getGenieId());
+				session.setAttribute("logName", alogDTO.getAdministerName());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("ROLE", "ROLE_ADMIN");
 
@@ -255,8 +253,8 @@ public class GenieController {
 	@GetMapping("cart")
 	public ModelAndView cart(HttpSession session) {
 
-		String genie_id = (String) session.getAttribute("logId");
-		List<CartDTO> cartList = productService.getCart(genie_id);
+		String genieId = (String) session.getAttribute("logId");
+		List<CartDTO> cartList = productService.getCart(genieId);
 		// System.out.print(cartList);
 
 		mav = new ModelAndView();
@@ -326,9 +324,9 @@ public class GenieController {
 
 	// 장바구니에서 제품 삭제
 	@GetMapping("delCart")
-	public int delCart(HttpSession session, int cart_num) {
-		String genie_id = (String) session.getAttribute("logId");
-		return productService.delCart(cart_num, genie_id);
+	public int delCart(HttpSession session, int cartNum) {
+		String genieId = (String) session.getAttribute("logId");
+		return productService.delCart(cartNum, genieId);
 
 	}
 
