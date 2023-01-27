@@ -42,10 +42,10 @@ public interface ProductService {
   public int delCart(int cart_num, String genie_id);
 
   // 여러 제품 삭제
-  public int delMultiCart(CartDTO cvo);
+  public int delMultiCart(CartDTO cartDTO);
 
   // 장바구니 정보 업데이트
-  public int updateCart(CartDTO cvo);
+  public int updateCart(CartDTO cartDTO);
 
 
 

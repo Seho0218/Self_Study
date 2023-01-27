@@ -178,7 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <c:forEach var="vo" items="${list }">
                       <tr>
 						            <td><img src="${vo.product_image1}" class="thumb"></td>
-						            <td>${vo.product_id}</td>
+						            <td>${vo.productId}</td>
 						            <td>${vo.product_name}</td>
                         <td>${vo.product_info}</td>
                         <td>${vo.product_price}</td>

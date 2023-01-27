@@ -172,9 +172,9 @@ color:white;
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${adcategory }">
                       <tr>
-                        <td>${vo.category_id}</td>
-                        <td>${vo.product_category}</td>
-                        <td><a href="/admin/adminCategoryPop?category_id=${vo.category_id}"><input type="button" value="관리"></a></td>
+                        <td>${vo.categoryId}</td>
+                        <td>${vo.productCategory}</td>
+                        <td><a href="/admin/adminCategoryPop?category_id=${vo.categoryId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 
                     </tbody>

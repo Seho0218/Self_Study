@@ -219,13 +219,13 @@ input[type=text]{
 								</div>
 							</div>
 							<hr>
-							<input type="hidden" id="product_id" name="product_id" value="${pvo.product_id}">
+							<input type="hidden" id="product_id" name="product_id" value="${pvo.productId}">
 							<div class="row">
 								<div class="col-25">
 									<label for="product_name">상품명</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="product_name" name="product_name" value="${pvo.product_name}"/>
+									<input type="text" id="product_name" name="product_name" value="${pvo.productName}"/>
 								</div>
 							</div>
 								
@@ -234,7 +234,7 @@ input[type=text]{
 									<label for="product_price">판매금액</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="product_price" name="product_price"  value="${pvo.product_price}"/>
+									<input type="text" id="product_price" name="product_price"  value="${pvo.productPrice}"/>
 								</div>
 							</div>
 								
@@ -393,15 +393,15 @@ input[type=text]{
 				<div class="container">
 					<p>상품등록</p>
 					<form method="post" action="/seller/productEditOk" id="productFrm">
-					<input type="hidden" name="product_id" value="${pvo.product_id }"/>
+					<input type="hidden" name="product_id" value="${pvo.productId }"/>
 						<ul class="proFrm">
 							<div id="nameDiv">
 								<p>상품명</p>
-								<input type="text" id="product_name" name="product_name" value="${pvo.product_name}"/>
+								<input type="text" id="product_name" name="product_name" value="${pvo.productName}"/>
 							</div>
 							<div id="priceDiv">
 								<p>판매금액</p>
-								<input type="text" id="product_price" name="product_price" value="${pvo.product_price}"/>
+								<input type="text" id="product_price" name="product_price" value="${pvo.productPrice}"/>
 							</div>
 							<div id="infoDiv">
 								<p>상품설명</p>

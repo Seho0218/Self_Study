@@ -136,15 +136,15 @@
                       <!-- 태그 반복 -->
                       <c:forEach var="pvo" items="${plist }">
                       <tr>
-						    <td>${pvo.product_id }</td>
-							<td><a href="/product_detail?product_id=${pvo.product_id}">${pvo.product_name}</a></td>
-							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pvo.product_price}"/> 원</td>
-							<td>${pvo.product_quantity}</td>
-							<td>${pvo.product_category}</td>
-							<td>${pvo.product_tag}</td>
-							<td>${pvo.product_mbti}</td>
-							<td><a href="/seller/sellerProductEdit/${pvo.product_id }"><input type="button" value="수정"></a></td>
-							<td><a href="javascript:productDel(${pvo.product_id });"><input type="button" value="삭제"></a></td>
+						    <td>${pvo.productId }</td>
+							<td><a href="/product_detail?product_id=${pvo.productId}">${pvo.productName}</a></td>
+							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pvo.productPrice}"/> 원</td>
+							<td>${pvo.productQuantity}</td>
+							<td>${pvo.productCategory}</td>
+							<td>${pvo.productTag}</td>
+							<td>${pvo.productmbti}</td>
+							<td><a href="/seller/sellerProductEdit/${pvo.productId }"><input type="button" value="수정"></a></td>
+							<td><a href="javascript:productDel(${pvo.productId });"><input type="button" value="삭제"></a></td>
                       </tr>
                     </c:forEach>
                     <!-- 태그 반복 끝 --> 
@@ -237,14 +237,14 @@
 						</tr>
 						<c:forEach var="pvo" items="${plist }">
 						<tr>
-							<td>${pvo.product_id }</td>
-							<td>${pvo.product_name}</td>
-							<td>${pvo.product_price}</td>
-							<td>${pvo.product_quantity}</td>
-							<td>${pvo.product_category}</td>
-							<td>${pvo.product_tag}</td>
-							<td><a href="/seller/sellerProductEdit/${pvo.product_id }">edit</a></td>
-							<td><a href="javascript:productDel(${pvo.product_id });">del</a></td>
+							<td>${pvo.productId }</td>
+							<td>${pvo.productName}</td>
+							<td>${pvo.productPrice}</td>
+							<td>${pvo.productQuantity}</td>
+							<td>${pvo.productCategory}</td>
+							<td>${pvo.productTag}</td>
+							<td><a href="/seller/sellerProductEdit/${pvo.productId }">edit</a></td>
+							<td><a href="javascript:productDel(${pvo.productId });">del</a></td>
 						</tr>
 						</c:forEach>
 					</table>

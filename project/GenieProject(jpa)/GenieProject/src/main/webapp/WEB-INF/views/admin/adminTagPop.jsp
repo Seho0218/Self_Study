@@ -140,7 +140,7 @@ input[type=text] {
 <script>
 function adminTagDel(){
 	if(confirm("${vo.product_tag_id} 태그를 삭제하시겠습니까?")){
-		location.href="/admin/adminTagDel?product_tag_id=${vo.product_tag_id}";
+		location.href="/admin/adminTagDel?product_tag_id=${vo.productTagId}";
 	}
 }
 </script>
@@ -153,9 +153,9 @@ function adminTagDel(){
     <!-- 로그인폼-->
     <form method="post" action="/admin/adminTagPopEdit" id="adminTagPopFrm">
     <p>태그아이디</p>
-      <input type="text" id="product_tag_id" class="second" name="product_tag_id" value=${vo.product_tag_id}>
+      <input type="text" id="product_tag_id" class="second" name="product_tag_id" value=${vo.productTagId}>
    	<p>태그</p>
-      <input type="text" id="user_name" class="second" name="product_tag" value=${vo.product_tag}>	
+      <input type="text" id="user_name" class="second" name="product_tag" value=${vo.productTag}>
       <input type="submit" class="fourth" value="수정">
       <a href="javascript:adminTagDel()"><input type="button" id="delete" value="삭제"></a>
       <a href="javascript:window.history.back()"><input type="button" id="fourth" value="뒤로가기"></a>

@@ -60,13 +60,13 @@
 <section class="home">
 <form method="post" action="/user/PwdEditOk" id="logFrm">
     <div id="passwordForm">
-		<input type="hidden" value="${vo.genie_id}" name="genie_id"/>
+		<input type="hidden" value="${vo.genieId}" name="genieId"/>
 		<p>비밀번호</p>
-			<input type="password" id="genie_pwd" name="genie_pwd" placeholder="현재 비밀번호를 입력하세요">
+			<input type="password" id="genie_pwd" name="geniePwd" placeholder="현재 비밀번호를 입력하세요">
 		<p>새 비밀번호</p>
-			<input type="password" id="genie_pwd" name="genie_pwd1" placeholder="새 비밀번호를 입력하세요">
+			<input type="password" id="genie_pwd" name="geniePwd1" placeholder="새 비밀번호를 입력하세요">
 		<p>새 비밀번호 다시 입력</p>
-			<input type="password" id="genie_pwd" name="genie_pwd2" placeholder="새 비밀번호를 입력하세요"><br/><br/>
+			<input type="password" id="genie_pwd" name="geniePwd2" placeholder="새 비밀번호를 입력하세요"><br/><br/>
 			<input type="submit" id="Find_pwd" value="비밀번호 변경"/><br/>
 	</div>
 </form>

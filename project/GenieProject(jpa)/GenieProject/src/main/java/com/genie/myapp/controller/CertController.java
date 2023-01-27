@@ -41,6 +41,8 @@ public class CertController {
 	// 메일로 아이디 보내기
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String userEmail){
+
+		System.out.println("userEmail = " + userEmail);
 		List<String> genie_id =certService.FindId(userEmail);
 
 		if(genie_id.size() != 0) {
@@ -73,6 +75,7 @@ public class CertController {
 
 	@GetMapping("emailCheck")
 	public ResponseEntity<Boolean> emailCheck(String genie_id, String userEmail){
+		System.out.println("genie_id = " + genie_id);
 		boolean emailCheck = certService.emailCheck(genie_id, userEmail);
 		System.out.println("emailCheck "+ emailCheck );
 		return new ResponseEntity<>(emailCheck, HttpStatus.OK);

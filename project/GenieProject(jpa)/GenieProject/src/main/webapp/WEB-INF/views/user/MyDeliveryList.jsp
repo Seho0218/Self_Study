@@ -182,7 +182,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
           alt="materialize logo" />
 
                         <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
+                    ${vo.userName} ${svo.ceoName}님
                   </span>
       </a>
       </h1>
@@ -279,35 +279,36 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
       <h5>새로운 배송지</h5>
       <div class="inquiry">
       <form method="post" action="/user/addDelivery">
-        <input type="hidden" value="${vo.genie_id}" name="genie_id"/>
-          <ul id="addrForm">
-            <li>이름: <input type="text" name="user_name" id ="user_name"/></li>
+        <input type="hidden" value="${vo.genieId}" name="genieId"/>
+        <ul id="addrForm">
+          <li>이름</li>
+          <li><input type="text" name="userName" id ="user_name"/></li>
 
-            <ul id="phoneForm">
-              <li>휴대폰 번호</li>
-              <select id = "user_phone_num1" name = "user_phone_num1" size = "1">
-                <option value="">선택하세요</option>
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="016">016</option>
-                <option value="017">017</option>
-                <option value="018">018</option>
-                <option value="019">019</option>
-              </select>
-              <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4"/>
-              -<input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4"/>
+          <ul id="phoneForm">
+            <li>휴대폰 번호</li>
+            <select id = "userPhoneNum1" name = "user_phone_num1" size = "1">
+              <option value="">선택하세요</option>
+              <option value="010">010</option>
+              <option value="011">011</option>
+              <option value="016">016</option>
+              <option value="017">017</option>
+              <option value="018">018</option>
+              <option value="019">019</option>
+            </select>
+            <input type ="text" name = "userPhoneNum2" id ="user_phone_num2" maxlength = "4"/>-
+            <input type ="text" name = "userPhoneNum3" id ="user_phone_num3" maxlength = "4"/>
             </ul>
 
             <li>우편번호</li>
             <li>
-              <input type="text" name="user_zipcode" id ="user_zipcode" readonly/>
+              <input type="text" name="zipCode" id ="user_zipcode" readonly/>
               <input type= "button" value = "우편번호찾기" id = "address_kakao"/>
             </li>
-            <li>주소</li>
-            <li><input type="text" name="user_addr" id ="user_addr" readonly/></li>
-            <li>상세주소</li>
-            <li><input type="text" name="user_detailaddr" id ="user_detailaddr" /></li> 
-            <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
+          <li>주소</li>
+          <li><input type="text" name="addr" id ="user_addr" readonly/></li>
+          <li>상세주소</li>
+          <li><input type="text" name="detailAddr" id ="user_detailaddr" /></li>
+          <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
           </ul>
       </form>   
       </div>
@@ -331,13 +332,13 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 
         <ul id="delivery_1">
         <c:forEach var="dvo" items="${dlist}">
-            <li> <input type="text" value="수령자 이름: ${dvo.receiver_name}" readonly/></li>
-            <li><input type="text" value="전화번호: ${dvo.receiver_tel}" readonly/></li>
-            <li><input type="text" value="우편번호: ${dvo.receiver_zipcode}" readonly/></li>
-            <li><input type="text" value="주소: ${dvo.receiver_addr}" readonly/></li>
-            <li><input type="text" value="상세주소: ${dvo.receiver_detailaddr}" readonly/></li><br>
-            <div><input type="hidden" value='${dvo.address_num}' /></div>
-            <div><input type="button" value='삭제' address_num="${dvo.address_num}" id="address_kakao"/></div>
+            <li> <input type="text" value="수령자 이름: ${dvo.userName}" readonly/></li>
+            <li><input type="text" value="전화번호: ${dvo.userTel}" readonly/></li>
+            <li><input type="text" value="우편번호: ${dvo.zipCode}" readonly/></li>
+            <li><input type="text" value="주소: ${dvo.addr}" readonly/></li>
+            <li><input type="text" value="상세주소: ${dvo.detailAddr}" readonly/></li><br>
+            <div><input type="hidden" value='${dvo.addressNum}' /></div>
+            <div><input type="button" value='삭제' addressNum="${dvo.addressNum}" id="address_kakao"/></div>
           </c:forEach>        
     </div>
 
@@ -393,11 +394,11 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 <script>
 	$(document).on('click','#delivery_1 input[value=삭제]',function(){
 
-		var params = {address_num: $(this).attr('address_num')};
+		var params = {addressNum: $(this).attr('addressNum')};
 		    $.ajax({
 				url:"/user/delDelivery",
 				data:params,
-				success:function(result){
+				success:function(){
           alert("삭제되었습니다.");
 					location.reload();
 				},error:function(e){
@@ -406,5 +407,3 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 			});	
 	  });
 </script>
-
-                                      

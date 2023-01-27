@@ -125,27 +125,27 @@ $(function(){
 			<input type="hidden" value="1" name="member_type"/>
 			<ul id="idForm">
 				<li>카트넘버</li>
-				<input type="text" name="cart_num" id="cart_num" value="2" placeholder="카트넘버">
+				<input type="text" name="cartNum" id="cart_num" value="2" placeholder="카트넘버">
 			</ul>
 			<ul id="idForm">
 				<li>지니아이디</li>
-				<input type="text" name="genie_id" id="genie_id" value="1234" placeholder="지니아이디">
+				<input type="text" name="genieId" id="genie_id" value="1234" placeholder="지니아이디">
 			</ul>
 			<ul id="idForm">
 				<li>제품아이디</li>
-				<input type="text" name="product_id" id="product_id" value="1234" placeholder="제품아이디">
+				<input type="text" name="productId" id="product_id" value="1234" placeholder="제품아이디">
 			</ul>
 			<ul id="idForm">
 				<li>가격</li>
-				<input type="text" name="cart_price" id="cart_price" value="10000" placeholder="가격">
+				<input type="text" name="cartPrice" id="cart_price" value="10000" placeholder="가격">
 			</ul>
 			<ul id="idForm">
 				<li>카트수량</li>
-				<input type="text" name="cart_qty" id="cart_qty" value="1" placeholder="수량">
+				<input type="text" name="cartQty" id="cart_qty" value="1" placeholder="수량">
 			</ul>
 			<ul id="idForm">
 				<li>날짜</li>
-				<input type="text" name="cart_writedate" id="cart_writedate" value="2022.09.30" placeholder="날짜">
+				<input type="text" name="cartWriteDate" id="cartWriteDate" value="2022.09.30" placeholder="날짜">
 			</ul>
 				<input type = "submit" id="formSubmit" value = "결제하기"/>
 		</form>

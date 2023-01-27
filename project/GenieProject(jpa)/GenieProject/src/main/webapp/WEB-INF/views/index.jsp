@@ -43,7 +43,7 @@
       <div class="tag-button">
       <!-- 
       <c:forEach var="tvo" items="${tlist}">
-         <button onclick="location.href='/product?product_tag=${tvo.product_tag}'">#${tvo.product_tag}</button>
+         <button onclick="location.href='/product?product_tag=${tvo.productTag}'">#${tvo.productTag}</button>
       </c:forEach>
       -->
          <button onclick="location.href='/product?product_tag=집들이'" style="background-color:#fc7592">#집들이</button>
@@ -105,14 +105,14 @@
 
          <c:forEach var="pvo" items="${comlist}">
             <div class="card-col">
-               <a class="product-title" href="/product_detail?product_id=${pvo.product_id}" >
+               <a class="product-title" href="/product_detail?product_id=${pvo.productId}" >
                <div class="card_header">
-                  <img id="img-caption"  src="${pvo.product_image1}" alt="Img_1">
+                  <img id="img-caption"  src="${pvo.productImage1}" alt="Img_1">
                </div>
                <div class="card_bottom">
-                  <h5 style="color:gray; font-size: 16px;">${pvo.company_name}</h5>
-                  <p>${pvo.product_name}</p>	
-                  <p  style="margin-top: 8px;"><b><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></b></p></a>	
+                  <h5 style="color:gray; font-size: 16px;">${pvo.companyName}</h5>
+                  <p>${pvo.productName}</p>
+                  <p  style="margin-top: 8px;"><b><fmt:formatNumber value="${pvo.productPrice}" pattern="#,###원"/></b></p></a>
                </div>
             </div>
          </c:forEach>

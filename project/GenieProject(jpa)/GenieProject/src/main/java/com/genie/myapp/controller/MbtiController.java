@@ -29,7 +29,7 @@ public class MbtiController {
 	
 	//mbti 상품 리스트
 	@GetMapping("mbti/{mbti}")
-	public ModelAndView mbtiList(@PathVariable("mb-ti") String mbti) {
+	public ModelAndView mbtiList(@PathVariable("mbti") String mbti) {
 		mav = new ModelAndView();
 		//System.out.println(mbti);
 		
@@ -68,13 +68,15 @@ public class MbtiController {
 	}
 	
 	//상품 정렬하기 (카테고리 list)
-	@GetMapping("product/{productCategory}/{sortType}")
-	public ModelAndView productSort(@PathVariable("productCategory") String productCategory, @PathVariable("sortType") String sortType) {
+	@GetMapping("product/{product_category}/{sortType}")
+	public ModelAndView productSort(@PathVariable("product_category") String product_category, @PathVariable("sortType") String sortType) {
+
 		mav = new ModelAndView();
-		System.out.println(sortType);
-		
+
+		System.out.println("productCategory = " + product_category);
+
 		ProductDTO productDTO = new ProductDTO();
-		productDTO.setProductCategory(productCategory);
+		productDTO.setProductCategory(product_category);
 
 		switch (sortType) {
 			case "pricelist": //가격낮은순
@@ -102,9 +104,8 @@ public class MbtiController {
 	//상품 정렬 (전체 리스트)
 	@GetMapping("product/{sortType}")
 	public ModelAndView totalProductSort(@PathVariable("sortType") String sortType) {
+
 		mav = new ModelAndView();
-		System.out.println(sortType);
-		
 		ProductDTO PVO = new ProductDTO();
 
 		switch (sortType) {
@@ -131,13 +132,14 @@ public class MbtiController {
 	}
 	
 	//상품 정렬 (태그 리스트)
-	@GetMapping("productTag/{productTag}/{sortType}")
-	public ModelAndView productTagSort(@PathVariable("productTag") String productTag, @PathVariable("sortType") String sortType) {
+	@GetMapping("product_tag/{product_tag}/{sortType}")
+	public ModelAndView productTagSort(@PathVariable("product_tag") String product_tag, @PathVariable("sortType") String sortType) {
+
 		mav = new ModelAndView();
-		System.out.println(sortType);
-		
+		System.out.println("productTag = " + product_tag);
+
 		ProductDTO dto = new ProductDTO();
-		dto.setProductTag(productTag);
+		dto.setProductTag(product_tag);
 
 		switch (sortType) {
 			case "pricelist": //가격낮은순

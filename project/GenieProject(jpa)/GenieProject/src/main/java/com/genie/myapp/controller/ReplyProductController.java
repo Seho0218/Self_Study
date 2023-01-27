@@ -51,7 +51,6 @@ public class ReplyProductController{
 	@PostMapping("likeInsert")
 	public int likeInsert(LikeDTO likeDTO, HttpSession session){
 		likeDTO.setGenieId((String)session.getAttribute("logId"));
-        System.out.println(likeDTO);
 
 		return service.likeInsert(likeDTO);
 	}

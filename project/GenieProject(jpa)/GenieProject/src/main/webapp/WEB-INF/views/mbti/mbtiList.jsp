@@ -57,15 +57,15 @@
         <c:forEach var="pvo" items="${plist}">
         <div class="wrapper">
             <div class="product-list">
-                <a class="product-title" href="/product_detail?product_id=${pvo.product_id}"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a class="product-title" href="/product_detail?product_id=${pvo.productId}"><i class="fa-solid fa-magnifying-glass"></i></a>
                 <div class="item">
-                    <img src="${pvo.product_image1}">
+                    <img src="${pvo.productImage1}">
                 </div>
             </div>
             <ul>
-                <li>${pvo.genie_id}</li>
-                <li>${pvo.product_name}</li>
-                <li><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></li>
+                <li>${pvo.genieId}</li>
+                <li>${pvo.productName}</li>
+                <li><fmt:formatNumber value="${pvo.productPrice}" pattern="#,###원"/></li>
             </ul>
         </div>
         </c:forEach>
@@ -79,19 +79,19 @@
 	
 	var element = document.getElementById("mbti");
 	
-	if(mbti=='E'){
+	if(mbti==='E'){
 		element.innerText="사교적이고 활동적인 성향의 E를 위한 선물";
-	}else if(mbti=='I'){
+	}else if(mbti==='I'){
 		element.innerText="신중하고 내향적인 성향의 I를 위한 선물";
-	}else if(mbti=='S'){
+	}else if(mbti==='S'){
 		element.innerText="현실적이고 실용적인 성향의 S를 위한 선물";
-	}else if(mbti=='N'){
+	}else if(mbti==='N'){
 		element.innerText="이상적이고 관념적인 성향의 N을 위한 선물";
-	}else if(mbti=='T'){
+	}else if(mbti==='T'){
 		element.innerText="분석적이고 논리적인 성향의 T를 위한 선물";
-	}else if(mbti=='F'){
+	}else if(mbti==='F'){
 		element.innerText="공감적이고 상황적인 성향의 F를 위한 선물";
-	}else if(mbti=='J'){
+	}else if(mbti==='J'){
 		element.innerText="계획적이고 체계적인 성향의 J를 위한 선물";
 	}else{
 		element.innerText="융통적이고 즉흥적인 성향의 P를 위한 선물";

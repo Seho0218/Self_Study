@@ -70,7 +70,7 @@
   $(document).ready(function(){
 	
     const URLSearch = new URLSearchParams(location.search);
-    const genie_id = URLSearch.get("genie_id"); 
+    const genie_id = URLSearch.get("genie_id");
     const inputBox = $("input[name=authNum]");
     const nextBox = $("#next");
    /* 인증번호 발송했는지 여부
@@ -98,16 +98,15 @@
          // 이메일로 인증번호 보내기
     $("#send_email").click(function(){
         const data = {
-            user_email : $(".email").val(),
+            userEmail : $(".email").val(),
             genie_id : genie_id
         }
-        if($(".email").val()=="") {
+        if($(".email").val()==="") {
             alert("이메일을 정확히 입력해주세요");
             return;
         }
         
-       
-        
+
         $.ajax({
             url: "/cert/emailCheck",
             type: "GET",
@@ -115,7 +114,7 @@
         })
         .then(function(result){
             if(result) {
-                sendAuthNum({user_email : data.user_email}, function(){
+                sendAuthNum({userEmail : data.userEmail}, function(){
                     sendAuthNumFnc();
                 });
                 
@@ -172,7 +171,7 @@
             authNumber = $(this).siblings(".auth").find(".auth_num").val(); 
         })
         
-        if(authNumber=="") {
+        if(authNumber==="") {
             alert("인증번호 입력하세요...");
             return;
         }

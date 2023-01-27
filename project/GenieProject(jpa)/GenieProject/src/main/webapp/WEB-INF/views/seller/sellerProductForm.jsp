@@ -213,16 +213,16 @@ input[type=text]{
 						<form method="post" action="/seller/productWrite" id="productFrm">
 							<div class="row">
 								<div class="col-25">
-									<label for="product_name" style="font-size: 20px; color:#047bff; margin-bottom: 0px;">상품등록</label>
+									<label for="productName" style="font-size: 20px; color:#047bff; margin-bottom: 0px;">상품등록</label>
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-25">
-									<label for="product_name">상품명</label>
+									<label for="productName">상품명</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="product_name" name="product_name" placeholder="상품명을 입력하세요"/>
+									<input type="text" id="productName" name="productName" placeholder="상품명을 입력하세요"/>
 								</div>
 							</div>
 								
@@ -231,7 +231,7 @@ input[type=text]{
 									<label for="product_price">판매금액</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="product_price" name="product_price" placeholder="판매금액을 입력하세요"/>
+									<input type="text" id="productPrice" name="productPrice" placeholder="판매금액을 입력하세요"/>
 								</div>
 							</div>
 								
@@ -240,7 +240,7 @@ input[type=text]{
 									<label for="product_quantity">상품수량</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
+									<input type="text" id="productQuantity" name="productQuantity" placeholder="상품수량을 입력하세요"/>
 								</div>
 							</div>
 								
@@ -249,9 +249,9 @@ input[type=text]{
 									<label for="product_image">상품이미지</label>
 								</div>
 								<div class="col-75" id="proimage">
-									<input type="text" name="product_image1" id="product_image1" placeholder="이미지링크를 입력하세요"/>
-									<input type="text" name="product_image2" id="product_image2" placeholder="이미지링크를 입력하세요"/>
-									<input type="text" name="product_image3" id="product_image3" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="productImage1" id="productImage1" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="productImage2" id="productImage2" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="productImage3" id="productImage3" placeholder="이미지링크를 입력하세요"/>
 								</div>
 							</div>	
 							<div class="row">

@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script>
 	$(function(){
 		$("#searchFrm").submit(function(){
-			if($("#searchWord").val()==""){
+			if($("#searchWord").val()===""){
 				alert("검색어를 입력하세요.");
 				return false;
 			}
@@ -218,18 +218,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${adcompany}">
                       <tr>
-                        <td>${vo.genie_id}</td>
-                        <td>${vo.company_name}</td>
-                        <td>${vo.seller_tel}</td>
-                        <td>${vo.seller_email}</td>
-                        <td>${vo.writedate}</td>
-                        	<c:if test="${vo.seller_status=='Y'}">
-                        		<td>${vo.seller_status}</td>
+                        <td>${vo.genieId}</td>
+                        <td>${vo.companyName}</td>
+                        <td>${vo.sellerTel}</td>
+                        <td>${vo.sellerEmail}</td>
+                        <td>${vo.writeDate}</td>
+                        	<c:if test="${vo.sellerStatus=='Y'}">
+                        		<td>${vo.sellerStatus}</td>
                         	</c:if>
-                        	<c:if test="${vo.seller_status=='N'}">
-                        		<td style="background-color:red;">${vo.seller_status}</td>
+                        	<c:if test="${vo.sellerStatus=='N'}">
+                        		<td style="background-color:red;">${vo.sellerStatus}</td>
                         	</c:if>
-                        <td><a href="/admin/adcompanyPop?genie_id=${vo.genie_id}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/adcompanyPop?genie_id=${vo.genieId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 
                     </tbody>

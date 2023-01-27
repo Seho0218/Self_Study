@@ -29,9 +29,9 @@
 //         /*                 
 //         merchant_uid에 경우                            
 //         */            
-//         name: '${pvo.product_name}',            
+//         name: '${pvo.productName}',
 //         //결제창에서 보여질 이름            
-//         amount: '${pvo.product_price}',            
+//         amount: '${pvo.productPrice}',
 //         //가격             
 //         buyer_email: '${uvo.user_email}',            
 //         buyer_name: '${uvo.user_name}',           

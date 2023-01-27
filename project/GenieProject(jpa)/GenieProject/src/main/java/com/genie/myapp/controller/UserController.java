@@ -94,8 +94,6 @@ public class UserController {
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-
-		System.out.println(genie_id);
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		List<OrderDTO> orderList =userService.getOrder(userDTO);
@@ -127,8 +125,6 @@ public class UserController {
 	//배송지 
 	@PostMapping("addDelivery")
 	public ResponseEntity<String> addDelivery(AddressDTO addressDTO) {
-
-		System.out.println("addressDTO = " + addressDTO);
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
@@ -213,6 +209,7 @@ public class UserController {
 
 	@GetMapping("delDelivery")
 	public long delDelivery(int addressNum){
+		System.out.println("addressNum = " + addressNum);
 		return userService.delDelivery(addressNum);
 	}
 

@@ -29,6 +29,7 @@ public class UserServiceRepository {
     }
 
     public User loginOk(User userEntity) {
+        System.out.println(userEntity.getGenieId());
 
         return queryFactory
                 .selectFrom(user)
@@ -45,11 +46,6 @@ public class UserServiceRepository {
                 .selectFrom(user)
                 .where(user.genieId.eq(genieId))
                 .fetchOne();
-    }
-
-    public List<MyOrder> getOrder(User userEntity) {
-
-        return null;
     }
 
     public long delDelivery(int addressNum) {

@@ -175,7 +175,7 @@
                       <tr>
                         <td>${vo.product_tag_id}</td>
                         <td>${vo.product_tag}</td>
-                        <td><a href="/admin/adminTagPop?product_tag_id=${vo.product_tag_id}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/adminTagPop?product_tag_id=${vo.productTagId}"><input type="button" value="관리"></a></td>
                       
                       </tr>
                     </c:forEach> 

@@ -12,7 +12,7 @@
 		function replyAllList(){
 			$("#replyList>ul").empty();
 			var url = "/reply/replyProductList";
-			var params = {no:${pvo.product_id}};
+			var params = {no:${pvo.productId}};
 			
 			$.ajax({
 				url:url,
@@ -22,9 +22,9 @@
 					
 					$reply.each(function(i, vo){ // index, vo
 						tag = "<li>";
-						tag += "<div><b>"+"작성자 : "+vo.genie_id+" | "+vo.writedate+"</b>";
+						tag += "<div><b>"+"작성자 : "+vo.genieId+" | "+vo.writeDate+"</b>";
 						// 수정, 삭제버튼(자신이 쓴 글일때만) 표시
-						if(vo.genie_id=='${logId}'){
+						if(vo.genieId==='${logId}'){
 							tag += "<input type='button' value='리뷰수정'/>";
 							tag += "<input type='button' value='리뷰삭제' title='"+vo.reply_no+"'/>";
 						}
@@ -44,7 +44,7 @@
                                 +"리뷰내용 : "
                                 +vo.comment+"<br></div>";
 						// 로그인 아이디와 댓글 아이디 동일시 (수정폼)을 만들어준다.
-						if(vo.genie_id=='${logId}'){
+						if(vo.genieId=='${logId}'){
 							tag += "<div style='display:none'><form method='post'>";
 							tag += "<input type='hidden' name='reply_no' value='"+vo.reply_no+"'/>";
                             tag += "<fieldset>"
@@ -139,11 +139,11 @@
 	// 좋아요
     $(function(){
     	// 해당상품 좋아요 숫자 가져오기
-		var likeNum = ${lvo.product_like};
+		var likeNum = ${lvo.productLike};
 		$("#likeBtn").append("<p>"+likeNum+"</p>");
 		
 		// 로그인 아이디의 해당상품 좋아요 판별
-		if("${cvo.genie_id}"!=""){ // 이미 좋아요를 누른상태면
+		if("${cvo.genieId}"!=""){ // 이미 좋아요를 누른상태면
 			likeRed();
 		}else { // 좋아요를 누른적이 없으면
 			likeGray();
@@ -152,7 +152,7 @@
         $('#likeBtn').click(function(){
             $.ajax({
                 url:"reply/likeStatus",
-                data:{product_id:${pvo.product_id}},
+                data:{productId:${pvo.productId}},
                 success:function(result){
                     if (result>100){ // 좋아요 클릭
                         likeRed();
@@ -186,39 +186,39 @@
     <!--<h1>상세페이지</h1>-->
     <form method="post" action="/addCart" id="Cart">
         <div class="box-wrapper1"> 
-            <input type="hidden" value="${logId}" name="genie_id">
-            <input type="hidden" value="${pvo.product_id}" name="product_id">
-            <input type="hidden" name="product_name" value="${pvo.product_name}">
+            <input type="hidden" value="${logId}" name="genieId">
+            <input type="hidden" value="${pvo.productId}" name="productId">
+            <input type="hidden" name="productName" value="${pvo.productName}">
  
-            <div class="box1" style="background-image:url(${pvo.product_image1})"></div>
-            <div class="box2" onclick="detail1('${pvo.product_image1}')" style="background-image:url(${pvo.product_image1})"></div>
-            <div class="box3" onclick="detail1('${pvo.product_image2}')" style="background-image:url(${pvo.product_image2})"></div>
-            <div class="box4" onclick="detail1('${pvo.product_image3}')" style="background-image:url(${pvo.product_image3})"></div>
+            <div class="box1" style="background-image:url(${pvo.productImage1})"></div>
+            <div class="box2" onclick="detail1('${pvo.productImage1}')" style="background-image:url(${pvo.productImage1})"></div>
+            <div class="box3" onclick="detail1('${pvo.productImage2}')" style="background-image:url(${pvo.productImage2})"></div>
+            <div class="box4" onclick="detail1('${pvo.productImage3}')" style="background-image:url(${pvo.productImage3})"></div>
             <div class="box5">
-                ${pvo.product_name}
+                ${pvo.productName}
                 
                 <div class="w3-button w3-black w3-round" style="text-align:center;">
     				<i class="fa fa-heart likeChange" id="likeBtn"></i>
    				</div>
             </div>
             <div class="box6">
-                상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/>
-                <input type="hidden" value="${pvo.product_price}" name="cart_price">
+                상품가격 : <fmt:formatNumber value="${pvo.productPrice}" pattern="#,###원"/>
+                <input type="hidden" value="${pvo.productPrice}" name="cartPrice">
             </div>
             <div class="box7">
-                상품설명 : ${pvo.product_info}
+                상품설명 : ${pvo.productInfo}
             </div>
             <div class="box8">
-                상품카테고리 : ${pvo.product_category}
+                상품카테고리 : ${pvo.productCategory}
             </div>
             <div class="box9">
-                셀러명 : ${svo.ceo_name}
+                셀러명 : ${svo.ceoName}
             </div>
             <div class="box10">
-                회사이름 : ${svo.company_name}
+                회사이름 : ${svo.companyName}
             </div>
             <div class="box11">
-                상품 수량 : <input type="text" id="cart_qty" name="cart_qty" value="1" 
+                상품 수량 : <input type="text" id="cartQty" name="cartQty" value="1"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
             </div>
             <button class="box12" id="addCart">
@@ -262,7 +262,7 @@
             </div>
 
             <div class="box_6">
-                <input type="hidden" name="product_id" value="${pvo.product_id}"/>
+                <input type="hidden" name="productId" value="${pvo.productId}"/>
                 <textarea class="col-auto form-control" type="text" id="comment" name="comment" placeholder="다른 고객님에게 도움이 되도록 상품에 대한 솔직한 평가를 남겨주세요."></textarea>
             </div>
 
@@ -392,7 +392,7 @@
             <div class="box_026">ㆍ복제가 가능한 상품의 포장 등을 훼손한 경우</div>
             <div class="box_027"><h1>판매자 정보</h1></div>
             <div class="box_028">판매자</div>
-            <div class="box_029">${svo.company_name}</div>
+            <div class="box_029">${svo.companyName}</div>
         </div>
     </div>
 </section>

@@ -40,7 +40,7 @@ input {
 <section class="home">
     <div class="find_info">
 		<h3>가입하신 아이디를 입력해주세요</h3>
-		<input type="text" name="genie_id" class="genie_id">
+		<input type="text" name="genieId" class="genie_id">
 		<input type="button" class="find_btn" value="찾기"></button>
 	</div>
 <section>
@@ -50,7 +50,7 @@ input {
 	
 			function usernameCheck() {
 				let submit = false;
-				const genie_id = $("input[name=genie_id]").val().replaceAll(" ", "");
+				const genie_id = $("input[name=genieId]").val().replaceAll(" ", "");
 				if(!genie_id) {
 					return false;
 				}
@@ -65,7 +65,7 @@ input {
 				}
 			})
 			.done(function(result){
-				if(result == 1) {
+				if(result === 1) {
 					submit = true;
 				}
 			})

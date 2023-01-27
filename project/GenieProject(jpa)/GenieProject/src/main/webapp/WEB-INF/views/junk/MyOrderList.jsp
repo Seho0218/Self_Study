@@ -97,7 +97,7 @@
     <h1>주문목록</h1>
       <div class="order">
         <ul>
-          <li>주문번호 : ${pVo.product_id}</li>
+          <li>주문번호 : ${pvo.productId}</li>
           i cla<li>주문일 : ${vo.order_writedate}</li>
         </ul>
       </div>
@@ -110,9 +110,9 @@
       </div>
       <div class="order-detail">
         <ul>
-          <li>${pVo.product_name}</li>
+          <li>${pvo.productName}</li>
           <li>${pVo.product_quantity}</li>
-          <li>${pVo.product_price}</li>
+          <li>${pvo.productPrice}</li>
         </ul>
       </div>
     </div>

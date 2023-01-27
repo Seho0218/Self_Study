@@ -72,8 +72,6 @@ public class GenieController {
 	@PostMapping("UserWrite")
 	public ResponseEntity<String> UserWrite(UserDTO userDTO) {
 
-		System.out.println("userDTO = " + userDTO);
-
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
@@ -145,6 +143,7 @@ public class GenieController {
 	@PostMapping("loginOK")
 	public ModelAndView loginOk(UserDTO userDTO, SellerDTO sellerDTO, AdministerDTO administerDTO, HttpSession session) {
 
+		System.out.println("userDTO = " + userDTO);
 		mav = new ModelAndView();
 
 		UserDTO logDTO = userService.loginOk(userDTO);
@@ -155,6 +154,7 @@ public class GenieController {
 			
 			//비밀번호 검증
 			boolean pwdMatch = passwordEncoder.matches(userDTO.getGeniePwd(), logDTO.getGeniePwd());
+			
 				if (pwdMatch) {//로그인 성공
 				session.setAttribute("logId", logDTO.getGenieId());
 				session.setAttribute("logName", logDTO.getUserName());
@@ -302,6 +302,8 @@ public class GenieController {
 
 	@PostMapping("updateCart")
 	public ResponseEntity<String> updateCart(CartDTO cvo) {
+
+		System.out.println("cvo = " + cvo);
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
