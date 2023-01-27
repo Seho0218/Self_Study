@@ -48,7 +48,7 @@ public interface AdminService {
 	public int admemberPopEdit(UserDTO userDTO);
 	
 	// admember 내 유저정보 삭제
-	public int admemberDel(String genieId);
+	public int admemberDel(String genie_id);
 	
 	// adcompany 내 유저정보 리스트
 	public List<SellerDTO> sellerAllSelect(PagingDTO pagingDTO);
@@ -60,7 +60,7 @@ public interface AdminService {
 	public int adcompanyPopEdit(SellerDTO sellerDTO);
 	
 	// adcompany 내 유저정보 삭제
-	public int adcompanyDel(String genieId);
+	public int adcompanyDel(String genie_id);
 	
 	// adcompany 내 승인현황
 	public int sellerApproval(PagingDTO pagingDTO);

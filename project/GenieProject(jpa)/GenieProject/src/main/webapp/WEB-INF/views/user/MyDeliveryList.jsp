@@ -63,19 +63,19 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   float: left;
 
 }
-#userName{
+#user_name{
   width: 90%;
 }
-#userPhoneNum2 {
+#user_phone_num2 {
   width: 30%;
   margin-left: 20px;
   margin-left: 10px;
 }
-#userPhoneNum3 {
+#user_phone_num3 {
   width: 30%;
   margin-left: 10px;
 }
-#zipCode {
+#user_zipcode {
   width: 75%;
 }
 .gradient-45deg-indigo-purple {
@@ -280,34 +280,35 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
       <div class="inquiry">
       <form method="post" action="/user/addDelivery">
         <input type="hidden" value="${vo.genieId}" name="genieId"/>
-          <ul id="addrForm">
-            <li>이름: <input type="text" name="userName" id ="userName" value="김유저"/></li>
+        <ul id="addrForm">
+          <li>이름</li>
+          <li><input type="text" name="userName" id ="user_name"/></li>
 
-            <ul id="phoneForm">
-              <li>휴대폰 번호</li>
-              <select id = "userPhoneNum1" name = "userPhoneNum1" size = "1">
-                <option value="">선택하세요</option>
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="016">016</option>
-                <option value="017">017</option>
-                <option value="018">018</option>
-                <option value="019">019</option>
-              </select>
-              <input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" maxlength = "4" value="1234"/>
-              -<input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" maxlength = "4" value="1234"/>
+          <ul id="phoneForm">
+            <li>휴대폰 번호</li>
+            <select id = "userPhoneNum1" name = "user_phone_num1" size = "1">
+              <option value="">선택하세요</option>
+              <option value="010">010</option>
+              <option value="011">011</option>
+              <option value="016">016</option>
+              <option value="017">017</option>
+              <option value="018">018</option>
+              <option value="019">019</option>
+            </select>
+            <input type ="text" name = "userPhoneNum2" id ="user_phone_num2" maxlength = "4"/>-
+            <input type ="text" name = "userPhoneNum3" id ="user_phone_num3" maxlength = "4"/>
             </ul>
 
             <li>우편번호</li>
             <li>
-              <input type="text" name="zipCode" id ="zipCode" value="123456" readonly/>
+              <input type="text" name="zipCode" id ="user_zipcode" readonly/>
               <input type= "button" value = "우편번호찾기" id = "address_kakao"/>
             </li>
-            <li>주소</li>
-            <li><input type="text" name="addr" id ="addr" value="서울 관악구 난우길 2" readonly/></li>
-            <li>상세주소</li>
-            <li><input type="text" name="detailAddr" id ="detailAddr" value="12345" /></li>
-            <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
+          <li>주소</li>
+          <li><input type="text" name="addr" id ="user_addr" readonly/></li>
+          <li>상세주소</li>
+          <li><input type="text" name="detailAddr" id ="user_detailaddr" /></li>
+          <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
           </ul>
       </form>   
       </div>
@@ -397,7 +398,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 		    $.ajax({
 				url:"/user/delDelivery",
 				data:params,
-				success:function(result){
+				success:function(){
           alert("삭제되었습니다.");
 					location.reload();
 				},error:function(e){
@@ -406,5 +407,3 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 			});	
 	  });
 </script>
-
-                                      

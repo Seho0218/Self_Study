@@ -140,7 +140,7 @@ input[type=text] {
 <script>
 function admemberDel(){
 	if(confirm("${vo.genieId} 회원을 삭제하시겠습니까?")){
-		location.href="/admin/admemberDel?genieId=${vo.genieId}";
+		location.href="/admin/admemberDel?genie_id=${vo.genieId}";
 	}
 }
 </script>
@@ -153,19 +153,19 @@ function admemberDel(){
     <!-- 로그인폼-->
     <form method="post" action="/admin/admemberPopEdit" id="admemberPopFrm">
     <p>아이디</p>
-     	<input type="text" id="genieId" class="second" name="genieId" value=${vo.genieId}>
+     	<input type="text" id="genie_id" class="second" name="genieId" value=${vo.genieId}>
    	<p>이름</p>
-   		<input type="text" id="userName" class="second" name="userName" value=${vo.userName}>
+   		<input type="text" id="user_name" class="second" name="userName" value=${vo.userName}>
    	<p>연락처</p>
-   		<input type="text" id="user_tel" class="second" name="user_tel" value=${vo.user_tel}>
+   		<input type="text" id="user_tel" class="second" name="userTel" value=${vo.userTel}>
    	<p>이메일</p>
-   		<input type="text" id="user_email" class="second" name="user_email" value=${vo.user_email}>
+   		<input type="text" id="user_email" class="second" name="userEmail" value=${vo.userEmail}>
    	<p>성별</p>
-   		<input type="text" id="user_gender" class="second" name="user_gender" value=${vo.user_gender}>
+   		<input type="text" id="user_gender" class="second" name="userGender" value=${vo.userGender}>
    	<p>가입일</p>
-   		<input type="text" id="sign_in_date" class="second" name="sign_in_date" value=${vo.sign_in_date}>	
+   		<input type="text" id="sign_in_date" class="second" name="signInDate" value=${vo.signInDate}>
    	<p>결제방식</p>
-   		<input type="text" id="payment_method" class="second" name="payment_method" value=${vo.payment_method}>	
+   		<input type="text" id="payment_method" class="second" name="paymentMethod" value=${vo.paymentMethod}>
       <input type="submit" class="fourth" value="수정">
       <a href="javascript:admemberDel()"><input type="button" id="delete" value="삭제"></a>
       <a href="/admin/admember"><input type="button" id="fourth" value="뒤로가기"></a>

@@ -117,7 +117,7 @@ input[type=text]{
 		$("#productFrm").submit(function(){
 			//유효성검사
 			//상품명
-			if($("#productName").val()==""){
+			if($("#product_name").val()==""){
 				alert("상품명을 입력하세요.");
 				return false;
 			}
@@ -132,7 +132,7 @@ input[type=text]{
 				return false;
 			}
 			//상품수량
-			if($("#productQuantity").val()==""){
+			if($("#product_quantity").val()==""){
 				alert("상품수량을 입력하세요.");
 				return false;
 			}
@@ -231,13 +231,13 @@ input[type=text]{
 									<label for="product_price">판매금액</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="product_price" name="product_price" placeholder="판매금액을 입력하세요"/>
+									<input type="text" id="productPrice" name="productPrice" placeholder="판매금액을 입력하세요"/>
 								</div>
 							</div>
 								
 							<div class="row">
 								<div class="col-25">
-									<label for="productQuantity">상품수량</label>
+									<label for="product_quantity">상품수량</label>
 								</div>
 								<div class="col-75">
 									<input type="text" id="productQuantity" name="productQuantity" placeholder="상품수량을 입력하세요"/>
@@ -249,9 +249,9 @@ input[type=text]{
 									<label for="product_image">상품이미지</label>
 								</div>
 								<div class="col-75" id="proimage">
-									<input type="text" name="product_image1" id="product_image1" placeholder="이미지링크를 입력하세요"/>
-									<input type="text" name="product_image2" id="product_image2" placeholder="이미지링크를 입력하세요"/>
-									<input type="text" name="product_image3" id="product_image3" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="productImage1" id="productImage1" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="productImage2" id="productImage2" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="productImage3" id="productImage3" placeholder="이미지링크를 입력하세요"/>
 								</div>
 							</div>	
 							<div class="row">
@@ -285,7 +285,7 @@ input[type=text]{
 							<hr>
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag">태그</label>
+									<label for="product_tag">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">대상</label></li>
@@ -301,7 +301,7 @@ input[type=text]{
 						
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag" style="opacity:0%">태그</label>
+									<label for="product_tag" style="opacity:0%">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">특정기념일</label></li>
@@ -317,7 +317,7 @@ input[type=text]{
 			
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag" style="opacity:0%">태그</label>
+									<label for="product_tag" style="opacity:0%">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">나이</label></li>
@@ -332,7 +332,7 @@ input[type=text]{
 					
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag" style="opacity:0%">태그</label>
+									<label for="product_tag" style="opacity:0%">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">성별</label></li>

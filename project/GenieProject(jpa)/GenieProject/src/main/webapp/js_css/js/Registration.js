@@ -1,52 +1,52 @@
 $(function(){
 	$("#idCheck").click(function(){
-		window.open("/idCheck?genieId="+$("#genieId").val(),"idCheck","width=400,height=300");
+		window.open("/idCheck?genie_id="+$("#genie_id").val(),"idCheck","width=400,height=300");
 	});
 
-	$("#genieId").change(function(){
+	$("#genie_id").change(function(){
 		$("#idCheckState").val("N");
 	});
 	//유효성 검사
 	$("#logFrm").submit(function(){
 		
-		$("#genieId").change(function(){
+		$("#genie_id").change(function(){
 			$("#idCheckState").val("N");
 		});
 
 		// 아이디, 비밀번호
-		if($("#genieId").val().trim()===""){
+		if($("#genie_id").val().trim()==""){
 			alert("아이디를 입력하세요");
-			$("#genieId").focus();
+			$("#genie_id").focus();
 			return false;
 		}
 
 		//아이디 중복검사여부
-		if($("#idCheckState").val()!=='Y'){
+		if($("#idCheckState").val()!='Y'){
 			alert("아이디를 중복검사 하세요");
 			return false;
 		}
 
-		if($("#geniePwd").val()===""){
+		if($("#genie_pwd").val()==""){
 			alert("비밀번호를 입력하세요");
-			$("#geniePwd").focus();
+			$("#genie_pwd").focus();
 			return false;
 		}
 
-		if($("#geniePwd").val()!==$("#geniePwd2").val()){
+		if($("#genie_pwd").val()!=$("#genie_pwd2").val()){
 			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		}
 
 		// 전화번호
-		if($("#userPhoneNum1").val()==="" || $("#userPhoneNum2").val()==="" || $("#userPhoneNum3").val()===""){
+		if($("#user_phone_num1").val()=="" || $("#user_phone_num2").val()=="" || $("#user_phone_num3").val()==""){
 			alert("연락처를 입력하세요");
 			return false;
 		}
 
 		// 이메일
-		if($("#userEmail").val().trim()===""){
+		if($("#user_email").val().trim()==""){
 			alert("이메일을 입력하세요");
-			$("#userEmail").focus();
+			$("#user_email").focus();
 			return false;
 		}
 		

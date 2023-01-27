@@ -86,7 +86,7 @@
 <div class="responsive-wrapper">
   <div class="content">
     <div class="content-panel">
-      <h3>${vo.userName}님</h3>
+      <h3>${vo.user_name}님</h3>
         <ul class="fa-ul">
 					<li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
 					<li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
@@ -97,8 +97,8 @@
     <h1>주문목록</h1>
       <div class="order">
         <ul>
-          <li>주문번호 : ${pVo.product_id}</li>
-          i cla<li>주문일 : ${vo.order_writeDate}</li>
+          <li>주문번호 : ${pvo.productId}</li>
+          i cla<li>주문일 : ${vo.order_writedate}</li>
         </ul>
       </div>
       <div class="order-title">
@@ -110,9 +110,9 @@
       </div>
       <div class="order-detail">
         <ul>
-          <li>${pVo.productName}</li>
-          <li>${pVo.productQuantity}</li>
-          <li>${pVo.product_price}</li>
+          <li>${pvo.productName}</li>
+          <li>${pVo.product_quantity}</li>
+          <li>${pvo.productPrice}</li>
         </ul>
       </div>
     </div>

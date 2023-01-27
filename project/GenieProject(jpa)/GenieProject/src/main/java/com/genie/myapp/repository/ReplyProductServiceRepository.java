@@ -27,13 +27,13 @@ public class ReplyProductServiceRepository {
     private final JPAQueryFactory queryFactory;
 
 
-    public int replyProductEdit(ReplyProductDTO dto){
+    public int replyProductEdit(ReplyProductDTO replyProductDTO){
         return (int) queryFactory
                 .update(reply_product)
-                .set(reply_product.comment, dto.getComment())
-                .set(reply_product.rating, dto.getRating())
-                .where(reply_product.replyNo.eq(dto.getReplyNo()),
-                        account.genieId.eq(dto.getGenieId()))
+                .set(reply_product.comment, replyProductDTO.getComment())
+                .set(reply_product.rating, replyProductDTO.getRating())
+                .where(reply_product.replyNo.eq(replyProductDTO.getReplyNo()),
+                        account.genieId.eq(replyProductDTO.getGenieId()))
                 .execute();
     }
 

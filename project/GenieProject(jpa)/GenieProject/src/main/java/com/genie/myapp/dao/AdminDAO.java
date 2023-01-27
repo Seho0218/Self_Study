@@ -85,5 +85,5 @@ public interface AdminDAO {
 	public int mainTotalRecord(AdminDTO DTO);
 
 	//제품 관리
-    public Object getadminProduct(String product_id);
+    public Object getadminProduct(String productId);
 }

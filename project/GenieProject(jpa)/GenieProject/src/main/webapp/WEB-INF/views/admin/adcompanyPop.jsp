@@ -140,7 +140,7 @@ input[type=text] {
 <script>
 function admemberDel(){
 	if(confirm("${vo.genieId} 업체를 삭제하시겠습니까?")){
-		location.href="/admin/adcompanyDel?genieId=${vo.genieId}";
+		location.href="/admin/adcompanyDel?genie_id=${vo.genieId}";
 	}
 }
 </script>
@@ -153,27 +153,27 @@ function admemberDel(){
     <!-- 로그인폼-->
     <form method="post" action="/admin/adcompanyPopEdit" id="adcompanyPopFrm">
     <p>아이디</p>
-     	<input type="text" id="genieId" class="second" name="genieId" value=${vo.genieId}>
+     	<input type="text" id="genie_id" class="second" name="genieId" value=${vo.genieId}>
     <p>연락처</p>
-     	<input type="text" id="sellerTel" class="second" name="sellerTel" value=${vo.sellerTel}>
+     	<input type="text" id="seller_tel" class="second" name="sellerTel" value=${vo.sellerTel}>
     <p>이메일</p>
-     	<input type="text" id="sellerEmail" class="second" name="sellerEmail" value=${vo.sellerEmail}>
+     	<input type="text" id="seller_email" class="second" name="sellerEmail" value=${vo.sellerEmail}>
     <p>상점번호</p>
-     	<input type="text" id="sellerRegNo" class="second" name="sellerRegNo" value=${vo.sellerRegNo}>
+     	<input type="text" id="seller_reg_no" class="second" name="sellerRegNo" value=${vo.sellerRegNo}>
     <p>상점명</p>
-     	<input type="text" id="companyName" class="second" name="companyName" value=${vo.companyName}>
+     	<input type="text" id="company_name" class="second" name="companyName" value=${vo.companyName}>
     <p>대표자명</p>
-     	<input type="text" id="ceoName" class="second" name="ceoName" value=${vo.ceoName}>
+     	<input type="text" id="ceo_name" class="second" name="ceoName" value=${vo.ceoName}>
     <p>주소</p>
-     	<input type="text" id="sellerAddress" class="second" name="sellerAddress" value="${vo.sellerAddress}">
+     	<input type="text" id="seller_address" class="second" name="sellerAddress" value="${vo.sellerAddress}">
     <p>상점사이트</p>
-     	<input type="text" id="sellerWebsite" class="second" name="sellerWebsite" value=${vo.sellerWebsite}>
+     	<input type="text" id="seller_website" class="second" name="sellerWebsite" value=${vo.sellerWebsite}>
     <p>가입신청일</p>
-     	<input type="text" id="writeDate" class="second" name="writeDate" value=${vo.writeDate}>
+     	<input type="text" id="writedate" class="second" name="writeDate" value=${vo.writeDate}>
     <p>상점상태</p>
-     	<input type="text" id="sellerStatus" class="second" name="sellerStatus" value=${vo.sellerStatus}>
+     	<input type="text" id="seller_status" class="second" name="sellerStatus" value=${vo.sellerStatus}>
     <p>상점승인일</p>
-     	<input type="text" id="approvalDate" class="second" name="approvalDate" value=${vo.approvalDate}>
+     	<input type="text" id="approval_date" class="second" name="approvalDate" value=${vo.approvalDate}>
 	
       <input type="submit" class="fourth" value="수정">
       <a href="javascript:adcompanyDel()"><input type="button" id="delete" value="삭제"></a>

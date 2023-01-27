@@ -29,7 +29,7 @@ public class MbtiController {
 	
 	//mbti 상품 리스트
 	@GetMapping("mbti/{mbti}")
-	public ModelAndView mbtiList(@PathVariable("mb-ti") String mbti) {
+	public ModelAndView mbtiList(@PathVariable("mbti") String mbti) {
 		mav = new ModelAndView();
 		//System.out.println(mbti);
 		
@@ -68,32 +68,34 @@ public class MbtiController {
 	}
 	
 	//상품 정렬하기 (카테고리 list)
-	@GetMapping("product/{productCategory}/{sortType}")
-	public ModelAndView productSort(@PathVariable("productCategory") String productCategory, @PathVariable("sortType") String sortType) {
+	@GetMapping("product/{product_category}/{sortType}")
+	public ModelAndView productSort(@PathVariable("product_category") String product_category, @PathVariable("sortType") String sortType) {
+
 		mav = new ModelAndView();
-		System.out.println(sortType);
-		
-		ProductDTO dto = new ProductDTO();
-		dto.setProductCategory(productCategory);
+
+		System.out.println("productCategory = " + product_category);
+
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setProductCategory(product_category);
 
 		switch (sortType) {
 			case "pricelist": //가격낮은순
 				//List<ProductVO> list= service.productPriceAsc(PVO);
 				//System.out.println(list.size());
-				mav.addObject("plist", service.productPriceAsc(dto));
+				mav.addObject("plist", service.productPriceAsc(productDTO));
 				break;
 			case "pricelistdesc": //가격높은순
-				mav.addObject("plist", service.productPriceDesc(dto));
+				mav.addObject("plist", service.productPriceDesc(productDTO));
 				break;
 			case "recentlist": //최신순
-				mav.addObject("plist", service.productRecent(dto));
+				mav.addObject("plist", service.productRecent(productDTO));
 				break;
 			default: //좋아요순
-				mav.addObject("plist", service.productLike(dto));
+				mav.addObject("plist", service.productLike(productDTO));
 				break;
 		}
 		
-		mav.addObject("pvo", dto);
+		mav.addObject("pvo", productDTO);
 		mav.setViewName("/product");
 
 		return mav;
@@ -102,9 +104,8 @@ public class MbtiController {
 	//상품 정렬 (전체 리스트)
 	@GetMapping("product/{sortType}")
 	public ModelAndView totalProductSort(@PathVariable("sortType") String sortType) {
+
 		mav = new ModelAndView();
-		System.out.println(sortType);
-		
 		ProductDTO PVO = new ProductDTO();
 
 		switch (sortType) {
@@ -131,13 +132,14 @@ public class MbtiController {
 	}
 	
 	//상품 정렬 (태그 리스트)
-	@GetMapping("productTag/{productTag}/{sortType}")
-	public ModelAndView productTagSort(@PathVariable("productTag") String productTag, @PathVariable("sortType") String sortType) {
+	@GetMapping("product_tag/{product_tag}/{sortType}")
+	public ModelAndView productTagSort(@PathVariable("product_tag") String product_tag, @PathVariable("sortType") String sortType) {
+
 		mav = new ModelAndView();
-		System.out.println(sortType);
-		
+		System.out.println("productTag = " + product_tag);
+
 		ProductDTO dto = new ProductDTO();
-		dto.setProductTag(productTag);
+		dto.setProductTag(product_tag);
 
 		switch (sortType) {
 			case "pricelist": //가격낮은순

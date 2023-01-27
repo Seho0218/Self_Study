@@ -303,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						            <td>${vo.user_tel}</td>
                         <td>${vo.user_email}</td>
                         <td>${vo.sign_in_date}</td>
-                        <td><a href="/admin/admemberPop?genieId=${vo.genieId}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/admemberPop?genie_id=${vo.genieId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 
                     </tbody>

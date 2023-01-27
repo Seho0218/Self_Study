@@ -235,9 +235,9 @@ public class AdminController {
 
 		// 선택된 유저의 정보 수정 폼
 		@GetMapping("admemberPop")
-		public ModelAndView admemberPop(@RequestParam("genieId") String genieId, PagingDTO pDTO) {
+		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingDTO pDTO) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadmember(genieId));
+			mav.addObject("vo", service.getadmember(genie_id));
 			mav.addObject("pDTO", pDTO);
 			mav.setViewName("admin/admemberPop");
 			return mav;
@@ -253,7 +253,7 @@ public class AdminController {
 			try {
 				service.admemberPopEdit(userDTO);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/admemberPop?genieId="+userDTO.getGenieId()+"';";
+				msg += "location.href='/admin/admemberPop?genie_id="+userDTO.getGenieId()+"';";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -267,8 +267,8 @@ public class AdminController {
 
 		// 유저 정보 삭제
 		@GetMapping("admemberDel")
-		public ModelAndView admemberDel(String genieId) {
-			int cnt = service.admemberDel(genieId);
+		public ModelAndView admemberDel(String genie_id) {
+			int cnt = service.admemberDel(genie_id);
 			mav = new ModelAndView();
 			if(cnt>0) {
 				mav.setViewName("redirect:admember");
@@ -333,9 +333,9 @@ public class AdminController {
 
 		// 선택된 셀러의 정보 수정 폼
 		@GetMapping("adcompanyPop")
-		public ModelAndView adcompanyPop(@RequestParam("genieId") String genieId, PagingDTO pDTO) {
+		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingDTO pDTO) {
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.getadcompany(genieId));
+			mav.addObject("vo", service.getadcompany(genie_id));
 			mav.addObject("pDTO", pDTO);
 			mav.setViewName("admin/adcompanyPop");
 			return mav;
@@ -351,7 +351,7 @@ public class AdminController {
 			try {
 				service.adcompanyPopEdit(sellerDTO);
 				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
-				msg += "location.href='/admin/adcompanyPop?genieId="+sellerDTO.getGenieId()+"';";
+				msg += "location.href='/admin/adcompanyPop?genie_id="+sellerDTO.getGenieId()+"';";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -365,8 +365,8 @@ public class AdminController {
 
 		// 셀러 정보 삭제
 		@GetMapping("adcompanyDel")
-		public ModelAndView adcompanyDel(String genieId) {
-			int cnt = service.adcompanyDel(genieId);
+		public ModelAndView adcompanyDel(String genie_id) {
+			int cnt = service.adcompanyDel(genie_id);
 			mav = new ModelAndView();
 			if(cnt>0) {
 				mav.setViewName("redirect:adcompany");

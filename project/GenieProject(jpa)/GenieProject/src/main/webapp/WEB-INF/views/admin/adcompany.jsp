@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script>
 	$(function(){
 		$("#searchFrm").submit(function(){
-			if($("#searchWord").val()==""){
+			if($("#searchWord").val()===""){
 				alert("검색어를 입력하세요.");
 				return false;
 			}
@@ -184,12 +184,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div>
 					<form method="get" action="/admin/adcompany" id="searchFrm">
 						<select name="searchKey">
-							<option value="genieId">아이디</option>
-							<option value="companyName">상점명</option>
-							<option value="ceoName">대표자명</option>
-							<option value="sellerTel">연락처</option>
-							<option value="sellerEmail">이메일</option>
-							<option value="sellerStatus">승인현황</option>
+							<option value="genie_id">아이디</option>
+							<option value="company_name">상점명</option>
+							<option value="ceo_name">대표자명</option>
+							<option value="seller_tel">연락처</option>
+							<option value="seller_email">이메일</option>
+							<option value="seller_status">승인현황</option>
 						</select>
 						
 						<input type="text" name="searchWord" id="searchWord"/>
@@ -229,7 +229,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         	<c:if test="${vo.sellerStatus=='N'}">
                         		<td style="background-color:red;">${vo.sellerStatus}</td>
                         	</c:if>
-                        <td><a href="/admin/adcompanyPop?genieId=${vo.genieId}"><input type="button" value="관리"></a></td>
+                        <td><a href="/admin/adcompanyPop?genie_id=${vo.genieId}"><input type="button" value="관리"></a></td>
                       </tr>
                     </c:forEach> 
                     </tbody>

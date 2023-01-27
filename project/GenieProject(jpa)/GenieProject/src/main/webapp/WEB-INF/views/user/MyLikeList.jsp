@@ -349,13 +349,13 @@ thead{
                     <c:forEach var="likelist" items="${list}">
                        <tbody class="like-list">
                           <tr>
-                             <!--  <td><input type="checkbox" name="noList" value="${likelist.product_id}" checked="checked"></td>-->
-                             <td><img src='${likelist.product_image1}'/></td>
-                             <td id="pro-name"><a href="/product_detail?product_id=${likelist.product_id}">${likelist.productName}</a>
-                                <div><span id="pro-price"><fmt:formatNumber value="${likelist.product_price}" pattern="#,###원" /></span></div>
+                             <!--  <td><input type="checkbox" name="noList" value="${likelist.productId}" checked="checked"></td>-->
+                             <td><img src='${likelist.productImage1}'/></td>
+                             <td id="pro-name"><a href="/product_detail?product_id=${likelist.productId}">${likelist.productName}</a>
+                                <div><span id="pro-price"><fmt:formatNumber value="${likelist.productPrice}" pattern="#,###원" /></span></div>
                              </td>
                              <td>
-                             	<div class="btnDel"><button onclick="location.href='/reply/likeDel/${likelist.product_id}'">삭제</button></div>
+                             	<div class="btnDel"><button onclick="location.href='/reply/likeDel/${likelist.productId}'">삭제</button></div>
                              </td>
                           </tr>
                        </tbody>

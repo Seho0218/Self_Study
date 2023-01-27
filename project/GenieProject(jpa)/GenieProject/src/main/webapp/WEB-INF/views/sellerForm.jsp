@@ -83,7 +83,7 @@
 		width:29%;
 		
 	}
-	#genieId{
+	#genie_id{
 		width:55%;
 	}
 	#sel_zipcode{
@@ -133,16 +133,16 @@
 		
 		//아이디 중복검사
 		$("#idCheck").click(function(){
-			window.open("/idCheck?genieId="+$("#genieId").val(),"sellerIdCheck","width=400, height=200");
+			window.open("/idCheck?genie_id="+$("#genie_id").val(),"sellerIdCheck","width=400, height=200");
 		});
-		$("#genieId").change(function(){
+		$("#genie_id").change(function(){
 			$("#idCheckState").val("N");
 		});
 		
 		//유효성 검사
 		$("#sellerFrm").submit(function(){
 			//아이디
-			if($("#genieId").val()==""){
+			if($("#genie_id").val()==""){
 				alert("아이디를 입력하세요.");
 				return false;
 			}
@@ -152,22 +152,22 @@
 				return false;
 			}
 			//비밀번호
-			if($("#geniePwd").val()==""){
+			if($("#genie_pwd").val()==""){
 				alert("비밀번호를 입력하세요.");
 				return false;
 			}
 			//비밀번호 일치
-			if($("#geniePwd").val() != $("#geniePwd2").val()){
+			if($("#genie_pwd").val() != $("#genie_pwd2").val()){
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
 			}
 			//회사명
-			if($("#companyName").val()==""){
+			if($("#company_name").val()==""){
 				alert("회사명을 입력하세요.");
 				return false;
 			}
 			//대표자명
-			if($("#ceoName").val()==""){
+			if($("#ceo_name").val()==""){
 				alert("대표자명을 입력하세요.");
 				return false;
 			}
@@ -177,17 +177,17 @@
 				return false;
 			}
 			//이메일
-			if($("#sellerEmail").val()==""){
+			if($("#seller_email").val()==""){
 				alert("이메일을 입력하세요.");
 				return false;
 			}
 			//홈페이지
-			if($("#sellerWebsite").val()==""){
+			if($("#seller_website").val()==""){
 				alert("홈페이지를 입력하세요.");
 				return false;
 			}
 			//사업자 등록증
-			if($("#sellerRegNo").val()==""){
+			if($("#seller_reg_no").val()==""){
 				alert("사업자 등록증을 첨부하세요.");
 				return false;
 			}
@@ -215,51 +215,51 @@
 			<ul class="selForm">
 				<div id="idForm">
 					<p>아이디</p>
-					<input type="text" id="genieId" name="genieId" placeholder="아이디를 입력하세요">
+					<input type="text" id="genie_id" name="genieId" value = "seller" placeholder="아이디를 입력하세요">
 					<input type="button" value="아이디 중복검사" id="idCheck"/>
 					<input type="hidden" id="idCheckState" value="N"/>
 				</div>
 				<div id="pwdForm">
 					<p>비밀번호</p>
-					<input type="password" id="geniePwd" name="geniePwd" placeholder="비밀번호를 입력하세요">
+					<input type="password" id="genie_pwd" name="geniePwd" value = "123" placeholder="비밀번호를 입력하세요">
 					<p>비밀번호 확인</p>
-					<input type="password" id="geniePwd2" name="geniePwd2" placeholder="비밀번호를 입력하세요">
+					<input type="password" id="genie_pwd2" name="geniePwd2" value = "123"placeholder="비밀번호를 입력하세요">
 				</div>
 				<div>
 					<p>회사명</p>
-					<input type="text" id="companyName" name="companyName" value="123" placeholder="회사명을 입력하세요">
+					<input type="text" id="company_name" name="companyName" value = "회사명" placeholder="회사명을 입력하세요">
 				</div>
 				<div>
 					<p>대표자명</p>
-					<input type="text" id="ceoName" name="ceoName" value = "123" placeholder="대표자명을 입력하세요">
+					<input type="text" id="ceo_name" name="ceoName" value = "대표자명" placeholder="대표자명을 입력하세요">
 				</div>
 				<div id="telForm">
 					<p>전화번호</p>
 					<input type ="text" name = "tel1" id ="tel1" value = "123" maxlength = "3"/>
 					<input type ="text" name = "tel2" id ="tel2" value = "1234" maxlength = "4"/>
-					<input type ="text" name = "tel3" id ="tel3" value = "1234"maxlength = "4"/>
+					<input type ="text" name = "tel3" id ="tel3" value = "1234" maxlength = "4"/>
 				</div>
 				<div>
 					<p>이메일</p>
-					<input type="text" id="sellerEmail" name="sellerEmail" value="ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
+					<input type="text" id="seller_email" name="sellerEmail" value = "ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
 				</div>
 				<div>
 					<p>홈페이지</p>
-					<input type="text" id="sellerWebsite" name="sellerWebsite" value = "naver.com" placeholder="홈페이지를 입력하세요">
+					<input type="text" id="seller_website" name="sellerWebsite" value = "naver.com" placeholder="홈페이지를 입력하세요">
 				</div>
 				<div id="regForm">
 					<p>사업자 등록증</p>
-					<input type="file" name="sellerRegNo" id="sellerRegNo" value = "1234"/>
+					<input type="file" id="seller_reg_no" name="sellerRegNo" value = "123"/>
 				</div>
 				
 				<div id="addrForm">
 					<p>우편번호</p>
-					<input type="text" id="sel_zipcode" name="sel_zipcode"/>
+					<input type="text" id="sel_zipcode" name="sel_zipcode" value = "12344"/>
 					<input type="button" value="우편번호찾기" id="zipSearch"/>
 					<p>주소</p>
-					<input type="text" id="sel_addr" name="sel_addr" placeholder="">
+					<input type="text" id="sel_addr" name="selAddr" value = "123" placeholder="">
 					<p>상세주소</p>
-					<input type="text" id="sel_detailaddr" name="sel_detailaddr"/>
+					<input type="text" id="sel_detailaddr"  value = "123" name="selDetailAddr"/>
 				</div>
 				<li><input type="submit" id="formSubmit" value="회원가입하기"/></li>
 			</ul>

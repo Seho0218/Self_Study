@@ -276,12 +276,12 @@ nav .sidenav-trigger i {
                     <c:forEach var="orderlist" items="${list}">
                        <tbody>
                           <tr>
-                             <td>${orderlist.order_num}</td>
+                             <td>${orderlist.orderNum}</td>
                              <td>${orderlist.productName}</td>
-                             <td>${orderlist.order_qty}</td>
-                             <td><fmt:formatNumber value="${orderlist.order_price}" pattern="#,###원" /></td>
-                             <td>${orderlist.recipient_delivery_status}</td>
-                             <td>${orderlist.order_writeDate}</td>
+                             <td>${orderlist.orderQty}</td>
+                             <td><fmt:formatNumber value="${orderlist.orderPrice}" pattern="#,###원" /></td>
+                             <td>${orderlist.recipientDeliveryStatus}</td>
+                             <td>${orderlist.orderWriteDate}</td>
                           </tr>
                        </tbody>
                     </c:forEach>

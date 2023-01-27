@@ -49,7 +49,7 @@
             recipient_address, 
             recipient_request,
             payment_method,
-            order_writedate,
+            order_write_date,
 
             order_price,
             order_qty) 
@@ -78,7 +78,7 @@
         delete from cart 
             <if test="cartList!=null">
                 <where>
-                    <foreach collection="cartList" index="index" item ="item" open="cartNum in (" separator ="," close=")">
+                    <foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
                         #{item}  			
                     </foreach>	 
                 </where>
@@ -108,8 +108,8 @@
 		from myorder m 
         join product c 
         on m.product_id=c.product_id 
-        where order_writedate = 
-        (select max(order_writedate) from myorder where genie_id=#{genieId})
+        where order_write_date =
+        (select max(order_write_date) from myorder where genie_id=#{genieId})
 
     </select>
 

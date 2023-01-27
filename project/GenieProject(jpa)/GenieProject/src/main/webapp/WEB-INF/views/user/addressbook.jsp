@@ -149,13 +149,13 @@ nav .sidenav-trigger i {
             <input type="hidden" value="${dvo.addressNum}" readonly/>
             <input type="hidden" id="addressStatus" value="Y" readonly/>
             <li>수령자 이름</li>
-            <input type="text" id="receiver_name" value="${dvo.userName}" readonly/>
+            <input type="text" id="userName" value="${dvo.userName}" readonly/>
             <li>전화번호</li>
-            <input type="text" id="receiver_tel" value="${dvo.user_tel}" readonly/>
+            <input type="text" id="userTel" value="${dvo.userTel}" readonly/>
             <li>우편번호</li>
-            <input type="text" id="receiver_zipcode" value="${dvo.zipCode}" readonly/>
+            <input type="text" id="zipCode" value="${dvo.zipCode}" readonly/>
             <li>주소</li>
-            <input type="text" id="receiver_addr" value="${dvo.addr}, ${dvo.detailAddr}" readonly/><br>
+            <input type="text" id="addr" value="${dvo.addr}, ${dvo.detailAddr}" readonly/><br>
             <div><input type="hidden" value='${dvo.addressNum}' /></div>
             <div><input type="button" value='선택' id="select" class="Btn"/>
             <input type="button" value='삭제' addressNum="${dvo.addressNum}" class="Btn" /></div>
@@ -197,7 +197,7 @@ nav .sidenav-trigger i {
 <script>
 	$(document).on('click','#delivery_1 input[value=삭제]',function(){
 
-		var params = {addressNum: $(this).attr('addressNum')};
+		var params = {address_num: $(this).attr('address_num')};
 		    $.ajax({
 				url:"/user/delDelivery",
 				data:params,
@@ -212,10 +212,10 @@ nav .sidenav-trigger i {
 </script>
 <script>
 	document.getElementById("select").addEventListener('click',function(){
-    opener.document.getElementById("receiver_name").value=document.getElementById("receiver_name").value;
-    opener.document.getElementById("receiver_tel").value=document.getElementById("receiver_tel").value;
-    opener.document.getElementById("receiver_zipcode").value=document.getElementById("receiver_zipcode").value;
-    opener.document.getElementById("receiver_addr").value=document.getElementById("receiver_addr").value;
+    opener.document.getElementById("userName").value=document.getElementById("userName").value;
+    opener.document.getElementById("userTel").value=document.getElementById("userTel").value;
+    opener.document.getElementById("zipCode").value=document.getElementById("zipCode").value;
+    opener.document.getElementById("addr").value=document.getElementById("addr").value;
     opener.document.getElementById("addressStatus").value=document.getElementById("addressStatus").value;
     window.close();
   })

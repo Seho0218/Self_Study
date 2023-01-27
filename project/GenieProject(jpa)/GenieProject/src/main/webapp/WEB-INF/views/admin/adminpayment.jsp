@@ -30,7 +30,7 @@
 	margin: .5em;
 }
 /* 아이디를 입력하세요 */
-#genieId {
+#genie_id {
 	width: 63%;
 }
 /* 아이디중복검사 */
@@ -57,7 +57,7 @@ input[type=text], input[type=password], input[type=email] {
 	border-radius: 10px;
 }
 /* 폰입력 설정 */
-#userPhoneNum1 {
+#user_phone_num1 {
 	width: 25%;
 	height: 5vh;
 	margin-left: 1em;
@@ -67,11 +67,11 @@ input[type=text], input[type=password], input[type=email] {
 	border: none;
 	border-radius: 10px;
 }
-#userPhoneNum2, #userPhoneNum3 {
+#user_phone_num2, #user_phone_num3 {
 	width:30%;
 }
 /* 우편번호 설정*/
-#zipCode {
+#user_zipcode {
 	width: 63%;
 }
 
@@ -110,10 +110,10 @@ label {
 <script>
 $(function(){
 	$("#idCheck").click(function(){
-		window.open("/user/idCheck?genieId="+$("#genieId").val(),"idCheck","width=400,height=300");
+		window.open("/user/idCheck?genie_id="+$("#genie_id").val(),"idCheck","width=400,height=300");
 	});
 
-	$("#genieId").change(function(){
+	$("#genie_id").change(function(){
 		$("#idCheckState").val("N");
 	});
 });
@@ -125,27 +125,27 @@ $(function(){
 			<input type="hidden" value="1" name="member_type"/>
 			<ul id="idForm">
 				<li>카트넘버</li>
-				<input type="text" name="cart_num" id="cart_num" value="2" placeholder="카트넘버">
+				<input type="text" name="cartNum" id="cart_num" value="2" placeholder="카트넘버">
 			</ul>
 			<ul id="idForm">
 				<li>지니아이디</li>
-				<input type="text" name="genieId" id="genieId" value="1234" placeholder="지니아이디">
+				<input type="text" name="genieId" id="genie_id" value="1234" placeholder="지니아이디">
 			</ul>
 			<ul id="idForm">
 				<li>제품아이디</li>
-				<input type="text" name="product_id" id="product_id" value="1234" placeholder="제품아이디">
+				<input type="text" name="productId" id="product_id" value="1234" placeholder="제품아이디">
 			</ul>
 			<ul id="idForm">
 				<li>가격</li>
-				<input type="text" name="cart_price" id="cart_price" value="10000" placeholder="가격">
+				<input type="text" name="cartPrice" id="cart_price" value="10000" placeholder="가격">
 			</ul>
 			<ul id="idForm">
 				<li>카트수량</li>
-				<input type="text" name="cart_qty" id="cart_qty" value="1" placeholder="수량">
+				<input type="text" name="cartQty" id="cart_qty" value="1" placeholder="수량">
 			</ul>
 			<ul id="idForm">
 				<li>날짜</li>
-				<input type="text" name="cart_writeDate" id="cart_writeDate" value="2022.09.30" placeholder="날짜">
+				<input type="text" name="cartWriteDate" id="cartWriteDate" value="2022.09.30" placeholder="날짜">
 			</ul>
 				<input type = "submit" id="formSubmit" value = "결제하기"/>
 		</form>

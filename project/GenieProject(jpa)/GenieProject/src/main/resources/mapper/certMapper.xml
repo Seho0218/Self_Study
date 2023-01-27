@@ -19,7 +19,7 @@
     	where exists(
 			select 1
 			from user u
-			where u.genie_id=#{genieId} and u.user_email=#{userEmail}
+			where u.genie_id=#{genie_id} and u.user_email=#{userEmail}
     	)
 
 	</select>

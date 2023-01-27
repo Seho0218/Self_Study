@@ -49,7 +49,7 @@ button{
 	$(document).ready(function() {
 		$(".find_btn").click(function() {
 			const user_email = $("#user_email").val();
-			if($("#user_email").val()==""){
+			if($("#user_email").val()===""){
           		alert("이메일을 입력하세요..");
           		return false;
         	}
@@ -57,7 +57,7 @@ button{
 			$.ajax({
 				url: "/cert/sendUserId",
 				type: "POST",
-				data: { user_email : user_email }
+				data: { userEmail : user_email }
 			}).done(function() {
 			const html =`<div class="send_email">
 							<div class="alert">
@@ -66,13 +66,8 @@ button{
 								<div>올바르지 않은 이메일 주소를 입력하신 경우에는 메일을 받을 수 없습니다.</div>	
 							</div>		
 						</div>`;
- 
 
-
-
-						
 					$(".home").html(html);
- 
 			});
 		});
 	});
@@ -81,7 +76,7 @@ button{
 <section class="home">
     <div class="find_info">
 		<h3>가입하신 이메일을 입력해주세요</h3>
-		<input type="email" name="user_email" id="user_email">
+			<input type="email" name="userEmail" id="user_email">
 		<button class="find_btn">찾기</button>
 	</div>
 <section>

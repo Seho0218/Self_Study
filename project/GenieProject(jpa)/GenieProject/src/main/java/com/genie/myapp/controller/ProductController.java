@@ -61,15 +61,16 @@ public class ProductController {
 
 	// 제폼 상세페이지
 	@GetMapping("product_detail")
-	public ModelAndView product_detail(@RequestParam("productId") int productId, HttpSession session) {
+	public ModelAndView productDetail(@RequestParam("product_id") int productId, HttpSession session) {
+
 		mav = new ModelAndView();
-		String genieId = (String) session.getAttribute("logId");
+		String genie_id = (String) session.getAttribute("logId");
 
 		productService.hitCount(productId);
 		mav.addObject("pvo", productService.getProduct(productId));
 		mav.addObject("svo", productService.getSeller(productId));
 		mav.addObject("lvo", productService.likeStatus(productId));
-		mav.addObject("cvo", productService.likeCheck(productId, genieId));
+		mav.addObject("cvo", productService.likeCheck(productId, genie_id));
 		mav.setViewName("/product_detail");
 
 		return mav;

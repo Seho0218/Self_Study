@@ -130,11 +130,11 @@
               console.log(data);
               $.each(data, function(i, value){
                 deliveryStatus += '<tr>'
-                  +'<td>' + value.order_num + '</td>'
-                  +'<td>' + value.order_writeDate + '</td>'
+                  +'<td>' + value.orderNum + '</td>'
+                  +'<td>' + value.orderWritedate + '</td>'
                   +'<td>' + value.productName + '</td>'
-                  +'<td>' + value.order_qty + '</td>'
-                  +'<td>'+value.order_price+'</td>'
+                  +'<td>' + value.orderQty + '</td>'
+                  +'<td>'+value.orderPrice+'</td>'
                   +'<td>' + value.genieId +'</td>'
                   +'<td>' 
                       +'<select class="deliveryinfo" name="s_delivery_status" id="s_delivery_status'+i+'">'
@@ -254,23 +254,23 @@
                         <c:forEach var="vo" items="${list}" varStatus="i"> 
                           <tr>
                             <td>${vo.order_num}</td>
-                            <td>${vo.order_writeDate}</td>
-                            <td>${vo.productName}</td>
+                            <td>${vo.order_writedate}</td>
+                            <td>${vo.product_name}</td>
                             <td>${vo.order_qty}</td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.order_price}" /> 원</td>
-                            <td>${vo.genieId}</td>
+                            <td>${vo.genie_id}</td>
                             <td >
                                 <select class="deliveryinfo" name="s_delivery_status${i.index }" id="s_delivery_status${i.index }">
-                                  <option value="delivery_prepared" <c:if test="${vo.recipient_delivery_status=='delivery_prepared' }">selected</c:if>>배송준비중</option>
-                                  <option value="delivering" <c:if test="${vo.recipient_delivery_status=='delivering' }">selected</c:if>>배송중</option>
-                                  <option value="delivered" <c:if test="${vo.recipient_delivery_status=='delivered' }">selected</c:if>> 배송완료</option>
-                                  <option value="cancelled" <c:if test="${vo.recipient_delivery_status=='cancelled' }">selected</c:if>>주문취소</option>
-                                  <option value="returned" <c:if test="${vo.recipient_delivery_status=='returned' }">selected</c:if>>반품</option>
+                                  <option value="delivery_prepared" <c:if test="${vo.recipientDeliveryStatus=='delivery_prepared' }">selected</c:if>>배송준비중</option>
+                                  <option value="delivering" <c:if test="${vo.recipientDeliveryStatus=='delivering' }">selected</c:if>>배송중</option>
+                                  <option value="delivered" <c:if test="${vo.recipientDeliveryStatus=='delivered' }">selected</c:if>> 배송완료</option>
+                                  <option value="cancelled" <c:if test="${vo.recipientDeliveryStatus=='cancelled' }">selected</c:if>>주문취소</option>
+                                  <option value="returned" <c:if test="${vo.recipientDeliveryStatus=='returned' }">selected</c:if>>반품</option>
                                 </select>
                             </td>
                             <td width=10%>
                                 <!-- 수정을 클릭하면 선택한 셀렉트 박스의 id를 함수로 전달 -->
-                                <input type="button" value="수정" onClick="fn_modify_order_state('${vo.order_num}','s_delivery_status${i.index}')"/>
+                                <input type="button" value="수정" onClick="fn_modify_order_state('${vo.orderNum}','s_delivery_status${i.index}')"/>
                             </td>
                           </tr>
                         </c:forEach>

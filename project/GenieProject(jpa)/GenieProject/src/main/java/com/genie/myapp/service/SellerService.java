@@ -13,7 +13,7 @@ import com.genie.myapp.dto.SellerDTO;
 public interface SellerService {
 
 	//아이디 중복검사
-	public int idCheck(String genieId);
+	public int idCheck(String genie_id);
 
 	//seller 회원가입
 	public void sellerWrite(SellerDTO seller);
@@ -30,7 +30,7 @@ public interface SellerService {
 	//상품관리 - 상품목록
 	public List<SellerProductDTO> productList(PagingDTO pagingDTO);
 	//회원 선택: 로그인 한 회원
-	public SellerDTO getSeller(String genieId);
+	public SellerDTO getSeller(String genie_id);
 	//상품선택 : 수정, 상품내용보기
 	public SellerProductDTO getProduct(int pid);
 	//상품삭제
@@ -38,7 +38,7 @@ public interface SellerService {
 	//상품수정
 	public int productEditOk(SellerProductDTO sellerProductDTO);
 	//문의목록
-	public List<InquiryDTO> inquiryList(InquiryDTO inquiryDTO, String genieId);
+	public List<InquiryDTO> inquiryList(InquiryDTO inquiryDTO, String genie_id);
 	// 매출관리 (결제금액)
 	public int orderSum(String sellerId);
 	// 일별 매출관리

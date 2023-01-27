@@ -78,7 +78,7 @@
                           <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
                           <c:forEach var="cvo" items="${olist}" varStatus="i">
                             <c:if test="${i.first}">
-                              <small>주문번호</small> ${cvo.order_num}<br/>
+                              <small>주문번호</small> ${cvo.orderNum}<br/>
                             </c:if>
                             </c:forEach>
                           </td>
@@ -144,9 +144,9 @@
                           ${ovo.productName}
                         </td>
                         <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small></small></td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${ovo.order_price}</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${ovo.order_qty}</td>
-                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right"><fmt:formatNumber value="${ovo.order_price*ovo.order_qty}" pattern="#,###원"/></td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${ovo.orderPrice}</td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0; text-align: right;" align="center">${ovo.orderQty}</td>
+                        <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right"><fmt:formatNumber value="${ovo.orderPrice*ovo.orderQty}" pattern="#,###원"/></td>
                       
                       </tr>
                     </c:forEach>
@@ -193,7 +193,7 @@
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
                         <c:set var="total" value="0"/>
                           <c:forEach var="ovo" items="${olist}">
-                        <c:set var="total" value="${total+ovo.order_price*ovo.order_qty}"/>
+                        <c:set var="total" value="${total+ovo.orderPrice*ovo.orderQty}"/>
                           </c:forEach><strong><fmt:formatNumber value="${total}" pattern="#,###원"/></strong>
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
@@ -213,7 +213,7 @@
                       </td> 
                     <c:set var="total" value="0"/>
                       <c:forEach var="ovo" items="${olist}">
-                      <c:set var="total" value="${total+ovo.order_price*ovo.order_qty}"/>
+                      <c:set var="total" value="${total+ovo.orderPrice*ovo.orderQty}"/>
                     </c:forEach>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
                         <strong><fmt:formatNumber value="${total}" pattern="#,###원"/></strong>
@@ -268,8 +268,8 @@
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                ${ovo.recipient_address}<br>
-                                전화번호:${ovo.recipient_phone}
+                                ${ovo.recipientAddress}<br>
+                                전화번호:${ovo.recipientPhone}
                               </td>
                             </tr>
                           </tbody>
@@ -288,7 +288,7 @@
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; padding-left: 45%; ">
-                                결제방법 : ${ovo.payment_method}  <br> 받는 사람 : ${ovo.recipient_name}
+                                결제방법 : ${ovo.paymentMethod}  <br> 받는 사람 : ${ovo.recipientName}
                               </td>
                             </tr>
                           </tbody>

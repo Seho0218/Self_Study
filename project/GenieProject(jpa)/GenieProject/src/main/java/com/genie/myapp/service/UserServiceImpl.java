@@ -9,6 +9,7 @@ import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.AddressRepository;
+import com.genie.myapp.repository.jpa.OrderRepository;
 import com.genie.myapp.repository.jpa.UserRepository;
 import com.genie.myapp.repository.UserServiceRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,15 +34,17 @@ public class UserServiceImpl implements UserService{
     public final UserServiceRepository repository;
     public final UserRepository userRepository; //JPA 레포지토리
     public final AddressRepository addressRepository; //JPA 레포지토리
+    private final OrderRepository orderRepository;
 
 
     @Override
-    public long idCheck(String genieId) {
-        return repository.idCheck(genieId);
+    public long idCheck(String genie_id) {
+        return repository.idCheck(genie_id);
     }
 
     @Override
     public void UserWrite(UserDTO userDTO) {
+
         User user = UserDTO.convertDTOtoEntity(userDTO);
         userRepository.save(user);
     }
@@ -91,29 +94,23 @@ public class UserServiceImpl implements UserService{
         return repository.delDelivery(addressNum);
     }
 
-    @Override//TODO 주소내역이 전부 가져와짐
+    @Override
     public List<AddressDTO> getDeliveryList(UserDTO userDTO) {
 
-        //DTO -> Entity
-        User user = UserDTO.convertDTOtoEntity(userDTO);
-
         //Entity -> DTO
-        return null;
-    }
-
-    @Override//TODO 주문내역이 전부 가져와짐
-    public List<OrderDTO> getOrder(UserDTO userDTO) {
-
-        //DTO -> Entity
-        User user = UserDTO.convertDTOtoEntity(userDTO);
-
-        //Entity -> DTO
-        return null;
+        return AddressDTO.convertEntityToDTO(addressRepository.findByGenieId_GenieId(userDTO.getGenieId()));
     }
 
     @Override
-    public List<ProductDTO> getLikeList(String genieId) {
-        return dao.getLikeList(genieId);
+    public List<OrderDTO> getOrder(UserDTO userDTO) {
+
+        //Entity -> DTO
+        return OrderDTO.convertEntityToDTO(orderRepository.findByGenieId_GenieId(userDTO.getGenieId()));
+    }
+
+    @Override
+    public List<ProductDTO> getLikeList(String genie_id) {
+        return dao.getLikeList(genie_id);
     }
 
 }

@@ -7,11 +7,11 @@ let cart = {
     //document.querySelectorAll("input[name=noList]:checked").forEach(function (item) {
     //item.parentElement.remove();
     //var cart_num= item.getAttribute('value');
-    var cart_num = $("#multiChk").serialize();
-    console.log(cart_num);
+    var cartNum = $("#multiChk").serialize();
+    console.log(cartNum);
     $.ajax({
       url: "/delMultiCart",
-      data: cart_num,
+      data: cartNum,
       success: function (result) {
         alert("제품이 삭제되었습니다.");
         location.reload();
@@ -32,7 +32,7 @@ let cart = {
     this.totalCount = 0;
     this.totalPrice = 0;
     document.querySelectorAll(".cartQty").forEach(function (item) {
-      if (item.parentElement.parentElement.firstElementChild.checked == true) {
+      if (item.parentElement.parentElement.firstElementChild.checked === true) {
         //console.log(item.parentElement.parentElement.firstElementChild.checked==true);
         var count = parseInt(item.getAttribute("value"));
         this.totalCount += count;
@@ -75,7 +75,7 @@ let cart = {
       url: "/updateCart",
       type: "post",
       data: {
-        cart_num: $("input[id=cartQty" + pos + "]")
+        cartNum: $("input[id=cartQty" + pos + "]")
           .parent()
           .parent()
           .children()
@@ -102,7 +102,7 @@ let cart = {
 
 // 숫자 3자리 콤마찍기
 Number.prototype.formatNumber = function () {
-  if (this == 0) return 0;
+  if (this === 0) return 0;
   let regex = /(^[+-]?\d+)(\d{3})/;
   let nstr = this + "";
   while (regex.test(nstr)) nstr = nstr.replace(regex, "$1" + "," + "$2");
@@ -121,7 +121,7 @@ $(function () {
 });
 
 $(document).on("click", ".cart-list input[value=Del]", function () {
-  var params = { cart_num: $(this).attr("cart_num") };
+  var params = { cartNum: $(this).attr("cartNum") };
 
   $.ajax({
     url: "/delCart",
@@ -140,7 +140,7 @@ window.onload = function () {
   $("#multiChk").submit(function () {
     const query = 'input[name="cartList"]:checked';
 
-    if ($(query).length == "0") {
+    if ($(query).length === "0") {
       alert("1개 이상의 상품을 선택해주세요");
       return false;
     }

@@ -12,24 +12,24 @@
 			<ul class="idForm">
 				<li>아이디</li>
 				<li>
-					<input type="text" id="genieId" name="genieId" value = "user" placeholder="아이디를 입력하세요"/>
+					<input type="text" id="genie_id" name="genieId" placeholder="아이디를 입력하세요"/>
 					<input type="button" id="idCheck" value="아이디 중복검사"/>
 				</li>
 				<input type ="hidden" id = "idCheckState" value = "N"/>
 			</ul>
 			<ul id="passwordForm">
 				<li>비밀번호</li>
-				<input type="password" id="geniePwd" name="geniePwd" value="123" placeholder="비밀번호를 입력하세요">
+				<input type="password" id="genie_pwd" name="geniePwd" value="123" placeholder="비밀번호를 입력하세요">
 				<li>비밀번호 확인</li>
-				<input type="password" id="geniePwd2" name="geniePwd2" value="123" placeholder="비밀번호를 입력하세요">
+				<input type="password" id="genie_pwd2" name="geniePwd2" value="123" placeholder="비밀번호를 입력하세요">
 			</ul>
 			<ul id="idForm">
 				<li>이름</li>
-				<input type="text" name="userName" id="userName" value="user" placeholder="이름을 입력하세요">
+				<input type="text" id="user_name" name="userName" value="김유저" placeholder="이름을 입력하세요">
 			</ul>
 			<ul id="phoneForm">
 				<li>휴대폰 번호</li>
-				<select id = "userPhoneNum1" name = "userPhoneNum1" size = "1">
+				<select id = "user_phone_num1" name = "userPhoneNum1" size = "1">
 					<option value="">선택하세요</option>
 					<option value="010">010</option>
 					<option value="011">011</option>
@@ -38,17 +38,17 @@
 					<option value="018">018</option>
 					<option value="019">019</option>
 				</select>
-				<input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" value="1234" maxlength = "4"/>
-				<input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" value="1234"maxlength = "4"/>
+				<input type ="text" name = "userPhoneNum2" id ="user_phone_num2" value="1234" maxlength = "4"/>
+				<input type ="text" name = "userPhoneNum3" id ="user_phone_num3" value="1234"maxlength = "4"/>
 			</ul>
 			<ul id="emailForm">
 				<li>이메일</li>
-				<input type="email" id="userEmail" name="userEmail" value="ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
+				<input type="email" id="user_email" name="userEmail" value="ghdtpgh8913@gmail.com"placeholder="이메일을 입력하세요">
 			</ul>
 			<ul id="user_gender">
 				<li>성별</li>
-				<input type="radio" name="userGender" value="1"><label for="radio_male">남성</label>
-				<input type="radio" name="userGender" value="0"><label for="radio_female">여성</label>
+				<input type="radio" name="user_gender" value="1">남성</label>
+				<input type="radio" name="user_gender" value="0">여성</label>
 			</ul>
 				<input type = "submit" id="formSubmit" value = "회원가입하기"/>
 		</form>

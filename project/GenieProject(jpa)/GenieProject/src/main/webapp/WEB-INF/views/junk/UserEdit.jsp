@@ -69,25 +69,25 @@
 		padding:10px;
         padding-bottom:30px;
 	}
-	#idForm p,#passwordForm p,#phoneForm p,#addrForm p, #emailForm p,#user_gender p,#detailAddr p{
+	#idForm p,#passwordForm p,#phoneForm p,#addrForm p, #emailForm p,#user_gender p,#user_detailaddr p{
 		padding:10px;
         padding-left:0;
 	}
-	#user_id, #user_pwd, #addr, #user_email,#detailAddr{
+	#user_id, #user_pwd, #user_addr, #user_email,#user_detailaddr{
 		width:100%;
 		height:50px;
 		border-radius:15px;
 		font-size:30px;
 		padding:20px;			
 	}
-    #userPhoneNum1,#userPhoneNum2,#userPhoneNum3{
+    #user_phone_num1,#user_phone_num2,#user_phone_num3{
         width:29%;
 		height:50px;
 		border-radius:15px;
 		text-align:center;
 		font-size:20px;
     }
-    #zipCode{
+    #user_zipcode{
         width:33%;
 		height:50px;
 		border-radius:15px;
@@ -120,8 +120,8 @@
 			//카카오 지도 발생
 			new daum.Postcode({
 				oncomplete: function(data) { //선택시 입력값 세팅
-					document.getElementById("zipCode").value = data.zonecode;
-					document.getElementById("addr").value = data.address;
+					document.getElementById("user_zipcode").value = data.zonecode; 
+					document.getElementById("user_addr").value = data.address; 
 				}
 			}).open();
 		});
@@ -143,25 +143,25 @@ $(function(){
 			}
 
 			// 전화번호
-			if($("#userPhoneNum1").val()=="" || $("#userPhoneNum2").val()=="" || $("#userPhoneNum3").val()==""){
+			if($("#user_phone_num1").val()=="" || $("#user_phone_num2").val()=="" || $("#user_phone_num3").val()==""){
 				alert("연락처를 입력하세요");
 				return false;
 			}
 			return true;
 			// 우편번호
-			if($("#zipCode").val()==""){
+			if($("#user_zipcode").val()==""){
 				alert("우편번호를 선택하세요");
-				$("#zipCode").focus();
+				$("#user_zipcode").focus();
 				return false;
 			}
-			if($("#addr").val()==""){
+			if($("#user_addr").val()==""){
 				alert("주소를 입력하세요");
-				$("#addr").focus();
+				$("#user_addr").focus();
 				return false;
 			}
-			if($("#detailAddr").val()==""){
+			if($("#user_detailaddr").val()==""){
 				alert("상세 주소를 입력하세요");
-				$("#detailAddr").focus();
+				$("#user_detailaddr").focus();
 				return false;
 			}
 			// 이메일
@@ -194,7 +194,7 @@ $(function(){
 					</div>
                     <div id="phoneForm">
 						<p>휴대폰 번호</p>
-                        <select id = "userPhoneNum1" name = "userPhoneNum1" size = "1" value = "${vo.userPhoneNum1}">
+                        <select id = "user_phone_num1" name = "user_phone_num1" size = "1" value = "${vo.user_phone_num1}">
 							<option value="">선택하세요</option>
 							<option value="010">010</option>
 							<option value="011">011</option>
@@ -203,8 +203,8 @@ $(function(){
 							<option value="018">018</option>
 							<option value="019">019</option>
 						</select>-
-				        <input type ="text" name = "userPhoneNum2" id ="userPhoneNum2" maxlength = "4" value ="${vo.userPhoneNum2}"/> -
-			 	        <input type ="text" name = "userPhoneNum3" id ="userPhoneNum3" maxlength = "4" value ="${vo.userPhoneNum3}"/>
+				        <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4" value ="${vo.user_phone_num2}"/> -
+			 	        <input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4" value ="${vo.user_phone_num3}"/>
 					</div>
                     <div id="emailForm">
 						<p>이메일</p>
@@ -212,12 +212,12 @@ $(function(){
 					</div>
                     <div id="addrForm">
                         <p>우편번호</p>
-                        <p><input type ="text" name = "zipCode" id ="zipCode" value ="${vo.zipCode}" readonly />
+                        <p><input type ="text" name = "user_zipcode" id ="user_zipcode" value ="${vo.user_zipcode}" readonly />
                             <input type = "button" value = "우편번호찾기" id = "address_kakao"/><br/>
                         <p>주소</p>
-                        <p><input type = "text" name = "addr" id ="addr" value="${vo.addr}" readonly/></p>
+                        <p><input type = "text" name = "user_addr" id ="user_addr" value="${vo.user_addr}" readonly/></p>
                         <p>상세주소</p>
-                        <p><input type ="text" name = "detailAddr" id ="detailAddr" value="${vo.detailAddr}"/></p>
+                        <p><input type ="text" name = "user_detailaddr" id ="user_detailaddr" value="${vo.user_detailaddr}"/></p>	
 
 					 <li><input type = "submit" id="login" value = "회원정보 수정"/></li>
 				</ul>

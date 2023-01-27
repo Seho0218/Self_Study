@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,9 +24,9 @@ public class OrderDTO {
     private String recipientPhone;
     private String recipientAddress;
     private String recipientRequest;
-    private String recipientDeliveryStatus;
+    private String recipientDeliveryStatus = "delivery_prepared";
     private String paymentMethod;
-    private String orderWriteDate;
+    private LocalDateTime orderWriteDate = LocalDateTime.now();
 
     private int cartNum;
     private List<Integer> cartList;

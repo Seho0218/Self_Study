@@ -107,17 +107,17 @@ $(function(){
     $(function(){
         $("#logFrm").submit(function(){
 
-            if($("#genieId").val()==""){
+            if($("#genie_id").val()==""){
                 alert("아이디를 입력하세요..");
-		              $("#genieId").focus();
+		              $("#genie_id").focus();
 
                 return false;
             }
 
-            if($("#geniePwd").val()==""){
+            if($("#genie_pwd").val()==""){
                 alert("비밀번호를 입력하세요..");
 
-                  $("#geniePwd").focus();
+                  $("#genie_pwd").focus();
                 return false;
             }
             return true;
@@ -131,10 +131,10 @@ $(function(){
       <!-- 로그인폼-->
       <form method="post" action="/loginOK" id="logFrm">
         <p>아이디</p>
-        <input type="text" id="genieId" name="genieId" placeholder="아이디를 입력하세요">
+        <input type="text" id="genie_id" name="genieId" placeholder="아이디를 입력하세요">
       <!-- 비밀번호 -->
         <p>비밀번호</p>
-        <input type="password" id="geniePwd" name="geniePwd" placeholder="비밀번호를 입력하세요">
+        <input type="password" id="genie_pwd" name="geniePwd" placeholder="비밀번호를 입력하세요">
         <input type="submit" value="로그인">
         <h3><a href="" id="FindId">아이디찾기</a> | <a href="" id="FindPwd">비밀번호 찾기</a></h3>
       <!-- 로그인폼-->

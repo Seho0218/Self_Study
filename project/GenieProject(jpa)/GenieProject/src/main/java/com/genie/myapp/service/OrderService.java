@@ -20,7 +20,7 @@ public interface OrderService {
     public void afterOrderCart(OrderDTO orderDTO);
 
     //결제 완료 후, 정보 가져오기
-    public List<OrderDTO> getOrderList(String genieId);
+    public List<OrderDTO> getOrderList(String genie_id);
 
     
     

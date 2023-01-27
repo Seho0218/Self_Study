@@ -106,10 +106,10 @@
                 <div>
                 	<form method="get" action="/seller/sellerProduct" id="searchFrm">
                 		<select name="searchKey" style="height:25.2px;">
-                			<option value="productName">상품명</option>
-                			<option value="productCategory">카테고리</option>
-                			<option value="productTag">태그</option>
-                			<option value="productMBTI">MBTI</option>
+                			<option value="product_name">상품명</option>
+                			<option value="product_category">카테고리</option>
+                			<option value="product_tag">태그</option>
+                			<option value="product_mbti">MBTI</option>
                 		</select>
                 		
                 		<input type="text" name="searchWord" id="searchWord"/>
@@ -136,15 +136,15 @@
                       <!-- 태그 반복 -->
                       <c:forEach var="pvo" items="${plist }">
                       <tr>
-						    <td>${pvo.product_id }</td>
-							<td><a href="/product_detail?product_id=${pvo.product_id}">${pvo.productName}</a></td>
-							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pvo.product_price}"/> 원</td>
+						    <td>${pvo.productId }</td>
+							<td><a href="/product_detail?product_id=${pvo.productId}">${pvo.productName}</a></td>
+							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pvo.productPrice}"/> 원</td>
 							<td>${pvo.productQuantity}</td>
 							<td>${pvo.productCategory}</td>
 							<td>${pvo.productTag}</td>
-							<td>${pvo.productMBTI}</td>
-							<td><a href="/seller/sellerProductEdit/${pvo.product_id }"><input type="button" value="수정"></a></td>
-							<td><a href="javascript:productDel(${pvo.product_id });"><input type="button" value="삭제"></a></td>
+							<td>${pvo.productmbti}</td>
+							<td><a href="/seller/sellerProductEdit/${pvo.productId }"><input type="button" value="수정"></a></td>
+							<td><a href="javascript:productDel(${pvo.productId });"><input type="button" value="삭제"></a></td>
                       </tr>
                     </c:forEach>
                     <!-- 태그 반복 끝 --> 
@@ -237,14 +237,14 @@
 						</tr>
 						<c:forEach var="pvo" items="${plist }">
 						<tr>
-							<td>${pvo.product_id }</td>
+							<td>${pvo.productId }</td>
 							<td>${pvo.productName}</td>
-							<td>${pvo.product_price}</td>
+							<td>${pvo.productPrice}</td>
 							<td>${pvo.productQuantity}</td>
 							<td>${pvo.productCategory}</td>
 							<td>${pvo.productTag}</td>
-							<td><a href="/seller/sellerProductEdit/${pvo.product_id }">edit</a></td>
-							<td><a href="javascript:productDel(${pvo.product_id });">del</a></td>
+							<td><a href="/seller/sellerProductEdit/${pvo.productId }">edit</a></td>
+							<td><a href="javascript:productDel(${pvo.productId });">del</a></td>
 						</tr>
 						</c:forEach>
 					</table>

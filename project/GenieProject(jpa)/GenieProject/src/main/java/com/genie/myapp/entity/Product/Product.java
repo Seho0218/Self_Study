@@ -20,8 +20,7 @@ import static javax.persistence.GenerationType.*;
 @DynamicUpdate
 public class Product {
 
-    @Id @GeneratedValue(strategy = IDENTITY)
-    @Column(name="productId")
+    @Id
     private int productId;
 
     @JsonIgnore
@@ -39,7 +38,7 @@ public class Product {
     private String productCategory;
     private String productTag;
     private String productName;
-    private int product_price;
+    private int productPrice;
     private String productInfo;
 
     private int productStock=0;

@@ -41,10 +41,12 @@ public class CertController {
 	// 메일로 아이디 보내기
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String userEmail){
-		List<String> genieId =certService.FindId(userEmail);
 
-		if(genieId.size() != 0) {
-			certService.sendUserId(userEmail, genieId);
+		System.out.println("userEmail = " + userEmail);
+		List<String> genie_id =certService.FindId(userEmail);
+
+		if(genie_id.size() != 0) {
+			certService.sendUserId(userEmail, genie_id);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -62,7 +64,7 @@ public class CertController {
 	@GetMapping("overlapCheck")
 	public int overlapCheck(String value, String valueType) {
 //		value = 중복체크할 값
-//		valueType = username, nickname
+//		valueType = user_name, nickname
 		System.out.println(valueType);
 		System.out.println(value);
 		int count = certService.overlapCheck(value, valueType);
@@ -72,8 +74,9 @@ public class CertController {
 	}
 
 	@GetMapping("emailCheck")
-	public ResponseEntity<Boolean> emailCheck(String genieId, String userEmail){
-		boolean emailCheck = certService.emailCheck(genieId, userEmail);
+	public ResponseEntity<Boolean> emailCheck(String genie_id, String userEmail){
+		System.out.println("genie_id = " + genie_id);
+		boolean emailCheck = certService.emailCheck(genie_id, userEmail);
 		System.out.println("emailCheck "+ emailCheck );
 		return new ResponseEntity<>(emailCheck, HttpStatus.OK);
 	}
@@ -81,12 +84,12 @@ public class CertController {
 
 	// 인증번호 보내기 페이지
 	@GetMapping("FindPwd_auth")
-	public ModelAndView auth(String genieId, HttpSession session) {
+	public ModelAndView auth(String genie_id, HttpSession session) {
 
 		mav = new ModelAndView();
 
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
-		if(authStatus == null || !genieId.equals(authStatus.get("genieId"))) {
+		if(authStatus == null || !genie_id.equals(authStatus.get("genie_id"))) {
 
 			mav.setViewName("/cert/FindPwd");
 			return mav;
@@ -96,16 +99,16 @@ public class CertController {
 	}
 
 	@PostMapping("FindPwd_auth")
-	public ResponseEntity<Object> authenticateUser(String genieId, HttpSession session) {
+	public ResponseEntity<Object> authenticateUser(String genie_id, HttpSession session) {
 
 		Map<String, Object> authStatus = new HashMap<>();
-		authStatus.put("genieId", genieId);
+		authStatus.put("genie_id", genie_id);
 		authStatus.put("status", false);
 
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authStatus", authStatus);
 
-		return new ResponseEntity<>(genieId, HttpStatus.OK);
+		return new ResponseEntity<>(genie_id, HttpStatus.OK);
 	}
 
 
@@ -191,19 +194,19 @@ public class CertController {
 
 	// 비밀번호 변경 페이지
 	@GetMapping("modify_pwd")
-	public ModelAndView modifyPassword(String genieId, HttpSession session) {
+	public ModelAndView modifyPassword(String genie_id, HttpSession session) {
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
 
 		mav = new ModelAndView();
 
-		if(authStatus == null || !genieId.equals(authStatus.get("genieId"))) {
+		if(authStatus == null || !genie_id.equals(authStatus.get("genie_id"))) {
 
 			mav.setViewName("/cert/FindPwd");
 			return mav;
 		}
 
 		mav.setViewName("/cert/modify_pwd");
-		mav.addObject("genieId",genieId);
+		mav.addObject("genie_id",genie_id);
 
 		return mav;
 	}

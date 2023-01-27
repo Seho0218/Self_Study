@@ -41,8 +41,8 @@ public class UserController {
 	@GetMapping("MyPage")
 	public ModelAndView MyPage(HttpSession session) {
 
-		String genieId = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		String genie_id = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 		String seller_id = (String)session.getAttribute("logId");
 		SellerDTO sellerDTO = sellerService.getSeller(seller_id);
 
@@ -93,10 +93,8 @@ public class UserController {
 	@GetMapping("MyOrderList")
 	public ModelAndView MyOrderList(HttpSession session) {
 
-		String genieId = (String)session.getAttribute("logId");
-
-		System.out.println(genieId);
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		String genie_id = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		List<OrderDTO> orderList =userService.getOrder(userDTO);
 		
@@ -112,8 +110,8 @@ public class UserController {
 	@GetMapping("MyDeliveryList") 
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
-		String genieId = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		String genie_id = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 		List<AddressDTO> dlist = userService.getDeliveryList(userDTO);
 
 		mav = new ModelAndView();
@@ -127,8 +125,6 @@ public class UserController {
 	//배송지 
 	@PostMapping("addDelivery")
 	public ResponseEntity<String> addDelivery(AddressDTO addressDTO) {
-
-		System.out.println("addressDTO = " + addressDTO);
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
@@ -186,8 +182,8 @@ public class UserController {
 	@GetMapping("addressbook")
 	public ModelAndView addressbook(HttpSession session){
 
-		String genieId=(String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		String genie_id=(String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
@@ -199,9 +195,9 @@ public class UserController {
 	@GetMapping("Addaddressbook")
 	public ModelAndView Addaddressbook(HttpSession session){
 
-		String genieId=(String)session.getAttribute("logId");
+		String genie_id=(String)session.getAttribute("logId");
 
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
@@ -213,6 +209,7 @@ public class UserController {
 
 	@GetMapping("delDelivery")
 	public long delDelivery(int addressNum){
+		System.out.println("addressNum = " + addressNum);
 		return userService.delDelivery(addressNum);
 	}
 
@@ -220,8 +217,8 @@ public class UserController {
 	@GetMapping("MyInquiryList") 
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
-		String genieId = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		String genie_id = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("vo", userService.getUser(userDTO));
@@ -234,11 +231,11 @@ public class UserController {
 	@GetMapping("MyLikeList")
 	public ModelAndView MyLikeList(HttpSession session){
 
-		String genieId = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		String genie_id = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		mav = new ModelAndView();
-		mav.addObject("list",userService.getLikeList(genieId));
+		mav.addObject("list",userService.getLikeList(genie_id));
 		mav.addObject("vo", userService.getUser(userDTO));
 		mav.setViewName("/user/MyLikeList");
 	
@@ -251,9 +248,9 @@ public class UserController {
 	@GetMapping("PwdEdit")
 	public ModelAndView PwdChange(HttpSession session) {
 		
-		String genieId = (String)session.getAttribute("logId");
+		String genie_id = (String)session.getAttribute("logId");
 
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 		userDTO = userService.getUser(userDTO);
 		
 		mav = new ModelAndView();

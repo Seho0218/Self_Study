@@ -1,7 +1,7 @@
     $(document).ready(function(){
 	
         const URLSearch = new URLSearchParams(location.search);
-        const userName = URLSearch.get("userName"); 
+        const user_name = URLSearch.get("user_name"); 
         
         // 인증번호 발송했는지 여부
         const authNum = (function(){
@@ -51,7 +51,7 @@
         $(".auth_num_send_eemail").click(function(){
             const data = {
                 email : $(".email").val(),
-                userName : userName
+                user_name : user_name
             }
             if(!emailCheck(data.email)) {
                 swal("이메일을 정확히 입력해주세요");
@@ -95,7 +95,7 @@
                 type: "POST",
             })
             .then(function(){
-                location.href = "/modify/password?userName=" + userName;
+                location.href = "/modify/password?user_name=" + user_name;
             })
             .fail(function(result){
                 swal(result.responseText);
