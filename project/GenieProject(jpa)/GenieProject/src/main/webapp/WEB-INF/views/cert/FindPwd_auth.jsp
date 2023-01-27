@@ -70,7 +70,7 @@
   $(document).ready(function(){
 	
     const URLSearch = new URLSearchParams(location.search);
-    const genieId = URLSearch.get("genieId");
+    const genie_id = URLSearch.get("genie_id"); 
     const inputBox = $("input[name=authNum]");
     const nextBox = $("#next");
    /* 인증번호 발송했는지 여부
@@ -99,7 +99,7 @@
     $("#send_email").click(function(){
         const data = {
             user_email : $(".email").val(),
-            genieId : genieId
+            genie_id : genie_id
         }
         if($(".email").val()=="") {
             alert("이메일을 정확히 입력해주세요");
@@ -198,7 +198,7 @@
             type: "POST",
         })
         .then(function(){
-            location.href = "/cert/modify_pwd?genieId=" + genieId;
+            location.href = "/cert/modify_pwd?genie_id=" + genie_id;
         })
         .fail(function(result){
             alert(result.responseText);

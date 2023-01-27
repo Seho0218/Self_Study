@@ -44,8 +44,8 @@ public class ReplyProductController{
  	
  	@GetMapping("replyProductDel")
  	public int replyDel(int reply_no, HttpSession session) {
- 		String genieId = (String)session.getAttribute("logId");
- 		return service.replyProductDelete(reply_no, genieId);
+ 		String genie_id = (String)session.getAttribute("logId");
+ 		return service.replyProductDelete(reply_no, genie_id);
  	}
 
 	@PostMapping("likeInsert")
@@ -80,8 +80,8 @@ public class ReplyProductController{
 		likeDTO.setGenieId((String)session.getAttribute("logId"));
 		likeDTO.setProductId(pid);
 		
-		ProductDTO pdto = new ProductDTO();
-		pdto.setProductId(pid);
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setProductId(pid);
 		
 		int result = service.likeDelete(likeDTO);
 		int result2 = service.likeHitMinus(likeDTO);

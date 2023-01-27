@@ -37,8 +37,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<CartDTO> getCart(String genieId) {
-		return dao.getCart(genieId);
+	public List<CartDTO> getCart(String genie_id) {
+		return dao.getCart(genie_id);
 	}
 	
 	@Override
@@ -52,8 +52,8 @@ public class ProductServiceImpl implements ProductService{
     }
 	
 	@Override
-	public int delCart(int cart_num, String genieId) {
-		return dao.delCart(cart_num, genieId);
+	public int delCart(int cart_num, String genie_id) {
+		return dao.delCart(cart_num, genie_id);
 	}
 	
 	@Override
@@ -77,8 +77,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public LikeDTO likeCheck(int productId, String genieId) {
-		return dao.likeCheck(productId, genieId);
+	public LikeDTO likeCheck(int productId, String genie_id) {
+		return dao.likeCheck(productId, genie_id);
 	}
 
 	@Override

@@ -31,7 +31,7 @@ let cart = {
     //console.log("count : 999999");
     this.totalCount = 0;
     this.totalPrice = 0;
-    document.querySelectorAll(".cartQty").forEach(function (item) {
+    document.querySelectorAll(".cart_qty").forEach(function (item) {
       if (item.parentElement.parentElement.firstElementChild.checked == true) {
         //console.log(item.parentElement.parentElement.firstElementChild.checked==true);
         var count = parseInt(item.getAttribute("value"));
@@ -51,12 +51,12 @@ let cart = {
   },
   //개별 수량 변경
   changePNum: function (pos) {
-    var item = document.querySelector("input[id=cartQty" + pos + "]");
-    var cartQty = parseInt(item.getAttribute("value"));
+    var item = document.querySelector("input[id=cart_qty" + pos + "]");
+    var cart_qty = parseInt(item.getAttribute("value"));
     var newval = event.target.classList.contains("up")
-      ? cartQty + 1
+      ? cart_qty + 1
       : event.target.classList.contains("down")
-      ? cartQty - 1
+      ? cart_qty - 1
       : event.target.value;
 
     if (parseInt(newval) < 1 || parseInt(newval) > 99) {
@@ -75,12 +75,12 @@ let cart = {
       url: "/updateCart",
       type: "post",
       data: {
-        cart_num: $("input[id=cartQty" + pos + "]")
+        cart_num: $("input[id=cart_qty" + pos + "]")
           .parent()
           .parent()
           .children()
           .val(),
-        cartQty: $("input[id=cartQty" + pos + "]").val(),
+        cart_qty: $("input[id=cart_qty" + pos + "]").val(),
       },
       success: function (result) {
         //console.log("");

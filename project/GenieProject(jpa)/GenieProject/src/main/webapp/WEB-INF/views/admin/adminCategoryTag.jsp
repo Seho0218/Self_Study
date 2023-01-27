@@ -220,7 +220,7 @@ body {
 						<div class="card-body">
 							<c:forEach var="vo" items="${list }">
 								<h3>${vo.category_id}</h3>
-								<p>${vo.productCategory}</p>
+								<p>${vo.product_category}</p>
 							</c:forEach>
 						</div>
 						<div class="card-footer">
@@ -237,8 +237,8 @@ body {
 						</div>
 						<div class="card-body">
 							<c:forEach var="vo" items="${list }">
-								<h3>${vo.productTagId}</h3>
-								<p>${vo.productTag}</p>
+								<h3>${vo.product_tag_id}</h3>
+								<p>${vo.product_tag}</p>
 							</c:forEach>
 						</div>
 						<div class="card-footer">

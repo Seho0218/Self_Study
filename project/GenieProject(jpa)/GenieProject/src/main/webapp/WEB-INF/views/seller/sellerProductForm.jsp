@@ -117,7 +117,7 @@ input[type=text]{
 		$("#productFrm").submit(function(){
 			//유효성검사
 			//상품명
-			if($("#productName").val()==""){
+			if($("#product_name").val()==""){
 				alert("상품명을 입력하세요.");
 				return false;
 			}
@@ -132,7 +132,7 @@ input[type=text]{
 				return false;
 			}
 			//상품수량
-			if($("#productQuantity").val()==""){
+			if($("#product_quantity").val()==""){
 				alert("상품수량을 입력하세요.");
 				return false;
 			}
@@ -213,16 +213,16 @@ input[type=text]{
 						<form method="post" action="/seller/productWrite" id="productFrm">
 							<div class="row">
 								<div class="col-25">
-									<label for="productName" style="font-size: 20px; color:#047bff; margin-bottom: 0px;">상품등록</label>
+									<label for="product_name" style="font-size: 20px; color:#047bff; margin-bottom: 0px;">상품등록</label>
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-25">
-									<label for="productName">상품명</label>
+									<label for="product_name">상품명</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="productName" name="productName" placeholder="상품명을 입력하세요"/>
+									<input type="text" id="product_name" name="product_name" placeholder="상품명을 입력하세요"/>
 								</div>
 							</div>
 								
@@ -237,10 +237,10 @@ input[type=text]{
 								
 							<div class="row">
 								<div class="col-25">
-									<label for="productQuantity">상품수량</label>
+									<label for="product_quantity">상품수량</label>
 								</div>
 								<div class="col-75">
-									<input type="text" id="productQuantity" name="productQuantity" placeholder="상품수량을 입력하세요"/>
+									<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
 								</div>
 							</div>
 								
@@ -285,7 +285,7 @@ input[type=text]{
 							<hr>
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag">태그</label>
+									<label for="product_tag">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">대상</label></li>
@@ -301,7 +301,7 @@ input[type=text]{
 						
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag" style="opacity:0%">태그</label>
+									<label for="product_tag" style="opacity:0%">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">특정기념일</label></li>
@@ -317,7 +317,7 @@ input[type=text]{
 			
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag" style="opacity:0%">태그</label>
+									<label for="product_tag" style="opacity:0%">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">나이</label></li>
@@ -332,7 +332,7 @@ input[type=text]{
 					
 							<div class="row">
 								<div class="col-25">
-									<label for="productTag" style="opacity:0%">태그</label>
+									<label for="product_tag" style="opacity:0%">태그</label>
 								</div>
 								<div class="col-75">
 									<li><label for="subTag">성별</label></li>

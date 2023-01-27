@@ -73,27 +73,27 @@ public class MbtiController {
 		mav = new ModelAndView();
 		System.out.println(sortType);
 		
-		ProductDTO dto = new ProductDTO();
-		dto.setProductCategory(productCategory);
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setProductCategory(productCategory);
 
 		switch (sortType) {
 			case "pricelist": //가격낮은순
 				//List<ProductVO> list= service.productPriceAsc(PVO);
 				//System.out.println(list.size());
-				mav.addObject("plist", service.productPriceAsc(dto));
+				mav.addObject("plist", service.productPriceAsc(productDTO));
 				break;
 			case "pricelistdesc": //가격높은순
-				mav.addObject("plist", service.productPriceDesc(dto));
+				mav.addObject("plist", service.productPriceDesc(productDTO));
 				break;
 			case "recentlist": //최신순
-				mav.addObject("plist", service.productRecent(dto));
+				mav.addObject("plist", service.productRecent(productDTO));
 				break;
 			default: //좋아요순
-				mav.addObject("plist", service.productLike(dto));
+				mav.addObject("plist", service.productLike(productDTO));
 				break;
 		}
 		
-		mav.addObject("pvo", dto);
+		mav.addObject("pvo", productDTO);
 		mav.setViewName("/product");
 
 		return mav;

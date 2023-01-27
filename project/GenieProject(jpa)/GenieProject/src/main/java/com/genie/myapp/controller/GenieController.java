@@ -57,12 +57,12 @@ public class GenieController {
 
 	//아이디 중복검사
 	@GetMapping("idCheck")
-	public ModelAndView idCheck(String genieId) {
+	public ModelAndView idCheck(String genie_id) {
 
 		mav = new ModelAndView();
 
-		mav.addObject("idCnt", userService.idCheck(genieId));
-		mav.addObject("genieId", genieId);
+		mav.addObject("idCnt", userService.idCheck(genie_id));
+		mav.addObject("genie_id", genie_id);
 		mav.setViewName("/idCheck");
 
 		return mav;
@@ -71,6 +71,8 @@ public class GenieController {
 	//회원 가입하기
 	@PostMapping("UserWrite")
 	public ResponseEntity<String> UserWrite(UserDTO userDTO) {
+
+		System.out.println("userDTO = " + userDTO);
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
@@ -224,11 +226,11 @@ public class GenieController {
 	// -----------------------------------//
 
 	@GetMapping("index")
-	public ModelAndView productList(ProductDTO pDTO) {
+	public ModelAndView productList(ProductDTO productDTO) {
 
 		mav = new ModelAndView();
-		mav.addObject("plist", productService.listProduct(pDTO));
-		mav.addObject("pvo", pDTO);
+		mav.addObject("plist", productService.listProduct(productDTO));
+		mav.addObject("pvo", productDTO);
 		mav.setViewName("/");
 
 		return mav;
@@ -253,8 +255,8 @@ public class GenieController {
 	@GetMapping("cart")
 	public ModelAndView cart(HttpSession session) {
 
-		String genieId = (String) session.getAttribute("logId");
-		List<CartDTO> cartList = productService.getCart(genieId);
+		String genie_id = (String) session.getAttribute("logId");
+		List<CartDTO> cartList = productService.getCart(genie_id);
 		// System.out.print(cartList);
 
 		mav = new ModelAndView();
@@ -325,8 +327,8 @@ public class GenieController {
 	// 장바구니에서 제품 삭제
 	@GetMapping("delCart")
 	public int delCart(HttpSession session, int cartNum) {
-		String genieId = (String) session.getAttribute("logId");
-		return productService.delCart(cartNum, genieId);
+		String genie_id = (String) session.getAttribute("logId");
+		return productService.delCart(cartNum, genie_id);
 
 	}
 

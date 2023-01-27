@@ -173,9 +173,9 @@
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${adminTag }">
                       <tr>
-                        <td>${vo.productTagId}</td>
-                        <td>${vo.productTag}</td>
-                        <td><a href="/admin/adminTagPop?productTagId=${vo.productTagId}"><input type="button" value="관리"></a></td>
+                        <td>${vo.product_tag_id}</td>
+                        <td>${vo.product_tag}</td>
+                        <td><a href="/admin/adminTagPop?product_tag_id=${vo.product_tag_id}"><input type="button" value="관리"></a></td>
                       
                       </tr>
                     </c:forEach> 

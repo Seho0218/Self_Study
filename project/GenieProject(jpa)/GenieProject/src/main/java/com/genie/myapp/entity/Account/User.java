@@ -33,7 +33,7 @@ public class User extends Account {
     private List<Inquiry> inquiries;
 
     @OneToMany(mappedBy = "genieId")
-    private List<ProductLike> product_like;
+    private List<ProductLike> productLike;
 
     @OneToMany(mappedBy = "genieId")
     private List<Cart> carts = new ArrayList<>();

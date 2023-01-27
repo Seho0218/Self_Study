@@ -52,17 +52,6 @@ public class UserServiceRepository {
         return null;
     }
 
-    public List<Address> getDeliveryList(User userEntity) {
-
-        System.out.println("userDTO.getgenieId() = " + userEntity.getGenieId());
-
-        return queryFactory
-                .select(address)
-                .from(address, user)
-                .where(user.genieId.eq(userEntity.getGenieId()))
-                .fetch();
-    }
-
     public long delDelivery(int addressNum) {
 
         return queryFactory

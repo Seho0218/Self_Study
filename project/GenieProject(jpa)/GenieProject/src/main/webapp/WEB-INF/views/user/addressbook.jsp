@@ -146,19 +146,19 @@ nav .sidenav-trigger i {
         <ul id="delivery_1">
         <c:forEach var="dvo" items="${dlist}">
             <h5>배송지</h5>
-            <input type="hidden" value="${dvo.addressNum}" readonly/>
+            <input type="hidden" value="${dvo.address_num}" readonly/>
             <input type="hidden" id="addressStatus" value="Y" readonly/>
             <li>수령자 이름</li>
-            <input type="text" id="receiver_name" value="${dvo.userName}" readonly/>
+            <input type="text" id="receiver_name" value="${dvo.receiver_name}" readonly/>
             <li>전화번호</li>
-            <input type="text" id="receiver_tel" value="${dvo.user_tel}" readonly/>
+            <input type="text" id="receiver_tel" value="${dvo.receiver_tel}" readonly/>
             <li>우편번호</li>
-            <input type="text" id="receiver_zipcode" value="${dvo.zipCode}" readonly/>
+            <input type="text" id="receiver_zipcode" value="${dvo.receiver_zipcode}" readonly/>
             <li>주소</li>
-            <input type="text" id="receiver_addr" value="${dvo.addr}, ${dvo.detailAddr}" readonly/><br>
-            <div><input type="hidden" value='${dvo.addressNum}' /></div>
+            <input type="text" id="receiver_addr" value="${dvo.receiver_addr}, ${dvo.receiver_detailaddr}" readonly/><br>
+            <div><input type="hidden" value='${dvo.address_num}' /></div>
             <div><input type="button" value='선택' id="select" class="Btn"/>
-            <input type="button" value='삭제' addressNum="${dvo.addressNum}" class="Btn" /></div>
+            <input type="button" value='삭제' address_num="${dvo.address_num}" class="Btn" /></div>
         </c:forEach>    
     </div>
         <a href="/user/Addaddressbook"><input type="button" value='추가' class="Btn" id="addBtn"/></div></a>
@@ -197,7 +197,7 @@ nav .sidenav-trigger i {
 <script>
 	$(document).on('click','#delivery_1 input[value=삭제]',function(){
 
-		var params = {addressNum: $(this).attr('addressNum')};
+		var params = {address_num: $(this).attr('address_num')};
 		    $.ajax({
 				url:"/user/delDelivery",
 				data:params,

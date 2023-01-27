@@ -165,7 +165,7 @@ nav .sidenav-trigger i {
           alt="materialize logo" />
 
                   <span class="logo-text hide-on-med-and-down">
-                    ${vo.userName} ${svo.ceoName}님
+                    ${vo.user_name} ${svo.ceo_name}님
                   </span>
       </a>
     </h1>
@@ -277,11 +277,11 @@ nav .sidenav-trigger i {
                        <tbody>
                           <tr>
                              <td>${orderlist.order_num}</td>
-                             <td>${orderlist.productName}</td>
+                             <td>${orderlist.product_name}</td>
                              <td>${orderlist.order_qty}</td>
                              <td><fmt:formatNumber value="${orderlist.order_price}" pattern="#,###원" /></td>
                              <td>${orderlist.recipient_delivery_status}</td>
-                             <td>${orderlist.order_writeDate}</td>
+                             <td>${orderlist.order_writedate}</td>
                           </tr>
                        </tbody>
                     </c:forEach>

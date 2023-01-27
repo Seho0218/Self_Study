@@ -41,8 +41,8 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<OrderDTO> getOrderList(String genieId) {
-        return dao.getOrderList(genieId);
+    public List<OrderDTO> getOrderList(String genie_id) {
+        return dao.getOrderList(genie_id);
     }
     
 

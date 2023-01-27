@@ -6,26 +6,26 @@
 
   <!-- 주문목록 -->
 	<select id="sellerOrder" resultType="OrderDTO">
-		select m.order_num, m.genie_id, p.product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate
+		select m.order_num, m.genie_id, p.product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_write_date
 		from myorder m join
 			(select product_id, genie_id as seller_id, product_name 
 			from product
 			where genie_id = #{param2}) p
 		on m.product_id = p.product_id
 		where recipient_delivery_status != 'delivered'
-		order by m.order_writedate desc
+		order by m.order_write_date desc
 	</select>
 	
 <!-- 배송완료 주문목록 -->
 	<select id="deliveredOrder" resultType="OrderDTO">
-		select m.order_num, m.genie_id, p.product_name, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate
+		select m.order_num, m.genie_id, p.product_name, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_write_date
 		from myorder m join
 			(select product_id, genie_id as seller_id, product_name 
 			from product
 			where genie_id = #{param2}) p
 		on m.product_id = p.product_id
 		where recipient_delivery_status = 'delivered'
-		order by m.order_writedate desc
+		order by m.order_write_date desc
 	</select>
 
 	<insert id="productWrite">
@@ -107,14 +107,14 @@
 			from product
 			where genie_id = #{param1}) p
 		on m.product_id = p.product_id
-		where MONTH(order_writedate)=MONTH(now())
-        and YEAR(order_writedate)=YEAR(now());
+		where MONTH(order_write_date)=MONTH(now())
+        and YEAR(order_write_date)=YEAR(now());
 		
 	</select>
 	
 	<!--  일별 매출 -->
 	<select id="orderSumByDay" resultType="OrderDTO">
-		select date_format(order_writedate, '%m-%d') as month_day, sum(order_price) as total_sales
+		select date_format(order_write_date, '%m-%d') as month_day, sum(order_price) as total_sales
 		from myorder m join
 			(select product_id, genie_id as seller_id, product_name 
 			from product
@@ -172,7 +172,7 @@
 			from product 
 			where genie_id=#{param3})p
 		on m.product_id = p.product_id
-		where date_format(order_writedate, "%Y-%m-%d") = curdate();
+		where date_format(order_write_date, "%Y-%m-%d") = curdate();
 	</select>
 
 	<!-- 배송 중  -->
@@ -216,13 +216,13 @@
 				from product 
 				where genie_id=#{param1}) p
 			on m.product_id = p.product_id
-		where date_format(m.order_writedate, '%y-%m') = month(curdate())
+		where date_format(m.order_write_date, '%y-%m') = month(curdate())
 	</select>
 
 	<!-- 카테고리별 상품 판매건수 -->
 	<select id="topCategory" resultType="OrderDTO">
 		select product_category, count(product_id) as sold_counts
-		from (select m.genie_id, m.product_id, m.order_price, m.order_writedate, p.genie_id seller_id, p.product_category, p.product_name
+		from (select m.genie_id, m.product_id, m.order_price, m.order_write_date, p.genie_id seller_id, p.product_category, p.product_name
 			from myorder m join (select * from product where genie_id=#{param1}) p
 			on m.product_id = p.product_id) a
 		group by 1

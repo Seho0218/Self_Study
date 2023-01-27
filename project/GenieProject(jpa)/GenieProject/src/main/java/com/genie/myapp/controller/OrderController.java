@@ -40,10 +40,10 @@ public class OrderController {
 	@PostMapping("BuyNow")
 	public ModelAndView BuyNow(HttpSession session, CartDTO cartDTO) {
 		
-		String genieId=(String)session.getAttribute("logId");
+		String genie_id=(String)session.getAttribute("logId");
 		//System.out.println("BuyNow로 받아온 cvo : "+cvo.toString());
 
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("bvo",cartDTO);
@@ -56,13 +56,13 @@ public class OrderController {
 	@PostMapping("payment")
 	public ModelAndView payment(HttpSession session, CartDTO cartDTO) {
 
-		String genieId = (String) session.getAttribute("logId");
+		String genie_id = (String) session.getAttribute("logId");
 		//System.out.println("주문정보 받아온 것 cartDTO : " + cartDTO.toString());
 
 		List<CartDTO> lcvo = orderService.readyToPay(cartDTO);
 		//System.out.println("카트정보 가져오기 : " + cartDTO.toString());
 
-		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("plist", lcvo);
@@ -80,7 +80,7 @@ public class OrderController {
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
 
-		String genieId = (String) session.getAttribute("logId");
+		String genie_id = (String) session.getAttribute("logId");
 
 		System.out.println("주문 정보 : "+orderDTO.toString());
 		
@@ -93,7 +93,7 @@ public class OrderController {
 				System.out.println("제품정보 : "+cList.size()); ///
 				for(OrderDTO orderDTOs : cList){
 					orderDTOs.setOrderNum(orderDTO.getOrderNum());
-					orderDTOs.setGenieId(genieId);
+					orderDTOs.setGenieId(genie_id);
 
 					orderDTOs.setRecipientName(orderDTO.getRecipientName());
 					orderDTOs.setRecipientPhone(orderDTO.getRecipientPhone());
@@ -123,7 +123,7 @@ public class OrderController {
 			}
 		}else{
 			try{
-				orderDTO.setGenieId(genieId);
+				orderDTO.setGenieId(genie_id);
 				orderService.afterPayment(orderDTO);
 				
 				entity = new ResponseEntity<>(HttpStatus.OK);
@@ -141,8 +141,8 @@ public class OrderController {
 	@GetMapping("completion")
 	public ModelAndView completion(HttpSession session) {
 
-		String genieId = (String) session.getAttribute("logId");
-		List<OrderDTO> orderDTO = orderService.getOrderList(genieId);
+		String genie_id = (String) session.getAttribute("logId");
+		List<OrderDTO> orderDTO = orderService.getOrderList(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("olist", orderDTO);

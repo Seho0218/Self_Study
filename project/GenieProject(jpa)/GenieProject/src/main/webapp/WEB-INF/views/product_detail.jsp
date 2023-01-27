@@ -22,9 +22,9 @@
 					
 					$reply.each(function(i, vo){ // index, vo
 						tag = "<li>";
-						tag += "<div><b>"+"작성자 : "+vo.genieId+" | "+vo.writeDate+"</b>";
+						tag += "<div><b>"+"작성자 : "+vo.genie_id+" | "+vo.writedate+"</b>";
 						// 수정, 삭제버튼(자신이 쓴 글일때만) 표시
-						if(vo.genieId=='${logId}'){
+						if(vo.genie_id=='${logId}'){
 							tag += "<input type='button' value='리뷰수정'/>";
 							tag += "<input type='button' value='리뷰삭제' title='"+vo.reply_no+"'/>";
 						}
@@ -44,7 +44,7 @@
                                 +"리뷰내용 : "
                                 +vo.comment+"<br></div>";
 						// 로그인 아이디와 댓글 아이디 동일시 (수정폼)을 만들어준다.
-						if(vo.genieId=='${logId}'){
+						if(vo.genie_id=='${logId}'){
 							tag += "<div style='display:none'><form method='post'>";
 							tag += "<input type='hidden' name='reply_no' value='"+vo.reply_no+"'/>";
                             tag += "<fieldset>"
@@ -143,7 +143,7 @@
 		$("#likeBtn").append("<p>"+likeNum+"</p>");
 		
 		// 로그인 아이디의 해당상품 좋아요 판별
-		if("${cvo.genieId}"!=""){ // 이미 좋아요를 누른상태면
+		if("${cvo.genie_id}"!=""){ // 이미 좋아요를 누른상태면
 			likeRed();
 		}else { // 좋아요를 누른적이 없으면
 			likeGray();
@@ -186,16 +186,16 @@
     <!--<h1>상세페이지</h1>-->
     <form method="post" action="/addCart" id="Cart">
         <div class="box-wrapper1"> 
-            <input type="hidden" value="${logId}" name="genieId">
+            <input type="hidden" value="${logId}" name="genie_id">
             <input type="hidden" value="${pvo.product_id}" name="product_id">
-            <input type="hidden" name="productName" value="${pvo.productName}">
+            <input type="hidden" name="product_name" value="${pvo.product_name}">
  
             <div class="box1" style="background-image:url(${pvo.product_image1})"></div>
             <div class="box2" onclick="detail1('${pvo.product_image1}')" style="background-image:url(${pvo.product_image1})"></div>
             <div class="box3" onclick="detail1('${pvo.product_image2}')" style="background-image:url(${pvo.product_image2})"></div>
             <div class="box4" onclick="detail1('${pvo.product_image3}')" style="background-image:url(${pvo.product_image3})"></div>
             <div class="box5">
-                ${pvo.productName}
+                ${pvo.product_name}
                 
                 <div class="w3-button w3-black w3-round" style="text-align:center;">
     				<i class="fa fa-heart likeChange" id="likeBtn"></i>
@@ -209,13 +209,13 @@
                 상품설명 : ${pvo.product_info}
             </div>
             <div class="box8">
-                상품카테고리 : ${pvo.productCategory}
+                상품카테고리 : ${pvo.product_category}
             </div>
             <div class="box9">
-                셀러명 : ${svo.ceoName}
+                셀러명 : ${svo.ceo_name}
             </div>
             <div class="box10">
-                회사이름 : ${svo.companyName}
+                회사이름 : ${svo.company_name}
             </div>
             <div class="box11">
                 상품 수량 : <input type="text" id="cart_qty" name="cart_qty" value="1" 
@@ -392,7 +392,7 @@
             <div class="box_026">ㆍ복제가 가능한 상품의 포장 등을 훼손한 경우</div>
             <div class="box_027"><h1>판매자 정보</h1></div>
             <div class="box_028">판매자</div>
-            <div class="box_029">${svo.companyName}</div>
+            <div class="box_029">${svo.company_name}</div>
         </div>
     </div>
 </section>

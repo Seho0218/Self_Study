@@ -7,24 +7,7 @@
 
     <select id="listProduct" resultType="ProductDTO">
 
-        select 
-            product_id,
-            genie_id,
-            product_category,
-            product_tag,
-            product_name,
-            product_price,
-            product_info,
-            product_stock,
-            product_quantity,
-            product_hit,
-            product_like,
-            product_write_date,
-            product_image1,
-            product_image2,
-            product_image3,
-            productmbti
-        from product 
+        select * from product
 
         <where>
         <if test="productCategory != null">
@@ -34,7 +17,7 @@
         </if>
         <if test="productTag != null">
 
-             product_tag like '%${productTag}%'
+             produc_tag like '%${productTag}%'
 
         </if>
         </where>
