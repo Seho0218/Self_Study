@@ -44,8 +44,6 @@ public class MbtiController {
 	@GetMapping("mbti/{mbti}/{sortType}")
 	public ModelAndView mbtiList(@PathVariable("mbti") String mbti, @PathVariable("sortType") String sortType) {
 		mav = new ModelAndView();
-		System.out.println(mbti);
-		System.out.println(sortType);
 
 		switch (sortType) {
 			case "pricelist" -> //가격낮은순
@@ -124,7 +122,6 @@ public class MbtiController {
 	public ModelAndView productTagSort(@PathVariable("product_tag") String product_tag, @PathVariable("sortType") String sortType) {
 
 		mav = new ModelAndView();
-		System.out.println("productTag = " + product_tag);
 
 		ProductDTO dto = new ProductDTO();
 		dto.setProductTag(product_tag);

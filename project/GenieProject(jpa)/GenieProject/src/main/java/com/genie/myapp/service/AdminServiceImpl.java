@@ -42,9 +42,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int admemberPopEdit(UserDTO vo) {
-		return dao.admemberPopEdit(vo);
-	}
+	public void admemberPopEdit(UserDTO vo) {
+        dao.admemberPopEdit(vo);
+    }
 
 	@Override
 	public int admemberDel(String genie_id) {
@@ -67,8 +67,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adminTagPopEdit(AdminDTO vo) {
-		return dao.adminTagPopEdit(vo);
+	public void adminTagPopEdit(AdminDTO vo) {
+		dao.adminTagPopEdit(vo);
 	}
 
 	@Override
@@ -88,8 +88,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adcategoryPopEdit(AdminDTO vo) {
-		return dao.adcategoryPopEdit(vo);
+	public void adcategoryPopEdit(AdminDTO vo) {
+		dao.adcategoryPopEdit(vo);
 	}
 
 	@Override
@@ -100,8 +100,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 
-	public int paymentWrite(CartDTO vo) {
-		return dao.paymentWrite(vo);
+	public void paymentWrite(CartDTO vo) {
+		dao.paymentWrite(vo);
 	}
 
 	@Override
@@ -115,8 +115,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adcompanyPopEdit(SellerDTO vo) {
-		return dao.adcompanyPopEdit(vo);
+	public void adcompanyPopEdit(SellerDTO vo) {
+		dao.adcompanyPopEdit(vo);
 	}
 
 	@Override

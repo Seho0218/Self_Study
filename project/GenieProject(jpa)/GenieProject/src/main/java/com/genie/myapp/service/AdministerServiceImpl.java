@@ -1,7 +1,8 @@
 package com.genie.myapp.service;
 
+import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.dto.AdministerDTO;
-import com.genie.myapp.entity.Account.Administer;
+import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.repository.AdministerServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,17 @@ public class AdministerServiceImpl implements AdministerService{
     public final AdministerServiceRepository repository;
 
     @Override
-    public AdministerDTO loginOk(AdministerDTO administerDTO) {
+    public AccountDTO loginOk(AccountDTO accountDTO) {
         //DTO -> Entity
-        Administer administer = AdministerDTO.convertDTOtoEntity(administerDTO);
+        Account account = AccountDTO.convertDTOtoEntity(accountDTO);
 
         //Entity -> DTO
-        return AdministerDTO.convertEntityToDTO(repository.loginOk(administer));
+        return AccountDTO.convertEntityToDTO(repository.loginOk(account));
     }
 
     @Override
-    public AdministerDTO getAdminister(String genie_id) {
-        return dao.getAdminister(genie_id);
+    public AdministerDTO getAdminister(AccountDTO accountDTO) {
+        return dao.getAdminister(accountDTO.getGenieId());
     }
     
 }

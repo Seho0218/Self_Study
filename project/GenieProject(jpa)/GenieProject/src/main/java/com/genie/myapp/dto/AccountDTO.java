@@ -14,6 +14,7 @@ public class AccountDTO {
 
     private String genieId;
 	private String geniePwd;
+    private String changedPwd;
     private int withdrawal;
 
     private String ROLE;
@@ -34,6 +35,13 @@ public class AccountDTO {
         // 매핑 전략 설정
         modelMapper.getConfiguration().setMatchingStrategy(STRICT);
         return modelMapper.map(accountDTO, Account.class);
+    }
+
+    //객체를 지속적으로 생성해야할 때, 팩토리 메소드로 해결한 경우
+    public static AccountDTO createAccountDTO(String genie_id) {
+        AccountDTO accountDTO = new AccountDTO();
+        accountDTO.setGenieId(genie_id);
+        return accountDTO;
     }
 
 }

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import com.genie.myapp.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +21,8 @@ import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
+
+import static org.springframework.http.HttpStatus.*;
 
 
 @RestController
@@ -78,16 +79,14 @@ public class GenieController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {//회원가입 성공
-			String enPw = passwordEncoder.encode(userDTO.getGeniePwd());
 
-			userDTO.setGeniePwd(enPw);
 			userService.UserWrite(userDTO);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg, headers, OK);
 
 		} catch (Exception e) {//회원등록 실패
 
@@ -95,7 +94,7 @@ public class GenieController {
 			msg += "alert('회원가입이 실패하였습니다.');";
 			msg += "history.back()";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg, headers, HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg, headers, BAD_REQUEST);
 
 			e.printStackTrace();
 		}
@@ -113,16 +112,14 @@ public class GenieController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {//회원가입성공
-			String enPw = passwordEncoder.encode(sellerDTO.getGeniePwd());
 
-			sellerDTO.setGeniePwd(enPw);
 			sellerService.sellerWrite(sellerDTO);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/login';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg, headers, OK);
 
 
 		} catch (Exception e) {//회원가입실패
@@ -131,7 +128,7 @@ public class GenieController {
 			msg += "alert('회원가입에 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg, headers, HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg, headers, BAD_REQUEST);
 
 			e.printStackTrace();
 
@@ -141,54 +138,46 @@ public class GenieController {
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserDTO userDTO, SellerDTO sellerDTO, AdministerDTO administerDTO, HttpSession session) {
+	public ModelAndView loginOk(AccountDTO accountDTO, HttpSession session) {
 
 		mav = new ModelAndView();
 
-		UserDTO logDTO = userService.loginOk(userDTO);
-		SellerDTO slogDTO = sellerService.loginOk(sellerDTO);
-		AdministerDTO alogDTO = administerService.loginOk(administerDTO);
-		
-		if (logDTO.getGenieId() != null) {//일반회원 일때
-			
-			//비밀번호 검증
-			boolean pwdMatch = passwordEncoder.matches(userDTO.getGeniePwd(), logDTO.getGeniePwd());
-			
-				if (pwdMatch) {//로그인 성공
+		AccountDTO account = userService.loginOk(accountDTO);
+
+		//비밀번호 검증
+		boolean pwdMatch = passwordEncoder.matches(accountDTO.getGeniePwd(), account.getGeniePwd());
+
+		if (pwdMatch) {
+
+			if (account.getROLE().equals("USER")) {//일반회원 일때
+
+				UserDTO logDTO = userService.getUser(accountDTO);
 				session.setAttribute("logId", logDTO.getGenieId());
 				session.setAttribute("logName", logDTO.getUserName());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("ROLE", "ROLE_USER");
 
 				mav.setViewName("redirect:/");
-			} else {//로그인 실패
-				mav.setViewName("redirect:/login");
-			}
-			return mav;
-		}//일반 회원일때 끝
-		
-		if (slogDTO.getGenieId() != null) {//업체회원일때
 
-			boolean pwdMatch = passwordEncoder.matches(sellerDTO.getGeniePwd(), slogDTO.getGeniePwd());
+				return mav;
+			}//일반 회원일때 끝
 
-			if (pwdMatch) {//로그인 성공
+			if (account.getROLE().equals("SELLER")) {//업체회원일때
+
+				SellerDTO slogDTO = sellerService.getSeller(accountDTO);
 				session.setAttribute("logId", slogDTO.getGenieId());
 				session.setAttribute("logName", slogDTO.getCompanyName());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("ROLE", "ROLE_SELLER");
+
 				mav.setViewName("redirect:/seller/sellerMain");
 
-			} else {//로그인 실패
-				mav.setViewName("redirect:/login");
-			}
 				return mav;
-		}// 업체회원일때 끝
+			}// 업체회원일때 끝
 
-		if (alogDTO.getGenieId() != null) {
+			if (account.getROLE().equals("ADMIN")) {//관리자 회원일때
 
-			boolean equals = administerDTO.getGeniePwd().equals(alogDTO.getGeniePwd());
-			
-			if (equals) {
+				AdministerDTO alogDTO = administerService.getAdminister(accountDTO);
 				session.setAttribute("logId", alogDTO.getGenieId());
 				session.setAttribute("logName", alogDTO.getAdministerName());
 				session.setAttribute("logStatus", "Y");
@@ -196,20 +185,12 @@ public class GenieController {
 
 				mav.setViewName("redirect:/admin/adminMain");
 
-			} else {//로그인 실패
+				return mav;
+			}//관리자일때 끝
 
-				mav.setViewName("redirect:/login");
-			}
-
-			mav.setViewName("redirect:/login");
-
-			return mav;
-
-		} else {//로그인 실패
-
-			mav.setViewName("redirect:/login");
 		}
-		return mav;
+			mav.setViewName("redirect:/login");
+			return mav;
 	}
 
 	@GetMapping("logout")
@@ -278,13 +259,12 @@ public class GenieController {
 		try {
 
 			productService.addCart(cartDTO);
-			//System.out.print(addCart);
 
 			String msg = "<script>";
 			msg += "alert('장바구니에 추가되었습니다.');";
 			msg += "location.href='/cart';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg, headers, OK);
 
 		} catch (Exception e) {
 
@@ -293,7 +273,7 @@ public class GenieController {
 			msg += "history.back()";
 			msg += "</script>";
 
-			entity = new ResponseEntity<>(msg, headers, HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg, headers, BAD_REQUEST);
 
 			e.printStackTrace();
 		}
@@ -311,11 +291,11 @@ public class GenieController {
 
 		try {
 			productService.updateCart(cvo);
-			entity = new ResponseEntity<>(headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(headers, OK);
 
 		} catch (Exception e) {
 
-			entity = new ResponseEntity<>(headers, HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(headers, BAD_REQUEST);
 			e.printStackTrace();
 		}
 		return entity;

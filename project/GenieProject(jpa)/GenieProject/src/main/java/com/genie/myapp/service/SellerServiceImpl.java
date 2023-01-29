@@ -9,6 +9,7 @@ import com.genie.myapp.repository.SellerServiceRepository;
 import com.genie.myapp.repository.jpa.AccountRepository;
 import com.genie.myapp.repository.jpa.SellerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
@@ -25,6 +26,8 @@ public class SellerServiceImpl implements SellerService {
 	public final AccountRepository accountRepository;
 	public final SellerRepository sellerRepository;
 	public final SellerServiceRepository repository;
+
+	public final PasswordEncoder passwordEncoder;
 
 
   	@Override
@@ -43,15 +46,18 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
+
 	public void sellerWrite(SellerDTO sellerDTO) {
+
+		sellerDTO.setGeniePwd(passwordEncoder.encode(sellerDTO.getGeniePwd()));
 		Seller seller = SellerDTO.convertDTOtoEntity(sellerDTO);
 		sellerRepository.save(seller);
 	}
 
 	@Override
-	public int productWrite(SellerProductDTO sellerProductDTO) {
-		return dao.productWrite(sellerProductDTO);
-	}
+	public void productWrite(SellerProductDTO sellerProductDTO) {
+        dao.productWrite(sellerProductDTO);
+    }
 
 	// 주문목록
 	@Override
@@ -65,8 +71,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 	
 	@Override
-	public SellerDTO getSeller(String genie_id) {
-		return dao.getSeller(genie_id);
+	public SellerDTO getSeller(AccountDTO accountDTO) {
+		return dao.getSeller(accountDTO.getGenieId());
 	}
 
 	@Override
@@ -75,8 +81,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int productEditOk(SellerProductDTO pvo) {
-		return dao.productEditOk(pvo);
+	public void productEditOk(SellerProductDTO pvo) {
+		dao.productEditOk(pvo);
 	}
 
 	@Override

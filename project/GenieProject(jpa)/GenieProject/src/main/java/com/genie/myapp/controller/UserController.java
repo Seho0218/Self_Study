@@ -1,14 +1,11 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 
-import com.genie.myapp.dto.AddressDTO;
-import com.genie.myapp.dto.OrderDTO;
+import com.genie.myapp.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,8 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.dto.SellerDTO;
-import com.genie.myapp.dto.UserDTO;
+
+import static java.nio.charset.StandardCharsets.*;
+import static org.springframework.http.HttpStatus.*;
 
 
 @RestController
@@ -42,14 +40,15 @@ public class UserController {
 	public ModelAndView MyPage(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+
 		String seller_id = (String)session.getAttribute("logId");
-		SellerDTO sellerDTO = sellerService.getSeller(seller_id);
+		SellerDTO sellerDTO = SellerDTO.createSellerDTO(seller_id);
 
 		mav = new ModelAndView();
 
-		mav.addObject("svo",sellerDTO);
-		mav.addObject("vo", userService.getUser(userDTO));
+		mav.addObject("svo",sellerService.getSeller(accountDTO));
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.setViewName("/user/MyPage");
 	
 		return mav;
@@ -61,7 +60,7 @@ public class UserController {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
 		String msg = "<script>";
@@ -74,7 +73,7 @@ public class UserController {
 			msg+="location.href='/user/MyPage';</script>";
 			msg += "</script>";
 
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 
 		}catch (Exception e){//수정못함
 
@@ -82,10 +81,9 @@ public class UserController {
 			msg+="location.href='/user/MyPage';</script>";
 			msg += "</script>";
 
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 
 		}
-
 		return entity;
 	}
 
@@ -94,13 +92,14 @@ public class UserController {
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		List<OrderDTO> orderList =userService.getOrder(userDTO);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
-		mav.addObject("vo", userService.getUser(userDTO));
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.setViewName("/user/MyOrderList");
 	
 		return mav;
@@ -112,10 +111,12 @@ public class UserController {
 		
 		String genie_id = (String)session.getAttribute("logId");
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+
 		List<AddressDTO> dlist = userService.getDeliveryList(userDTO);
 
 		mav = new ModelAndView();
-		mav.addObject("vo", userService.getUser(userDTO));
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.addObject("dlist", dlist);
 		mav.setViewName("/user/MyDeliveryList");
 	
@@ -128,21 +129,21 @@ public class UserController {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
-
 		String msg = "<script>";
+
 		try{
 			userService.addDelivery(addressDTO);
 			msg+="alert('배송지가 등록되었습니다.');";
 			msg+="location.href='/user/MyDeliveryList';</script>";
-			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 
 		} catch(Exception e) {//등록 실패
 
 			msg+="alert('배송지 등록에 실패하였습니다.');";
 			msg+="location.href='/user/MyDeliveryList';</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers, BAD_REQUEST);
 			e.printStackTrace();
 		}
 
@@ -151,14 +152,13 @@ public class UserController {
 
 	//주문 결제 페이지의 주소 추가창
 	@PostMapping("addAddressbook")
-	public ResponseEntity<String> addAddressbook(AddressDTO addressDTO) {
+	public ResponseEntity<String> addAddressBook(AddressDTO addressDTO) {
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
-		System.out.println("addressDTO = " + addressDTO);
 		String msg = "<script>";
 
 		try{//등록 성공
@@ -166,13 +166,13 @@ public class UserController {
 			userService.addDelivery(addressDTO);
 			msg+="alert('배송지가 등록되었습니다.');";
 			msg+="location.href='/user/addressbook';</script>";
-			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 
 		}catch (Exception e){//등록 실패
 
 			msg+="alert('배송지 등록에 실패하였습니다.');";
 			msg+="location.href='/user/addressbook';</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers, BAD_REQUEST);
 			e.printStackTrace();
 		}
 
@@ -180,7 +180,7 @@ public class UserController {
 	}
 
 	@GetMapping("addressbook")
-	public ModelAndView addressbook(HttpSession session){
+	public ModelAndView AddressBook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
@@ -193,15 +193,17 @@ public class UserController {
 	}
 
 	@GetMapping("Addaddressbook")
-	public ModelAndView Addaddressbook(HttpSession session){
+	public ModelAndView addAddressBook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
 
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+
 		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();
-		mav.addObject("vo", userService.getUser(userDTO));
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.addObject("dlist", dlist);
 		mav.setViewName("/user/Addaddressbook");
 		return mav;
@@ -217,10 +219,10 @@ public class UserController {
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
 
 		mav = new ModelAndView();
-		mav.addObject("vo", userService.getUser(userDTO));
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.setViewName("/user/MyInquiryList");
 	
 		return mav;
@@ -231,11 +233,12 @@ public class UserController {
 	public ModelAndView MyLikeList(HttpSession session){
 
 		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+
 
 		mav = new ModelAndView();
 		mav.addObject("list",userService.getLikeList(genie_id));
-		mav.addObject("vo", userService.getUser(userDTO));
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.setViewName("/user/MyLikeList");
 	
 		return mav;
@@ -249,47 +252,46 @@ public class UserController {
 		
 		String genie_id = (String)session.getAttribute("logId");
 
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		userDTO = userService.getUser(userDTO);
-		
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+
+
 		mav = new ModelAndView();
-		mav.addObject("vo",userDTO);
+		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.setViewName("/user/PwdEdit");
 		
 		return mav;
 	}
 
 	@PostMapping("PwdEditOk")
-	public ResponseEntity<String> PwdEditOk(UserDTO userDTO) {
+	public ResponseEntity<String> PwdEditOk(AccountDTO accountDTO) {
 		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 
-		UserDTO logDTO = userService.loginOk(userDTO);
-		System.out.println(logDTO);
+		AccountDTO logDTO = userService.loginOk(accountDTO);
 
-		boolean pwdMatch = passwordEncoder.matches(userDTO.getGeniePwd(), logDTO.getGeniePwd());
-		System.out.println(pwdMatch);
+		//기존 비밀번호 확인
+		boolean pwdMatch = passwordEncoder.matches(accountDTO.getGeniePwd(), logDTO.getGeniePwd());
 
 		String msg = "<script>";
+
 		if(pwdMatch){
 
 			try{//수정함
 
-				String enPw=passwordEncoder.encode(userDTO.getGeniePwd());
-				userDTO.setGeniePwd(enPw);
-				userService.PwdEditOk(userDTO);
+				userService.PwdEditOk(accountDTO);
+
 				msg+="alert('비밀번호가 수정되었습니다.');";
 				msg+="window.close();</script>";
-				entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+				entity = new ResponseEntity<>(msg,headers, OK);
 
 			}catch (Exception e){//수정못함
 
 				msg+="alert('비밀번호 수정이 실패하였습니다.');";
 				msg+="window.close();</script>";
-				entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+				entity = new ResponseEntity<>(msg,headers, BAD_REQUEST);
 
 				e.printStackTrace();
 			}
@@ -298,20 +300,10 @@ public class UserController {
 
 			msg+="alert('비밀번호 수정이 실패하였습니다.');";
 			msg+="window.close();</script>";
-			entity = new ResponseEntity<>(msg,headers, HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 
 		}
 
 		return entity;
 	}
-////////////////////////////////////////////////////////////////
-
-// @ModelAttribute("roles")
-// public Map<String,Role> roles(){
-// 	Map<String, Role> map = new LinkedHashMap<>();
-//         map.put("관리자", Role.ROLE_ADMIN);
-//         map.put("판매자", Role.ROLE_SELLER);
-//         map.put("사용자", Role.ROLE_USER);
-//         return map;
-// }
 }
