@@ -21,10 +21,8 @@ public interface SellerService {
 	// 주문목록 배송상태 수정
 
 	void updateDeliveryStatus(Map deliveryMap);
-	//판매자 로그인
-	SellerDTO loginOk(SellerDTO sellerDTO);
 	//상품관리 - 상품목록
-	public List<SellerProductDTO> productList(PagingDTO pagingDTO);
+	List<SellerProductDTO> productList(PagingDTO pagingDTO);
 	//회원 선택: 로그인 한 회원
 	SellerDTO getSeller(AccountDTO accountDTO);
 	//상품선택 : 수정, 상품내용보기
