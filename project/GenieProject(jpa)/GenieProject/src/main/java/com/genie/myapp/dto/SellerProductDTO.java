@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class SellerProductDTO {
+
 	private int productId;
 	private String genieId;
 	private String productCategory; // a,b,c

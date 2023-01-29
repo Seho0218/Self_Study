@@ -3,7 +3,6 @@ package com.genie.myapp.service;
 import java.util.List;
 
 import com.genie.myapp.dto.AdminDTO;
-import com.genie.myapp.repository.AdminServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,6 @@ import javax.transaction.Transactional;
 public class AdminServiceImpl implements AdminService {
 
 	public final AdminDAO dao;
-	public final AdminServiceRepository repository;
 
 	@Override
 	public List<AdminDTO> adminCategoryTag(AdminDTO DTO) {

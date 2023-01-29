@@ -5,15 +5,17 @@ import com.genie.myapp.entity.Product.Product;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.modelmapper.convention.MatchingStrategies.*;
 
 @Data
 @NoArgsConstructor
 public class ProductDTO {
 
+	private List<Product> productList;
 	private int productId;
 	private String genieId;
 	private String productCategory;
@@ -39,7 +41,7 @@ public class ProductDTO {
 
 		ModelMapper modelMapper = new CustomerModelMapper();
 		// 매핑 전략 설정
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		modelMapper.getConfiguration().setMatchingStrategy(STRICT);
 		return modelMapper.map(product, ProductDTO.class);
 	}
 
@@ -48,7 +50,7 @@ public class ProductDTO {
 
 		ModelMapper modelMapper = new CustomerModelMapper();
 		// 매핑 전략 설정
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		modelMapper.getConfiguration().setMatchingStrategy(STRICT);
 		return modelMapper.map(productDTO, Product.class);
 	}
 
@@ -57,4 +59,11 @@ public class ProductDTO {
 		return productDTOS.stream().map(ProductDTO::convertEntityToDTO).collect(Collectors.toList());
 	}
 
+
+	//객체를 지속적으로 생성해야할 때, 팩토리 메소드로 해결한 경우
+	public static ProductDTO createProductDTO(int productId) {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setProductId(productId);
+		return productDTO;
+	}
 }

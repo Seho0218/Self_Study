@@ -2,7 +2,6 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.repository.MbtiServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,6 @@ import javax.transaction.Transactional;
 public class MbtiServiceImpl implements MbtiService {
 	
 	public final MbtiDAO dao;
-	public final MbtiServiceRepository repository;
 
 	@Override
 	public List<SellerProductDTO> getProduct(String mbti) {

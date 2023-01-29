@@ -9,7 +9,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +19,7 @@ import java.util.List;
 public class Seller extends Account{
 
     @OneToMany(mappedBy = "genieId")
-    private List<Product> productList = new ArrayList<>();
+    private List<Product> productList;
 
     private String sellerTel;
     private String sellerEmail;

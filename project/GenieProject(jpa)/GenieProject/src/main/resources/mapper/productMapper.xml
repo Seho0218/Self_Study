@@ -28,13 +28,6 @@
 
 <!-- 제품 검색(정보가져오기) -->
 
-    <select id = "getProduct" resultType = "ProductDTO" parameterType = "int">
-
-        select * from product
-        where product_id=#{productId}
-
-	</select>
-
     <select id="getSeller" resultType="SellerDTO">
 
         select * 
@@ -56,7 +49,7 @@
             user u 
         where u.genie_id=c.genie_id and 
             c.product_id=p.product_id and 
-            c.genie_id=#{param1};
+            c.genie_id=#{genieId};
 
     </select>
 
@@ -67,25 +60,6 @@
 
     </insert>
 
-
-    <delete id = "delMultiCart">
-	  	delete from cart 
-	  	<where>
-	  		<foreach collection="cartList" index="index" item ="item" open="cartNum in (" separator ="," close=")">
-	  			#{item}  			
-	  		</foreach>
-           	  <!-- and genie_id=#{genieId} -->
-	  	</where>
-           
-	</delete>
-
-
-
-    <delete id="delCart">
-
-        delete from cart where cart_num=#{param1} and genie_id=#{param2}
-
-    </delete>
 
     <update id="updateCart">
         

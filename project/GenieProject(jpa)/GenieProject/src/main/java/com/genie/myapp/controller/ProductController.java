@@ -5,10 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.genie.myapp.dto.AdminDTO;
-import com.genie.myapp.dto.PagingDTO;
-import com.genie.myapp.dto.ProductDTO;
-import com.genie.myapp.dto.TagDTO;
+import com.genie.myapp.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,16 +58,17 @@ public class ProductController {
 
 	// 제폼 상세페이지
 	@GetMapping("product_detail")
-	public ModelAndView productDetail(@RequestParam("product_id") int productId, HttpSession session) {
+	public ModelAndView productDetail(@RequestParam("product_id") int product_id, HttpSession session) {
 
 		mav = new ModelAndView();
 		String genie_id = (String) session.getAttribute("logId");
+		ProductDTO productDTO = ProductDTO.createProductDTO(product_id);
+		productService.hitCount(productDTO);
 
-		productService.hitCount(productId);
-		mav.addObject("pvo", productService.getProduct(productId));
-		mav.addObject("svo", productService.getSeller(productId));
-		mav.addObject("lvo", productService.likeStatus(productId));
-		mav.addObject("cvo", productService.likeCheck(productId, genie_id));
+		mav.addObject("pvo", productService.getProduct(productDTO));
+		mav.addObject("svo", productService.getSeller(productDTO));
+		mav.addObject("lvo", productService.likeStatus(productDTO));
+		mav.addObject("cvo", productService.likeCheck(productDTO, genie_id));
 		mav.setViewName("/product_detail");
 
 		return mav;

@@ -2,7 +2,9 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.repository.OrderServiceRepository;
+import com.genie.myapp.entity.MyOrder;
+import com.genie.myapp.repository.jpa.CartRepository;
+import com.genie.myapp.repository.jpa.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,9 @@ import javax.transaction.Transactional;
 public class OrderServiceImpl implements OrderService{
 
     public final OrderDAO dao;
-    public final OrderServiceRepository repository;
+    public final OrderRepository orderRepository;
+    public final CartRepository cartRepository;
+
 
     @Override
     public List<CartDTO> readyToPay(CartDTO cartDTO) {
@@ -32,22 +36,18 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void afterPayment(OrderDTO orderDTO) {
-        dao.afterPayment(orderDTO);
+        MyOrder myOrder = OrderDTO.convertDTOtoEntity(orderDTO);
+        orderRepository.save(myOrder);
     }
 
     @Override
     public void afterOrderCart(OrderDTO orderDTO) {
-        dao.afterOrderCart(orderDTO);
+        cartRepository.deleteCartsByCartNumIn(orderDTO.getCartList());
     }
 
     @Override
     public List<OrderDTO> getOrderList(String genie_id) {
         return dao.getOrderList(genie_id);
     }
-    
 
-
-
-
-    
 }

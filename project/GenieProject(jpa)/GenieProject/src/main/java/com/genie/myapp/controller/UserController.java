@@ -208,9 +208,8 @@ public class UserController {
 	}
 
 	@GetMapping("delDelivery")
-	public long delDelivery(int addressNum){
-		System.out.println("addressNum = " + addressNum);
-		return userService.delDelivery(addressNum);
+	public void delDelivery(int addressNum){
+		userService.delDelivery(addressNum);
 	}
 
 	//나의 문의사항 
@@ -276,7 +275,6 @@ public class UserController {
 
 		String msg = "<script>";
 		if(pwdMatch){
-
 
 			try{//수정함
 
