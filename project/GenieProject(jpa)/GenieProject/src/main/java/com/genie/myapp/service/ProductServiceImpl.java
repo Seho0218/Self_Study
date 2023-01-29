@@ -2,6 +2,9 @@ package com.genie.myapp.service;
 
 import com.genie.myapp.dto.*;
 import com.genie.myapp.repository.ProductServiceRepository;
+import com.genie.myapp.repository.jpa.CartRepository;
+import com.genie.myapp.repository.jpa.ProductRepository;
+import com.genie.myapp.repository.jpa.SellerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +24,21 @@ public class ProductServiceImpl implements ProductService{
     public final ProductDAO dao;
 	public final ProductServiceRepository repository;
 
+	public final SellerRepository sellerRepository;
+	public final ProductRepository productRepository; //데이터 JPA
+	public final CartRepository cartRepository; //데이터 JPA
+
 	@Override
 	public List<ProductDTO> listProduct(ProductDTO productDTO) {
+
+		//return ProductDTO.convertEntityToDTO(repository.listProduct(productDTO));
 		return dao.listProduct(productDTO);
 	}
 	
 	@Override
-	public ProductDTO getProduct(int no) {
-		return dao.getProduct(no);
+	public ProductDTO getProduct(ProductDTO productDTO) {
+		return ProductDTO.convertEntityToDTO(
+				productRepository.findProductByProductId(productDTO.getProductId()));
 	}
 
 	@Override
@@ -37,13 +47,14 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<CartDTO> getCart(String genie_id) {
-		return dao.getCart(genie_id);
+	public List<CartDTO> getCart(UserDTO userDTO) {
+		return dao.getCart(userDTO.getGenieId());
 	}
 	
 	@Override
-	public SellerDTO getSeller(int productId) {
-		return dao.getSeller(productId);
+	public SellerDTO getSeller(ProductDTO productDTO) {
+
+		return dao.getSeller(productDTO.getProductId());
 	}
 	
 	@Override
@@ -52,18 +63,18 @@ public class ProductServiceImpl implements ProductService{
     }
 	
 	@Override
-	public int delCart(int cart_num, String genie_id) {
-		return dao.delCart(cart_num, genie_id);
+	public void delCart(CartDTO cartDTO) {
+		cartRepository.deleteById(cartDTO.getCartNum());
 	}
 	
 	@Override
-	public int delMultiCart(CartDTO cartDTO) {
-		return dao.delMultiCart(cartDTO);
+	public void delMultiCart(CartDTO cartDTO) {
+		cartRepository.deleteCartsByCartNumIn(cartDTO.getCartList());
 	}
 
 	@Override
-	public void hitCount(int productId) {
-		dao.hitCount(productId);
+	public void hitCount(ProductDTO productDTO) {
+		dao.hitCount(productDTO.getProductId());
 	}
 
 	@Override
@@ -72,18 +83,18 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public ProductDTO likeStatus(int productId) {
-		return dao.likeStatus(productId);
+	public ProductDTO likeStatus(ProductDTO productDTO) {
+		return dao.likeStatus(productDTO.getProductId());
 	}
 
 	@Override
-	public LikeDTO likeCheck(int productId, String genie_id) {
-		return dao.likeCheck(productId, genie_id);
+	public LikeDTO likeCheck(ProductDTO productDTO, String genie_id) {
+		return dao.likeCheck(productDTO.getProductId(), genie_id);
 	}
 
 	@Override
-	public int updateCart(CartDTO cartDTO) {
-		return dao.updateCart(cartDTO);
+	public void updateCart(CartDTO cartDTO) {
+		dao.updateCart(cartDTO);
 	}
 
 	@Override

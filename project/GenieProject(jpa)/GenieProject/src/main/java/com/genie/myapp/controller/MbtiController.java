@@ -48,18 +48,14 @@ public class MbtiController {
 		System.out.println(sortType);
 
 		switch (sortType) {
-			case "pricelist": //가격낮은순
-				mav.addObject("plist", service.pricelist(mbti));
-				break;
-			case "pricelistdesc": //가격높은순
-				mav.addObject("plist", service.pricelistdesc(mbti));
-				break;
-			case "recentlist": //최신순
-				mav.addObject("plist", service.recentlist(mbti));
-				break;
-			default: //좋아요순
-				mav.addObject("plist", service.likelist(mbti));
-				break;
+			case "pricelist" -> //가격낮은순
+					mav.addObject("plist", service.pricelist(mbti));
+			case "pricelistdesc" -> //가격높은순
+					mav.addObject("plist", service.pricelistdesc(mbti));
+			case "recentlist" -> //최신순
+					mav.addObject("plist", service.recentlist(mbti));
+			default -> //좋아요순
+					mav.addObject("plist", service.likelist(mbti));
 		}
 		
 		mav.setViewName("mbti/mbtiList");
@@ -68,31 +64,27 @@ public class MbtiController {
 	}
 	
 	//상품 정렬하기 (카테고리 list)
-	@GetMapping("product/{product_category}/{sortType}")
-	public ModelAndView productSort(@PathVariable("product_category") String product_category, @PathVariable("sortType") String sortType) {
+	@GetMapping("product/{productCategory}/{sortType}")
+	public ModelAndView productSort(@PathVariable("productCategory") String productCategory, @PathVariable("sortType") String sortType) {
 
 		mav = new ModelAndView();
 
-		System.out.println("productCategory = " + product_category);
+		System.out.println("productCategory = " + productCategory);
 
 		ProductDTO productDTO = new ProductDTO();
-		productDTO.setProductCategory(product_category);
+		productDTO.setProductCategory(productCategory);
 
 		switch (sortType) {
-			case "pricelist": //가격낮은순
+			case "pricelist" -> //가격낮은순
 				//List<ProductVO> list= service.productPriceAsc(PVO);
 				//System.out.println(list.size());
-				mav.addObject("plist", service.productPriceAsc(productDTO));
-				break;
-			case "pricelistdesc": //가격높은순
-				mav.addObject("plist", service.productPriceDesc(productDTO));
-				break;
-			case "recentlist": //최신순
-				mav.addObject("plist", service.productRecent(productDTO));
-				break;
-			default: //좋아요순
-				mav.addObject("plist", service.productLike(productDTO));
-				break;
+					mav.addObject("plist", service.productPriceAsc(productDTO));
+			case "pricelistdesc" -> //가격높은순
+					mav.addObject("plist", service.productPriceDesc(productDTO));
+			case "recentlist" -> //최신순
+					mav.addObject("plist", service.productRecent(productDTO));
+			default -> //좋아요순
+					mav.addObject("plist", service.productLike(productDTO));
 		}
 		
 		mav.addObject("pvo", productDTO);
@@ -109,20 +101,16 @@ public class MbtiController {
 		ProductDTO PVO = new ProductDTO();
 
 		switch (sortType) {
-			case "pricelist": //가격낮은순
+			case "pricelist" -> //가격낮은순
 				//List<ProductVO> list= service.productPriceAsc(PVO);
 				//System.out.println(list.size());
-				mav.addObject("plist", service.productPriceAsc(PVO));
-				break;
-			case "pricelistdesc": //가격높은순
-				mav.addObject("plist", service.productPriceDesc(PVO));
-				break;
-			case "recentlist": //최신순
-				mav.addObject("plist", service.productRecent(PVO));
-				break;
-			default: //좋아요순
-				mav.addObject("plist", service.productLike(PVO));
-				break;
+					mav.addObject("plist", service.productPriceAsc(PVO));
+			case "pricelistdesc" -> //가격높은순
+					mav.addObject("plist", service.productPriceDesc(PVO));
+			case "recentlist" -> //최신순
+					mav.addObject("plist", service.productRecent(PVO));
+			default -> //좋아요순
+					mav.addObject("plist", service.productLike(PVO));
 		}
 		
 		mav.addObject("pvo", PVO);
@@ -142,20 +130,16 @@ public class MbtiController {
 		dto.setProductTag(product_tag);
 
 		switch (sortType) {
-			case "pricelist": //가격낮은순
+			case "pricelist" -> //가격낮은순
 				//List<ProductVO> list= service.productPriceAsc(PVO);
 				//System.out.println(list.size());
-				mav.addObject("plist", service.productPriceAsc(dto));
-				break;
-			case "pricelistdesc": //가격높은순
-				mav.addObject("plist", service.productPriceDesc(dto));
-				break;
-			case "recentlist": //최신순
-				mav.addObject("plist", service.productRecent(dto));
-				break;
-			default: //좋아요순
-				mav.addObject("plist", service.productLike(dto));
-				break;
+					mav.addObject("plist", service.productPriceAsc(dto));
+			case "pricelistdesc" -> //가격높은순
+					mav.addObject("plist", service.productPriceDesc(dto));
+			case "recentlist" -> //최신순
+					mav.addObject("plist", service.productRecent(dto));
+			default -> //좋아요순
+					mav.addObject("plist", service.productLike(dto));
 		}
 		
 		mav.addObject("pvo", dto);

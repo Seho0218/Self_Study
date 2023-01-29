@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ReplyProductDTO {
+
     private String genieId;
     private int replyNo;
     private int productId;

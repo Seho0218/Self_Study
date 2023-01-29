@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import javax.management.relation.Role;
-
 import static org.modelmapper.convention.MatchingStrategies.*;
 
 @Data
@@ -19,7 +17,6 @@ public class AccountDTO {
     private int withdrawal;
 
     private String ROLE;
-    private Role role;
 
 
     public static AccountDTO convertEntityToDTO(Account account){

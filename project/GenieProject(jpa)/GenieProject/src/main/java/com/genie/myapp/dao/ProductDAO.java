@@ -3,14 +3,9 @@ package com.genie.myapp.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.genie.myapp.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
-import com.genie.myapp.dto.CartDTO;
-import com.genie.myapp.dto.LikeDTO;
-import com.genie.myapp.dto.PagingDTO;
-import com.genie.myapp.dto.ProductDTO;
-import com.genie.myapp.dto.SellerDTO;
 
 @Mapper
 @Repository
@@ -38,7 +33,7 @@ public interface ProductDAO {
     public SellerDTO getSeller(int product_id);
 
     // 장바구니 가져오기(상품포함)
-    public List<CartDTO> getCart(String genie_id);
+    public List<CartDTO> getCart(String userDTO);
 
     // 장바구니 상품 넣기
     public int addCart(CartDTO cvo);

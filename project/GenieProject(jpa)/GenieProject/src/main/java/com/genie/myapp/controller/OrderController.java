@@ -41,8 +41,6 @@ public class OrderController {
 	public ModelAndView BuyNow(HttpSession session, CartDTO cartDTO) {
 		
 		String genie_id=(String)session.getAttribute("logId");
-		System.out.println("BuyNow로 받아온 cvo : "+cartDTO.toString());
-
 		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
 
 		mav = new ModelAndView();
@@ -73,27 +71,23 @@ public class OrderController {
 	}
 
 	@GetMapping("orderCompletion")
-	public ResponseEntity<String> orderCompletion(HttpSession session, OrderDTO orderDTO) {
+	public ResponseEntity<String> orderCompletion(OrderDTO orderDTO) {
 
-		System.out.println("orderDTO = " + orderDTO);
-		
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
-
-		String genie_id = (String) session.getAttribute("logId");
 
 		if(orderDTO.getCartList() != null){
 
 			try{
 				//제품 정보 가져오기
 				List<OrderDTO> cList = orderService.getFromCart(orderDTO);
-				System.out.println("orderDTO 제품정보 : "+orderDTO.toString());
+				System.out.println("orderDTO 제품정보 : "+orderDTO);
 				System.out.println("제품정보 : "+cList.size()); ///
 				for(OrderDTO orderDTOs : cList){
 					orderDTOs.setOrderNum(orderDTO.getOrderNum());
-					orderDTOs.setGenieId(genie_id);
+					orderDTOs.setGenieId(orderDTO.getGenieId());
 
 					orderDTOs.setRecipientName(orderDTO.getRecipientName());
 					orderDTOs.setRecipientPhone(orderDTO.getRecipientPhone());
@@ -123,7 +117,7 @@ public class OrderController {
 			}
 		}else{
 			try{
-				orderDTO.setGenieId(genie_id);
+				orderDTO.setGenieId(orderDTO.getGenieId());
 				orderService.afterPayment(orderDTO);
 				
 				entity = new ResponseEntity<>(HttpStatus.OK);

@@ -34,82 +34,14 @@
 	  	</foreach>	
     
     </select>
-    
-    <!-- 주문정보 저장 -->
-    <insert id="afterPayment">
-
-    	insert into myorder 
-            (order_num, 
-            genie_id, 
-            product_id,
-            product_name,
-
-            recipient_name, 
-            recipient_phone,
-            recipient_address, 
-            recipient_request,
-            payment_method,
-            order_write_date,
-
-            order_price,
-            order_qty) 
-
-        values  
-
-            (#{orderNum},
-            #{genieId},
-            #{productId},
-            #{productName},
-
-            #{recipientName},
-            #{recipientPhone},
-            #{recipientAddress},
-            #{recipientRequest},
-            #{paymentMethod},
-            #{orderWriteDate},
-
-            #{orderPrice},
-            #{orderQty})
-           
-    </insert>
-
-<!-- 장바구니 삭제 -->
-    <delete id="afterOrderCart">
-        delete from cart 
-            <if test="cartList!=null">
-                <where>
-                    <foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
-                        #{item}  			
-                    </foreach>	 
-                </where>
-            </if>
-    </delete>
-    <!-- 
-    <delete id="afterOrderCart">
-        delete from cart where cart_num=#{cart_num}
-    </delete> -->
 
     <!-- 주문 완료 페이지 -->
 
     <select id="getOrderList" resultType="OrderDTO">
-    
-		select 
-            m.order_num,
-            m.genie_id, 
-            m.product_id,
-            c.product_name,
-            m.recipient_name, 
-            m.recipient_phone,
-            m.recipient_address, 
-            m.recipient_request,
-            m.order_price,
-            m.order_qty,
-            m.payment_method
-		from myorder m 
-        join product c 
-        on m.product_id=c.product_id 
-        where order_write_date =
-        (select max(order_write_date) from myorder where genie_id=#{genieId})
+
+        select * from myorder where order_num = (
+            select order_num from myorder where order_write_date = (
+                    (select max(order_write_date) from myorder where genie_id=#{genieId})));
 
     </select>
 

@@ -143,7 +143,6 @@ public class GenieController {
 	@PostMapping("loginOK")
 	public ModelAndView loginOk(UserDTO userDTO, SellerDTO sellerDTO, AdministerDTO administerDTO, HttpSession session) {
 
-		System.out.println("userDTO = " + userDTO);
 		mav = new ModelAndView();
 
 		UserDTO logDTO = userService.loginOk(userDTO);
@@ -215,6 +214,7 @@ public class GenieController {
 
 	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session) {
+
 		mav = new ModelAndView();
 		session.invalidate();
 		mav.setViewName("redirect:/");
@@ -255,8 +255,9 @@ public class GenieController {
 	@GetMapping("cart")
 	public ModelAndView cart(HttpSession session) {
 
-		String genie_id = (String) session.getAttribute("logId");
-		List<CartDTO> cartList = productService.getCart(genie_id);
+		String genieId = (String) session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		List<CartDTO> cartList = productService.getCart(userDTO);
 		// System.out.print(cartList);
 
 		mav = new ModelAndView();
@@ -267,7 +268,7 @@ public class GenieController {
 	}
 
 	@PostMapping("addCart")
-	public ResponseEntity<String> addCart(CartDTO cvo) {
+	public ResponseEntity<String> addCart(CartDTO cartDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
@@ -276,7 +277,7 @@ public class GenieController {
 
 		try {
 
-			productService.addCart(cvo);
+			productService.addCart(cartDTO);
 			//System.out.print(addCart);
 
 			String msg = "<script>";
@@ -303,46 +304,36 @@ public class GenieController {
 	@PostMapping("updateCart")
 	public ResponseEntity<String> updateCart(CartDTO cvo) {
 
-		System.out.println("cvo = " + cvo);
-
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", StandardCharsets.UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			//System.out.println(cvo.toString());
 			productService.updateCart(cvo);
-
 			entity = new ResponseEntity<>(headers, HttpStatus.OK);
 
 		} catch (Exception e) {
 
 			entity = new ResponseEntity<>(headers, HttpStatus.BAD_REQUEST);
-
 			e.printStackTrace();
 		}
-
 		return entity;
 	}
 
 	// 장바구니에서 제품 삭제
 	@GetMapping("delCart")
-	public int delCart(HttpSession session, int cartNum) {
-		String genie_id = (String) session.getAttribute("logId");
-		return productService.delCart(cartNum, genie_id);
+	public void delCart(CartDTO cartDTO) {
+		productService.delCart(cartDTO);
 
 	}
 
 	// 장바구니에서 여러 제품 삭제
 	@GetMapping("delMultiCart")
-	public ModelAndView delMultiCart(CartDTO cvo) {
+	public ModelAndView delMultiCart(CartDTO cartDTO) {
 
 		mav = new ModelAndView();
-		//System.out.println(" 제품 삭제 cvo 정보 " + cvo.toString());
-		productService.delMultiCart(cvo);
-
-		//System.out.println("지워진 상품 : " + cnt);
+		productService.delMultiCart(cartDTO);
 		mav.setViewName("redirect:/cart");
 		return mav;
 	}

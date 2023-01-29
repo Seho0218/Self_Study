@@ -2,21 +2,15 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.dto.AddressDTO;
-import com.genie.myapp.dto.OrderDTO;
-import com.genie.myapp.dto.ProductDTO;
+import com.genie.myapp.dto.*;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
-import com.genie.myapp.repository.jpa.AccountRepository;
-import com.genie.myapp.repository.jpa.AddressRepository;
-import com.genie.myapp.repository.jpa.OrderRepository;
-import com.genie.myapp.repository.jpa.UserRepository;
+import com.genie.myapp.repository.jpa.*;
 import com.genie.myapp.repository.UserServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
-import com.genie.myapp.dto.UserDTO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,11 +24,13 @@ public class UserServiceImpl implements UserService{
     @PersistenceContext private final EntityManager em;
 
     public final UserDAO dao;
-    public final AccountRepository accountRepository;
     public final UserServiceRepository repository;
+    public final AccountRepository accountRepository; //JPA 레포지토리
     public final UserRepository userRepository; //JPA 레포지토리
+
     public final AddressRepository addressRepository; //JPA 레포지토리
-    private final OrderRepository orderRepository;
+    public final OrderRepository orderRepository; //JPA 레포지토리
+    public final CartRepository cartRepository; //JPA 레포지토리
 
 
     @Override
@@ -61,7 +57,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO getUser(UserDTO userDTO) {
-        return UserDTO.convertEntityToDTO(repository.getUser(userDTO.getGenieId()));
+
+        return UserDTO.convertEntityToDTO(
+                userRepository.findByGenieId(userDTO.getGenieId())
+        );
     }
 
     @Override //TODO 개인정보 변경이 안됌.
@@ -90,22 +89,26 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public long delDelivery(int addressNum) {
-        return repository.delDelivery(addressNum);
+    public void delDelivery(int addressNum) {
+         cartRepository.deleteById(addressNum);
     }
 
     @Override
     public List<AddressDTO> getDeliveryList(UserDTO userDTO) {
 
         //Entity -> DTO
-        return AddressDTO.convertEntityToDTO(addressRepository.findByGenieId_GenieId(userDTO.getGenieId()));
+        return AddressDTO.convertEntityToDTO(
+                addressRepository.findByGenieId_GenieId(userDTO.getGenieId())
+        );
     }
 
     @Override
     public List<OrderDTO> getOrder(UserDTO userDTO) {
 
         //Entity -> DTO
-        return OrderDTO.convertEntityToDTO(orderRepository.findByGenieId_GenieId(userDTO.getGenieId()));
+        return OrderDTO.convertEntityToDTO(
+                orderRepository.findByGenieId_GenieId(userDTO.getGenieId())
+        );
     }
 
     @Override
