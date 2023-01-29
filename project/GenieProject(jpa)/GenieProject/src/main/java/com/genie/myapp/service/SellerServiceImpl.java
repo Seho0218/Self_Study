@@ -36,16 +36,6 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public SellerDTO loginOk(SellerDTO sellerDTO) {
-
-		//DTO -> Entity
-		Seller seller = SellerDTO.convertDTOtoEntity(sellerDTO);
-
-		//Entity -> DTO
-		return SellerDTO.convertEntityToDTO(repository.loginOk(seller));
-	}
-
-	@Override
 
 	public void sellerWrite(SellerDTO sellerDTO) {
 
