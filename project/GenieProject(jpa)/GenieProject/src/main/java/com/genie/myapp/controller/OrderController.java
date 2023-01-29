@@ -1,16 +1,14 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.dto.CartDTO;
 import com.genie.myapp.dto.OrderDTO;
-import com.genie.myapp.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.OrderService;
 import com.genie.myapp.service.ProductService;
 import com.genie.myapp.service.UserService;
+
+import static java.nio.charset.StandardCharsets.*;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/order/*")
@@ -41,11 +42,11 @@ public class OrderController {
 	public ModelAndView BuyNow(HttpSession session, CartDTO cartDTO) {
 		
 		String genie_id=(String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
 
 		mav = new ModelAndView();
 		mav.addObject("bvo",cartDTO);
-		mav.addObject("uvo", userService.getUser(userDTO));
+		mav.addObject("uvo", userService.getUser(accountDTO));
 		mav.setViewName("/order/payment");
 
 		return mav;
@@ -55,16 +56,15 @@ public class OrderController {
 	public ModelAndView payment(HttpSession session, CartDTO cartDTO) {
 
 		String genie_id = (String) session.getAttribute("logId");
-		System.out.println("주문정보 받아온 것 cartDTO : " + cartDTO);
 
 		List<CartDTO> lcvo = orderService.readyToPay(cartDTO);
-		System.out.println("카트정보 가져오기 : " + lcvo);
 
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+
 
 		mav = new ModelAndView();
 		mav.addObject("plist", lcvo);
-		mav.addObject("uvo", userService.getUser(userDTO));
+		mav.addObject("uvo", userService.getUser(accountDTO));
 		mav.setViewName("/order/payment");
 
 		return mav;
@@ -75,7 +75,7 @@ public class OrderController {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=utf-8");
 
 		if(orderDTO.getCartList() != null){
@@ -83,8 +83,7 @@ public class OrderController {
 			try{
 				//제품 정보 가져오기
 				List<OrderDTO> cList = orderService.getFromCart(orderDTO);
-				System.out.println("orderDTO 제품정보 : "+orderDTO);
-				System.out.println("제품정보 : "+cList.size()); ///
+
 				for(OrderDTO orderDTOs : cList){
 					orderDTOs.setOrderNum(orderDTO.getOrderNum());
 					orderDTOs.setGenieId(orderDTO.getGenieId());
@@ -107,10 +106,10 @@ public class OrderController {
 				////장바구니에서 구매한 상품 지우기
 				orderService.afterOrderCart(orderDTO);// 장바구니 삭제
 
-				entity = new ResponseEntity<>(HttpStatus.OK);
+				entity = new ResponseEntity<>(OK);
 
 			}catch(Exception e){
-				entity = new ResponseEntity<>(headers,HttpStatus.BAD_REQUEST);
+				entity = new ResponseEntity<>(headers, BAD_REQUEST);
 				
 				e.printStackTrace();
 
@@ -120,10 +119,10 @@ public class OrderController {
 				orderDTO.setGenieId(orderDTO.getGenieId());
 				orderService.afterPayment(orderDTO);
 				
-				entity = new ResponseEntity<>(HttpStatus.OK);
+				entity = new ResponseEntity<>(OK);
 
 			}catch(Exception e){
-				entity = new ResponseEntity<>(headers,HttpStatus.BAD_REQUEST);
+				entity = new ResponseEntity<>(headers, BAD_REQUEST);
 				
 				e.printStackTrace();
 			}

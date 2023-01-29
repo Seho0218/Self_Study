@@ -3,11 +3,14 @@ package com.genie.myapp.service;
 import java.util.List;
 
 import com.genie.myapp.dto.*;
+import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import com.genie.myapp.repository.jpa.*;
 import com.genie.myapp.repository.UserServiceRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
@@ -19,6 +22,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService{
 
     @PersistenceContext private final EntityManager em;
@@ -32,6 +36,8 @@ public class UserServiceImpl implements UserService{
     public final OrderRepository orderRepository; //JPA 레포지토리
     public final CartRepository cartRepository; //JPA 레포지토리
 
+    public final PasswordEncoder passwordEncoder;
+
 
     @Override
     public long idCheck(String genie_id) {
@@ -41,42 +47,57 @@ public class UserServiceImpl implements UserService{
     @Override
     public void UserWrite(UserDTO userDTO) {
 
+        //비밀번호 암호화
+        userDTO.setGeniePwd(passwordEncoder.encode(userDTO.getGeniePwd()));
+
         User user = UserDTO.convertDTOtoEntity(userDTO);
         userRepository.save(user);
     }
 
     @Override
-    public UserDTO loginOk(UserDTO userDTO) {
+    public AccountDTO loginOk(AccountDTO accountDTO) {
 
         //DTO -> Entity
-        User user = UserDTO.convertDTOtoEntity(userDTO);
+        Account account = AccountDTO.convertDTOtoEntity(accountDTO);
 
         //Entity -> DTO
-        return UserDTO.convertEntityToDTO(repository.loginOk(user));
+        return AccountDTO.convertEntityToDTO(repository.loginOk(account));
     }
 
     @Override
-    public UserDTO getUser(UserDTO userDTO) {
+    public UserDTO getUser(AccountDTO accountDTO) {
 
         return UserDTO.convertEntityToDTO(
-                userRepository.findByGenieId(userDTO.getGenieId())
+                userRepository.findByGenieId(accountDTO.getGenieId())
         );
     }
 
     @Override //TODO 개인정보 변경이 안됌.
     public void UserEditOk(UserDTO userDTO) {
-        
-        User findUser = em.find(User.class, userDTO.getGenieId());
+
+        User user = UserDTO.convertDTOtoEntity(userDTO);
+        User findUser = em.find(User.class, user.getGenieId());
+
+        findUser.setUserTel(userDTO.getUserTel());
+        findUser.setUserEmail(userDTO.getUserEmail());
+
+        em.persist(findUser);
     }
 
-    @Override //TODO 비밀번호 변경이 안됌.
-    public void PwdEditOk(UserDTO userDTO) {
-        
-        //DTO -> Entity
-        User user = UserDTO.convertDTOtoEntity(userDTO);
+    @Override
+    public void PwdEditOk(AccountDTO accountDTO) {
 
-        User findUser = em.find(User.class, user.getGenieId());
-        findUser.setGeniePwd(userDTO.getGeniePwd());
+        //DTO -> Entity
+        Account account = AccountDTO.convertDTOtoEntity(accountDTO);
+
+        //유저 정보 찾기
+        User findUser = em.find(User.class, account.getGenieId());
+
+        //비밀번호 암호화
+        account.setGeniePwd(passwordEncoder.encode(accountDTO.getChangedPwd()));
+
+        findUser.setGeniePwd(account.getGeniePwd());
+        em.persist(findUser);
     }
 
     @Override

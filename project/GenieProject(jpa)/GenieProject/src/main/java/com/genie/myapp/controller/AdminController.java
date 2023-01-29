@@ -1,12 +1,10 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.StandardCharsets;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.genie.myapp.dto.AdminDTO;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,6 +19,9 @@ import com.genie.myapp.dto.CartDTO;
 import com.genie.myapp.dto.PagingDTO;
 import com.genie.myapp.dto.SellerDTO;
 import com.genie.myapp.dto.UserDTO;
+
+import static java.nio.charset.StandardCharsets.*;
+import static org.springframework.http.HttpStatus.*;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -122,7 +123,7 @@ public class AdminController {
 		@PostMapping("adminTagPopEdit")
 		public ResponseEntity<String> adminTagPopEdit(AdminDTO vo){
 			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+			headers.setContentType(new MediaType("text","html", UTF_8));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
@@ -137,7 +138,7 @@ public class AdminController {
 			}
 			msg += "</script>";
 
-			return new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			return new ResponseEntity<>(msg, headers, OK);
 		}
 
 		// 태그 정보 삭제
@@ -176,7 +177,7 @@ public class AdminController {
 		@PostMapping("adminCategoryPopEdit")
 		public ResponseEntity<String> adcategoryPopEdit(AdminDTO vo){
 			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+			headers.setContentType(new MediaType("text","html", UTF_8));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
@@ -191,7 +192,7 @@ public class AdminController {
 			}
 			msg += "</script>";
 
-			return new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			return new ResponseEntity<>(msg, headers, OK);
 		}
 
 		// 카테고리 정보 삭제
@@ -247,7 +248,7 @@ public class AdminController {
 		@PostMapping("admemberPopEdit")
 		public ResponseEntity<String> admemberPopEdit(UserDTO userDTO){
 			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+			headers.setContentType(new MediaType("text","html", UTF_8));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
@@ -262,7 +263,7 @@ public class AdminController {
 			}
 			msg += "</script>";
 
-			return new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			return new ResponseEntity<>(msg, headers, OK);
 		}
 
 		// 유저 정보 삭제
@@ -293,7 +294,7 @@ public class AdminController {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 
 		try {//결제 성공
@@ -303,7 +304,7 @@ public class AdminController {
 			msg += "alert('결제가 되었습니다. 등록되었습니다.');";
 			msg += "location.href='/admin/adminMain';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 
 		}catch(Exception e) {//결제 실패
 
@@ -311,7 +312,7 @@ public class AdminController {
 			msg += "alert('결제가 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers, BAD_REQUEST);
 
 			e.printStackTrace();
 		}
@@ -345,7 +346,7 @@ public class AdminController {
 		@PostMapping("adcompanyPopEdit")
 		public ResponseEntity<String> adcompanyPopEdit(SellerDTO sellerDTO){
 			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+			headers.setContentType(new MediaType("text","html", UTF_8));
 			headers.add("Content-Type", "text/html; charset-UTF-8");
 			String msg = "<script>";
 			try {
@@ -360,7 +361,7 @@ public class AdminController {
 			}
 			msg += "</script>";
 
-			return new ResponseEntity<>(msg, headers, HttpStatus.OK);
+			return new ResponseEntity<>(msg, headers, OK);
 		}
 
 		// 셀러 정보 삭제

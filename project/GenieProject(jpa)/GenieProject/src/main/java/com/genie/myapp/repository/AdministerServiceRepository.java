@@ -1,5 +1,6 @@
 package com.genie.myapp.repository;
 
+import com.genie.myapp.entity.Account.Account;
 import com.genie.myapp.entity.Account.Administer;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class AdministerServiceRepository {
 
     private final JPAQueryFactory queryFactory;
 
-    public Administer loginOk(Administer administerEntity) {
+    public Administer loginOk(Account administerEntity) {
         return queryFactory
                 .select(administer)
                 .from(account, administer)

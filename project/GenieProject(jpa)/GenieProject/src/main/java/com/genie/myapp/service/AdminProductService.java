@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AdminProductService {
 
-	public List<ProductDTO> adminProduct(ProductDTO productDTO);
+	List<ProductDTO> adminProduct(ProductDTO productDTO);
 }

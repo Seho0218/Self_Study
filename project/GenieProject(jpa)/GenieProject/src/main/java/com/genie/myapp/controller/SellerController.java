@@ -1,6 +1,5 @@
 package com.genie.myapp.controller;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +26,9 @@ import com.genie.myapp.dto.PagingDTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import static java.nio.charset.StandardCharsets.*;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -173,7 +174,7 @@ public class SellerController {
 		ResponseEntity<String> resEntity;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		msg = "mod_success";
-		resEntity = new ResponseEntity<>(msg, responseHeaders, HttpStatus.OK);
+		resEntity = new ResponseEntity<>(msg, responseHeaders, OK);
 		return resEntity;
 	}
 	
@@ -250,7 +251,7 @@ public class SellerController {
 		 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//상품등록 성공
@@ -260,7 +261,7 @@ public class SellerController {
 			msg += "alert('상품이 등록되었습니다.');";
 			msg += "location.href='/seller/sellerProduct';";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.OK);
+			entity = new ResponseEntity<>(msg,headers, OK);
 			
 		}catch(Exception e) {//상품등록 실패
 			
@@ -268,7 +269,7 @@ public class SellerController {
 			msg += "alert('상품등록이 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
-			entity = new ResponseEntity<>(msg,headers,HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(msg,headers, BAD_REQUEST);
 			
 			e.printStackTrace();
 		}
@@ -289,11 +290,11 @@ public class SellerController {
 	//seller 상품수정 : DB 업데이트
 	@PostMapping("productEditOk")
 	public ResponseEntity<String> productEditOk(SellerProductDTO sellerProductDTO, HttpSession session){
-		System.out.println(sellerProductDTO.toString());
+
 		sellerProductDTO.setGenieId((String)session.getAttribute("logId"));
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html", StandardCharsets.UTF_8));
+		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 		String msg = "<script>";
 		
@@ -311,7 +312,7 @@ public class SellerController {
 		}
 		msg += "</script>";
 
-		return new ResponseEntity<>(msg, headers, HttpStatus.OK);
+		return new ResponseEntity<>(msg, headers, OK);
 	}
 	
 	//seller 상품삭제 : DB

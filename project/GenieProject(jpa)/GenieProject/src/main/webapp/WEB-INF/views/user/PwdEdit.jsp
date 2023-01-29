@@ -10,11 +10,11 @@
     background-color: #fff;
 }
 
-#genie_pwd {
+#geniePwd, #geniePwd1, #geniePwd2 {
     background-color: #fff;
 }
 
-#Find_Pwd{
+#FindPwd{
     background-color: #56baed;
 	box-shadow: 0 0 15px #fbfbfb;
 	border: none;
@@ -23,7 +23,7 @@
 	color: #fff;
 }
 
-#genie_pwd{
+#geniePwd, #geniePwd1, #geniePwd2{
     width:11em;
     height:2em;
     border-radius:8px;
@@ -37,17 +37,17 @@
 <script>
     $(function(){
         $("#logFrm").submit(function(){
-            if($("#genie_pwd").val()==""){
+            if($("#geniePwd").val()===""){
                 alert("비밀번호를 입력하세요..");
 				$("#genie_id").focus();
                 return false;
             }
-            if($("#genie_pwd1").val()==""){
+            if($("#geniePwd1").val()===""){
                 alert("비밀번호를 입력하세요..");
 				$("#genie_pwd").focus();
                 return false;
             }
-			if($("#genie_pwd1").val() != $("#genie_pwd2").val()){
+			if($("#geniePwd2").val() !== $("#geniePwd1").val()){
                 alert("비밀번호가 일치하지 않습니다.");
 				$("#genie_pwd").focus();
                 return false;
@@ -62,12 +62,12 @@
     <div id="passwordForm">
 		<input type="hidden" value="${vo.genieId}" name="genieId"/>
 		<p>비밀번호</p>
-			<input type="password" id="genie_pwd" name="geniePwd" placeholder="현재 비밀번호를 입력하세요">
+			<input type="password" id="geniePwd" name="geniePwd" placeholder="현재 비밀번호를 입력하세요">
 		<p>새 비밀번호</p>
-			<input type="password" id="genie_pwd" name="geniePwd1" placeholder="새 비밀번호를 입력하세요">
+			<input type="password" id="geniePwd1" name="geniePwd1" placeholder="새 비밀번호를 입력하세요">
 		<p>새 비밀번호 다시 입력</p>
-			<input type="password" id="genie_pwd" name="geniePwd2" placeholder="새 비밀번호를 입력하세요"><br/><br/>
+			<input type="password" id="geniePwd2" name="changedPwd" placeholder="새 비밀번호를 입력하세요"><br/><br/>
 			<input type="submit" id="Find_pwd" value="비밀번호 변경"/><br/>
 	</div>
 </form>
-<section>
+</section>

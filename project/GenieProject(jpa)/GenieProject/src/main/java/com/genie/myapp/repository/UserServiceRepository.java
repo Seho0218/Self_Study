@@ -1,12 +1,11 @@
 package com.genie.myapp.repository;
 
-import com.genie.myapp.entity.Account.User;
+import com.genie.myapp.entity.Account.Account;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
-import static com.genie.myapp.entity.Account.QUser.*;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,13 +22,13 @@ public class UserServiceRepository {
                 .fetchOne();
     }
 
-    public User loginOk(User userEntity) {
+    public Account loginOk(Account accountEntity) {
 
         return queryFactory
-                .selectFrom(user)
+                .selectFrom(account)
                 .where(
-                       user.genieId.eq(userEntity.getGenieId()),
-                       user.withdrawal.eq(1)
+                       account.genieId.eq(accountEntity.getGenieId()),
+                       account.withdrawal.eq(1)
                 )
                 .fetchOne();
     }

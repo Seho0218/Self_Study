@@ -31,9 +31,9 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(UserDTO userDTO) {
-		return repository.PwdEditOk(userDTO);
-	}
+	public void PwdEditOk(UserDTO userDTO) {
+        repository.PwdEditOk(userDTO);
+    }
 
 	@Override
 	public void sendUserId(String userEmail, List<String> genie_id) {
@@ -41,12 +41,11 @@ public class CertServiceImpl implements CertService {
 		simpleMailMessage.setTo(userEmail);
 		simpleMailMessage.setSubject("아이디 찾기");
 
-		StringBuffer sb = new StringBuffer();
-		sb.append("가입하신 아이디는");
-		sb.append(System.lineSeparator());
-		sb.append(genie_id).append("입니다");//genie_id.get(0)
+		String sb = "가입하신 아이디는" +
+				System.lineSeparator() +
+				genie_id + "입니다";//genie_id.get(0)
 
-		simpleMailMessage.setText(sb.toString());
+		simpleMailMessage.setText(sb);
 
 		new Thread(() -> mailSender.send(simpleMailMessage)).start();
 	}

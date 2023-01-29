@@ -42,7 +42,6 @@ public class CertController {
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String userEmail){
 
-		System.out.println("userEmail = " + userEmail);
 		List<String> genie_id =certService.FindId(userEmail);
 
 		if(genie_id.size() != 0) {
@@ -65,8 +64,6 @@ public class CertController {
 	public int overlapCheck(String value, String valueType) {
 //		value = 중복체크할 값
 //		valueType = user_name, nickname
-		System.out.println(valueType);
-		System.out.println(value);
 		int count = certService.overlapCheck(value, valueType);
 
 		System.out.println(count);
@@ -75,9 +72,7 @@ public class CertController {
 
 	@GetMapping("emailCheck")
 	public ResponseEntity<Boolean> emailCheck(String genie_id, String userEmail){
-		System.out.println("genie_id = " + genie_id);
 		boolean emailCheck = certService.emailCheck(genie_id, userEmail);
-		System.out.println("emailCheck "+ emailCheck );
 		return new ResponseEntity<>(emailCheck, HttpStatus.OK);
 	}
 
@@ -218,9 +213,7 @@ public class CertController {
 
 		String enPw=passwordEncoder.encode(userDTO.getGeniePwd());
 		userDTO.setGeniePwd(enPw);
-
-		int cnt = certService.PwdEditOk(userDTO);
-		System.out.print(cnt);
+		certService.PwdEditOk(userDTO);
 
 		return new ResponseEntity<>("비밀번호를 변경했습니다",HttpStatus.OK);
 	}
