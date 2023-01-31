@@ -8,7 +8,5 @@ public interface AdministerService {
 
     //회원 선택: 로그인 한 회원
 	AdministerDTO getAdminister(AccountDTO accountDTO);
-    
 
-    
 }

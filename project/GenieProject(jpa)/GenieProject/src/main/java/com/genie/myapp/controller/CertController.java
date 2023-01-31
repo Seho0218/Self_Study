@@ -6,9 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.CertService;
+
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/cert/*")
@@ -47,7 +48,7 @@ public class CertController {
 		if(genie_id.size() != 0) {
 			certService.sendUserId(userEmail, genie_id);
 		}
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(OK);
 	}
 
 	///////////////////////////////////////////////////////
@@ -73,7 +74,7 @@ public class CertController {
 	@GetMapping("emailCheck")
 	public ResponseEntity<Boolean> emailCheck(String genie_id, String userEmail){
 		boolean emailCheck = certService.emailCheck(genie_id, userEmail);
-		return new ResponseEntity<>(emailCheck, HttpStatus.OK);
+		return new ResponseEntity<>(emailCheck, OK);
 	}
 
 
@@ -103,7 +104,7 @@ public class CertController {
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authStatus", authStatus);
 
-		return new ResponseEntity<>(genie_id, HttpStatus.OK);
+		return new ResponseEntity<>(genie_id, OK);
 	}
 
 
@@ -136,7 +137,7 @@ public class CertController {
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authNum", authNumMap);
 
-		return new ResponseEntity<>("인증번호가 전송되었습니다", HttpStatus.OK);
+		return new ResponseEntity<>("인증번호가 전송되었습니다", OK);
 	}
 
 	// 인증번호가 맞는지 확인
@@ -148,7 +149,7 @@ public class CertController {
 
 		if(sessionAuthNumMap == null) {
 			msg = "인증번호를 전송해주세요";
-			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(msg, BAD_REQUEST);
 		}
 
 		// 인증번호 만료시간
@@ -159,7 +160,7 @@ public class CertController {
 			msg = "인증시간이 만료되었습니다";
 			session.setAttribute(authNum, null);
 			session.setMaxInactiveInterval(0);
-			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(msg, BAD_REQUEST);
 		}
 
 		// 인증번호
@@ -168,10 +169,10 @@ public class CertController {
 		// System.out.println("check.sessionAuthNum-"+sessionAuthNum);
 		if(!authNum.equals(sessionAuthNum)) {
 			msg = "인증번호가 일치하지 않습니다";
-			return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(msg, BAD_REQUEST);
 		} else {
 			// 인증번호가 일치하면
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(OK);
 		}
 	}
 
@@ -181,10 +182,10 @@ public class CertController {
 	public ResponseEntity<String> authCompletion(HttpSession session) {
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
 		if(authStatus == null) {
-			return new ResponseEntity<>("인증시간이 만료되었습니다", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("인증시간이 만료되었습니다", BAD_REQUEST);
 		}
 		authStatus.put("status", true);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(OK);
 	}
 
 	// 비밀번호 변경 페이지
@@ -209,15 +210,10 @@ public class CertController {
 
 	// 비밀번호 변경
 	@PostMapping("modify_pwd")
-	public ResponseEntity<String> modifyPassword(UserDTO userDTO) {
+	public ResponseEntity<String> modifyPassword(AccountDTO accountDTO) {
 
-		String enPw=passwordEncoder.encode(userDTO.getGeniePwd());
-		userDTO.setGeniePwd(enPw);
-		certService.PwdEditOk(userDTO);
+		certService.PwdEditOk(accountDTO);
 
-		return new ResponseEntity<>("비밀번호를 변경했습니다",HttpStatus.OK);
+		return new ResponseEntity<>("비밀번호를 변경했습니다", OK);
 	}
-
-
-
 }

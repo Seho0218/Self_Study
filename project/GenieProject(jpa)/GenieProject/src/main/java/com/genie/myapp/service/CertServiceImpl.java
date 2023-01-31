@@ -6,11 +6,12 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
-import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
 import com.genie.myapp.repository.CertServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.CertDAO;
@@ -24,6 +25,8 @@ public class CertServiceImpl implements CertService {
 	public final CertDAO cdao;
 	public final CertServiceRepository repository;
 
+	public final PasswordEncoder passwordEncoder;
+
 
 	@Override
 	public List<String> FindId(String userEmail) {
@@ -31,8 +34,12 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public void PwdEditOk(UserDTO userDTO) {
-        repository.PwdEditOk(userDTO);
+	public void PwdEditOk(AccountDTO accountDTO) {
+
+		String enPw=passwordEncoder.encode(accountDTO.getChangedPwd());
+		accountDTO.setChangedPwd(enPw);
+
+        repository.PwdEditOk(accountDTO);
     }
 
 	@Override

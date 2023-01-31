@@ -19,7 +19,7 @@ public class Address implements Serializable {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "genieId")
-    private User genieId; // User의 외래키와 맞춰줘야함
+    private User genieId;
 
     private String userName;
 
@@ -29,12 +29,9 @@ public class Address implements Serializable {
     private String addr;
     private String detailAddr;
 
-
-//    public void setUser(User genieId) {
-//        if (this.genieId != null) {
-//            this.genieId.getAddress().remove(this);
-//        }
+//    public void setGenieId(User genieId) {
 //        this.genieId = genieId;
-//        genieId.getAddress().add(this);
+//        genieId.getAddresses().add(this);
 //    }
+
 }

@@ -23,4 +23,25 @@ public class Account {
 
     private String ROLE;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        if (withdrawal != account.withdrawal) return false;
+        if (!genieId.equals(account.genieId)) return false;
+        if (!geniePwd.equals(account.geniePwd)) return false;
+        return ROLE.equals(account.ROLE);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = genieId.hashCode();
+        result = 31 * result + geniePwd.hashCode();
+        result = 31 * result + withdrawal;
+        result = 31 * result + ROLE.hashCode();
+        return result;
+    }
 }

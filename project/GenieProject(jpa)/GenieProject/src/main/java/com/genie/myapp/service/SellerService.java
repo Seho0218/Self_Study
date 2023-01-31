@@ -4,69 +4,159 @@ import java.util.List;
 import java.util.Map;
 
 import com.genie.myapp.dto.*;
+import com.genie.myapp.entity.Account.Seller;
+import com.genie.myapp.repository.SellerServiceRepository;
+import com.genie.myapp.repository.jpa.AccountRepository;
+import com.genie.myapp.repository.jpa.SellerRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.genie.myapp.dao.SellerDAO;
+
+import javax.transaction.Transactional;
+
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class SellerServiceImpl implements SellerService {
+	
+	public final SellerDAO dao;
+
+	public final AccountRepository accountRepository;
+	public final SellerRepository sellerRepository;
+	public final SellerServiceRepository repository;
+
+	public final PasswordEncoder passwordEncoder;
 
 
-public interface SellerService {
+  	@Override
+	public int idCheck(String genie_id) {
+		return dao.idCheck(genie_id);
+	}
 
-	//아이디 중복검사
-	int idCheck(String genie_id);
+	@Override
 
-	//seller 회원가입
-	void sellerWrite(SellerDTO seller);
+	public void sellerWrite(SellerDTO sellerDTO) {
 
-	//seller 상품등록
-	void productWrite(SellerProductDTO sellerProductDTO);
+		sellerDTO.setGeniePwd(passwordEncoder.encode(sellerDTO.getGeniePwd()));
+		Seller seller = SellerDTO.convertDTOtoEntity(sellerDTO);
+		sellerRepository.save(seller);
+	}
+
+	@Override
+	public void productWrite(SellerProductDTO sellerProductDTO) {
+        dao.productWrite(sellerProductDTO);
+    }
+
 	// 주문목록
-	List<OrderDTO> sellerOrder(OrderDTO orderDTO, String sellerId);
-	// 주문목록 배송상태 수정
+	@Override
+	public List<OrderDTO> sellerOrder(OrderDTO orderDTO, String sellerId) {
+		return dao.sellerOrder(orderDTO, sellerId);
+	}
 
-	void updateDeliveryStatus(Map deliveryMap);
-	//상품관리 - 상품목록
-	List<SellerProductDTO> productList(PagingDTO pagingDTO);
-	//회원 선택: 로그인 한 회원
-	SellerDTO getSeller(AccountDTO accountDTO);
-	//상품선택 : 수정, 상품내용보기
-	SellerProductDTO getProduct(int pid);
-	//상품삭제
-	int productDel(int pid);
-	//상품수정
-	void productEditOk(SellerProductDTO sellerProductDTO);
-	//문의목록
-	List<InquiryDTO> inquiryList(InquiryDTO inquiryDTO, String genie_id);
-	// 매출관리 (결제금액)
-	int orderSum(String sellerId);
-	// 일별 매출관리
-	List<OrderDTO> orderSumByDay(String sellerId);
-	// 결제건수
-	int orderCount(String sellerId);
-	// 베스트셀러
+	@Override
+	public List<SellerProductDTO> productList(PagingDTO pDTO) {
+		return dao.productList(pDTO);
+	}
+	
+	@Override
+	public SellerDTO getSeller(AccountDTO accountDTO) {
+		return dao.getSeller(accountDTO.getGenieId());
+	}
 
-	String bestSeller(String sellerId);
+	@Override
+	public SellerProductDTO getProduct(int pid) {
+		return dao.getProduct(pid);
+	}
 
+	@Override
+	public void productEditOk(SellerProductDTO pvo) {
+		dao.productEditOk(pvo);
+	}
 
-	// 배송 대기 중
-	int deliveryPending(String sellerId);
-	// 오늘 들어온 주문
-	int todayOrder(String sellerId);
-	// 배송 중
+	@Override
+	public int productDel(int pid) {
+		return dao.productDel(pid);
+	}
 
-    int deliveringOrder(String sellerId);
-	// 아이템별 매출
+	@Override
+	public void updateDeliveryStatus(Map deliveryMap) {
+		dao.updateDeliveryStatus(deliveryMap);
+	}
 
-	List<OrderDTO> revenueByProduct(String sellerId);
-	// 셀러 상태
+	@Override
+	public List<InquiryDTO> inquiryList(InquiryDTO vo, String Genie_id) {
+		return dao.inquiryList(vo, Genie_id);
+	}
 
-	String sellerStatus(String sellerId);
-	// 이번달 매출
+	@Override
+	public int orderSum(String sellerId) {
+		return dao.orderSum(sellerId);
+	}
 
-    int thisMonthRevenue(String sellerId);
-	// 카테고리별 판매건수
+	@Override
+	public List<OrderDTO> orderSumByDay(String sellerId) {
+		return dao.orderSumByDay(sellerId);
+	}
 
-	List<OrderDTO> topCategory(String sellerId);
-	//상품 총 레코드 수
+	@Override
+	public int orderCount(String sellerId) {
+		return dao.orderCount(sellerId);
+	}
 
-	int productTotalRecord(PagingDTO pagingDTO);
-	// 배송완료된 주문목록
+	@Override
+	public String bestSeller(String sellerId) {
+		return dao.bestSeller(sellerId);
+	}
 
-	List<OrderDTO> deliveredOrder(String sellerId);
+	@Override
+	public int deliveryPending(String sellerId) {
+		return dao.deliveryPending(sellerId);
+	}
+
+	@Override
+	public int todayOrder(String sellerId) {
+		return dao.todayOrder(sellerId);
+	}
+
+	@Override
+	public int deliveringOrder(String sellerId) {
+		return dao.deliveringOrder(sellerId);
+	}
+
+	@Override
+	public List<OrderDTO> revenueByProduct(String sellerId) {
+		return dao.revenueByProduct(sellerId);
+	}
+
+	@Override
+	public String sellerStatus(String sellerId) {
+		return dao.sellerStatus(sellerId);
+	}
+
+	@Override
+	public int thisMonthRevenue(String sellerId) {
+		return dao.thisMonthRevenue(sellerId);
+	}
+
+	@Override
+	public List<OrderDTO> topCategory(String sellerId) {
+		return dao.topCategory(sellerId);
+	}
+
+	@Override
+	public int productTotalRecord(PagingDTO pDTO) {
+		return dao.productTotalRecord(pDTO);
+	}
+
+	@Override
+	public List<OrderDTO> deliveredOrder(String sellerId) {
+		return dao.deliveredOrder(sellerId);
+	}
+
+	
+
+	
+
 }
