@@ -39,12 +39,8 @@ public class UserController {
 	@GetMapping("MyPage")
 	public ModelAndView MyPage(HttpSession session) {
 
-		String genie_id = (String)session.getAttribute("logId");
-		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
-
-		String seller_id = (String)session.getAttribute("logId");
-		SellerDTO sellerDTO = SellerDTO.createSellerDTO(seller_id);
-
+		String genieId = (String)session.getAttribute("logId");
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genieId);
 		mav = new ModelAndView();
 
 		mav.addObject("svo",sellerService.getSeller(accountDTO));
@@ -136,11 +132,13 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		String msg = "<script>";
 
-		//User genieId=(User)session.getAttribute("logId");
-
 
 		try{
+
+			String genieId=(String)session.getAttribute("logId");
+			addressDTO.setGenieId(genieId);
 			userService.addDelivery(addressDTO);
+
 			msg+="alert('배송지가 등록되었습니다.');";
 			msg+="location.href='/user/MyDeliveryList';</script>";
 			entity = new ResponseEntity<>(msg,headers, OK);

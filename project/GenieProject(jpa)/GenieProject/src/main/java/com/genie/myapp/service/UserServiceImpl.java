@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public long idCheck(String genie_id) {
-        return repository.idCheck(genie_id);
+    public long idCheck(String genieId) {
+        return repository.idCheck(genieId);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService{
         );
     }
 
-    @Override //TODO 개인정보 변경이 안됌.
+    @Override
     public void UserEditOk(UserDTO userDTO) {
 
         User user = UserDTO.convertDTOtoEntity(userDTO);
@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void delDelivery(int addressNum) {
-         cartRepository.deleteById(addressNum);
+        repository.delDelivery(addressNum);
     }
 
     @Override

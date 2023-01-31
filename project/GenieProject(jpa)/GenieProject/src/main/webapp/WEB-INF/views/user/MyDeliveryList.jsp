@@ -397,7 +397,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 		    $.ajax({
 				url:"/user/delDelivery",
 				data:params,
-				success:function(){
+				success:function(result){
           alert("삭제되었습니다.");
 					location.reload();
 				},error:function(e){
