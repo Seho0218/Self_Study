@@ -20,7 +20,7 @@ public interface SellerService {
 	List<OrderDTO> sellerOrder(OrderDTO orderDTO, String sellerId);
 	// 주문목록 배송상태 수정
 
-	void updateDeliveryStatus(Map deliveryMap);
+	void updateDeliveryStatus(Map<String, String> deliveryMap);
 	//상품관리 - 상품목록
 	List<SellerProductDTO> productList(PagingDTO pagingDTO);
 	//회원 선택: 로그인 한 회원

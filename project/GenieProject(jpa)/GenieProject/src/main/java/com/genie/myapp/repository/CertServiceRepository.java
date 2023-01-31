@@ -1,6 +1,6 @@
 package com.genie.myapp.repository;
 
-import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -30,11 +30,11 @@ public class CertServiceRepository {
                 .fetch();
     }
 
-    public int PwdEditOk(UserDTO dto){
-        return (int) queryFactory
+    public void PwdEditOk(AccountDTO accountDTO){
+            queryFactory
                 .update(account)
-                .set(account.geniePwd, dto.getGeniePwd2())
-                .where(account.genieId.eq(dto.getGenieId()))
+                .set(account.geniePwd, accountDTO.getChangedPwd())
+                .where(account.genieId.eq(accountDTO.getGenieId()))
                 .execute();
     }
 }

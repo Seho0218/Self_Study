@@ -56,12 +56,15 @@ public class UserController {
   
 	//회원정보 수정 DB
 	@PostMapping("UserEditOk")
-	public ResponseEntity<String> UserEditOk(UserDTO userDTO) {
+	public ResponseEntity<String> UserEditOk(HttpSession session, UserDTO userDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
+
+		String genieId = (String)session.getAttribute("logId");
+		userDTO.setGenieId(genieId);
 
 		String msg = "<script>";
 
@@ -109,9 +112,9 @@ public class UserController {
 	@GetMapping("MyDeliveryList") 
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
-		String genie_id = (String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
-		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
+		String genieId = (String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genieId);
 
 		List<AddressDTO> dlist = userService.getDeliveryList(userDTO);
 
@@ -125,13 +128,16 @@ public class UserController {
 
 	//배송지 
 	@PostMapping("addDelivery")
-	public ResponseEntity<String> addDelivery(AddressDTO addressDTO) {
+	public ResponseEntity<String> addDelivery(HttpSession session, AddressDTO addressDTO) {
 
 		ResponseEntity<String> entity;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		String msg = "<script>";
+
+		//User genieId=(User)session.getAttribute("logId");
+
 
 		try{
 			userService.addDelivery(addressDTO);
@@ -182,8 +188,8 @@ public class UserController {
 	@GetMapping("addressbook")
 	public ModelAndView AddressBook(HttpSession session){
 
-		String genie_id=(String)session.getAttribute("logId");
-		UserDTO userDTO = UserDTO.createUserDTO(genie_id);
+		String genieId=(String)session.getAttribute("logId");
+		UserDTO userDTO = UserDTO.createUserDTO(genieId);
 		List<AddressDTO> dlist=userService.getDeliveryList(userDTO);
 
 		mav=new ModelAndView();

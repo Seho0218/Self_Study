@@ -2,7 +2,7 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
-import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.dto.AccountDTO;
 
 public interface CertService {
 
@@ -14,7 +14,7 @@ public interface CertService {
 
     void sendAuthNum(String userEmail, String authNum);
 
-    void PwdEditOk(UserDTO userDTO);
+    void PwdEditOk(AccountDTO accountDTO);
 
 	
     

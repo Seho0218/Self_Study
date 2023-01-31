@@ -279,14 +279,13 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
       <h5>새로운 배송지</h5>
       <div class="inquiry">
       <form method="post" action="/user/addDelivery">
-        <input type="hidden" value="${vo.genieId}" name="genieId"/>
         <ul id="addrForm">
           <li>이름</li>
           <li><input type="text" name="userName" id ="user_name"/></li>
 
           <ul id="phoneForm">
             <li>휴대폰 번호</li>
-            <select id = "userPhoneNum1" name = "user_phone_num1" size = "1">
+            <select id = "userPhoneNum1" name = "userPhoneNum1" size = "1">
               <option value="">선택하세요</option>
               <option value="010">010</option>
               <option value="011">011</option>

@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+
 
 @Entity
 @Getter @Setter
@@ -26,14 +28,15 @@ public class User extends Account {
 
     private String userName;
 
-    @OneToMany(mappedBy = "genieId")
-    private List<Address> address = new ArrayList<>(); // mappedBy를 맞춰줘야 외래키 입력 가능
+    //서로 조회 가능하게 양방향으로 설정. 하지만 수정은 불가능한 경우는 mappedBy 설정
+    @OneToMany(mappedBy = "genieId", cascade = REMOVE)
+    private List<Address> addresses = new ArrayList<>();
 
     @OneToMany(mappedBy = "genieId")
-    private List<Inquiry> inquiries;
+    private List<Inquiry> inquiries = new ArrayList<>();
 
     @OneToMany(mappedBy = "genieId")
-    private List<ProductLike> productLike;
+    private List<ProductLike> productLikes = new ArrayList<>();
 
     @OneToMany(mappedBy = "genieId")
     private List<Cart> carts = new ArrayList<>();
@@ -54,10 +57,4 @@ public class User extends Account {
 
     private LocalDateTime signInDate = LocalDateTime.now();
 
-//    public void setAddress(Address address) {
-//        this.address.add(address);
-//        if (address.getGenieId() != this) {
-//            address.setGenieId(this);
-//        }
-//    }
 }
