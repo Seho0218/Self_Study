@@ -29,4 +29,9 @@ public class Address implements Serializable {
     private String addr;
     private String detailAddr;
 
+//    public void setGenieId(User genieId) {
+//        this.genieId = genieId;
+//        genieId.getAddresses().add(this);
+//    }
+
 }
