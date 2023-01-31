@@ -39,13 +39,9 @@ public class UserController {
 	@GetMapping("MyPage")
 	public ModelAndView MyPage(HttpSession session) {
 
-		String genie_id = (String)session.getAttribute("logId");
-		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
-
-		String seller_id = (String)session.getAttribute("logId");
-		SellerDTO sellerDTO = SellerDTO.createSellerDTO(seller_id);
-
-		mav = new ModelAndView();
+		String genieId = (String)session.getAttribute("logId");
+		AccountDTO accountDTO = AccountDTO.createAccountDTO(genieId);
+				mav = new ModelAndView();
 
 		mav.addObject("svo",sellerService.getSeller(accountDTO));
 		mav.addObject("vo", userService.getUser(accountDTO));
@@ -136,8 +132,8 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		String msg = "<script>";
 
-		//User genieId=(User)session.getAttribute("logId");
-
+		String genieId=(String)session.getAttribute("logId");
+		addressDTO.setGenieId(genieId);
 
 		try{
 			userService.addDelivery(addressDTO);

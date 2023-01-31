@@ -1,11 +1,11 @@
 package com.genie.myapp.dto;
 
 import com.genie.myapp.Config.CustomerModelMapper;
-import com.genie.myapp.entity.Account.User;
 import com.genie.myapp.entity.Address;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ public class AddressDTO {
 
 	private int addressNum;
 	
-	private User genieId; // 이부분이 중요
+	private String genieId; // 이부분이 중요
 	private String userName;
 
 	private String userTel;
@@ -59,6 +59,16 @@ public class AddressDTO {
 		ModelMapper modelMapper = new CustomerModelMapper();
 		// 매핑 전략 설정
 		modelMapper.getConfiguration().setMatchingStrategy(STRICT);
+
+		//무려 8시간 만에 해결한 방법
+		modelMapper.addMappings(new PropertyMap<AddressDTO, Address>() {
+
+			@Override
+			protected void configure() {
+				map().getGenieId().setGenieId(source.getGenieId());
+			}
+		});
+
 		return modelMapper.map(addressDTO, Address.class);
 	}
 
