@@ -17,7 +17,7 @@ import static org.modelmapper.convention.MatchingStrategies.*;
 public class AddressDTO {
 
 	private int addressNum;
-	
+
 	private String genieId; // 이부분이 중요
 	private String userName;
 
@@ -35,7 +35,7 @@ public class AddressDTO {
 	}
 
 	public void setUserTel(String userTel) {
-		
+
 		this.userTel = userTel;
 		String[] telSplit = userTel.split("-");
 		userPhoneNum1 = telSplit[0];

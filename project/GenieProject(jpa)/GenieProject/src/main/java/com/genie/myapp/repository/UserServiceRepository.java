@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import static com.genie.myapp.entity.Account.QAccount.*;
+import static com.genie.myapp.entity.QAddress.address;
 
 @Repository
 @RequiredArgsConstructor
@@ -33,4 +34,10 @@ public class UserServiceRepository {
                 .fetchOne();
     }
 
+    public void delDelivery(int addressNum) {
+        queryFactory
+                .delete(address)
+                .where(address.addressNum.eq(addressNum))
+                .execute();
+    }
 }

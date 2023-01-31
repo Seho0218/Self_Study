@@ -41,7 +41,7 @@ public class UserController {
 
 		String genieId = (String)session.getAttribute("logId");
 		AccountDTO accountDTO = AccountDTO.createAccountDTO(genieId);
-				mav = new ModelAndView();
+		mav = new ModelAndView();
 
 		mav.addObject("svo",sellerService.getSeller(accountDTO));
 		mav.addObject("vo", userService.getUser(accountDTO));
@@ -132,11 +132,13 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		String msg = "<script>";
 
-		String genieId=(String)session.getAttribute("logId");
-		addressDTO.setGenieId(genieId);
 
 		try{
+
+			String genieId=(String)session.getAttribute("logId");
+			addressDTO.setGenieId(genieId);
 			userService.addDelivery(addressDTO);
+
 			msg+="alert('배송지가 등록되었습니다.');";
 			msg+="location.href='/user/MyDeliveryList';</script>";
 			entity = new ResponseEntity<>(msg,headers, OK);
