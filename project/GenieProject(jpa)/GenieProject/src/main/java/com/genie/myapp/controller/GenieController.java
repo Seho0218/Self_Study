@@ -76,7 +76,7 @@ public class GenieController {
 		mav = new ModelAndView();
 
 		mav.addObject("emailCnt", userService.emailCheck(userDTO));
-		mav.addObject("emailCheck", userDTO.getUserEmail());
+		mav.addObject("userEmail", userDTO.getUserEmail());
 		mav.setViewName("/emailCheck");
 
 		return mav;
@@ -88,8 +88,8 @@ public class GenieController {
 		mav = new ModelAndView();
 
 		mav.addObject("emailCnt", sellerService.emailCheck(sellerDTO));
-		mav.addObject("emailCheck", sellerDTO.getSellerEmail());
-		mav.setViewName("emailCheck");
+		mav.addObject("sellerEmail", sellerDTO.getSellerEmail());
+		mav.setViewName("sellerEmailCheck");
 
 		return mav;
 	}

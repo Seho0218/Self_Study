@@ -172,11 +172,6 @@
 				return false;
 			}
 
-			//이메일 중복검사 여부
-			if($("#sellerEmail").val()!=='Y'){
-				alert("이메일을 중복검사 하세요");
-				return false;
-			}
 
 			//비밀번호
 			if($("#genie_pwd").val()===""){
@@ -206,6 +201,11 @@
 			//이메일
 			if($("#sellerEmail").val()===""){
 				alert("이메일을 입력하세요.");
+				return false;
+			}
+			//이메일 중복검사 여부
+			if($("#emailCheckState").val()!=='Y'){
+				alert("이메일을 중복검사 하세요");
 				return false;
 			}
 			//홈페이지

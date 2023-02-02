@@ -91,7 +91,7 @@ public class UserController {
 	}
 
 	//주문목록/배송조회
-	@GetMapping("MyOrderList")
+	@GetMapping("")
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");

@@ -8,10 +8,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 	$(function(){
-		//조회한 id를 opener에 셋팅하고 현재 window를 닫아야한다.
+		//조회한 이메일을 opener에 셋팅하고 현재 window를 닫아야한다.
 		$("#setId").click(function(){
-			opener.$('#emailCheck').val('${emailCheck}');
-			opener.$('#emailCheck').val('Y');
+			opener.$('#sellerEmail').val('${sellerEmail}');
+			opener.$('#emailCheckState').val('Y');
 			window.close();
 		});
 	});
@@ -19,15 +19,15 @@
 </script>
 <div>
 	<c:if test="${emailCnt==0}">
-		<b>${emailCheck}</b>는 사용가능한 이메일 입니다.
-		<input type = "button" value = "아이디 사용하기" id="setId"/>
+		<b>${sellerEmail}</b>는 사용가능한 이메일 입니다.
+		<input type = "button" value = "이메일 사용하기" id="setId"/>
 	</c:if>
 	<c:if test="${emailCnt>0}">
-		<b>${emailCheck}는 사용 불가능한 아이디 입니다.</b>
+		<b>${sellerEmail}는 사용 불가능한 이메일 입니다.</b>
 	</c:if>
 	<hr/>
-	<form method = "get" action="/seller/emailCheck">
-		아이디 : <input type = "text" name = "emailCheck" id = "emailCheck"/>
+	<form method = "get" action="/sellerEmailCheck">
+		아이디 : <input type = "text" name = "sellerEmailCheck" id = "sellerEmailCheck"/>
 		<input type = "submit" value ="이메일 중복 검사하기"/>
 	</form>
 </div>

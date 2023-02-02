@@ -35,11 +35,6 @@ $(function(){
 			return false;
 		}
 
-		//이메일 중복검사 여부
-		if($("#userEmail").val()!=='Y'){
-			alert("이메일을 중복검사 하세요");
-			return false;
-		}
 
 		if($("#genie_pwd").val()===""){
 			alert("비밀번호를 입력하세요");
@@ -64,7 +59,12 @@ $(function(){
 			$("#userEmail").focus();
 			return false;
 		}
-		
+		//이메일 중복검사 여부
+		if($("#emailCheckState").val()!=='Y'){
+			alert("이메일을 중복검사 하세요");
+			return false;
+		}
+
 		return true;
 
 	});
