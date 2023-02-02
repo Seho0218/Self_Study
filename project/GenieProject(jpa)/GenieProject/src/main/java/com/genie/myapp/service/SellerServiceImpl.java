@@ -36,7 +36,11 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
+	public long emailCheck(SellerDTO sellerDTO) {
+		return repository.emailCheck(sellerDTO);
+	}
 
+	@Override
 	public void sellerWrite(SellerDTO sellerDTO) {
 
 		sellerDTO.setGeniePwd(passwordEncoder.encode(sellerDTO.getGeniePwd()));

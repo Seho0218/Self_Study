@@ -1,6 +1,8 @@
 package com.genie.myapp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.genie.myapp.dto.*;
@@ -58,6 +60,8 @@ public class UserController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
+
+
 
 		String genieId = (String)session.getAttribute("logId");
 		userDTO.setGenieId(genieId);
@@ -130,9 +134,10 @@ public class UserController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", UTF_8));
 		headers.add("Content-Type","text/html; charset=UTF-8");
+		Map<String, String> errors = new HashMap<>();
+
+
 		String msg = "<script>";
-
-
 		try{
 
 			String genieId=(String)session.getAttribute("logId");

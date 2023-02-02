@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public long emailCheck(UserDTO userDTO) {
+        return repository.emailCheck(userDTO);
+    }
+
+    @Override
     public void UserWrite(UserDTO userDTO) {
 
         //비밀번호 암호화

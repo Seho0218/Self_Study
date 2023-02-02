@@ -11,7 +11,10 @@ public interface SellerService {
 	int idCheck(String genie_id);
 
 	//seller 회원가입
-	void sellerWrite(SellerDTO seller);
+	void sellerWrite(SellerDTO sellerDTO);
+
+	//이메일 중복검사
+	long emailCheck(SellerDTO sellerDTO);
 
 	//seller 상품등록
 	void productWrite(SellerProductDTO sellerProductDTO);

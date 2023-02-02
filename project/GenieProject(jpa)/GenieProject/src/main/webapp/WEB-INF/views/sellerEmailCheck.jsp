@@ -10,24 +10,24 @@
 	$(function(){
 		//조회한 id를 opener에 셋팅하고 현재 window를 닫아야한다.
 		$("#setId").click(function(){
-			opener.$('#genie_id').val('${genie_id}');
-			opener.$('#idCheckState').val('Y');
-			window.close();합
+			opener.$('#emailCheck').val('${emailCheck}');
+			opener.$('#emailCheck').val('Y');
+			window.close();
 		});
 	});
 	console.log(idCnt);
 </script>
 <div>
-	<c:if test="${idCnt==0}">
-		<b>${genie_id}</b>는 사용가능한 아이디 입니다.
+	<c:if test="${emailCnt==0}">
+		<b>${emailCheck}</b>는 사용가능한 이메일 입니다.
 		<input type = "button" value = "아이디 사용하기" id="setId"/>
 	</c:if>
-	<c:if test="${idCnt>0}">
-		<b>${genie_id}는 사용 불가능한 아이디 입니다.</b>
+	<c:if test="${emailCnt>0}">
+		<b>${emailCheck}는 사용 불가능한 아이디 입니다.</b>
 	</c:if>
 	<hr/>
-	<form method = "get" action="/seller/sellerIdCheck">
-		아이디 : <input type = "text" name = "genie_id" id = "genie_id"/>
-		<input type = "submit" value ="아이디 중복 검사하기"/>
+	<form method = "get" action="/seller/emailCheck">
+		아이디 : <input type = "text" name = "emailCheck" id = "emailCheck"/>
+		<input type = "submit" value ="이메일 중복 검사하기"/>
 	</form>
 </div>

@@ -29,8 +29,25 @@
 #genie_id {
 	width: 63%;
 }
+
 /* 아이디중복검사 */
 #idCheck {
+	width: 33%;
+	padding: .5em;
+	font-size: 1em;
+	background: #F7D25A;
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#userEmail {
+	width: 63%;
+}
+
+/* 아이디중복검사 */
+#emailCheck {
 	width: 33%;
 	padding: .5em;
 	font-size: 1em;

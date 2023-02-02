@@ -1,11 +1,13 @@
 package com.genie.myapp.repository;
 
+import com.genie.myapp.dto.UserDTO;
 import com.genie.myapp.entity.Account.Account;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import static com.genie.myapp.entity.Account.QAccount.*;
+import static com.genie.myapp.entity.Account.QAccount.account;
+import static com.genie.myapp.entity.Account.QUser.*;
 import static com.genie.myapp.entity.QAddress.address;
 
 @Repository
@@ -39,5 +41,13 @@ public class UserServiceRepository {
                 .delete(address)
                 .where(address.addressNum.eq(addressNum))
                 .execute();
+    }
+
+    public Long emailCheck(UserDTO userDTO) {
+        return queryFactory
+                .select(user.userEmail.count())
+                .from(user)
+                .where(user.userEmail.eq(userDTO.getUserEmail()))
+                .fetchOne();
     }
 }

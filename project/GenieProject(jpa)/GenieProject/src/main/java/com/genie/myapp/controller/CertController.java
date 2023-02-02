@@ -43,10 +43,10 @@ public class CertController {
 	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String userEmail){
 
-		List<String> genie_id =certService.FindId(userEmail);
+		List<String> genieId =certService.FindId(userEmail);
 
-		if(genie_id.size() != 0) {
-			certService.sendUserId(userEmail, genie_id);
+		if(genieId.size() != 0) {
+			certService.sendUserId(userEmail, genieId);
 		}
 		return new ResponseEntity<>(OK);
 	}

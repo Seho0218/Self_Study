@@ -60,9 +60,9 @@ public class UserDTO {
     }
 
     //객체를 지속적으로 생성해야할 때, 팩토리 메소드로 해결한 경우
-    public static UserDTO createUserDTO(String genie_id) {
+    public static UserDTO createUserDTO(String genieId) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setGenieId(genie_id);
+        userDTO.setGenieId(genieId);
         return userDTO;
     }
 

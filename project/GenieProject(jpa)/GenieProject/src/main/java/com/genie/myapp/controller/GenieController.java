@@ -62,12 +62,38 @@ public class GenieController {
 
 		mav = new ModelAndView();
 
-		mav.addObject("idCnt", userService.idCheck(genie_id));
+		mav.addObject("idCnt", userService.idCheck(genie_id));// seller user 통합
 		mav.addObject("genie_id", genie_id);
 		mav.setViewName("/idCheck");
 
 		return mav;
 	}
+
+	//아이디 중복검사
+	@GetMapping("emailCheck")
+	public ModelAndView emailCheck(UserDTO userDTO) {
+
+		mav = new ModelAndView();
+
+		mav.addObject("emailCnt", userService.emailCheck(userDTO));
+		mav.addObject("emailCheck", userDTO.getUserEmail());
+		mav.setViewName("/emailCheck");
+
+		return mav;
+	}
+
+	@GetMapping("sellerEmailCheck")
+	public ModelAndView sellerEmailCheck(SellerDTO sellerDTO) {
+
+		mav = new ModelAndView();
+
+		mav.addObject("emailCnt", sellerService.emailCheck(sellerDTO));
+		mav.addObject("emailCheck", sellerDTO.getSellerEmail());
+		mav.setViewName("emailCheck");
+
+		return mav;
+	}
+
 
 	//회원 가입하기
 	@PostMapping("UserWrite")

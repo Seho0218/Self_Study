@@ -60,7 +60,7 @@ public class AddressDTO {
 		// 매핑 전략 설정
 		modelMapper.getConfiguration().setMatchingStrategy(STRICT);
 
-		//무려 8시간 만에 해결한 방법
+		//외래키 해결
 		modelMapper.addMappings(new PropertyMap<AddressDTO, Address>() {
 
 			@Override

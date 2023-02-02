@@ -60,18 +60,29 @@
 		padding-left:0;
 		font-weight:bold;
 	}
-	/*#idForm p{
-		float:left;
-		margin:10px;
-		margin-left:0;
-	}*/
-	input[type=text], input[type=password]{
+
+	#sellerEmail{
+		width:63%;
+	}
+
+	/* 아이디중복검사 */
+	#emailCheck {
+		width: 33%;
+		padding: .5em;
+		font-size: 1em;
+		background: #E162A2;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+
+
+	input[type=text], input[type=password], input[type=email]{
 		width:100%;
 		height:50px;
 		background-color: #f6f6f6;
-    	border: none;
-    	color: #0d0d0d;
-		border-radius:15px;
+		color: #0d0d0d;
 		font-size:1em;
 		padding:20px;
 		margin:5px;
@@ -89,8 +100,8 @@
 	#sel_zipcode{
 		width:50%;
 	}
-	#idCheck, #zipSearch{
-		width:35%;
+	#idCheck, #zipSearch {
+		width:33%;
 		padding:10px;
 		display:inline-block;
 		font-size: 15px;
@@ -135,69 +146,85 @@
 		$("#idCheck").click(function(){
 			window.open("/idCheck?genie_id="+$("#genie_id").val(),"sellerIdCheck","width=400, height=200");
 		});
+
+		$("#emailCheck").click(function(){
+			window.open("/sellerEmailCheck?sellerEmail="+$("#sellerEmail").val(),"emailCheck","width=400,height=300");
+		});
+
 		$("#genie_id").change(function(){
 			$("#idCheckState").val("N");
+		});
+
+		$("#emailCheck").change(function(){
+			$("#emailCheckState").val("N");
 		});
 		
 		//유효성 검사
 		$("#sellerFrm").submit(function(){
 			//아이디
-			if($("#genie_id").val()==""){
+			if($("#genie_id").val()===""){
 				alert("아이디를 입력하세요.");
 				return false;
 			}
 			//아이디 중복검사여부
-			if($("#idCheckState").val()!='Y'){
+			if($("#idCheckState").val()!=='Y'){
 				alert("아이디를 중복검사하세요.");
 				return false;
 			}
+
+			//이메일 중복검사 여부
+			if($("#sellerEmail").val()!=='Y'){
+				alert("이메일을 중복검사 하세요");
+				return false;
+			}
+
 			//비밀번호
-			if($("#genie_pwd").val()==""){
+			if($("#genie_pwd").val()===""){
 				alert("비밀번호를 입력하세요.");
 				return false;
 			}
 			//비밀번호 일치
-			if($("#genie_pwd").val() != $("#genie_pwd2").val()){
+			if($("#genie_pwd").val() !== $("#genie_pwd2").val()){
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
 			}
 			//회사명
-			if($("#company_name").val()==""){
+			if($("#company_name").val()===""){
 				alert("회사명을 입력하세요.");
 				return false;
 			}
 			//대표자명
-			if($("#ceo_name").val()==""){
+			if($("#ceo_name").val()===""){
 				alert("대표자명을 입력하세요.");
 				return false;
 			}
 			//전화번호
-			if($("#tel1").val()=="" || $("#tel2").val()=="" || $("#tel3").val()==""){
+			if($("#tel1").val()==="" || $("#tel2").val()==="" || $("#tel3").val()===""){
 				alert("전화번호를 입력하세요.");
 				return false;
 			}
 			//이메일
-			if($("#seller_email").val()==""){
+			if($("#sellerEmail").val()===""){
 				alert("이메일을 입력하세요.");
 				return false;
 			}
 			//홈페이지
-			if($("#seller_website").val()==""){
+			if($("#seller_website").val()===""){
 				alert("홈페이지를 입력하세요.");
 				return false;
 			}
 			//사업자 등록증
-			if($("#seller_reg_no").val()==""){
+			if($("#seller_reg_no").val()===""){
 				alert("사업자 등록증을 첨부하세요.");
 				return false;
 			}
 			//우편번호
-			if($("#sel_zipcode").val()==""){
+			if($("#sel_zipcode").val()===""){
 				alert("우편번호를 입력하세요.");
 				return false;
 			}
 			//주소
-			if($("#sel_addr").val()==""){
+			if($("#sel_addr").val()===""){
 				alert("주소를 입력하세요.");
 				return false;
 			}
@@ -241,7 +268,9 @@
 				</div>
 				<div>
 					<p>이메일</p>
-					<input type="text" id="seller_email" name="sellerEmail" value = "ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
+					<input type="text" id="sellerEmail" name="sellerEmail" value = "ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
+					<input type="button" id="emailCheck" value="이메일 중복 검사"/>
+					<input type ="hidden" id = "emailCheckState" value = "N"/>
 				</div>
 				<div>
 					<p>홈페이지</p>
