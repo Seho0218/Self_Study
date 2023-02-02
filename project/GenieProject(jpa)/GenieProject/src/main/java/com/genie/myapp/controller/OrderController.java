@@ -93,11 +93,10 @@ public class OrderController {
 					orderDTOs.setRecipientAddress(orderDTO.getRecipientAddress());
 					orderDTOs.setRecipientRequest(orderDTO.getRecipientRequest());
 
+					orderDTOs.setProductName(orderDTOs.getProductName());
 					orderDTOs.setOrderPrice(orderDTOs.getCartPrice());
 					orderDTOs.setOrderQty(orderDTOs.getCartQty());
 					orderDTOs.setPaymentMethod(orderDTO.getPaymentMethod());
-
-//					System.out.println(orderDTOs.toString());
 
 					orderService.afterPayment(orderDTOs);
 

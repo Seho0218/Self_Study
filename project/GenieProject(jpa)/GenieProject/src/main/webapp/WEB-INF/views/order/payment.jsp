@@ -184,6 +184,7 @@
                       genieId:$("input[name=genieId]").val(),
                       cartList: cartList,
                       productId:$("input[name=productId]").val(),
+                      productName:$("input[name=productName]").val(),
                       orderPrice: $("input[name=cartPrice]").val(),
                       orderQty: $("input[name=cartQty]").val(),
 

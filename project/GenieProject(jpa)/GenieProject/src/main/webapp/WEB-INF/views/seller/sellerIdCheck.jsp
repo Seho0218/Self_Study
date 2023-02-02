@@ -12,7 +12,7 @@
 		$("#setId").click(function(){
 			opener.$('#genie_id').val('${genie_id}');
 			opener.$('#idCheckState').val('Y');
-			window.close();
+			window.close();합
 		});
 	});
 	console.log(idCnt);

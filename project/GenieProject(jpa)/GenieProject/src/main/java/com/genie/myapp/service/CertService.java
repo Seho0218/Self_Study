@@ -16,7 +16,5 @@ public interface CertService {
 
     void PwdEditOk(AccountDTO accountDTO);
 
-	
-    
 }
  

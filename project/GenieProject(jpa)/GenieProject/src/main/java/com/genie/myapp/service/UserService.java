@@ -10,6 +10,9 @@ public interface UserService {
 	//아이디 중복검사
 	long idCheck(String genie_id);
 
+	//이메일 중복검사
+	long emailCheck(UserDTO userDTO);
+
 	//회원가입
 	void UserWrite(UserDTO userDTO);
 

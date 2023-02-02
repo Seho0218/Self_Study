@@ -5,8 +5,6 @@
 <section class="registration">
 	<div class="wrapper">
 		<h1>일반회원 회원가입</h1>
-		<%-- <input type="text" value="${logStatus=='Y' && role=='ROLE_USER'}"/> --%>
-		<%-- <input type="text" value="${role}"/> --%>
 		<form method="post" action="/UserWrite" id="logFrm">
 			<input type="hidden" value="USER" name="ROLE"/>
 			<ul class="idForm">
@@ -43,12 +41,14 @@
 			</ul>
 			<ul id="emailForm">
 				<li>이메일</li>
-				<input type="email" id="user_email" name="userEmail" value="ghdtpgh8913@gmail.com"placeholder="이메일을 입력하세요">
+				<input type="email" id="userEmail" name="userEmail" value="ghdtpgh8913@gmail.com" placeholder="이메일을 입력하세요">
+				<input type="button" id="emailCheck" value="이메일 중복 검사"/>
+				<input type ="hidden" id = "emailCheckState" value = "N"/>
 			</ul>
 			<ul id="user_gender">
 				<li>성별</li>
-				<input type="radio" name="user_gender" value="1">남성</label>
-				<input type="radio" name="user_gender" value="0">여성</label>
+				<input type="radio" name="userGender" value="M">남성</label>
+				<input type="radio" name="userGender" value="F">여성</label>
 			</ul>
 				<input type = "submit" id="formSubmit" value = "회원가입하기"/>
 		</form>

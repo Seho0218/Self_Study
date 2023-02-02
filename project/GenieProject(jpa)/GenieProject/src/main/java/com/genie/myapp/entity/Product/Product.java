@@ -20,7 +20,7 @@ import static javax.persistence.GenerationType.*;
 @DynamicUpdate
 public class Product {
 
-    @Id
+    @Id @GeneratedValue(strategy = IDENTITY)
     private int productId;
 
     @JsonIgnore
