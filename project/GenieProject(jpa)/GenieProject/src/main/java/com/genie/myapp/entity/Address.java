@@ -29,4 +29,31 @@ public class Address implements Serializable {
     private String addr;
     private String detailAddr;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        if (addressNum != address.addressNum) return false;
+        if (!genieId.equals(address.genieId)) return false;
+        if (!userName.equals(address.userName)) return false;
+        if (!userTel.equals(address.userTel)) return false;
+        if (!zipCode.equals(address.zipCode)) return false;
+        if (!addr.equals(address.addr)) return false;
+        return detailAddr.equals(address.detailAddr);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = addressNum;
+        result = 31 * result + genieId.hashCode();
+        result = 31 * result + userName.hashCode();
+        result = 31 * result + userTel.hashCode();
+        result = 31 * result + zipCode.hashCode();
+        result = 31 * result + addr.hashCode();
+        result = 31 * result + detailAddr.hashCode();
+        return result;
+    }
 }

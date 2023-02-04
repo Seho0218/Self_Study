@@ -14,7 +14,6 @@ public class UserDTO {
     private String geniePwd2;
     private String ROLE;
 
-    
     private String userName;
     
 	private String userTel;
