@@ -7,7 +7,7 @@ import com.genie.myapp.entity.Product.Inquiry;
 import com.genie.myapp.entity.Product.ProductLike;
 import com.genie.myapp.entity.Product.Reply_product;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @DynamicUpdate
-@NoArgsConstructor
+@RequiredArgsConstructor
 @DiscriminatorValue("USER")
 public class User extends Account {
 

@@ -2,6 +2,7 @@ package com.genie.myapp.entity.Account;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -14,7 +15,8 @@ import static javax.persistence.InheritanceType.*;
 @Inheritance(strategy = JOINED)
 public class Account {
 
-    @Id
+    @Id @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String genieId;
     private String geniePwd;
 

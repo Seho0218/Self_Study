@@ -1,36 +1,48 @@
 package com.genie.myapp.service;
 
+import com.genie.myapp.dto.UserDTO;
+import com.genie.myapp.entity.Account.User;
+import com.genie.myapp.repository.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.*;
 
 
 @Transactional
 @RequiredArgsConstructor
 @DataJpaTest
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@AutoConfigureTestDatabase(replace = NONE)
 class UserServiceImplTest {
 
     @Autowired
-    private TestEntityManager em;
+    private UserRepository userRepository;
 
-//    @Test
-//    void 유저_정보_업데이트_확인() {
-//
-//        UserDTO userDTO = new UserDTO();
-//        userDTO.setGenie_id("user");
-//        userDTO.setUser_tel("010-1233-1234");
-//
-//        User user = UserDTO.convertDTOtoEntity(userDTO);
-//        User findUser = em.find(User.class, user.getGenie_id());
-//
-//        findUser.setUser_tel(userDTO.getUser_tel());
+    @Test
+    @DisplayName(" 유저 정보 업데이트 확인 ")
+    void userUpdateTest() throws Exception {
 
+        //give
+        User user = userRepository.findByGenieId("user");
+
+        //when
+        UserDTO userDTO = new UserDTO();
+        userDTO.setGenieId("user");
+        userDTO.setUserEmail("ghdtpgh8913@gaga");
+        userDTO.setUserTel("010-1233-1234");
+        User testUser = UserDTO.convertDTOtoEntity(userDTO);
+        userRepository.save(testUser);
+
+        //then
+        User result = userRepository.findByGenieId("user");
+        assertThat(result).isEqualTo(user);
+    }
 
 
     @Test
