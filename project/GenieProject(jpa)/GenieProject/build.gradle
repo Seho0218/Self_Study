@@ -56,8 +56,8 @@ dependencies {
 
 	//테스트 케이스
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testCompileOnly 'org.projectlombok:lombok'
-	testAnnotationProcessor'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok:1.18.20'
+	testAnnotationProcessor'org.projectlombok:lombok:1.18.20'
 
 	//뷰를 jsp로 사용하기 위해서 프레임워크를 추가한다.
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.58'
