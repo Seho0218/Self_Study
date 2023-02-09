@@ -36,6 +36,7 @@ class UserServiceImplTest {
         userDTO.setGenieId("user");
         userDTO.setUserEmail("ghdtpgh8913@gaga");
         userDTO.setUserTel("010-1233-1234");
+
         User testUser = UserDTO.convertDTOtoEntity(userDTO);
         userRepository.save(testUser);
 

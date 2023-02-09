@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.genie.myapp.dto.*;
 import lombok.RequiredArgsConstructor;
@@ -164,57 +165,58 @@ public class GenieController {
 
 	//로그인
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(AccountDTO accountDTO, HttpSession session) {
+	public ModelAndView loginOk(@Valid AccountDTO accountDTO, HttpSession session) {
 
 		mav = new ModelAndView();
 
-		AccountDTO account = userService.loginOk(accountDTO);
+			AccountDTO account = userService.loginOk(accountDTO);
 
-		//비밀번호 검증
-		boolean pwdMatch = passwordEncoder.matches(accountDTO.getGeniePwd(), account.getGeniePwd());
+			//비밀번호 검증
+			boolean pwdMatch = passwordEncoder.matches(accountDTO.getGeniePwd(), account.getGeniePwd());
 
-		if (pwdMatch) {
+			if (pwdMatch) {
 
-			if (account.getROLE().equals("USER")) {//일반회원 일때
+				if (account.getROLE().equals("USER")) {//일반회원 일때
 
-				UserDTO logDTO = userService.getUser(accountDTO);
-				session.setAttribute("logId", logDTO.getGenieId());
-				session.setAttribute("logName", logDTO.getUserName());
-				session.setAttribute("logStatus", "Y");
-				session.setAttribute("ROLE", "ROLE_USER");
+					UserDTO logDTO = userService.getUser(accountDTO);
+					session.setAttribute("logId", logDTO.getGenieId());
+					session.setAttribute("logName", logDTO.getUserName());
+					session.setAttribute("logStatus", "Y");
+					session.setAttribute("ROLE", "ROLE_USER");
 
-				mav.setViewName("redirect:/");
+					mav.setViewName("redirect:/");
 
-				return mav;
-			}//일반 회원일때 끝
+					return mav;
+				}//일반 회원일때 끝
 
-			if (account.getROLE().equals("SELLER")) {//업체회원일때
+				if (account.getROLE().equals("SELLER")) {//업체회원일때
 
-				SellerDTO slogDTO = sellerService.getSeller(accountDTO);
-				session.setAttribute("logId", slogDTO.getGenieId());
-				session.setAttribute("logName", slogDTO.getCompanyName());
-				session.setAttribute("logStatus", "Y");
-				session.setAttribute("ROLE", "ROLE_SELLER");
+					SellerDTO slogDTO = sellerService.getSeller(accountDTO);
+					session.setAttribute("logId", slogDTO.getGenieId());
+					session.setAttribute("logName", slogDTO.getCompanyName());
+					session.setAttribute("logStatus", "Y");
+					session.setAttribute("ROLE", "ROLE_SELLER");
 
-				mav.setViewName("redirect:/seller/sellerMain");
+					mav.setViewName("redirect:/seller/sellerMain");
 
-				return mav;
-			}// 업체회원일때 끝
+					return mav;
+				}// 업체회원일때 끝
 
-			if (account.getROLE().equals("ADMIN")) {//관리자 회원일때
+				if (account.getROLE().equals("ADMIN")) {//관리자 회원일때
 
-				AdministerDTO alogDTO = administerService.getAdminister(accountDTO);
-				session.setAttribute("logId", alogDTO.getGenieId());
-				session.setAttribute("logName", alogDTO.getAdministerName());
-				session.setAttribute("logStatus", "Y");
-				session.setAttribute("ROLE", "ROLE_ADMIN");
+					AdministerDTO alogDTO = administerService.getAdminister(accountDTO);
+					session.setAttribute("logId", alogDTO.getGenieId());
+					session.setAttribute("logName", alogDTO.getAdministerName());
+					session.setAttribute("logStatus", "Y");
+					session.setAttribute("ROLE", "ROLE_ADMIN");
 
-				mav.setViewName("redirect:/admin/adminMain");
+					mav.setViewName("redirect:/admin/adminMain");
 
-				return mav;
-			}//관리자일때 끝
+					return mav;
+				}//관리자일때 끝
 
-		}
+			}
+
 			mav.setViewName("redirect:/login");
 			return mav;
 	}

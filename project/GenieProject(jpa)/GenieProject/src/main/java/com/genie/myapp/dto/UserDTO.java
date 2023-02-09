@@ -10,6 +10,7 @@ import org.modelmapper.convention.MatchingStrategies;
 public class UserDTO {
 
     private String genieId;
+
     private String geniePwd;
     private String geniePwd2;
     private String ROLE;
