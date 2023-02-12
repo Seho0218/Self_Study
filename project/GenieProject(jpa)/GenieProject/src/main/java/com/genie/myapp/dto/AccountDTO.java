@@ -6,14 +6,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import javax.validation.constraints.NotEmpty;
+
 import static org.modelmapper.convention.MatchingStrategies.*;
 
 @Data
 @NoArgsConstructor
 public class AccountDTO {
 
+
+    // 아이디
+    @NotEmpty
     private String genieId;
+
+    //비밀번호
+    @NotEmpty
 	private String geniePwd;
+
+
+    //변경 비밀번호
+    @NotEmpty
     private String changedPwd;
     private int withdrawal;
 

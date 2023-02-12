@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,14 +17,26 @@ import static org.modelmapper.convention.MatchingStrategies.*;
 @NoArgsConstructor
 public class AddressDTO {
 
+	// 각 주소록당 부여되는 번호
 	private int addressNum;
 
-	private String genieId; // 이부분이 중요
+	@NotEmpty
+	private String genieId;
+
+	@NotEmpty
 	private String userName;
 
+	//휴대전화번호(userPhoneNum이 합쳐져서 하나의 userTel이 됌)
+	@NotEmpty
 	private String userTel;
+
+	@NotEmpty
 	private String userPhoneNum1;
+
+	@NotEmpty
 	private String userPhoneNum2;
+
+	@NotEmpty
 	private String userPhoneNum3;
 
 	private String zipCode;
