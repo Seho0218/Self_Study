@@ -6,25 +6,15 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
-import javax.validation.constraints.NotEmpty;
-
 @Data
 public class UserDTO {
 
-    @NotEmpty
     private String genieId;
 
-    @NotEmpty
     private String geniePwd;
-
-    //비밀번호 확인
-    @NotEmpty
     private String geniePwd2;
     private String ROLE;
 
-
-    //사용자 이름 (실명)
-    @NotEmpty
     private String userName;
     
 	private String userTel;
