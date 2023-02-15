@@ -3,6 +3,7 @@ package com.genie.myapp.entity.Account;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
+@DynamicInsert
 @DiscriminatorValue("Admin")
 public class Administer extends Account{
 
@@ -22,7 +24,8 @@ public class Administer extends Account{
     @Column(name= "administer_email")
     private String email;
 
-    private LocalDateTime writedate  = LocalDateTime.now();
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime writedate;
 
     @Override
     public boolean equals(Object o) {

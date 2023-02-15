@@ -57,6 +57,10 @@ public class OrderController {
 
 		String genie_id = (String) session.getAttribute("logId");
 
+		/*
+		  장바구니에서 주문할 경우
+		  장바구니의 제품정보를 주문 정보페이지에 옮기는 메서드
+		 */
 		List<CartDTO> lcvo = orderService.readyToPay(cartDTO);
 
 		AccountDTO accountDTO = AccountDTO.createAccountDTO(genie_id);
@@ -81,24 +85,22 @@ public class OrderController {
 		if(orderDTO.getCartList() != null){
 
 			try{
-				//제품 정보 가져오기
+				/*
+					주문 정보(orderDTO)에 담긴 제품 리스트의 정보를 가져오는 메서드
+				 */
 				List<OrderDTO> cList = orderService.getFromCart(orderDTO);
 
+				/*
+				orderDTO에 담긴 주문 정보에 cList를 통해 가져온 메서드를 이용해
+				카트 정보를 주문 정보로 넣는 로직
+				 */
 				for(OrderDTO orderDTOs : cList){
-					orderDTOs.setOrderNum(orderDTO.getOrderNum());
-					orderDTOs.setGenieId(orderDTO.getGenieId());
 
-					orderDTOs.setRecipientName(orderDTO.getRecipientName());
-					orderDTOs.setRecipientPhone(orderDTO.getRecipientPhone());
-					orderDTOs.setRecipientAddress(orderDTO.getRecipientAddress());
-					orderDTOs.setRecipientRequest(orderDTO.getRecipientRequest());
+					orderDTO.setProductName(orderDTOs.getProductName());
+					orderDTO.setOrderPrice(orderDTOs.getCartPrice());
+					orderDTO.setOrderQty(orderDTOs.getCartQty());
 
-					orderDTOs.setProductName(orderDTOs.getProductName());
-					orderDTOs.setOrderPrice(orderDTOs.getCartPrice());
-					orderDTOs.setOrderQty(orderDTOs.getCartQty());
-					orderDTOs.setPaymentMethod(orderDTO.getPaymentMethod());
-
-					orderService.afterPayment(orderDTOs);
+					orderService.afterPayment(orderDTO);
 
 				}
 				//오더테이블에 저장

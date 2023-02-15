@@ -31,7 +31,7 @@ public class UserServiceRepository {
                 .selectFrom(account)
                 .where(
                        account.genieId.eq(accountEntity.getGenieId()),
-                       account.withdrawal.eq(1)
+                       account.withdrawal.eq(true)
                 )
                 .fetchOne();
     }

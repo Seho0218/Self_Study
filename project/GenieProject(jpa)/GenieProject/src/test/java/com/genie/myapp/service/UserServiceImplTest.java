@@ -26,7 +26,7 @@ class UserServiceImplTest {
 
     @Test
     @DisplayName(" 유저 정보 업데이트 확인 ")
-    void userUpdateTest() throws Exception {
+    void userUpdateTest(){
 
         //give
         User user = userRepository.findByGenieId("user");
@@ -47,6 +47,24 @@ class UserServiceImplTest {
 
 
     @Test
-    void pwdEditOk() {
+    @DisplayName("회원 가입")
+    void userWrite() {
+        //give
+        User user = userRepository.findByGenieId("user");
+
+        //when
+        UserDTO userDTO = new UserDTO();
+        userDTO.setGenieId("user");
+        userDTO.setUserName("이유저");
+        userDTO.setUserEmail("ghdtpgh8913@gaga");
+        userDTO.setUserTel("010-1233-1234");
+        userDTO.setUserGender('M');
+
+        User testUser = UserDTO.convertDTOtoEntity(userDTO);
+        userRepository.save(testUser);
+
+        //then
+        User result = userRepository.findByGenieId("user");
+        assertThat(result).isEqualTo(user);
     }
 }
