@@ -28,9 +28,11 @@ public class Seller extends Account{
     private String ceoName;
     private String sellerAddress;
     private String sellerWebsite;
-    private LocalDateTime writeDate = LocalDateTime.now();
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime writeDate;
     private String sellerStatus;
-    private LocalDateTime approvalDate = LocalDateTime.now();
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime approvalDate;
 
     @Override
     public boolean equals(Object o) {

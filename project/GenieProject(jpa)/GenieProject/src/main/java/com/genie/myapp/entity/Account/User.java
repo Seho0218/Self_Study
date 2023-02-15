@@ -9,6 +9,7 @@ import com.genie.myapp.entity.Product.Reply_product;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @Entity
 @Getter @Setter
 @DynamicUpdate
+@DynamicInsert
 @RequiredArgsConstructor
 @DiscriminatorValue("USER")
 public class User extends Account {
@@ -52,18 +53,17 @@ public class User extends Account {
 
     private char userGender;
 
+    @Column(columnDefinition = "varchar(255) default 'Card'")
     private String paymentMethod;
 
-    private LocalDateTime signInDate = LocalDateTime.now();
-
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime signInDate;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User user)) return false;
         if (!super.equals(o)) return false;
-
-        User user = (User) o;
 
         if (userGender != user.userGender) return false;
         if (!userName.equals(user.userName)) return false;
@@ -92,7 +92,7 @@ public class User extends Account {
         result = 31 * result + userTel.hashCode();
         result = 31 * result + userEmail.hashCode();
         result = 31 * result + (int) userGender;
-        result = 31 * result + paymentMethod.hashCode();
+        result = 31 * result + (paymentMethod != null ? paymentMethod.hashCode() : 0);
         result = 31 * result + signInDate.hashCode();
         return result;
     }

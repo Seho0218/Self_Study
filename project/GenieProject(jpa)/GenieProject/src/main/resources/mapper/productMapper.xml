@@ -49,7 +49,7 @@
             user u 
         where u.genie_id=c.genie_id and 
             c.product_id=p.product_id and 
-            c.genie_id=#{genieId};
+            c.genie_id=#{genieId}
 
     </select>
 
@@ -116,7 +116,7 @@
     <select id="companyName" resultType="ProductDTO">
         select p.product_id, s.genie_id, s.company_name, p.product_price, p.product_image1, p.product_name
         from product p join seller s
-        on p.genie_id = s.genie_id;
+        on p.genie_id = s.genie_id
     </select>
 
 </mapper>

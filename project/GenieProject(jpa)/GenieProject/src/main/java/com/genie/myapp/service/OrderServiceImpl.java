@@ -3,6 +3,7 @@ package com.genie.myapp.service;
 import java.util.List;
 
 import com.genie.myapp.entity.MyOrder;
+import com.genie.myapp.repository.OrderServiceRepository;
 import com.genie.myapp.repository.jpa.CartRepository;
 import com.genie.myapp.repository.jpa.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +21,17 @@ import javax.transaction.Transactional;
 public class OrderServiceImpl implements OrderService{
 
     public final OrderDAO dao;
+    public final OrderServiceRepository orderServiceRepository;
     public final OrderRepository orderRepository;
     public final CartRepository cartRepository;
 
 
     @Override
     public List<CartDTO> readyToPay(CartDTO cartDTO) {
+
         return dao.readyToPay(cartDTO);
+//        Cart cart = CartDTO.convertDTOToEntity(cartDTO);
+//        return CartDTO.convertEntityToDTO(orderServiceRepository.readyToPay(cart));
     }
 
     @Override
