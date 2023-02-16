@@ -96,11 +96,20 @@ public class OrderController {
 				 */
 				for(OrderDTO orderDTOs : cList){
 
-					orderDTO.setProductName(orderDTOs.getProductName());
-					orderDTO.setOrderPrice(orderDTOs.getCartPrice());
-					orderDTO.setOrderQty(orderDTOs.getCartQty());
+					orderDTOs.setOrderNum(orderDTO.getOrderNum());
+					orderDTOs.setGenieId(orderDTO.getGenieId());
 
-					orderService.afterPayment(orderDTO);
+					orderDTOs.setRecipientName(orderDTO.getRecipientName());
+					orderDTOs.setRecipientPhone(orderDTO.getRecipientPhone());
+					orderDTOs.setRecipientAddress(orderDTO.getRecipientAddress());
+					orderDTOs.setRecipientRequest(orderDTO.getRecipientRequest());
+
+					orderDTOs.setProductName(orderDTOs.getProductName());
+					orderDTOs.setOrderPrice(orderDTOs.getCartPrice());
+					orderDTOs.setOrderQty(orderDTOs.getCartQty());
+					orderDTOs.setPaymentMethod(orderDTO.getPaymentMethod());
+
+					orderService.afterPayment(orderDTOs);
 
 				}
 				//오더테이블에 저장
