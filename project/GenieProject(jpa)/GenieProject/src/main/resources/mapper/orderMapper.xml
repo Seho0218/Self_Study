@@ -41,7 +41,7 @@
 
         select * from myorder where order_num = (
             select order_num from myorder where order_write_date = (
-                    (select max(order_write_date) from myorder where genie_id=#{genieId})));
+                    (select max(order_write_date) from myorder where genie_id=#{genieId})))
 
     </select>
 

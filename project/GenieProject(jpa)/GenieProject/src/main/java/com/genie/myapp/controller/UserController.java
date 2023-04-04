@@ -246,7 +246,7 @@ public class UserController {
 
 
 		mav = new ModelAndView();
-		mav.addObject("list",userService.getLikeList(genie_id));
+		mav.addObject("list",userService.getLikeList(accountDTO));
 		mav.addObject("vo", userService.getUser(accountDTO));
 		mav.setViewName("/user/MyLikeList");
 	

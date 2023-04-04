@@ -47,7 +47,7 @@
     border: none;
     border-radius: 10px;
   }
-  input[type=text]:placeholder {
+  input[type=text]::placeholder {
     color: #cccccc;
   }
   /* 로그인(submit) */

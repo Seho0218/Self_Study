@@ -31,6 +31,7 @@ public class Cart {
 
     private int cartQty;
 
-    private LocalDateTime cartWriteDate = LocalDateTime.now();
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime cartWriteDate;
 
 }
