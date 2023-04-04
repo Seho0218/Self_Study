@@ -2,10 +2,12 @@ package com.genie.myapp.service;
 
 import java.util.List;
 
+import com.genie.myapp.entity.Cart;
 import com.genie.myapp.entity.MyOrder;
 import com.genie.myapp.repository.OrderServiceRepository;
 import com.genie.myapp.repository.jpa.CartRepository;
 import com.genie.myapp.repository.jpa.OrderRepository;
+import com.genie.myapp.repository.jpa.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +26,12 @@ public class OrderServiceImpl implements OrderService{
     public final OrderServiceRepository orderServiceRepository;
     public final OrderRepository orderRepository;
     public final CartRepository cartRepository;
+    private final ProductRepository productRepository;
 
 
     @Override
     public List<CartDTO> readyToPay(CartDTO cartDTO) {
-
         return dao.readyToPay(cartDTO);
-//        Cart cart = CartDTO.convertDTOToEntity(cartDTO);
-//        return CartDTO.convertEntityToDTO(orderServiceRepository.readyToPay(cart));
     }
 
     @Override

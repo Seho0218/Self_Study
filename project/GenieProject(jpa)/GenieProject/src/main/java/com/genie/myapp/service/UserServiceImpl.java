@@ -138,8 +138,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<ProductDTO> getLikeList(String genie_id) {
-        return dao.getLikeList(genie_id);
+    public List<ProductDTO> getLikeList(AccountDTO accountDTO) {
+        return dao.getLikeList(accountDTO.getGenieId());
     }
 
 }

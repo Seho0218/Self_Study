@@ -38,5 +38,5 @@ public interface UserService {
 	List<OrderDTO> getOrder(UserDTO userDTO);
 
 	//찜한 상품 리스트
-	List<ProductDTO> getLikeList(String genie_id);
+	List<ProductDTO> getLikeList(AccountDTO accountDTO);
 }
